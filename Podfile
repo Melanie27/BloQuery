@@ -1,0 +1,5 @@
+platform :ios, '8.0'
+pod 'AFNetworking'
+pod 'Firebase/Core'
+target 'BloQuery'
+project 'bloQuery/BloQuery.xcodeproj'
