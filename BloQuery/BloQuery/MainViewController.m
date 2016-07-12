@@ -72,15 +72,14 @@ static NSString *const kChangePasswordText = @"Change Password";
 
 @property (nonatomic, strong) UIButton *submitAccount;
 @property (nonatomic, strong) UIButton *logoutAccount;
-@property (nonatomic, strong) UIButton *createAccount;
 @end
 
 @implementation MainViewController
 
-- (void)loadView {
+- (void)viewDidLoad {
     [super viewDidLoad];
    
-    UIView *mainView = [UIView new];
+    UIView *mainView = self.view;
     //self.mainView.backgroundColor = [UIColor blueColor];
     //email
     //self.subView = [[UIView alloc] init];
@@ -122,7 +121,7 @@ static NSString *const kChangePasswordText = @"Change Password";
              forControlEvents:UIControlEventTouchUpInside];
     [_logoutAccount setTitle:@"Logout" forState:UIControlStateNormal];
     
-    
+    /*
     //register button
     self.createAccount = [UIButton buttonWithType:UIButtonTypeCustom];
     [_createAccount addTarget:self
@@ -130,10 +129,12 @@ static NSString *const kChangePasswordText = @"Change Password";
              forControlEvents:UIControlEventTouchUpInside];
     [_createAccount setTitle:@"or...Register" forState:UIControlStateNormal];
     self.createAccount.backgroundColor = [UIColor colorWithRed:252/255.0f green:181/255.0f blue:23/255.0f alpha:1];
-    
+    */
     
     //add some views
-    for (UIView *view in @[self.emailField, self.passwordField, self.logoutAccount, self.submitAccount, self.createAccount]) {
+    for (UIView *view in @[self.emailField, self.passwordField, self.logoutAccount, self.submitAccount
+                               //,self.createAccount
+                               ]) {
         [mainView addSubview:view];
          view.translatesAutoresizingMaskIntoConstraints = NO;
     }
@@ -495,7 +496,6 @@ didSignInForUser:(GIDGoogleUser *)user
     self.handle = [[FIRAuth auth]
                    addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth, FIRUser *_Nullable user) {
                        [self setTitleDisplay:user];
-                       [self.tableView reloadData];
                    }];
 }
 
@@ -596,7 +596,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                          [self showMessagePrompt:error.localizedDescription];
                          return;
                      }
-                     [self.tableView reloadData];
+               //      [self.tableView reloadData];
                  }];
                  // [END_EXCLUDE]
              }];
@@ -776,7 +776,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         [alert show];
         return;
     }
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 
 @end
