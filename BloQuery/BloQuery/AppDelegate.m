@@ -30,16 +30,11 @@
 
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // [START firebase_configure]
-    // Use Firebase library to configure APIs
+   
     /*
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] init]];
-    
-    //UIStoryboard *MainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    //MainViewController *controller = (MainViewController*)[UIStoryboard
-                                                       //instantiateViewControllerWithIdentifier: @"MainViewController"];
-    
+    	
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -47,7 +42,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [FIRApp configure];
    
-    // [END firebase_configure]
+    
     
     //[[FBSDKApplicationDelegate sharedInstance] application:application
                              //didFinishLaunchingWithOptions:launchOptions];

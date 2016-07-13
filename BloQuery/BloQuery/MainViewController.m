@@ -67,91 +67,23 @@ static NSString *const kChangePasswordText = @"Change Password";
 
 @interface MainViewController () <UITextFieldDelegate, UIGestureRecognizerDelegate>
 @property(strong, nonatomic) FIRAuthStateDidChangeListenerHandle handle;
-@property(strong, nonatomic) IBOutlet UITextField *emailField;
-@property(strong, nonatomic) IBOutlet UITextField *passwordField;
 
-@property (nonatomic, strong) UIButton *submitAccount;
-@property (nonatomic, strong) UIButton *logoutAccount;
 @end
 
 @implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-    UIView *mainView = self.view;
-    //self.mainView.backgroundColor = [UIColor blueColor];
-    //email
-    //self.subView = [[UIView alloc] init];
-    //self.subView.backgroundColor = [UIColor yellowColor];
-    self.emailField = [[UITextField alloc] init];
-    self.emailField.keyboardType = UIKeyboardTypeURL;
-    self.emailField.returnKeyType = UIReturnKeyDone;
-    self.emailField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    self.emailField.autocorrectionType = UITextAutocorrectionTypeNo;
-    self.emailField.placeholder = NSLocalizedString(@"  Enter Email", @"Placeholder text for web browser URL field");
-    self.emailField.backgroundColor = [UIColor colorWithWhite:220/255.0f alpha:1];
-    
-    self.emailField.delegate = self;
-    
-    //password
-    self.passwordField = [[UITextField alloc] init];
-    self.passwordField.keyboardType = UIKeyboardTypeURL;
-    self.passwordField.returnKeyType = UIReturnKeyDone;
-    self.passwordField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    self.passwordField.autocorrectionType = UITextAutocorrectionTypeNo;
-    self.passwordField.placeholder = NSLocalizedString(@"  Enter Password", @"Placeholder text for web browser URL field");
-    self.passwordField.backgroundColor = [UIColor colorWithWhite:220/255.0f alpha:1];
     self.passwordField.secureTextEntry = YES;
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    self.passwordField.delegate = self;
-    
-    //login button
-    self.submitAccount = [UIButton buttonWithType:UIButtonTypeSystem];
-    [_submitAccount addTarget:self
-               action:@selector(didTapEmailLogin:)
-     forControlEvents:UIControlEventTouchUpInside];
-    [_submitAccount setTitle:@"Login" forState:UIControlStateNormal];
-    
-   
-    //logout button
-    self.logoutAccount = [UIButton buttonWithType:UIButtonTypeSystem];
-    [_logoutAccount addTarget:self
-                       action:@selector(didTapSignOut:)
-             forControlEvents:UIControlEventTouchUpInside];
-    [_logoutAccount setTitle:@"Logout" forState:UIControlStateNormal];
-    
-    /*
-    //register button
-    self.createAccount = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_createAccount addTarget:self
-                       action:@selector(didCreateAccount:)
-             forControlEvents:UIControlEventTouchUpInside];
-    [_createAccount setTitle:@"or...Register" forState:UIControlStateNormal];
-    self.createAccount.backgroundColor = [UIColor colorWithRed:252/255.0f green:181/255.0f blue:23/255.0f alpha:1];
-    */
-    
-    //add some views
-    for (UIView *view in @[self.emailField, self.passwordField, self.logoutAccount, self.submitAccount
-                               //,self.createAccount
-                               ]) {
-        [mainView addSubview:view];
-         view.translatesAutoresizingMaskIntoConstraints = NO;
-    }
-    
-    self.view = mainView;
-    
+
 }
 
 - (void) viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    self.emailField.frame = CGRectMake(100, 100, 200, 50);
-    self.passwordField.frame = CGRectMake(100, 175, 200, 50);
-    _submitAccount.frame = CGRectMake(40.0, 220.0, 150.0, 40.0);
-    _logoutAccount.frame = CGRectMake(120.0, 220.0, 150.0, 40.0);
-    _createAccount.frame = CGRectMake(0.0, 450.0, 300.0, 40.0);
-    
-    
+   
+
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -166,6 +98,7 @@ static NSString *const kChangePasswordText = @"Change Password";
                              completion:^(FIRUser *user, NSError *error) {
                                  // [START_EXCLUDE]
                                  [self hideSpinner:^{
+                                     NSLog(@"success");
                                      if (error) {
                                          [self showMessagePrompt:error.localizedDescription];
                                          return;
@@ -175,7 +108,7 @@ static NSString *const kChangePasswordText = @"Change Password";
                                  // [END_EXCLUDE]
                              }];
         // [END headless_email_auth]
-        NSLog(@"did tap email login");
+        
     }];
 }
 
@@ -468,6 +401,8 @@ static NSString *const kChangePasswordText = @"Change Password";
     if (!status) {
         NSLog(@"Error signing out: %@", signOutError);
         return;
+    } else {
+        NSLog(@"signed out");
     }
     // [END signout]
 }
