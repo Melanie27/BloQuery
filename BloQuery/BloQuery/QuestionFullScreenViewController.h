@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class Question;
+
 @interface QuestionFullScreenViewController : UIViewController
+
+
+@property (nonatomic, strong) UITextView *textView;
+
+-(instancetype) initWithQuestion:(Question *)question;
+
+
 
 @end

@@ -25,8 +25,7 @@
 
 - (IBAction)didTapEmailLogin:(id)sender {
     [self showSpinner:^{
-        // [START headless_email_auth]
-        [[FIRAuth auth] signInWithEmail:_emailField.text
+         [[FIRAuth auth] signInWithEmail:_emailField.text
                                password:_passwordField.text
                              completion:^(FIRUser *user, NSError *error) {
                                  // [START_EXCLUDE]

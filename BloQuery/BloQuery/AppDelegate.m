@@ -16,6 +16,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "QuestionsTableViewController.h"
 
 // [START auth_import]
 @import Firebase;
@@ -39,7 +40,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     */
-    
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[QuestionsTableViewController alloc] init]];
     [FIRApp configure];
    
     

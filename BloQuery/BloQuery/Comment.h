@@ -10,10 +10,12 @@
 
 @class User;
 
-@interface Question : NSObject
+@interface Comment : NSObject
 
-@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) NSString *idNumber;
 
-@property (nonatomic, strong) NSString *questionText;
+@property (nonatomic, strong) User *from;
+@property (nonatomic, strong) NSString *text;
 
 @end
+

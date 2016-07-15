@@ -6,9 +6,9 @@
 //  Copyright © 2016 Bloc. All rights reserved.
 //
 
-#import "Question.h"
+#import "Comment.h"
 #import "User.h"
 
-@implementation Question
+@implementation Comment
 
 @end

@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@class Question, QuestionsTableViewCell;
+
+@protocol QuestionsTableViewCellDelegate <NSObject>
+
+-(void) cell:(QuestionsTableViewCell *) cell didTapQuestionView:(UITextView *)questionTextView;
+
+@end
+
 @interface QuestionsTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) Question *question;
+@property (nonatomic, weak) id <QuestionsTableViewCellDelegate> delegate;
+
++ (CGFloat) heightForQuestion:(Question *)question width:(CGFloat)width;
 
 @end

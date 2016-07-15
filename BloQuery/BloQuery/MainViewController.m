@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "UIViewController+Alerts.h"
 #import "AppDelegate.h"
+#import "QuestionsTableViewController.h"
 
 @import Firebase;
 
@@ -91,7 +92,11 @@ static NSString *const kChangePasswordText = @"Change Password";
 }
 
 - (IBAction)didTapEmailLogin:(id)sender {
-    [self showSpinner:^{
+    //keep this here for now so don't have to login every time
+    [self.questionsButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    
+    //comment this in later
+    /*[self showSpinner:^{
         // [START headless_email_auth]
         [[FIRAuth auth] signInWithEmail:_emailField.text
                                password:_passwordField.text
@@ -103,13 +108,15 @@ static NSString *const kChangePasswordText = @"Change Password";
                                          [self showMessagePrompt:error.localizedDescription];
                                          return;
                                      }
-                                     [self.navigationController popViewControllerAnimated:YES];
+                                     //[self.navigationController popViewControllerAnimated:YES];
+                                     //[self.navigationController pushViewController:answersVC animated:YES];
+                                     [self.questionsButton sendActionsForControlEvents:UIControlEventTouchUpInside];
                                  }];
                                  // [END_EXCLUDE]
                              }];
         // [END headless_email_auth]
         
-    }];
+    }];*/
 }
 
 /** @fn requestPasswordReset

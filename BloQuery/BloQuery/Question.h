@@ -10,4 +10,7 @@
 
 @interface Question : NSObject
 
+
+@property (nonatomic, strong) NSString *questionText;
+
 @end

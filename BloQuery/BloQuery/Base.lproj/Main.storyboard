@@ -62,6 +62,13 @@
                                     <action selector="didCreateAccount:" destination="zKe-6K-mpe" eventType="touchUpInside" id="yGM-cm-Tag"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alu-D5-zls">
+                                <rect key="frame" x="498" y="423" width="67" height="30"/>
+                                <state key="normal" title="questions"/>
+                                <connections>
+                                    <segue destination="sru-MH-sNP" kind="show" id="N5M-mp-L9L"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="tintColor" red="0.98823529409999999" green="0.70980392160000005" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -85,12 +92,44 @@
                         <outlet property="emailField" destination="BZb-yp-BxE" id="mU6-pw-Qyi"/>
                         <outlet property="logoutAccount" destination="qxo-VS-sad" id="tqK-JE-Lf0"/>
                         <outlet property="passwordField" destination="3gB-HN-Kv8" id="znY-bA-Qxy"/>
+                        <outlet property="questionsButton" destination="alu-D5-zls" id="OJm-It-jHD"/>
                         <outlet property="submitAccount" destination="Bn7-cl-87n" id="FB5-Zh-R7v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KgT-j1-V1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1660" y="402"/>
+            <point key="canvasLocation" x="1591" y="396"/>
+        </scene>
+        <!--Questions Table View Controller-->
+        <scene sceneID="jm9-GD-6eL">
+            <objects>
+                <tableViewController id="sru-MH-sNP" customClass="QuestionsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="TZU-T2-dM9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IuB-24-Pjg">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IuB-24-Pjg" id="woh-l9-iwq">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="sru-MH-sNP" id="y8Y-jI-D7V"/>
+                            <outlet property="delegate" destination="sru-MH-sNP" id="lgF-7a-yR4"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KwV-9j-j5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2291" y="396"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vnp-Nn-sYA">
