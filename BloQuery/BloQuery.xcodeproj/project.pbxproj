@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		9B3015151D3418D800304F6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3015141D3418D800304F6A /* main.m */; };
 		9B3015181D3418D800304F6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3015171D3418D800304F6A /* AppDelegate.m */; };
-		9B30151B1D3418D800304F6A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B30151A1D3418D800304F6A /* ViewController.m */; };
 		9B30151E1D3418D800304F6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B30151C1D3418D800304F6A /* Main.storyboard */; };
 		9B3015201D3418D800304F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B30151F1D3418D800304F6A /* Assets.xcassets */; };
 		9B3015231D3418D800304F6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B3015211D3418D800304F6A /* LaunchScreen.storyboard */; };
 		9B30152E1D3418D800304F6A /* BloQueryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B30152D1D3418D800304F6A /* BloQueryTests.m */; };
 		9B3015391D3418D800304F6A /* BloQueryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3015381D3418D800304F6A /* BloQueryUITests.m */; };
+		9B3520A11D34767A0074EAFE /* CustomTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3520A01D34767A0074EAFE /* CustomTokenViewController.m */; };
+		9B3520A41D3476D50074EAFE /* EmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3520A31D3476D50074EAFE /* EmailViewController.m */; };
+		9B3520A71D3477190074EAFE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3520A61D3477190074EAFE /* MainViewController.m */; };
+		9B3520AA1D34782C0074EAFE /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3520A91D34782C0074EAFE /* UIViewController+Alerts.m */; };
 		9BE013821D341DA000ED53B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */; };
 		DA516C8642AF885156B4A757 /* libPods-BloQuery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD339CA12DFBC6F654172917 /* libPods-BloQuery.a */; };
 /* End PBXBuildFile section */
@@ -43,8 +46,6 @@
 		9B3015141D3418D800304F6A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9B3015161D3418D800304F6A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9B3015171D3418D800304F6A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9B3015191D3418D800304F6A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9B30151A1D3418D800304F6A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9B30151D1D3418D800304F6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9B30151F1D3418D800304F6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B3015221D3418D800304F6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,6 +56,14 @@
 		9B3015341D3418D800304F6A /* BloQueryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BloQueryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B3015381D3418D800304F6A /* BloQueryUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BloQueryUITests.m; sourceTree = "<group>"; };
 		9B30153A1D3418D800304F6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B35209F1D34767A0074EAFE /* CustomTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTokenViewController.h; path = ../../BloQuery/BloQuery/CustomTokenViewController.h; sourceTree = "<group>"; };
+		9B3520A01D34767A0074EAFE /* CustomTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTokenViewController.m; path = ../../BloQuery/BloQuery/CustomTokenViewController.m; sourceTree = "<group>"; };
+		9B3520A21D3476D50074EAFE /* EmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailViewController.h; path = ../../BloQuery/BloQuery/EmailViewController.h; sourceTree = "<group>"; };
+		9B3520A31D3476D50074EAFE /* EmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailViewController.m; path = ../../BloQuery/BloQuery/EmailViewController.m; sourceTree = "<group>"; };
+		9B3520A51D3477190074EAFE /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = ../../BloQuery/BloQuery/MainViewController.h; sourceTree = "<group>"; };
+		9B3520A61D3477190074EAFE /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ../../BloQuery/BloQuery/MainViewController.m; sourceTree = "<group>"; };
+		9B3520A81D34782C0074EAFE /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Alerts.h"; path = "../../BloQuery/BloQuery/UIViewController+Alerts.h"; sourceTree = "<group>"; };
+		9B3520A91D34782C0074EAFE /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Alerts.m"; path = "../../BloQuery/BloQuery/UIViewController+Alerts.m"; sourceTree = "<group>"; };
 		9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BD339CA12DFBC6F654172917 /* libPods-BloQuery.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BloQuery.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -130,8 +139,14 @@
 				9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */,
 				9B3015161D3418D800304F6A /* AppDelegate.h */,
 				9B3015171D3418D800304F6A /* AppDelegate.m */,
-				9B3015191D3418D800304F6A /* ViewController.h */,
-				9B30151A1D3418D800304F6A /* ViewController.m */,
+				9B35209F1D34767A0074EAFE /* CustomTokenViewController.h */,
+				9B3520A01D34767A0074EAFE /* CustomTokenViewController.m */,
+				9B3520A21D3476D50074EAFE /* EmailViewController.h */,
+				9B3520A31D3476D50074EAFE /* EmailViewController.m */,
+				9B3520A51D3477190074EAFE /* MainViewController.h */,
+				9B3520A61D3477190074EAFE /* MainViewController.m */,
+				9B3520A81D34782C0074EAFE /* UIViewController+Alerts.h */,
+				9B3520A91D34782C0074EAFE /* UIViewController+Alerts.m */,
 				9B30151C1D3418D800304F6A /* Main.storyboard */,
 				9B30151F1D3418D800304F6A /* Assets.xcassets */,
 				9B3015211D3418D800304F6A /* LaunchScreen.storyboard */,
@@ -349,7 +364,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B30151B1D3418D800304F6A /* ViewController.m in Sources */,
+				9B3520A41D3476D50074EAFE /* EmailViewController.m in Sources */,
+				9B3520AA1D34782C0074EAFE /* UIViewController+Alerts.m in Sources */,
+				9B3520A71D3477190074EAFE /* MainViewController.m in Sources */,
+				9B3520A11D34767A0074EAFE /* CustomTokenViewController.m in Sources */,
 				9B3015181D3418D800304F6A /* AppDelegate.m in Sources */,
 				9B3015151D3418D800304F6A /* main.m in Sources */,
 			);
