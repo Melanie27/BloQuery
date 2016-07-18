@@ -7,8 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+@import FirebaseDatabase;
+
+
+
+
 
 @interface BLCDataSource : NSObject
+
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+
 
 //singleton pattern gives the ability to access the same data from multiple places in our database
 //to access call [BLCDataSource sharedInstance]

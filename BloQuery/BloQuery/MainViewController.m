@@ -75,6 +75,9 @@ static NSString *const kChangePasswordText = @"Change Password";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
     self.passwordField.secureTextEntry = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -94,7 +97,7 @@ static NSString *const kChangePasswordText = @"Change Password";
 - (IBAction)didTapEmailLogin:(id)sender {
     //keep this here for now so don't have to login every time
     [self.questionsButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-    
+   
     //comment this in later
     /*[self showSpinner:^{
         // [START headless_email_auth]

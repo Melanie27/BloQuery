@@ -12,10 +12,11 @@
 #import "Question.h"
 #import "QuestionsTableViewCell.h"
 #import "QuestionFullScreenViewController.h"
+@import Firebase;
+@import FirebaseDatabase;
 
 
 @interface QuestionsTableViewController ()  <UITableViewDelegate, UITableViewDataSource, QuestionsTableViewCellDelegate>
-
 
 //@property (nonatomic, strong) NSArray *questions;
 
@@ -76,7 +77,24 @@
     //cell.textLabel.minimumScaleFactor = 0.6;
     //cell.textLabel.adjustsFontSizeToFitWidth = YES;
     //cell.textLabel.text = [self.questions objectAtIndex:indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:@"3.jpg"];
+    
+    //placeholder thumbnail
+    //cell.imageView.image = [UIImage imageNamed:@"3.jpg"];
+    
+    
+    
+    /*self.firebaseRef = [[Firebase alloc] initWithUrl:@"https://bloquery-e361d.firebaseio.com/"];
+    self.dataSource = [[FirebaseTableViewDataSource alloc] initWithRef:firebaseRef cellReuseIdentifier:@"cell" view:self.tableView];
+    
+    [self.dataSource populateCellWithBlock:^(UITableViewCell *cell, FDataSnapshot *snap) {
+        // Populate cell as you see fit, like as below
+        cell.textLabel.text = snap.key;
+    }];
+    
+    [self.tableView setDataSource:self.dataSource];*/
+
+    
+    
     
   
     cell.question = [BLCDataSource sharedInstance].questions[indexPath.row];
@@ -91,25 +109,39 @@
     [self presentViewController:fullScreenVC animated:YES completion:nil];
 }
 
+//override the default width
+
+
 //Override the default height
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
     return 100;
-    //to get the right aspect ratio divide the frame by image size and multiply by height
-    //UIImage *image = self.images[indexPath.row];
-    //return (CGRectGetWidth(self.view.frame)/image.size.width) * image.size.height;
-    //QuestionsTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    //cell.question = [BLCDataSource sharedInstance].questions[indexPath.row];
-    //return (CGRectGetWidth(self.view.frame)/question.size.width) * question.size.height;
+    //UILabel *question = [BLCDataSource sharedInstance].questions[indexPath.row];
+    /*CGSize labelSize = [question.text
+                        boundingRectWithSize:question.frame.size
+                        options:NSStringDrawingUsesLineFragmentOrigin
+                        context:nil]
+    .size.width;*/
+    //CGFloat labelHeight = labelSize.height;
+    
+    //return labelHeight;
+    
+    
+    
+    
+    
+    
 }
 
 
-/*
- // Override to support conditional editing of the table view.
+
+  //Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
  // Return NO if you do not want the specified item to be editable.
- return YES;
+ return NO;
  }
- */
+
 
 /*
  // Override to support editing the table view.

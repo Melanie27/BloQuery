@@ -12,7 +12,7 @@
 @interface QuestionsTableViewCell () <UIGestureRecognizerDelegate>
 
 //other options instead of text view?
-@property (nonatomic, strong) UITextView *questionTextView;
+@property (nonatomic, strong) UILabel *questionTextView;
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 
@@ -20,9 +20,11 @@
 
 static UIFont *lightFont;
 static UIFont *boldFont;
-static UIColor *questionTextGray;
+static UIColor *tableBackgroundGray;
 static UIColor *linkColor;
 static NSParagraphStyle *paragraphStyle;
+
+
 
 @implementation QuestionsTableViewCell
 
@@ -31,18 +33,20 @@ static NSParagraphStyle *paragraphStyle;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self) {
         //init code
-        self.questionTextView = [[UITextView alloc] init];
+        self.questionTextView = [[UILabel alloc] init];
         
         //add gesture recognizer
         self.questionTextView.userInteractionEnabled = YES;
+        self.questionTextView.numberOfLines = 0;
+        
         
         self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFired:)];
         self.tapGestureRecognizer.delegate = self;
         
         [self.questionTextView addGestureRecognizer:self.tapGestureRecognizer];
         
-        
-        self.questionTextView.backgroundColor = questionTextGray;
+        self.backgroundColor  = tableBackgroundGray;
+        self.questionTextView.backgroundColor = [UIColor whiteColor];
         
         for (UIView *view in @[self.questionTextView]) {
             [self.contentView addSubview:view];
@@ -57,14 +61,14 @@ static NSParagraphStyle *paragraphStyle;
 +(void)load {
     lightFont = [UIFont fontWithName:@"Didot" size:11];
     boldFont = [UIFont fontWithName:@"Didot-Bold" size:11];
-    questionTextGray = [UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1]; /*#eeeeee*/
+    tableBackgroundGray = [UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1]; /*#eeeeee*/
     linkColor = [UIColor colorWithRed:0.345 green:0.314 blue:0.427 alpha:1]; /*#58506d*/
     
     NSMutableParagraphStyle *mutableParagraphStyle = [[NSMutableParagraphStyle alloc] init];
-    mutableParagraphStyle.headIndent = 50.0;
-    mutableParagraphStyle.firstLineHeadIndent = 00.0;
-    mutableParagraphStyle.tailIndent = -20.0;
-    mutableParagraphStyle.paragraphSpacingBefore = 35;
+    mutableParagraphStyle.headIndent = 20.0;
+    mutableParagraphStyle.firstLineHeadIndent = 20.0;
+    mutableParagraphStyle.tailIndent = -50.0;
+    mutableParagraphStyle.paragraphSpacingBefore = 10;
     
     paragraphStyle = mutableParagraphStyle;
 }
@@ -86,6 +90,8 @@ static NSParagraphStyle *paragraphStyle;
 }
 
 
+
+
 -(NSAttributedString *) questionTextString {
     // #1
     CGFloat questionFontSize = 12;
@@ -102,9 +108,10 @@ static NSParagraphStyle *paragraphStyle;
 
 //calculate size of attributed strings
 - (CGSize) sizeOfString:(NSAttributedString *)string {
-    CGSize maxSize = CGSizeMake(CGRectGetWidth(self.contentView.bounds) - 40, 0.0);
+    CGSize maxSize = CGSizeMake(CGRectGetWidth(self.questionTextView.frame)- 0, 0.0);
     CGRect sizeRect = [string boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     sizeRect.size.height += 20;
+    sizeRect.size.width = 20;
     sizeRect = CGRectIntegral(sizeRect);
     return sizeRect.size;
 }
@@ -118,7 +125,7 @@ static NSParagraphStyle *paragraphStyle;
 
 //TODO - calculate height for each question - this is not working
 
-+ (CGFloat) heightForQuestion:(Question *)question width:(CGFloat)width {
+/*+ (CGFloat) heightForQuestion:(Question *)question width:(CGFloat)width {
     
     QuestionsTableViewCell *layoutCell = [[QuestionsTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"layoutCell"];
     //set given width
@@ -130,20 +137,20 @@ static NSParagraphStyle *paragraphStyle;
     [layoutCell layoutSubviews];
     
     return CGRectGetMaxY(layoutCell.questionTextView.frame);
-}
+}*/
 
 #pragma mark - Single Question View
 
 -(void)tapFired:(UITapGestureRecognizer*) sender {
     
-    [self.delegate cell:self didTapQuestionView:self.questionTextView];
+    //[self.delegate cell:self didTapQuestionView:self.questionTextView];
     NSLog(@"tapFired");
 }
 
 #pragma mark - UIGestureRecognizerDelegate
 
-- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+/*- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return self.isEditing == NO;
-}
+}*/
 
 @end

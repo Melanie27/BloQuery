@@ -111,12 +111,14 @@
                         <color key="separatorColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IuB-24-Pjg">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" selectionStyle="default" indentationWidth="10" id="IuB-24-Pjg">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IuB-24-Pjg" id="woh-l9-iwq">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="5" contentMode="center" semanticContentAttribute="spatial" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="77" preservesSuperviewLayoutMargins="YES" tableViewCell="IuB-24-Pjg" id="woh-l9-iwq">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="1"/>
+                                    <edgeInsets key="layoutMargins" top="20" left="10" bottom="50" right="60"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
