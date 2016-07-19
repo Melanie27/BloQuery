@@ -9,10 +9,6 @@
 #import <Foundation/Foundation.h>
 @import FirebaseDatabase;
 
-
-
-
-
 @interface BLCDataSource : NSObject
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;

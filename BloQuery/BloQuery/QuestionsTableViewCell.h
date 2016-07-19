@@ -12,7 +12,7 @@
 
 @protocol QuestionsTableViewCellDelegate <NSObject>
 
--(void) cell:(QuestionsTableViewCell *) cell didTapQuestionView:(UITextView *)questionTextView;
+-(void) cell:(QuestionsTableViewCell *) cell didTapQuestionView:(UILabel *)questionTextView;
 
 @end
 

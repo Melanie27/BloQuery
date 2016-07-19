@@ -30,6 +30,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+      
         // Custom initialization
         //self.questions = [NSArray array];
     }
@@ -38,7 +39,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIImage *logo = [UIImage imageNamed:@"logo.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:logo];
+    UIBarButtonItem *imageButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    self.navigationItem.leftBarButtonItem = imageButton;
     
+    UIImage *iconAsk = [UIImage imageNamed:@"iconAsk"];
+    UIImageView *askImageView = [[UIImageView alloc] initWithImage:iconAsk];
+    UIBarButtonItem *askImageButton = [[UIBarButtonItem alloc] initWithCustomView:askImageView];
+    self.navigationItem.rightBarButtonItem = askImageButton;
+    
+    
+    self.navigationItem.title = @"BloQuery";
+
     //populate viewDidLoad with strings
     /*self.questions = [NSArray arrayWithObjects:@"Is this the first question?", @"How many characters will move a question onto another row This many or will the text just keep getting smaller? ", @"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",nil];*/
     
@@ -93,9 +106,6 @@
     
     [self.tableView setDataSource:self.dataSource];*/
 
-    
-    
-    
   
     cell.question = [BLCDataSource sharedInstance].questions[indexPath.row];
     return cell;
@@ -108,6 +118,8 @@
     
     [self presentViewController:fullScreenVC animated:YES completion:nil];
 }
+
+#pragma mark - MediaTableViewCellDelegate
 
 //override the default width
 
@@ -126,11 +138,6 @@
     //CGFloat labelHeight = labelSize.height;
     
     //return labelHeight;
-    
-    
-    
-    
-    
     
 }
 

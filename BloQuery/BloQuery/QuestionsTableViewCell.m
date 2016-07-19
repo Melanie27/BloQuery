@@ -125,7 +125,7 @@ static NSParagraphStyle *paragraphStyle;
 
 //TODO - calculate height for each question - this is not working
 
-/*+ (CGFloat) heightForQuestion:(Question *)question width:(CGFloat)width {
++ (CGFloat) heightForQuestion:(Question *)question width:(CGFloat)width {
     
     QuestionsTableViewCell *layoutCell = [[QuestionsTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"layoutCell"];
     //set given width
@@ -137,20 +137,19 @@ static NSParagraphStyle *paragraphStyle;
     [layoutCell layoutSubviews];
     
     return CGRectGetMaxY(layoutCell.questionTextView.frame);
-}*/
+}
 
 #pragma mark - Single Question View
 
--(void)tapFired:(UITapGestureRecognizer*) sender {
+-(void)tapFired:(UITapGestureRecognizer*)sender {
     
-    //[self.delegate cell:self didTapQuestionView:self.questionTextView];
-    NSLog(@"tapFired");
+    [self.delegate cell:self didTapQuestionView:self.questionTextView];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
 
-/*- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return self.isEditing == NO;
-}*/
+}
 
 @end

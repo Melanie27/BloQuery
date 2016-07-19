@@ -115,11 +115,14 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="5" contentMode="center" semanticContentAttribute="spatial" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="77" preservesSuperviewLayoutMargins="YES" tableViewCell="IuB-24-Pjg" id="woh-l9-iwq">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="1"/>
                                     <edgeInsets key="layoutMargins" top="20" left="10" bottom="50" right="60"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="DcE-2c-65V" kind="show" id="Sng-Dg-1zr"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -131,14 +134,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KwV-9j-j5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2291" y="396"/>
+            <point key="canvasLocation" x="2302" y="396"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vnp-Nn-sYA">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Guz-in-Bjj" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yxH-Sa-YN7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="yxH-Sa-YN7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -150,6 +153,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0p8-fV-Kmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="855" y="402"/>
+        </scene>
+        <!--QuestionFullScreenViewController-->
+        <scene sceneID="lgW-5e-Qeg">
+            <objects>
+                <viewController storyboardIdentifier="QuestionFullScreenViewController" title="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DcE-2c-65V" userLabel="QuestionFullScreenViewController" customClass="QuestionFullScreenViewController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="MDm-HQ-PQ2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HGZ-ES-b9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2986" y="396"/>
         </scene>
     </scenes>
 </document>

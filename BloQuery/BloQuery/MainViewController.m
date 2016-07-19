@@ -449,6 +449,8 @@ didSignInForUser:(GIDGoogleUser *)user
         self.navigationItem.title = [NSString stringWithFormat:@"Welcome %@", user.displayName];
     } else {
         self.navigationItem.title = @"BloQuery Authentication";
+       
+        
     }
 }
 
