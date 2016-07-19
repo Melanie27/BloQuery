@@ -44,61 +44,60 @@
 
 - (void) addRandomQuestion {
     NSMutableArray *randomQuestions = [NSMutableArray array];
-    NSMutableArray *varray = [NSMutableArray array];
+   
     
     for (int i = 1; i <= 7; i++) {
         Question *question = [[Question alloc] init];
         
         question.questionText = [self randomSentence];
+         //question.questionText = [self retrieveQuestions];
     
         [randomQuestions addObject:question];
     }
     
-    self.questions = varray;
     self.questions = randomQuestions;
+    [self retrieveQuestions];
     
     
-    //start firebase work
-    self.ref = [[FIRDatabase database] reference];
-    [[self.ref child:@"questions/q6"] setValue:@"Who will be at the q6 position"];
+    //start firebase work for adding questions
+    
+    //[[self.ref child:@"questions/q6"] setValue:@"Who will be at the q6 position"];
 
-    [self retrieveQuestions:YES];
+    
     
     
 }
 
 
 
--(void)retrieveQuestions:(BOOL)animated
-{
-    //FIRDatabaseQuery *recentPostsQuery = [self.ref child:@"questions"];
-    FIRDatabaseQuery *recentPostsQuery = [[self.ref child:@"questions"] queryLimitedToFirst:5];
-    NSLog (@"recentPostQuery %@", recentPostsQuery);
+-(NSString *)retrieveQuestions {
+    self.ref = [[FIRDatabase database] reference];
+    FIRDatabaseQuery *recentPostsQuery = [[self.ref child:@"questions"] queryLimitedToFirst:7];
+   
+    NSMutableString *retrieveQuestions = [[NSMutableString alloc] init];
+    //NSMutableArray *questionsArray = [[NSMutableArray alloc] init];
     
     [recentPostsQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
          NSDictionary *postDict = snapshot.value;
-         NSLog(@"snapshot %@", postDict);
-         
          for (id key in postDict) {
-             NSLog(@"key=%@ value=%@", key, [postDict objectForKey:key]);
-             NSArray *varray= [NSArray arrayWithObjects:key, nil];
-             NSLog(@"array, %@", varray);
+             
+             NSArray *questionsArray= [NSArray arrayWithObjects:[postDict objectForKey:key], nil];
+             NSLog(@"array, %@", questionsArray);
+            
              
          }
          
      }];
     
     
-    
+    return retrieveQuestions;
     
     
 }
 
-/*-(NSString *) arraySentence {
-    
-}*/
+
 
 - (NSString *) randomSentence {
     NSUInteger wordCount = arc4random_uniform(20) + 2;
