@@ -16,10 +16,9 @@
 @import FirebaseDatabase;
 
 
-@interface QuestionsTableViewController ()  <UITableViewDelegate, UITableViewDataSource, QuestionsTableViewCellDelegate>
+@interface QuestionsTableViewController ()  <UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, QuestionsTableViewCellDelegate>
 
-//@property (nonatomic, strong) NSArray *questions;
-
+@property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 
 @end
 
@@ -30,15 +29,16 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-      
-        // Custom initialization
-        //self.questions = [NSArray array];
+    
+       
     }
     return self;
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    
+    
+    // Custom initialization
     UIImage *logo = [UIImage imageNamed:@"logo.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:logo];
     UIBarButtonItem *imageButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
@@ -50,14 +50,25 @@
     self.navigationItem.rightBarButtonItem = askImageButton;
     
     
-    self.navigationItem.title = @"BloQuery";
-
-    //populate viewDidLoad with strings
-    /*self.questions = [NSArray arrayWithObjects:@"Is this the first question?", @"How many characters will move a question onto another row This many or will the text just keep getting smaller? ", @"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",nil];*/
+    //add tap gesture to right nav button
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addQuestionFired:)];
+    [askImageView addGestureRecognizer:tapGes];
     
+    
+    self.navigationItem.title = @"BloQuery";
+    
+    
+    
+    [super viewDidLoad];
     
     [self.tableView registerClass:[QuestionsTableViewCell class] forCellReuseIdentifier:@"Cell"];
     
+}
+
+-(void)addQuestionFired:(UITapGestureRecognizer*)sender {
+    
+    //[self.delegate didTapQuestionButton:askImageButton];
+    NSLog(@"Add question");
 }
 
 
