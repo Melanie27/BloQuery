@@ -11,12 +11,16 @@
 @class Question;
 
 @interface QuestionFullScreenViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UILabel *labelView;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) UILabel *labelView;
+
 
 - (instancetype) initWithQuestion:(Question *)question;
 
-- (void) centerScrollView;
+
+
+//- (IBAction)centerScrollView:(id)sender;
+//- (void) centerScrollView;
 
 @end

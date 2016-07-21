@@ -47,7 +47,9 @@ static NSParagraphStyle *paragraphStyle;
         
         self.backgroundColor  = tableBackgroundGray;
         self.questionTextView.backgroundColor = [UIColor whiteColor];
+        //self.questionTextView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"commentBubble.jpg"]];
         
+
         for (UIView *view in @[self.questionTextView]) {
             [self.contentView addSubview:view];
         }
@@ -90,8 +92,6 @@ static NSParagraphStyle *paragraphStyle;
 }
 
 
-
-
 -(NSAttributedString *) questionTextString {
     // #1
     CGFloat questionFontSize = 12;
@@ -122,22 +122,6 @@ static NSParagraphStyle *paragraphStyle;
     self.questionTextView.attributedText = [self questionTextString];
 }
 
-
-//TODO - calculate height for each question - this is not working
-
-+ (CGFloat) heightForQuestion:(Question *)question width:(CGFloat)width {
-    
-    QuestionsTableViewCell *layoutCell = [[QuestionsTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"layoutCell"];
-    //set given width
-    layoutCell.frame = CGRectMake(50, 0, (CGFLOAT_MAX)+150, CGFLOAT_MAX );
-    
-    //give width to each question item
-    layoutCell.question = question;
-    
-    [layoutCell layoutSubviews];
-    
-    return CGRectGetMaxY(layoutCell.questionTextView.frame);
-}
 
 #pragma mark - Single Question View
 

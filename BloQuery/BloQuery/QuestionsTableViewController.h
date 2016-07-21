@@ -11,11 +11,14 @@
 @import FirebaseDatabase;
 
 
-@interface QuestionsTableViewController : UITableViewController
+@interface QuestionsTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 
-//@property (strong, nonatomic) Firebase *firebaseRef;
-//@property (strong, nonatomic) FirebaseTableViewDataSource *dataSource;
+
+- (IBAction)didTapQuestionView:(id)sender;
+
+//@property (weak, nonatomic) IBOutlet UILabel *emailField;
+
 
 
 

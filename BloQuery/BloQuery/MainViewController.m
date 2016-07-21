@@ -75,18 +75,14 @@ static NSString *const kChangePasswordText = @"Change Password";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    
     self.passwordField.secureTextEntry = YES;
     self.view.backgroundColor = [UIColor whiteColor];
-    
 
 }
 
 - (void) viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-   
+
 
 }
 

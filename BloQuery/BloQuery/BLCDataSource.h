@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 @import FirebaseDatabase;
 
+@class QuestionsTableViewController;
+
 @interface BLCDataSource : NSObject
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
@@ -18,5 +20,9 @@
 //to access call [BLCDataSource sharedInstance]
 +(instancetype) sharedInstance;
 @property (nonatomic, strong, readonly) NSArray *questions;
+@property (nonatomic, strong, readonly) NSArray *questionsList;
+@property (nonatomic, weak) QuestionsTableViewController *qtvc;
+
+-(NSString *)retrieveQuestions;
 
 @end

@@ -17,10 +17,13 @@
 @end
 
 @interface QuestionsTableViewCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UILabel *labelView;
 
+
+@property (nonatomic, strong, readonly) NSArray *questions;
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, weak) id <QuestionsTableViewCellDelegate> delegate;
 
-+ (CGFloat) heightForQuestion:(Question *)question width:(CGFloat)width;
+
 
 @end

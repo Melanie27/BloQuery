@@ -26,6 +26,9 @@
 		9B37903F1D395C9000B5303C /* BLCDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B37903E1D395C9000B5303C /* BLCDataSource.m */; };
 		9B3790421D39689800B5303C /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3790411D39689800B5303C /* Question.m */; };
 		9B3790451D3970D600B5303C /* QuestionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3790441D3970D600B5303C /* QuestionsTableViewCell.m */; };
+		9B461E181D406C69008EC073 /* commentBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B461E171D406C69008EC073 /* commentBubble.png */; };
+		9B461E1C1D41431A008EC073 /* commentBubble.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9B461E1B1D41431A008EC073 /* commentBubble.jpg */; };
+		9B461E1E1D41449F008EC073 /* QuestionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B461E1D1D41449F008EC073 /* QuestionTests.m */; };
 		9BE013821D341DA000ED53B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */; };
 		DA516C8642AF885156B4A757 /* libPods-BloQuery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD339CA12DFBC6F654172917 /* libPods-BloQuery.a */; };
 /* End PBXBuildFile section */
@@ -85,6 +88,9 @@
 		9B3790411D39689800B5303C /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Question.m; path = ../../BloQuery/BloQuery/Question.m; sourceTree = "<group>"; };
 		9B3790431D3970D600B5303C /* QuestionsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionsTableViewCell.h; path = ../../BloQuery/BloQuery/QuestionsTableViewCell.h; sourceTree = "<group>"; };
 		9B3790441D3970D600B5303C /* QuestionsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionsTableViewCell.m; path = ../../BloQuery/BloQuery/QuestionsTableViewCell.m; sourceTree = "<group>"; };
+		9B461E171D406C69008EC073 /* commentBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commentBubble.png; sourceTree = "<group>"; };
+		9B461E1B1D41431A008EC073 /* commentBubble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = commentBubble.jpg; sourceTree = "<group>"; };
+		9B461E1D1D41449F008EC073 /* QuestionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionTests.m; path = ../../BloQuery/BloQueryTests/QuestionTests.m; sourceTree = "<group>"; };
 		9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BD339CA12DFBC6F654172917 /* libPods-BloQuery.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BloQuery.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -159,6 +165,8 @@
 			children = (
 				9B328AA71D3DBEF80036C7F6 /* logo.png */,
 				9B328AA91D3DBFC70036C7F6 /* iconAsk.png */,
+				9B461E1B1D41431A008EC073 /* commentBubble.jpg */,
+				9B461E171D406C69008EC073 /* commentBubble.png */,
 				9B3790321D394DC000B5303C /* 3.png */,
 				9B328AA21D3DA43B0036C7F6 /* QuestionFullScreenViewController.h */,
 				9B328AA31D3DA43B0036C7F6 /* QuestionFullScreenViewController.m */,
@@ -203,6 +211,7 @@
 			children = (
 				9B30152D1D3418D800304F6A /* BloQueryTests.m */,
 				9B30152F1D3418D800304F6A /* Info.plist */,
+				9B461E1D1D41449F008EC073 /* QuestionTests.m */,
 			);
 			path = BloQueryTests;
 			sourceTree = "<group>";
@@ -325,6 +334,8 @@
 				9B3790331D394DC000B5303C /* 3.png in Resources */,
 				9B328AAA1D3DBFC70036C7F6 /* iconAsk.png in Resources */,
 				9B3015231D3418D800304F6A /* LaunchScreen.storyboard in Resources */,
+				9B461E181D406C69008EC073 /* commentBubble.png in Resources */,
+				9B461E1C1D41431A008EC073 /* commentBubble.jpg in Resources */,
 				9B328AA81D3DBEF80036C7F6 /* logo.png in Resources */,
 				9BE013821D341DA000ED53B6 /* GoogleService-Info.plist in Resources */,
 				9B3015201D3418D800304F6A /* Assets.xcassets in Resources */,
@@ -420,6 +431,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B30152E1D3418D800304F6A /* BloQueryTests.m in Sources */,
+				9B461E1E1D41449F008EC073 /* QuestionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

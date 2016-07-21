@@ -19,7 +19,7 @@
 @interface QuestionsTableViewController ()  <UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, QuestionsTableViewCellDelegate>
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
-
+ @property (strong, nonatomic) FIRDatabaseReference *ref;
 @end
 
 @implementation QuestionsTableViewController
@@ -29,15 +29,17 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-    
-       
+
     }
     return self;
 }
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     
-    
+    [BLCDataSource sharedInstance].qtvc = self;
+    [[BLCDataSource sharedInstance] retrieveQuestions];
+
     // Custom initialization
     UIImage *logo = [UIImage imageNamed:@"logo.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:logo];
@@ -57,17 +59,14 @@
     
     self.navigationItem.title = @"BloQuery";
     
-    
-    
-    [super viewDidLoad];
-    
-    [self.tableView registerClass:[QuestionsTableViewCell class] forCellReuseIdentifier:@"Cell"];
+    [self.tableView registerClass:[QuestionsTableViewCell class] forCellReuseIdentifier:@"cell"];
     
 }
 
 -(void)addQuestionFired:(UITapGestureRecognizer*)sender {
-    
+   
     //[self.delegate didTapQuestionButton:askImageButton];
+    [[self.ref child:@"questionsList/11"] setValue:@"Who will be at the q11 position"];
     NSLog(@"Add question");
 }
 
@@ -80,50 +79,46 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //return self.questions.count;
+    
     return [BLCDataSource sharedInstance].questions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-   QuestionsTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
+   QuestionsTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.delegate = self;
-    
     cell.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    //
-    
-    //cell.textLabel.minimumScaleFactor = 0.6;
-    //cell.textLabel.adjustsFontSizeToFitWidth = YES;
-    //cell.textLabel.text = [self.questions objectAtIndex:indexPath.row];
-    
-    //placeholder thumbnail
-    //cell.imageView.image = [UIImage imageNamed:@"3.jpg"];
-    
-    
-    
-    /*self.firebaseRef = [[Firebase alloc] initWithUrl:@"https://bloquery-e361d.firebaseio.com/"];
-    self.dataSource = [[FirebaseTableViewDataSource alloc] initWithRef:firebaseRef cellReuseIdentifier:@"cell" view:self.tableView];
-    
-    [self.dataSource populateCellWithBlock:^(UITableViewCell *cell, FDataSnapshot *snap) {
-        // Populate cell as you see fit, like as below
-        cell.textLabel.text = snap.key;
-    }];
-    
-    [self.tableView setDataSource:self.dataSource];*/
-
-  
     cell.question = [BLCDataSource sharedInstance].questions[indexPath.row];
+   
+    if (!cell) {
+        cell = [[QuestionsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    
+    // Assign a UIButton to the accessoryView cell property
+    cell.accessoryView = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    
+    // Set a target and selector for the accessoryView UIControlEventTouchUpInside
+    [(UIButton *)cell.accessoryView addTarget:self action:@selector(didTapQuestionView:) forControlEvents:UIControlEventTouchUpInside];
+    return cell;
+    
     return cell;
 }
 
 #pragma mark - QuestionsTableViewCellDelegate
-
+- (IBAction)didTapQuestionView:(id)sender {
+    // sender should be a button
+    // it should have a tag with the row number in it
+    // look up ? from questions array and row number, set that here.
+    Question *q = [[Question alloc] init];
+    q.questionText = @"Question here?";
+    QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:q];
+    [self presentViewController:fullScreenVC animated:YES completion:nil];
+    
+}
 - (void) cell:(QuestionsTableViewCell *)cell didTapQuestionView:(UITextView *)textView {
     QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:cell.question];
     
@@ -137,27 +132,18 @@
 
 //Override the default height
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
     return 100;
-    //UILabel *question = [BLCDataSource sharedInstance].questions[indexPath.row];
-    /*CGSize labelSize = [question.text
-                        boundingRectWithSize:question.frame.size
-                        options:NSStringDrawingUsesLineFragmentOrigin
-                        context:nil]
-    .size.width;*/
-    //CGFloat labelHeight = labelSize.height;
-    
-    //return labelHeight;
-    
+    //return UITableViewAutomaticDimension;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 400.0f;
+}
 
 
   //Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return NO;
+     return NO;
  }
 
 
