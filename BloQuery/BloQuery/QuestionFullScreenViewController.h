@@ -14,13 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelView;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
-
-
 - (instancetype) initWithQuestion:(Question *)question;
-
-
-
-//- (IBAction)centerScrollView:(id)sender;
-//- (void) centerScrollView;
 
 @end

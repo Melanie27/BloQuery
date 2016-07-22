@@ -111,15 +111,15 @@
                         <color key="separatorColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" id="94N-Z8-exM" customClass="QuestionsTableViewCell">
-                                <rect key="frame" x="0.0" y="92" width="600" height="101"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="94N-Z8-exM" customClass="QuestionsTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="94N-Z8-exM" id="MdR-ZN-QYi">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="100.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="94N-Z8-exM" id="MdR-ZN-QYi">
+                                    <rect key="frame" x="0.0" y="0.0" width="533" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="szK-ud-CTx">
-                                            <rect key="frame" x="18" y="6" width="549" height="94"/>
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="szK-ud-CTx">
+                                            <rect key="frame" x="18" y="5" width="549" height="94"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="This is where all the questions are going to go. Is this the first Question?">
                                                     <attributes>
@@ -132,24 +132,16 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="szK-ud-CTx" secondAttribute="trailing" constant="10" id="CnL-bW-YPn"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="szK-ud-CTx" secondAttribute="bottom" constant="10" id="GEs-yY-QNa"/>
+                                        <constraint firstItem="szK-ud-CTx" firstAttribute="top" secondItem="MdR-ZN-QYi" secondAttribute="topMargin" constant="-3" id="3t4-Rj-AuW" userLabel="Question Text View.top = topMargin - 40"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="szK-ud-CTx" secondAttribute="trailing" constant="-42" id="CnL-bW-YPn"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="szK-ud-CTx" secondAttribute="bottom" constant="-7.5" id="GEs-yY-QNa"/>
                                         <constraint firstItem="szK-ud-CTx" firstAttribute="leading" secondItem="MdR-ZN-QYi" secondAttribute="leadingMargin" constant="10" id="opY-2L-xsI"/>
-                                        <constraint firstItem="szK-ud-CTx" firstAttribute="top" secondItem="MdR-ZN-QYi" secondAttribute="topMargin" constant="10" id="qsV-Rn-kY0"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="labelView" destination="szK-ud-CTx" id="1r7-Pu-Sra"/>
+                                    <outlet property="questionTextView" destination="szK-ud-CTx" id="sR4-zH-ADi"/>
                                     <segue destination="DcE-2c-65V" kind="push" id="Zhk-j4-dJu"/>
                                 </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bVA-pf-arF">
-                                <rect key="frame" x="0.0" y="193" width="600" height="101"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bVA-pf-arF" id="udj-KI-HxR">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -192,36 +184,8 @@
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Ps3-ZZ-jhm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="auK-V9-kkY" customClass="QuestionsTableViewCell">
-                                <rect key="frame" x="147" y="197" width="271" height="202"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7UL-sj-FMj">
-                                        <rect key="frame" x="114" y="90" width="96" height="69"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="480" id="bhc-gK-GQw"/>
-                                    <constraint firstAttribute="width" constant="480" id="nT3-wx-7Nh"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="PBc-br-HQe" firstAttribute="top" secondItem="auK-V9-kkY" secondAttribute="bottom" id="EgO-4o-Xtk"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="auK-V9-kkY" secondAttribute="trailing" id="JfC-Zz-xbI"/>
-                            <constraint firstItem="auK-V9-kkY" firstAttribute="top" secondItem="G5h-Ak-z28" secondAttribute="bottom" id="SGG-f7-afY"/>
-                            <constraint firstItem="auK-V9-kkY" firstAttribute="leading" secondItem="Ps3-ZZ-jhm" secondAttribute="leadingMargin" id="ZcJ-8z-4Wz"/>
-                        </constraints>
                     </scrollView>
                     <navigationItem key="navigationItem" id="MDm-HQ-PQ2"/>
-                    <connections>
-                        <outlet property="centerScrollView" destination="Ps3-ZZ-jhm" id="g56-po-gTJ"/>
-                        <outlet property="scrollView" destination="Ps3-ZZ-jhm" id="Pxb-Dg-t1m"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HGZ-ES-b9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

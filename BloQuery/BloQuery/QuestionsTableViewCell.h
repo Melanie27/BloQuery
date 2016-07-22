@@ -17,13 +17,11 @@
 @end
 
 @interface QuestionsTableViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UILabel *labelView;
 
+@property (strong, nonatomic) IBOutlet UILabel *questionTextView;
 
 @property (nonatomic, strong, readonly) NSArray *questions;
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, weak) id <QuestionsTableViewCellDelegate> delegate;
-
-
 
 @end

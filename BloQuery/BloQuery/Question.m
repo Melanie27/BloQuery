@@ -10,4 +10,9 @@
 
 @implementation Question
 
+- (NSString *) newQuestion {
+   
+    return @"";
+}
+
 @end

@@ -40,7 +40,7 @@
     [BLCDataSource sharedInstance].qtvc = self;
     [[BLCDataSource sharedInstance] retrieveQuestions];
 
-    // Custom initialization
+    // Custom initialization, custom nav bar
     UIImage *logo = [UIImage imageNamed:@"logo.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:logo];
     UIBarButtonItem *imageButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
@@ -50,16 +50,13 @@
     UIImageView *askImageView = [[UIImageView alloc] initWithImage:iconAsk];
     UIBarButtonItem *askImageButton = [[UIBarButtonItem alloc] initWithCustomView:askImageView];
     self.navigationItem.rightBarButtonItem = askImageButton;
+    self.navigationItem.title = @"BloQuery";
     
     
     //add tap gesture to right nav button
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addQuestionFired:)];
     [askImageView addGestureRecognizer:tapGes];
     
-    
-    self.navigationItem.title = @"BloQuery";
-    
-    [self.tableView registerClass:[QuestionsTableViewCell class] forCellReuseIdentifier:@"cell"];
     
 }
 
@@ -73,7 +70,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -91,36 +87,34 @@
     
    QuestionsTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.delegate = self;
-    cell.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+   
     cell.question = [BLCDataSource sharedInstance].questions[indexPath.row];
    
-    if (!cell) {
-        cell = [[QuestionsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
     
-    // Assign a UIButton to the accessoryView cell property
-    cell.accessoryView = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [button addTarget:self action:@selector(didTapQuestionView:) forControlEvents:UIControlEventTouchDown];
     
-    // Set a target and selector for the accessoryView UIControlEventTouchUpInside
-    [(UIButton *)cell.accessoryView addTarget:self action:@selector(didTapQuestionView:) forControlEvents:UIControlEventTouchUpInside];
+    button.tag = indexPath.row;
+    cell.accessoryView = button;
+
     return cell;
     
-    return cell;
 }
+
+
 
 #pragma mark - QuestionsTableViewCellDelegate
 - (IBAction)didTapQuestionView:(id)sender {
-    // sender should be a button
-    // it should have a tag with the row number in it
-    // look up ? from questions array and row number, set that here.
-    Question *q = [[Question alloc] init];
-    q.questionText = @"Question here?";
+    Question *q;
+    UIButton *theButton = (UIButton *)sender;
+    q = [BLCDataSource sharedInstance].questions[theButton.tag];
     QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:q];
     [self presentViewController:fullScreenVC animated:YES completion:nil];
     
 }
 - (void) cell:(QuestionsTableViewCell *)cell didTapQuestionView:(UITextView *)textView {
     QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:cell.question];
+    fullScreenVC.modalPresentationStyle = UIModalPresentationPageSheet;
     
     [self presentViewController:fullScreenVC animated:YES completion:nil];
 }
@@ -133,18 +127,8 @@
 //Override the default height
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
-    //return UITableViewAutomaticDimension;
+   
 }
-
-- (CGFloat) tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 400.0f;
-}
-
-
-  //Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-     return NO;
- }
 
 
 /*

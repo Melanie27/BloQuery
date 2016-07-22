@@ -12,5 +12,5 @@
 
 
 @property (nonatomic, strong) NSString *questionText;
-
+- (NSString *) newQuestion;
 @end

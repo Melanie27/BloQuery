@@ -14,12 +14,7 @@
 @interface QuestionsTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 
-
 - (IBAction)didTapQuestionView:(id)sender;
-
-//@property (weak, nonatomic) IBOutlet UILabel *emailField;
-
-
 
 
 @end

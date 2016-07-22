@@ -12,7 +12,6 @@
 @interface QuestionsTableViewCell () <UIGestureRecognizerDelegate>
 
 //other options instead of text view?
-@property (nonatomic, strong) UILabel *questionTextView;
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 
@@ -47,8 +46,7 @@ static NSParagraphStyle *paragraphStyle;
         
         self.backgroundColor  = tableBackgroundGray;
         self.questionTextView.backgroundColor = [UIColor whiteColor];
-        //self.questionTextView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"commentBubble.jpg"]];
-        
+       
 
         for (UIView *view in @[self.questionTextView]) {
             [self.contentView addSubview:view];
@@ -87,8 +85,7 @@ static NSParagraphStyle *paragraphStyle;
     CGSize sizeOfquestionTextView = [self sizeOfString:self.questionTextView.attributedText];
     self.questionTextView.frame = CGRectMake(0, 0, CGRectGetWidth(self.contentView.bounds), sizeOfquestionTextView.height);
     
-    //hide the lines between cells
-    self.separatorInset = UIEdgeInsetsMake(0, CGRectGetWidth(self.bounds)/2.0, 0, CGRectGetWidth(self.bounds)/2.0);
+   
 }
 
 
