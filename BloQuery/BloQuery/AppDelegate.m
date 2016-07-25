@@ -16,9 +16,11 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "QuestionsTableViewController.h"
 
 // [START auth_import]
 @import Firebase;
+@import FirebaseDatabase;
 // [END auth_import]
 
 //@import GoogleSignIn;
@@ -31,27 +33,24 @@
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
-    /*
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] init]];
-    	
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    */
     
-    [FIRApp configure];
    
+    [FIRApp configure];
+    
+    /*self.ref = [[FIRDatabase database] reference];
+    Firebase *myRootRef = [[Firebase alloc] initWithUrl:@"https://bloquery-e361d.firebaseio.com/"];
+    [myRootRef setValue:@"Do you have data? You'll love Firebase."];
+
     
     
-    //[[FBSDKApplicationDelegate sharedInstance] application:application
-                             //didFinishLaunchingWithOptions:launchOptions];
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
     
-    //NSString *key = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"consumerKey"],
-    //*secret = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"consumerSecret"];
-    //if ([key length] && [secret length]) {
-        //[[Twitter sharedInstance] startWithConsumerKey:key consumerSecret:secret];
-    //}
+    NSString *key = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"consumerKey"],
+    *secret = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"consumerSecret"];
+    if ([key length] && [secret length]) {
+        [[Twitter sharedInstance] startWithConsumerKey:key consumerSecret:secret];
+    }*/
     return YES;
 }
 

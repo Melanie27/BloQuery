@@ -7,14 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+@import FirebaseDatabase;
+
 //@import GoogleSignIn;
 @interface MainViewController : UIViewController 
+
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+
 
 - (IBAction)didCreateAccount:(id)sender;
 
 - (IBAction)didTapEmailLogin:(id)sender;
 
 - (IBAction)didTapSignOut:(id)sender;
+
+ 
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 
@@ -26,7 +33,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
-
+@property (weak, nonatomic)IBOutlet UIViewController *questionsVC;
+@property IBOutlet UIButton *questionsButton;
 
 
 @end
