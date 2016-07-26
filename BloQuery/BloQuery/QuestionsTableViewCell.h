@@ -12,15 +12,12 @@
 
 @protocol QuestionsTableViewCellDelegate <NSObject>
 
--(void) cell:(QuestionsTableViewCell *) cell didTapQuestionView:(UILabel *)questionTextView;
 
 @end
 
 @interface QuestionsTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *questionTextView;
-
-@property (nonatomic, strong, readonly) NSArray *questions;
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, weak) id <QuestionsTableViewCellDelegate> delegate;
 
