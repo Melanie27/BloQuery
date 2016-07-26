@@ -34,7 +34,7 @@
     
     self.scrollView = [UIScrollView new];
     self.scrollView.delegate = self;
-    self.scrollView.backgroundColor = [UIColor grayColor];
+    self.scrollView.backgroundColor = [UIColor greenColor];
     
     
     [self.view addSubview:self.scrollView];

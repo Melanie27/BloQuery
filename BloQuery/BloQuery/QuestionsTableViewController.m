@@ -86,7 +86,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
    QuestionsTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.delegate = self;
+    //cell.delegate = self;
    
     cell.question = [BLCDataSource sharedInstance].questions[indexPath.row];
    
@@ -112,16 +112,9 @@
     [self presentViewController:fullScreenVC animated:YES completion:nil];
     
 }
-- (void) cell:(QuestionsTableViewCell *)cell didTapQuestionView:(UITextView *)textView {
-    QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:cell.question];
-    fullScreenVC.modalPresentationStyle = UIModalPresentationPageSheet;
-    
-    [self presentViewController:fullScreenVC animated:YES completion:nil];
-}
 
-#pragma mark - MediaTableViewCellDelegate
 
-//override the default width
+
 
 
 //Override the default height
