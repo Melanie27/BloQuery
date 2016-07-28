@@ -163,7 +163,7 @@
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
                                     <outlet property="questionTextView" destination="szK-ud-CTx" id="sR4-zH-ADi"/>
-                                    <segue destination="VfX-TX-JCP" kind="showDetail" id="clK-rz-C0p"/>
+                                    <segue destination="VfX-TX-JCP" kind="show" id="Ge0-kr-BGb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -176,12 +176,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KwV-9j-j5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2302" y="396"/>
+            <point key="canvasLocation" x="2363" y="402"/>
         </scene>
         <!--Compose Answer View Controller-->
         <scene sceneID="iYL-tr-Cur">
             <objects>
-                <viewController storyboardIdentifier="ComposeAnswerViewController" id="VfX-TX-JCP" customClass="ComposeAnswerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ComposeAnswerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VfX-TX-JCP" customClass="ComposeAnswerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NWs-AW-rvc"/>
                         <viewControllerLayoutGuide type="bottom" id="Ozn-eZ-J7x"/>
@@ -190,59 +190,71 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.65000000000000002" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u1e-AI-grd" customClass="ComposeAnswerView">
-                                <rect key="frame" x="64" y="114" width="460" height="404"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jmp-uJ-mEM">
+                                <rect key="frame" x="254" y="158" width="92" height="30"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="answerButtonPressed:" destination="VfX-TX-JCP" eventType="touchUpInside" id="k9c-r8-pb3"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge3-fj-b5u">
+                                <rect key="frame" x="20" y="93" width="560" height="47"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES"/>
+                                </accessibility>
+                                <attributedString key="attributedText">
+                                    <fragment content="This is where a single question will go so the user can see what they are answering">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="14" name="Didot"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view alpha="0.65000000000000002" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u1e-AI-grd" customClass="ComposeAnswerView">
+                                <rect key="frame" x="70" y="226" width="460" height="332"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PdO-iX-Yx0">
-                                        <rect key="frame" x="160" y="297" width="122" height="46"/>
-                                        <state key="normal" title="Answer"/>
-                                    </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" keyboardDismissMode="interactive" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="plO-ax-kp8">
-                                        <rect key="frame" x="21" y="24" width="418" height="356"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" keyboardDismissMode="interactive" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="plO-ax-kp8">
+                                        <rect key="frame" x="21" y="24" width="418" height="236"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <attributedString key="attributedText"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                                     </textView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.6259014423" green="0.12618491800000001" blue="0.24927187619999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.70980392160000005" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="plO-ax-kp8" firstAttribute="top" secondItem="u1e-AI-grd" secondAttribute="top" constant="21" id="Cyr-hY-K3a"/>
-                                    <constraint firstItem="plO-ax-kp8" firstAttribute="leading" secondItem="u1e-AI-grd" secondAttribute="leading" constant="20" id="JfH-YL-SqX"/>
-                                    <constraint firstItem="plO-ax-kp8" firstAttribute="top" secondItem="u1e-AI-grd" secondAttribute="top" constant="20" id="S2g-Dw-EHK"/>
-                                    <constraint firstAttribute="trailing" secondItem="plO-ax-kp8" secondAttribute="trailing" constant="20" id="mvr-QB-b14"/>
-                                    <constraint firstAttribute="bottom" secondItem="plO-ax-kp8" secondAttribute="bottom" constant="20" id="trE-QT-hpY"/>
+                                    <constraint firstItem="plO-ax-kp8" firstAttribute="leading" secondItem="u1e-AI-grd" secondAttribute="leading" constant="20" id="3iW-CQ-T8I"/>
+                                    <constraint firstAttribute="bottom" secondItem="plO-ax-kp8" secondAttribute="bottom" constant="20" id="A5d-PF-d0G"/>
+                                    <constraint firstAttribute="trailing" secondItem="plO-ax-kp8" secondAttribute="trailing" constant="20" id="DMd-2y-BXN"/>
+                                    <constraint firstItem="plO-ax-kp8" firstAttribute="top" secondItem="u1e-AI-grd" secondAttribute="top" constant="20" id="fzx-AK-wDo"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Cyr-hY-K3a"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <outlet property="button" destination="PdO-iX-Yx0" id="FdO-n8-AYC"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ozn-eZ-J7x" firstAttribute="top" secondItem="u1e-AI-grd" secondAttribute="bottom" constant="25" id="LJ1-sj-bcQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="u1e-AI-grd" secondAttribute="trailing" constant="25" id="Zu3-Nz-XQt"/>
-                            <constraint firstItem="u1e-AI-grd" firstAttribute="top" secondItem="NWs-AW-rvc" secondAttribute="bottom" constant="25" id="byq-Re-Uci"/>
-                            <constraint firstItem="Ozn-eZ-J7x" firstAttribute="top" secondItem="u1e-AI-grd" secondAttribute="bottom" constant="82" id="mNv-R3-vzt"/>
-                            <constraint firstItem="u1e-AI-grd" firstAttribute="leading" secondItem="3Mc-tX-cav" secondAttribute="leadingMargin" constant="25" id="wLl-x0-W5q"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ge3-fj-b5u" secondAttribute="leading" id="75e-cZ-sbx"/>
+                            <constraint firstItem="u1e-AI-grd" firstAttribute="top" secondItem="Jmp-uJ-mEM" secondAttribute="bottom" constant="40" id="HxE-6u-5pQ"/>
+                            <constraint firstItem="u1e-AI-grd" firstAttribute="leading" secondItem="3Mc-tX-cav" secondAttribute="leadingMargin" constant="20" id="XAd-lA-yxI"/>
+                            <constraint firstItem="Ozn-eZ-J7x" firstAttribute="top" secondItem="u1e-AI-grd" secondAttribute="bottom" constant="40" id="mWH-th-WH9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="u1e-AI-grd" secondAttribute="trailing" constant="20" id="moT-ZF-ctm"/>
+                            <constraint firstItem="Jmp-uJ-mEM" firstAttribute="top" secondItem="ge3-fj-b5u" secondAttribute="bottom" constant="18" id="p6l-U1-fq7"/>
+                            <constraint firstItem="Jmp-uJ-mEM" firstAttribute="centerX" secondItem="3Mc-tX-cav" secondAttribute="centerX" id="vX5-CW-s9c"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ge3-fj-b5u" secondAttribute="trailing" id="xt1-fB-xPF"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="mNv-R3-vzt"/>
-                            </mask>
-                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="hJJ-Sy-rUA"/>
                     <connections>
+                        <outlet property="deactivateButton" destination="Jmp-uJ-mEM" id="wDU-hP-dai"/>
+                        <outlet property="singleQuestionView" destination="ge3-fj-b5u" id="6FR-jP-B2h"/>
                         <outlet property="textView" destination="plO-ax-kp8" id="wzy-39-NFe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebj-Pc-kvy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2302" y="1102"/>
+            <point key="canvasLocation" x="2302" y="1149"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vnp-Nn-sYA">
@@ -261,24 +273,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0p8-fV-Kmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="855" y="402"/>
-        </scene>
-        <!--QuestionFullScreenViewController-->
-        <scene sceneID="lgW-5e-Qeg">
-            <objects>
-                <viewController storyboardIdentifier="QuestionFullScreenViewController" title="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DcE-2c-65V" userLabel="QuestionFullScreenViewController" customClass="QuestionFullScreenViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="G5h-Ak-z28"/>
-                        <viewControllerLayoutGuide type="bottom" id="PBc-br-HQe"/>
-                    </layoutGuides>
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Ps3-ZZ-jhm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </scrollView>
-                    <navigationItem key="navigationItem" id="MDm-HQ-PQ2"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HGZ-ES-b9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2986" y="396"/>
         </scene>
     </scenes>
     <resources>

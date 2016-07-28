@@ -7,19 +7,44 @@
 //
 
 #import "ComposeAnswerViewController.h"
+#import "Question.h"
 
 @interface ComposeAnswerViewController () <UITextViewDelegate>
-
+@property (nonatomic, strong) Question *question;
 @end
 
 @implementation ComposeAnswerViewController
 
+-(instancetype) initWithQuestion:(Question *)question {
+    self = [super init];
+    
+    if(self) {
+        self.question = question;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.textView.delegate = self;
     
-    //
-    // Do any additional setup after loading the view.
+   
+    self.textView.delegate = self;
+    self.deactivateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    
+    
+    self.singleQuestionView = [UILabel new];
+    self.singleQuestionView.text = self.question.questionText;
+    
+    
+    
+}
+
+
+
+-(void) viewWillLayoutSubviews {
+    
     
     if(self.isWritingAnswer) {
         self.textView.backgroundColor = [UIColor whiteColor];
@@ -28,11 +53,28 @@
         [self.textView becomeFirstResponder];
         self.textView.backgroundColor = [UIColor purpleColor];
         //
-       
+        
+    }
+    
+   
+}
+
+
+
+//dismiss the keyboard when this method is called
+- (IBAction)answerButtonPressed:(id)sender {
+    
+    if (self.isWritingAnswer) {
+        [self.textView resignFirstResponder];
+        self.textView.userInteractionEnabled = NO;
+        [self.delegate answerViewDidPressAnswerButton:self];
+        
+    } else {
+        [self setIsWritingAnswer:YES];
+        [self.textView becomeFirstResponder];
     }
 }
 
-//dismiss the keyboard when this method is called
 -(void)stopComposingAnswer {
     [self.textView resignFirstResponder];
 }
@@ -58,9 +100,24 @@
     self.isWritingAnswer = text.length > 0;
 }
 
+
+
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
     [self setIsWritingAnswer:YES];
     [self.delegate answerViewWillStartEditing:self];
+    
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    NSString *newText = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    [self.delegate answerView:self textDidChange:newText];
+    return YES;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    BOOL hasAnswer = (textView.text.length > 0);
+    [self setIsWritingAnswer:hasAnswer];
     
     return YES;
 }

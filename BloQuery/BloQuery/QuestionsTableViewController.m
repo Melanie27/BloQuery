@@ -12,6 +12,7 @@
 #import "Question.h"
 #import "QuestionsTableViewCell.h"
 #import "QuestionFullScreenViewController.h"
+#import "ComposeAnswerViewController.h"
 @import Firebase;
 @import FirebaseDatabase;
 
@@ -90,7 +91,6 @@
    
     cell.question = [BLCDataSource sharedInstance].questions[indexPath.row];
    
-    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [button addTarget:self action:@selector(didTapQuestionView:) forControlEvents:UIControlEventTouchDown];
     
@@ -101,6 +101,13 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Question *q;
+    q = [BLCDataSource sharedInstance].questions[indexPath.row];
+   
+    
+}
+
 
 
 #pragma mark - QuestionsTableViewCellDelegate
@@ -108,8 +115,15 @@
     Question *q;
     UIButton *theButton = (UIButton *)sender;
     q = [BLCDataSource sharedInstance].questions[theButton.tag];
+    
     QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:q];
-    [self presentViewController:fullScreenVC animated:YES completion:nil];
+    
+    [self.navigationController pushViewController:fullScreenVC animated:YES];
+    
+    /*ComposeAnswerViewController *composeVC = [[ComposeAnswerViewController alloc] initWithQuestion2:q];
+     [self.navigationController pushViewController:composeVC animated:YES];
+    //[self presentViewController:composeVC animated:YES completion:nil];
+     NSLog(@"did press add button");*/
     
 }
 
