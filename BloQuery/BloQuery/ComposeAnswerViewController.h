@@ -10,6 +10,8 @@
 
 @class ComposeAnswerViewController;
 @class Question;
+@class Answer;
+@import FirebaseDatabase;
 
 @protocol ComposeAnswerViewControllerDelegate <NSObject>
 - (void) answerViewDidPressAnswerButton:(ComposeAnswerViewController *)sender;
@@ -24,12 +26,15 @@
 
 @interface ComposeAnswerViewController : UIViewController
 
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+
 @property (nonatomic, weak) NSObject <ComposeAnswerViewControllerDelegate> *delegate;
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (nonatomic, assign) BOOL isWritingAnswer;
 @property (nonatomic, strong) IBOutlet NSString *text;
 
+@property (strong, nonatomic) IBOutlet UIView *outsideTextView;
 
 
 @property (nonatomic, strong) IBOutlet UILabel *singleQuestionView;

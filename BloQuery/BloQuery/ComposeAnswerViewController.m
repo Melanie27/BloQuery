@@ -25,6 +25,8 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -32,19 +34,14 @@
     self.textView.delegate = self;
     self.deactivateButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    
-    
-    self.singleQuestionView = [UILabel new];
+    self.singleQuestionView = [[UILabel alloc] init];
     self.singleQuestionView.text = self.question.questionText;
     
-    
-    
+
 }
 
 
-
 -(void) viewWillLayoutSubviews {
-    
     
     if(self.isWritingAnswer) {
         self.textView.backgroundColor = [UIColor whiteColor];
@@ -52,13 +49,25 @@
     } else {
         [self.textView becomeFirstResponder];
         self.textView.backgroundColor = [UIColor purpleColor];
-        //
-        
+       
     }
     
-   
+    [self.view addSubview:self.singleQuestionView];
 }
 
+-(NSAttributedString *) singleQuestionTextString {
+
+    NSMutableAttributedString *mutableQuestionTestString = [[NSMutableAttributedString alloc] init];
+    return mutableQuestionTestString;
+}
+
+
+//override setter method to update the question text whenever a new question is set
+-(void)setQuestion:(Question*)question {
+    _question = question;
+    self.singleQuestionView.attributedText = [self singleQuestionTextString];
+    
+}
 
 
 //dismiss the keyboard when this method is called
@@ -73,6 +82,19 @@
         [self setIsWritingAnswer:YES];
         [self.textView becomeFirstResponder];
     }
+    
+    
+    //send answer to firebase
+    //capture the text
+    NSLog (@"capture text: %@", self.textView.text);
+    self.ref = [[FIRDatabase database] reference];
+
+    /*NSString *key = [[_ref child:@"questionList"] childByAutoId].key;
+     NSDictionary *post = @{@"uid": userID,
+     @"body": body};
+     NSDictionary *childUpdates = @{[@"/posts/" stringByAppendingString:key]: post,
+     [NSString stringWithFormat:@"/user-posts/%@/%@/", userID, key]: post};
+     [_ref updateChildValues:childUpdates];*/
 }
 
 -(void)stopComposingAnswer {

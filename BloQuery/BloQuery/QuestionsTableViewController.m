@@ -104,6 +104,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Question *q;
     q = [BLCDataSource sharedInstance].questions[indexPath.row];
+   // ComposeAnswerViewController *composeVC = [[ComposeAnswerViewController alloc] initWithQuestion:q];
+   //[self.navigationController pushViewController:composeVC animated:YES];
    
     
 }
