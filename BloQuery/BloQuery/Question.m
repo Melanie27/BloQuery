@@ -10,11 +10,6 @@
 
 @implementation Question
 
-/*- (NSString *) mainCharacter {
-   
-    return @"";
-}*/
-
 - (NSString *) newQuestion {
    
     return @"";

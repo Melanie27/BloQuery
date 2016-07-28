@@ -86,7 +86,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
    QuestionsTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    //cell.delegate = self;
+    cell.delegate = self;
    
     cell.question = [BLCDataSource sharedInstance].questions[indexPath.row];
    

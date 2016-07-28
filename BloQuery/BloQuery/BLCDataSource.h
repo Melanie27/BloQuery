@@ -11,6 +11,7 @@
 
 @class QuestionsTableViewController;
 @class Question;
+@class Answer;
 
 @interface BLCDataSource : NSObject
 
@@ -24,6 +25,9 @@
 @property (nonatomic, strong, readonly) NSArray *questionsList;
 @property (nonatomic, weak) QuestionsTableViewController *qtvc;
 
+@property (nonatomic, strong, readonly) NSArray<Answer*> *answers;
+
 -(NSString *)retrieveQuestions;
+-(NSString *)retrieveAnswers;
 
 @end

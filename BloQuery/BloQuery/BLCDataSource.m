@@ -9,11 +9,13 @@
 #import "BLCDataSource.h"
 #import "Question.h"
 #import "QuestionsTableViewController.h"
+#import "Answer.h"
 
 
 @interface BLCDataSource ()
 
 @property (nonatomic, strong) NSArray *questions;
+@property (nonatomic, strong) NSArray *answers;
 
 @end
 
@@ -38,7 +40,6 @@
     
     return self;
 }
-
 
 
 
@@ -68,6 +69,15 @@
     
     
 }
+
+
+/*-(NSString *)retrieveAnswers {
+    self.ref = [[FIRDatabase database] reference];
+    //Database work here
+    
+    
+    return retrieveAnswers;
+}*/
 
 
 @end

@@ -12,6 +12,7 @@
 @interface QuestionsTableViewCell () <UIGestureRecognizerDelegate>
 
 
+
 @end
 
 static UIFont *lightFont;
@@ -32,8 +33,7 @@ static NSParagraphStyle *paragraphStyle;
         
         self.backgroundColor  = tableBackgroundGray;
         self.questionTextView.backgroundColor = [UIColor whiteColor];
-       
-
+        
         for (UIView *view in @[self.questionTextView]) {
             [self.contentView addSubview:view];
         }
@@ -90,7 +90,9 @@ static NSParagraphStyle *paragraphStyle;
 -(void)setQuestion:(Question*)question {
     _question = question;
     self.questionTextView.attributedText = [self questionTextString];
+    
 }
+
 
 
 @end
