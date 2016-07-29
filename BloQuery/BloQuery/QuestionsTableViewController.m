@@ -104,9 +104,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Question *q;
     q = [BLCDataSource sharedInstance].questions[indexPath.row];
-   // ComposeAnswerViewController *composeVC = [[ComposeAnswerViewController alloc] initWithQuestion:q];
-   //[self.navigationController pushViewController:composeVC animated:YES];
-   
+    QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:q];
+   [self.navigationController pushViewController:fullScreenVC animated:YES];
+    NSLog(@"selectRowAtIndexPath");
     
 }
 
@@ -118,19 +118,26 @@
     UIButton *theButton = (UIButton *)sender;
     q = [BLCDataSource sharedInstance].questions[theButton.tag];
     
-    QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:q];
+    //QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:q];
     
-    [self.navigationController pushViewController:fullScreenVC animated:YES];
+    //[self.navigationController pushViewController:fullScreenVC animated:YES];
     
-    /*ComposeAnswerViewController *composeVC = [[ComposeAnswerViewController alloc] initWithQuestion2:q];
-     [self.navigationController pushViewController:composeVC animated:YES];
+
+    [self performSegueWithIdentifier:@"composeAnswer" sender:self];
+
+//    ComposeAnswerViewController *composeVC = [[ComposeAnswerViewController alloc] initWithQuestion:q];
+//    [self showViewController:composeVC sender:self];
+//     [self.navigationController pushViewController:composeVC animated:YES];
     //[self presentViewController:composeVC animated:YES completion:nil];
-     NSLog(@"did press add button");*/
+     NSLog(@"did press add button");
     
 }
 
 
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender  {
+    return YES;
+}
 
 
 //Override the default height

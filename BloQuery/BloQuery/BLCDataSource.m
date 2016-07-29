@@ -15,7 +15,7 @@
 @interface BLCDataSource ()
 
 @property (nonatomic, strong) NSArray *questions;
-@property (nonatomic, strong) NSArray *answers;
+//@property (nonatomic, strong) NSArray *answers;
 
 @end
 

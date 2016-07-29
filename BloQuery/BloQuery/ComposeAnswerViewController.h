@@ -16,12 +16,6 @@
 @protocol ComposeAnswerViewControllerDelegate <NSObject>
 - (void) answerViewDidPressAnswerButton:(ComposeAnswerViewController *)sender;
 
-- (void) answerView:(ComposeAnswerViewController *)sender textDidChange:(NSString *)text;
-- (void) answerViewWillStartEditing:(ComposeAnswerViewController *)sender;
-
-
-
-
 @end
 
 @interface ComposeAnswerViewController : UIViewController
@@ -32,10 +26,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (nonatomic, assign) BOOL isWritingAnswer;
-@property (nonatomic, strong) IBOutlet NSString *text;
-
-@property (strong, nonatomic) IBOutlet UIView *outsideTextView;
-
 
 @property (nonatomic, strong) IBOutlet UILabel *singleQuestionView;
 @property (nonatomic, strong) IBOutlet UIButton *deactivateButton;

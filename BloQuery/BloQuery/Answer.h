@@ -10,6 +10,6 @@
 
 @interface Answer : NSObject
 
-@property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) NSString *answerText;
 @property (nonatomic, strong) NSString *temporaryAnswer;
 @end

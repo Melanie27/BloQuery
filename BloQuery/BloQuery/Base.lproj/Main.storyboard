@@ -86,7 +86,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="qxo-VS-sad" secondAttribute="trailing" id="nzH-Mw-aLM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="qLF-RO-J1E"/>
+                    <navigationItem key="navigationItem" title="BloQuery" id="qLF-RO-J1E"/>
                     <connections>
                         <outlet property="createAccount" destination="bIV-Km-uR5" id="3Eh-i6-JhU"/>
                         <outlet property="emailField" destination="BZb-yp-BxE" id="mU6-pw-Qyi"/>
@@ -163,7 +163,7 @@
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
                                     <outlet property="questionTextView" destination="szK-ud-CTx" id="sR4-zH-ADi"/>
-                                    <segue destination="VfX-TX-JCP" kind="show" id="Ge0-kr-BGb"/>
+                                    <segue destination="VfX-TX-JCP" kind="show" identifier="composeAnswer" trigger="accessoryAction" id="gdp-9f-r7n"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -178,7 +178,7 @@
             </objects>
             <point key="canvasLocation" x="2363" y="402"/>
         </scene>
-        <!--Compose Answer View Controller-->
+        <!--Answer the Question-->
         <scene sceneID="iYL-tr-Cur">
             <objects>
                 <viewController storyboardIdentifier="ComposeAnswerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VfX-TX-JCP" customClass="ComposeAnswerViewController" sceneMemberID="viewController">
@@ -214,7 +214,7 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view alpha="0.65000000000000002" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u1e-AI-grd" customClass="ComposeAnswerView">
+                            <view alpha="0.65000000000000002" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u1e-AI-grd">
                                 <rect key="frame" x="70" y="226" width="460" height="332"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" keyboardDismissMode="interactive" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="plO-ax-kp8">
@@ -245,7 +245,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="ge3-fj-b5u" secondAttribute="trailing" id="xt1-fB-xPF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="hJJ-Sy-rUA"/>
+                    <navigationItem key="navigationItem" title="Answer the Question" id="hJJ-Sy-rUA"/>
                     <connections>
                         <outlet property="deactivateButton" destination="Jmp-uJ-mEM" id="wDU-hP-dai"/>
                         <outlet property="singleQuestionView" destination="ge3-fj-b5u" id="6FR-jP-B2h"/>

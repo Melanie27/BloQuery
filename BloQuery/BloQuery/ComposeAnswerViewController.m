@@ -8,9 +8,15 @@
 
 #import "ComposeAnswerViewController.h"
 #import "Question.h"
+#import "Answer.h"
 
 @interface ComposeAnswerViewController () <UITextViewDelegate>
 @property (nonatomic, strong) Question *question;
+@property (nonatomic, strong) NSArray *answers;
+@property (nonatomic, assign) NSUInteger answersCount;
+@property (nonatomic, assign) NSUInteger answersCountIncrement;
+@property (nonatomic, strong) NSString *answerNumberString;
+
 @end
 
 @implementation ComposeAnswerViewController
@@ -36,6 +42,8 @@
     
     self.singleQuestionView = [[UILabel alloc] init];
     self.singleQuestionView.text = self.question.questionText;
+    [self.view addSubview:self.singleQuestionView];
+
     
 
 }
@@ -52,7 +60,6 @@
        
     }
     
-    [self.view addSubview:self.singleQuestionView];
 }
 
 -(NSAttributedString *) singleQuestionTextString {
@@ -84,17 +91,43 @@
     }
     
     
-    //send answer to firebase
-    //capture the text
-    NSLog (@"capture text: %@", self.textView.text);
-    self.ref = [[FIRDatabase database] reference];
 
-    /*NSString *key = [[_ref child:@"questionList"] childByAutoId].key;
-     NSDictionary *post = @{@"uid": userID,
-     @"body": body};
+    //send answer to firebase
+   
+    
+    self.ref = [[FIRDatabase database] reference];
+    FIRDatabaseQuery *answersQuery = [[self.ref child:@"answersList"] queryLimitedToFirst:1000];
+    
+    [answersQuery observeEventType:FIRDataEventTypeValue
+                     withBlock:^(FIRDataSnapshot *snapshot) {
+                         NSLog(@"%@ -> %@", snapshot.key, snapshot.value);
+                         
+                         self.answers = @[];
+                         for (NSString *a in (NSArray*)snapshot.value) {
+                             Answer *answer = [[Answer alloc] init];
+                             answer.answerText = a;
+                             self.answers = [self.answers arrayByAddingObject:answer];
+                             
+                         }
+                         
+                         self.answersCount = self.answers.count;
+                         NSLog(@"count %lu", self.answersCount);
+                         self.answersCountIncrement = self.answersCount + 1;
+                         NSLog(@"count %lu", self.answersCountIncrement);
+                         
+                         NSString *answerNumberString = [NSString stringWithFormat:@"%lu", (unsigned long)self.answersCountIncrement];
+                         
+    }];
+    
+    
+    NSString *key = [[_ref child:@"answerList"] childByAutoId].key;
+    //this number should be a variable that counts how many answers there are and adds 1
+    
+    NSLog(@"answers %@", answersQuery);
+    NSDictionary *post = @{@"answerNumberString": self.textView.text};
      NSDictionary *childUpdates = @{[@"/posts/" stringByAppendingString:key]: post,
-     [NSString stringWithFormat:@"/user-posts/%@/%@/", userID, key]: post};
-     [_ref updateChildValues:childUpdates];*/
+     [NSString stringWithFormat:@"/answersList/3"]: post};
+     [_ref updateChildValues:childUpdates];
 }
 
 -(void)stopComposingAnswer {
@@ -116,7 +149,7 @@
 }
 
 -(void) setText:(NSString *)text {
-    _text = text;
+    text = text;
     self.textView.text = text;
     self.textView.userInteractionEnabled = YES;
     self.isWritingAnswer = text.length > 0;
@@ -124,25 +157,8 @@
 
 
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    [self setIsWritingAnswer:YES];
-    [self.delegate answerViewWillStartEditing:self];
-    
-    return YES;
-}
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    NSString *newText = [textView.text stringByReplacingCharactersInRange:range withString:text];
-    [self.delegate answerView:self textDidChange:newText];
-    return YES;
-}
 
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
-    BOOL hasAnswer = (textView.text.length > 0);
-    [self setIsWritingAnswer:hasAnswer];
-    
-    return YES;
-}
 
 /*
 #pragma mark - Navigation
