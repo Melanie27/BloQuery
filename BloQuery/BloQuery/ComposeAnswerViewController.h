@@ -14,7 +14,7 @@
 @import FirebaseDatabase;
 
 @protocol ComposeAnswerViewControllerDelegate <NSObject>
-- (void) answerViewDidPressAnswerButton:(ComposeAnswerViewController *)sender;
+
 
 @end
 
@@ -25,6 +25,8 @@
 @property (nonatomic, weak) NSObject <ComposeAnswerViewControllerDelegate> *delegate;
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+
+
 @property (nonatomic, assign) BOOL isWritingAnswer;
 
 @property (nonatomic, strong) IBOutlet UILabel *singleQuestionView;
@@ -35,7 +37,7 @@
 
 - (IBAction)answerButtonPressed:(id)sender;
 
-- (void) stopComposingAnswer;
+
 
 
 @end

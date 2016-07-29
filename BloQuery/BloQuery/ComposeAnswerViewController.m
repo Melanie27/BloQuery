@@ -51,16 +51,15 @@
 
 -(void) viewWillLayoutSubviews {
     
-    if(self.isWritingAnswer) {
+   
         self.textView.backgroundColor = [UIColor whiteColor];
-        
-    } else {
         [self.textView becomeFirstResponder];
-        self.textView.backgroundColor = [UIColor purpleColor];
-       
-    }
     
-}
+        
+    }
+
+
+
 
 -(NSAttributedString *) singleQuestionTextString {
 
@@ -79,19 +78,10 @@
 
 //dismiss the keyboard when this method is called
 - (IBAction)answerButtonPressed:(id)sender {
+    self.textView.backgroundColor = [UIColor blackColor];
+    [self.textView resignFirstResponder];
     
-    if (self.isWritingAnswer) {
-        [self.textView resignFirstResponder];
-        self.textView.userInteractionEnabled = NO;
-        [self.delegate answerViewDidPressAnswerButton:self];
-        
-    } else {
-        [self setIsWritingAnswer:YES];
-        [self.textView becomeFirstResponder];
-    }
-    
-    
-
+   
     //send answer to firebase
    
     
@@ -111,9 +101,9 @@
                          }
                          
                          self.answersCount = self.answers.count;
-                         NSLog(@"count %lu", self.answersCount);
+                         NSLog(@"count %lu", (unsigned long)self.answersCount);
                          self.answersCountIncrement = self.answersCount + 1;
-                         NSLog(@"count %lu", self.answersCountIncrement);
+                         NSLog(@"count %lu", (unsigned long)self.answersCountIncrement);
                          
                          NSString *answerNumberString = [NSString stringWithFormat:@"%lu", (unsigned long)self.answersCountIncrement];
                          
@@ -130,32 +120,13 @@
      [_ref updateChildValues:childUpdates];
 }
 
--(void)stopComposingAnswer {
-    [self.textView resignFirstResponder];
-}
 
-
-
-- (void) setIsWritingAnswer:(BOOL)isWritingAnswer  {
-    _isWritingAnswer = isWritingAnswer;
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    BOOL hasAnswer = (textView.text.length > 0);
+    [self setIsWritingAnswer:hasAnswer];
     
-    [self viewDidLoad];
-
+    return YES;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void) setText:(NSString *)text {
-    text = text;
-    self.textView.text = text;
-    self.textView.userInteractionEnabled = YES;
-    self.isWritingAnswer = text.length > 0;
-}
-
-
 
 
 
