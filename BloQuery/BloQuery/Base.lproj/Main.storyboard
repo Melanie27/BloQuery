@@ -35,7 +35,7 @@
                                 <inset key="contentEdgeInsets" minX="4" minY="10" maxX="10" maxY="10"/>
                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
                                 <state key="normal" title="Login">
-                                    <color key="titleColor" red="0.98823529409999999" green="0.70980392160000005" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="didTapEmailLogin:" destination="zKe-6K-mpe" eventType="touchUpInside" id="fXL-69-eJR"/>
@@ -63,13 +63,14 @@
                                 <rect key="frame" x="498" y="181" width="82" height="35"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
                                 <state key="normal" title="Logout">
-                                    <color key="titleColor" red="0.12941176469999999" green="0.50588235290000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="didTapSignOut:" destination="zKe-6K-mpe" eventType="touchUpInside" id="h0u-ha-H0O"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.98823529409999999" green="0.70980392160000005" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="Bn7-cl-87n" secondAttribute="leading" id="1jq-aP-uZ9"/>
@@ -190,14 +191,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jmp-uJ-mEM">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jmp-uJ-mEM">
                                 <rect key="frame" x="254" y="158" width="92" height="30"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
                                     <action selector="answerButtonPressed:" destination="VfX-TX-JCP" eventType="touchUpInside" id="k9c-r8-pb3"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge3-fj-b5u">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge3-fj-b5u">
                                 <rect key="frame" x="20" y="93" width="560" height="47"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -214,10 +215,10 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view alpha="0.65000000000000002" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u1e-AI-grd">
+                            <view alpha="0.65000000000000002" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u1e-AI-grd">
                                 <rect key="frame" x="70" y="226" width="460" height="332"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" keyboardDismissMode="interactive" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="plO-ax-kp8">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" keyboardDismissMode="interactive" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="plO-ax-kp8">
                                         <rect key="frame" x="21" y="24" width="418" height="236"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <attributedString key="attributedText"/>
@@ -236,6 +237,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="ge3-fj-b5u" secondAttribute="leading" id="75e-cZ-sbx"/>
+                            <constraint firstItem="ge3-fj-b5u" firstAttribute="top" secondItem="NWs-AW-rvc" secondAttribute="bottom" constant="29" id="9bD-gM-qNn"/>
                             <constraint firstItem="u1e-AI-grd" firstAttribute="top" secondItem="Jmp-uJ-mEM" secondAttribute="bottom" constant="40" id="HxE-6u-5pQ"/>
                             <constraint firstItem="u1e-AI-grd" firstAttribute="leading" secondItem="3Mc-tX-cav" secondAttribute="leadingMargin" constant="20" id="XAd-lA-yxI"/>
                             <constraint firstItem="Ozn-eZ-J7x" firstAttribute="top" secondItem="u1e-AI-grd" secondAttribute="bottom" constant="40" id="mWH-th-WH9"/>
@@ -248,7 +250,6 @@
                     <navigationItem key="navigationItem" title="Answer the Question" id="hJJ-Sy-rUA"/>
                     <connections>
                         <outlet property="deactivateButton" destination="Jmp-uJ-mEM" id="wDU-hP-dai"/>
-                        <outlet property="singleQuestionView" destination="ge3-fj-b5u" id="6FR-jP-B2h"/>
                         <outlet property="textView" destination="plO-ax-kp8" id="wzy-39-NFe"/>
                     </connections>
                 </viewController>

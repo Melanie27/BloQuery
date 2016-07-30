@@ -10,7 +10,6 @@
 		9B3015151D3418D800304F6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3015141D3418D800304F6A /* main.m */; };
 		9B3015181D3418D800304F6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3015171D3418D800304F6A /* AppDelegate.m */; };
 		9B30151E1D3418D800304F6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B30151C1D3418D800304F6A /* Main.storyboard */; };
-		9B3015201D3418D800304F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B30151F1D3418D800304F6A /* Assets.xcassets */; };
 		9B3015231D3418D800304F6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B3015211D3418D800304F6A /* LaunchScreen.storyboard */; };
 		9B30152E1D3418D800304F6A /* BloQueryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B30152D1D3418D800304F6A /* BloQueryTests.m */; };
 		9B3015391D3418D800304F6A /* BloQueryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3015381D3418D800304F6A /* BloQueryUITests.m */; };
@@ -29,6 +28,7 @@
 		9B461E181D406C69008EC073 /* commentBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B461E171D406C69008EC073 /* commentBubble.png */; };
 		9B461E1C1D41431A008EC073 /* commentBubble.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9B461E1B1D41431A008EC073 /* commentBubble.jpg */; };
 		9B461E1E1D41449F008EC073 /* QuestionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B461E1D1D41449F008EC073 /* QuestionTests.m */; };
+		9B6F8E3E1D4C202F002B5C74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B6F8E3D1D4C202F002B5C74 /* Assets.xcassets */; };
 		9B8DE47C1D4817640020DE5B /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DE47B1D4817640020DE5B /* Answer.m */; };
 		9B8DE4821D496AE60020DE5B /* ComposeAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DE4811D496AE60020DE5B /* ComposeAnswerViewController.m */; };
 		9BE013821D341DA000ED53B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */; };
@@ -60,7 +60,6 @@
 		9B3015161D3418D800304F6A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9B3015171D3418D800304F6A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9B30151D1D3418D800304F6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9B30151F1D3418D800304F6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B3015221D3418D800304F6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B3015241D3418D800304F6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B3015291D3418D800304F6A /* BloQueryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BloQueryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +92,7 @@
 		9B461E171D406C69008EC073 /* commentBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commentBubble.png; sourceTree = "<group>"; };
 		9B461E1B1D41431A008EC073 /* commentBubble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = commentBubble.jpg; sourceTree = "<group>"; };
 		9B461E1D1D41449F008EC073 /* QuestionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionTests.m; path = ../../BloQuery/BloQueryTests/QuestionTests.m; sourceTree = "<group>"; };
+		9B6F8E3D1D4C202F002B5C74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B8DE47A1D4817640020DE5B /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Answer.h; path = ../../BloQuery/BloQuery/Answer.h; sourceTree = "<group>"; };
 		9B8DE47B1D4817640020DE5B /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Answer.m; path = ../../BloQuery/BloQuery/Answer.m; sourceTree = "<group>"; };
 		9B8DE4801D496AE60020DE5B /* ComposeAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeAnswerViewController.h; sourceTree = "<group>"; };
@@ -200,8 +200,8 @@
 				9B3520A81D34782C0074EAFE /* UIViewController+Alerts.h */,
 				9B3520A91D34782C0074EAFE /* UIViewController+Alerts.m */,
 				9B30151C1D3418D800304F6A /* Main.storyboard */,
-				9B30151F1D3418D800304F6A /* Assets.xcassets */,
 				9B3015211D3418D800304F6A /* LaunchScreen.storyboard */,
+				9B6F8E3D1D4C202F002B5C74 /* Assets.xcassets */,
 				9B3015241D3418D800304F6A /* Info.plist */,
 				9B3015131D3418D800304F6A /* Supporting Files */,
 			);
@@ -348,7 +348,7 @@
 				9B461E1C1D41431A008EC073 /* commentBubble.jpg in Resources */,
 				9B328AA81D3DBEF80036C7F6 /* logo.png in Resources */,
 				9BE013821D341DA000ED53B6 /* GoogleService-Info.plist in Resources */,
-				9B3015201D3418D800304F6A /* Assets.xcassets in Resources */,
+				9B6F8E3E1D4C202F002B5C74 /* Assets.xcassets in Resources */,
 				9B30151E1D3418D800304F6A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

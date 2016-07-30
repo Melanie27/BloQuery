@@ -40,9 +40,9 @@
     self.textView.delegate = self;
     self.deactivateButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    self.singleQuestionView = [[UILabel alloc] init];
+    self.singleQuestionView = [UILabel new];
     self.singleQuestionView.text = self.question.questionText;
-    [self.view addSubview:self.singleQuestionView];
+    [self.textView addSubview:self.singleQuestionView];
 
     
 

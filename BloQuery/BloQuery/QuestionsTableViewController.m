@@ -117,19 +117,8 @@
     Question *q;
     UIButton *theButton = (UIButton *)sender;
     q = [BLCDataSource sharedInstance].questions[theButton.tag];
-    
-    //QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:q];
-    
-    //[self.navigationController pushViewController:fullScreenVC animated:YES];
-    
-
+    ComposeAnswerViewController *composeAnswerVC = [[ComposeAnswerViewController alloc] initWithQuestion:q];
     [self performSegueWithIdentifier:@"composeAnswer" sender:self];
-
-//    ComposeAnswerViewController *composeVC = [[ComposeAnswerViewController alloc] initWithQuestion:q];
-//    [self showViewController:composeVC sender:self];
-//     [self.navigationController pushViewController:composeVC animated:YES];
-    //[self presentViewController:composeVC animated:YES completion:nil];
-     NSLog(@"did press add button");
     
 }
 
