@@ -10,6 +10,7 @@
 @import FirebaseDatabase;
 
 @class QuestionsTableViewController;
+@class ComposeAnswerViewController;
 @class Question;
 @class Answer;
 
@@ -22,10 +23,12 @@
 //to access call [BLCDataSource sharedInstance]
 +(instancetype) sharedInstance;
 @property (nonatomic, strong, readonly) NSArray<Question *> *questions;
-@property (nonatomic, strong, readonly) NSArray *questionsList;
+//@property (nonatomic, strong, readonly) NSArray *questionsList;
 @property (nonatomic, weak) QuestionsTableViewController *qtvc;
+@property (nonatomic, weak) ComposeAnswerViewController *cavc;
 
 @property (nonatomic, strong, readonly) NSArray<Answer*> *answers;
+
 
 -(NSString *)retrieveQuestions;
 -(NSString *)retrieveAnswers;

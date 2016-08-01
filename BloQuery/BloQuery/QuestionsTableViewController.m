@@ -21,6 +21,8 @@
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
  @property (strong, nonatomic) FIRDatabaseReference *ref;
+
+@property (nonatomic, strong)Question *questionAddingTo;
 @end
 
 @implementation QuestionsTableViewController
@@ -57,7 +59,6 @@
     //add tap gesture to right nav button
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addQuestionFired:)];
     [askImageView addGestureRecognizer:tapGes];
-    
     
 }
 
@@ -106,7 +107,7 @@
     q = [BLCDataSource sharedInstance].questions[indexPath.row];
     QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:q];
    [self.navigationController pushViewController:fullScreenVC animated:YES];
-    NSLog(@"selectRowAtIndexPath");
+   
     
 }
 
@@ -114,10 +115,9 @@
 
 #pragma mark - QuestionsTableViewCellDelegate
 - (IBAction)didTapQuestionView:(id)sender {
-    Question *q;
+   
     UIButton *theButton = (UIButton *)sender;
-    q = [BLCDataSource sharedInstance].questions[theButton.tag];
-    ComposeAnswerViewController *composeAnswerVC = [[ComposeAnswerViewController alloc] initWithQuestion:q];
+    self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
     [self performSegueWithIdentifier:@"composeAnswer" sender:self];
     
 }
@@ -127,6 +127,24 @@
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender  {
     return YES;
 }
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+  
+   
+    if([segue.identifier isEqualToString:@"composeAnswer"])
+    {
+        ComposeAnswerViewController *composeAnswerVC = (ComposeAnswerViewController*)segue.destinationViewController;
+        composeAnswerVC.question = self.questionAddingTo;
+        
+        NSLog(@"question adding to: %@", self.questionAddingTo);
+    }
+    
+}
+
+
+
 
 
 //Override the default height

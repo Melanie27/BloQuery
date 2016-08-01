@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuestionsTableViewController.h"
 
 @class ComposeAnswerViewController;
 @class Question;
@@ -21,16 +22,17 @@
 @interface ComposeAnswerViewController : UIViewController
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (nonatomic, strong) Question *question;
+@property (nonatomic, assign) NSInteger questionNumber;
 
 @property (nonatomic, weak) NSObject <ComposeAnswerViewControllerDelegate> *delegate;
-
-@property (weak, nonatomic) IBOutlet UITextView *textView;
-
 
 @property (nonatomic, assign) BOOL isWritingAnswer;
 
 @property (nonatomic, strong) IBOutlet UILabel *singleQuestionView;
 @property (nonatomic, strong) IBOutlet UIButton *deactivateButton;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+
 
 
 - (instancetype) initWithQuestion:(Question *)question;

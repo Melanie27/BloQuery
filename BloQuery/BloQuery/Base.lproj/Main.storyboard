@@ -201,9 +201,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge3-fj-b5u">
                                 <rect key="frame" x="20" y="93" width="560" height="47"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" none="YES"/>
-                                </accessibility>
                                 <attributedString key="attributedText">
                                     <fragment content="This is where a single question will go so the user can see what they are answering">
                                         <attributes>
@@ -250,6 +247,7 @@
                     <navigationItem key="navigationItem" title="Answer the Question" id="hJJ-Sy-rUA"/>
                     <connections>
                         <outlet property="deactivateButton" destination="Jmp-uJ-mEM" id="wDU-hP-dai"/>
+                        <outlet property="singleQuestionView" destination="ge3-fj-b5u" id="mnz-Vh-DWk"/>
                         <outlet property="textView" destination="plO-ax-kp8" id="wzy-39-NFe"/>
                     </connections>
                 </viewController>

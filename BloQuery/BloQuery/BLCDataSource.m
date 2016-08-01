@@ -9,6 +9,7 @@
 #import "BLCDataSource.h"
 #import "Question.h"
 #import "QuestionsTableViewController.h"
+#import "ComposeAnswerViewController.h"
 #import "Answer.h"
 
 
@@ -62,6 +63,7 @@
              self.questions = [self.questions arrayByAddingObject:question];
          }
          [self.qtvc.tableView reloadData];
+         [self.cavc.singleQuestionView reloadInputViews];
 
      }];
     
