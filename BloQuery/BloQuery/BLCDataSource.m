@@ -10,13 +10,14 @@
 #import "Question.h"
 #import "QuestionsTableViewController.h"
 #import "ComposeAnswerViewController.h"
+#import "AnswersTableViewController.h"
 #import "Answer.h"
 
 
 @interface BLCDataSource ()
 
 @property (nonatomic, strong) NSArray *questions;
-//@property (nonatomic, strong) NSArray *answers;
+@property (nonatomic, strong) NSArray *answers;
 
 @end
 
@@ -46,7 +47,7 @@
 
 -(NSString *)retrieveQuestions {
     self.ref = [[FIRDatabase database] reference];
-
+    //TODO change this query to the "questions" table, crashing every time I try
     FIRDatabaseQuery *recentPostsQuery = [[self.ref child:@"questionList"] queryLimitedToFirst:1000];
     NSMutableString *retrieveQuestions = [[NSMutableString alloc] init];
     
@@ -72,14 +73,53 @@
     
 }
 
-
-/*-(NSString *)retrieveAnswers {
+-(NSString *)retrieveAnswers {
     self.ref = [[FIRDatabase database] reference];
     //Database work here
     
+    //NSArray *questionsArray = [BLCDataSource sharedInstance].questions;
+    //self.questionNumber = [questionsArray indexOfObject:_question];
+    
+    
+    /*FIRDatabaseQuery *getQuestionsQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/question/", (long)self.questionNumber]] queryLimitedToFirst:1000];
+   
+    [getQuestionsQuery
+        observeEventType:FIRDataEventTypeValue
+        withBlock:^(FIRDataSnapshot *snapshot) {
+            self.questions = @[];
+             NSLog(@"questions query %@", self.questions);
+    }];*/
+    
+    
+    
+    FIRDatabaseQuery *getAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
+    
+    
+    NSLog(@"question number %ld", self.questionNumber );
+   
+    NSMutableString *retrieveAnswers = [[NSMutableString alloc] init];
+    
+    [getAnswersQuery
+     observeEventType:FIRDataEventTypeValue
+     withBlock:^(FIRDataSnapshot *snapshot) {
+         //this logs all answers to question 1
+         NSLog(@"snapshot %@", snapshot.value);
+         
+         self.answers = @[];
+         
+         for (NSString *a in (NSArray*)snapshot.value) {
+             Answer *answer = [[Answer alloc] init];
+             answer.answerText = a;
+             self.answers = [self.answers arrayByAddingObject:answer];
+             NSLog(@"answers thru loop %@", self.answers);
+             
+         }
+         [self.atvc.tableView reloadData];
+         
+     }];
     
     return retrieveAnswers;
-}*/
+}
 
 
 @end

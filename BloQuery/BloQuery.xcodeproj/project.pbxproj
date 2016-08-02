@@ -29,6 +29,8 @@
 		9B461E1C1D41431A008EC073 /* commentBubble.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9B461E1B1D41431A008EC073 /* commentBubble.jpg */; };
 		9B461E1E1D41449F008EC073 /* QuestionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B461E1D1D41449F008EC073 /* QuestionTests.m */; };
 		9B6F8E3E1D4C202F002B5C74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B6F8E3D1D4C202F002B5C74 /* Assets.xcassets */; };
+		9B8A0DF41D511262006E0279 /* AnswersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A0DF31D511262006E0279 /* AnswersTableViewController.m */; };
+		9B8A0DF71D511703006E0279 /* AnswersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A0DF61D511703006E0279 /* AnswersTableViewCell.m */; };
 		9B8DE47C1D4817640020DE5B /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DE47B1D4817640020DE5B /* Answer.m */; };
 		9B8DE4821D496AE60020DE5B /* ComposeAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DE4811D496AE60020DE5B /* ComposeAnswerViewController.m */; };
 		9BE013821D341DA000ED53B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */; };
@@ -93,6 +95,10 @@
 		9B461E1B1D41431A008EC073 /* commentBubble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = commentBubble.jpg; sourceTree = "<group>"; };
 		9B461E1D1D41449F008EC073 /* QuestionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionTests.m; path = ../../BloQuery/BloQueryTests/QuestionTests.m; sourceTree = "<group>"; };
 		9B6F8E3D1D4C202F002B5C74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9B8A0DF21D511262006E0279 /* AnswersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswersTableViewController.h; path = ../../BloQuery/BloQuery/AnswersTableViewController.h; sourceTree = "<group>"; };
+		9B8A0DF31D511262006E0279 /* AnswersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswersTableViewController.m; path = ../../BloQuery/BloQuery/AnswersTableViewController.m; sourceTree = "<group>"; };
+		9B8A0DF51D511703006E0279 /* AnswersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswersTableViewCell.h; path = ../../BloQuery/BloQuery/AnswersTableViewCell.h; sourceTree = "<group>"; };
+		9B8A0DF61D511703006E0279 /* AnswersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswersTableViewCell.m; path = ../../BloQuery/BloQuery/AnswersTableViewCell.m; sourceTree = "<group>"; };
 		9B8DE47A1D4817640020DE5B /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Answer.h; path = ../../BloQuery/BloQuery/Answer.h; sourceTree = "<group>"; };
 		9B8DE47B1D4817640020DE5B /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Answer.m; path = ../../BloQuery/BloQuery/Answer.m; sourceTree = "<group>"; };
 		9B8DE4801D496AE60020DE5B /* ComposeAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeAnswerViewController.h; sourceTree = "<group>"; };
@@ -189,6 +195,10 @@
 				9B8DE47B1D4817640020DE5B /* Answer.m */,
 				9B8DE4801D496AE60020DE5B /* ComposeAnswerViewController.h */,
 				9B8DE4811D496AE60020DE5B /* ComposeAnswerViewController.m */,
+				9B8A0DF21D511262006E0279 /* AnswersTableViewController.h */,
+				9B8A0DF31D511262006E0279 /* AnswersTableViewController.m */,
+				9B8A0DF51D511703006E0279 /* AnswersTableViewCell.h */,
+				9B8A0DF61D511703006E0279 /* AnswersTableViewCell.m */,
 				9B3015161D3418D800304F6A /* AppDelegate.h */,
 				9B3015171D3418D800304F6A /* AppDelegate.m */,
 				9B35209F1D34767A0074EAFE /* CustomTokenViewController.h */,
@@ -430,11 +440,13 @@
 				9B3520A71D3477190074EAFE /* MainViewController.m in Sources */,
 				9B3520A11D34767A0074EAFE /* CustomTokenViewController.m in Sources */,
 				9B3790451D3970D600B5303C /* QuestionsTableViewCell.m in Sources */,
+				9B8A0DF71D511703006E0279 /* AnswersTableViewCell.m in Sources */,
 				9B8DE47C1D4817640020DE5B /* Answer.m in Sources */,
 				9B3015181D3418D800304F6A /* AppDelegate.m in Sources */,
 				9B3790421D39689800B5303C /* Question.m in Sources */,
 				9B3015151D3418D800304F6A /* main.m in Sources */,
 				9B37901D1D38167B00B5303C /* QuestionsTableViewController.m in Sources */,
+				9B8A0DF41D511262006E0279 /* AnswersTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

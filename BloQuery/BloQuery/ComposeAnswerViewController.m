@@ -14,7 +14,6 @@
 @interface ComposeAnswerViewController () <UITextViewDelegate>
 @property (nonatomic, strong) NSArray *answers;
 @property (nonatomic, assign) NSUInteger answersCount;
-@property (nonatomic, assign) NSUInteger answersCountIncrement;
 @property (nonatomic, strong) NSString *answerNumberString;
 
 @end

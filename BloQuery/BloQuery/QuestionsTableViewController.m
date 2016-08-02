@@ -12,12 +12,13 @@
 #import "Question.h"
 #import "QuestionsTableViewCell.h"
 #import "QuestionFullScreenViewController.h"
+#import "AnswersTableViewController.h"
 #import "ComposeAnswerViewController.h"
 @import Firebase;
 @import FirebaseDatabase;
 
 
-@interface QuestionsTableViewController ()  <UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, QuestionsTableViewCellDelegate>
+@interface QuestionsTableViewController ()  <UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
  @property (strong, nonatomic) FIRDatabaseReference *ref;
@@ -105,8 +106,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Question *q;
     q = [BLCDataSource sharedInstance].questions[indexPath.row];
-    QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:q];
-   [self.navigationController pushViewController:fullScreenVC animated:YES];
+    //AnswersTableViewController *answersListVC = [[AnswersTableViewController alloc] init];
+    //[self.navigationController pushViewController:answersListVC animated:YES];
+    //QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:q];
+   //[self.navigationController pushViewController:fullScreenVC animated:YES];
     
     
 }

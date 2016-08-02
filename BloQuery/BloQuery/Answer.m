@@ -9,5 +9,8 @@
 #import "Answer.h"
 
 @implementation Answer
-
+- (NSString *) newAnswer {
+    
+    return @"";
+}
 @end

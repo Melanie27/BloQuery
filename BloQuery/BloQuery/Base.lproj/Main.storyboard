@@ -165,6 +165,7 @@
                                 <connections>
                                     <outlet property="questionTextView" destination="szK-ud-CTx" id="sR4-zH-ADi"/>
                                     <segue destination="VfX-TX-JCP" kind="show" identifier="composeAnswer" trigger="accessoryAction" id="gdp-9f-r7n"/>
+                                    <segue destination="szr-wM-iIo" kind="show" id="VUc-dl-FQG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -178,6 +179,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KwV-9j-j5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2363" y="402"/>
+        </scene>
+        <!--Answers Table View Controller-->
+        <scene sceneID="uRu-Ik-pSZ">
+            <objects>
+                <tableViewController id="szr-wM-iIo" customClass="AnswersTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="6VC-HU-xel">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="answerCell" id="paj-ta-3IH" customClass="AnswersTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="600" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="paj-ta-3IH" id="iTc-vT-XlP">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAi-od-fdT">
+                                            <rect key="frame" x="28" y="28" width="544" height="44"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="This is where answers to an individual question will go">
+                                                    <attributes>
+                                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <font key="NSFont" size="17" name="Didot"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="EAi-od-fdT" firstAttribute="leading" secondItem="iTc-vT-XlP" secondAttribute="leadingMargin" constant="20" id="ArI-dj-pF1"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="EAi-od-fdT" secondAttribute="trailing" constant="20" id="LYB-Bm-uUl"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="EAi-od-fdT" secondAttribute="trailing" constant="20" id="MmU-fG-6hr"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="EAi-od-fdT" secondAttribute="bottom" constant="20" id="NdL-DE-4j7"/>
+                                        <constraint firstItem="EAi-od-fdT" firstAttribute="top" secondItem="iTc-vT-XlP" secondAttribute="topMargin" constant="20" id="P9p-hq-SP4"/>
+                                        <constraint firstItem="EAi-od-fdT" firstAttribute="leading" secondItem="iTc-vT-XlP" secondAttribute="leadingMargin" constant="20" id="SpA-dB-Dvh"/>
+                                        <constraint firstItem="EAi-od-fdT" firstAttribute="top" secondItem="iTc-vT-XlP" secondAttribute="topMargin" constant="20" id="VOE-2n-vq6"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="EAi-od-fdT" secondAttribute="bottom" constant="20" id="wdo-uv-zLC"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="answerTextView" destination="EAi-od-fdT" id="ZO7-sI-pd4"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="szr-wM-iIo" id="yPD-Ja-C6Y"/>
+                            <outlet property="delegate" destination="szr-wM-iIo" id="sMP-6Q-0I6"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tyM-Id-IKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3064" y="396"/>
         </scene>
         <!--Answer the Question-->
         <scene sceneID="iYL-tr-Cur">

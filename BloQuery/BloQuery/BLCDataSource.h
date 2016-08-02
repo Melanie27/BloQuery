@@ -11,6 +11,7 @@
 
 @class QuestionsTableViewController;
 @class ComposeAnswerViewController;
+@class AnswersTableViewController;
 @class Question;
 @class Answer;
 
@@ -23,12 +24,15 @@
 //to access call [BLCDataSource sharedInstance]
 +(instancetype) sharedInstance;
 @property (nonatomic, strong, readonly) NSArray<Question *> *questions;
-//@property (nonatomic, strong, readonly) NSArray *questionsList;
-@property (nonatomic, weak) QuestionsTableViewController *qtvc;
-@property (nonatomic, weak) ComposeAnswerViewController *cavc;
-
 @property (nonatomic, strong, readonly) NSArray<Answer*> *answers;
 
+@property (nonatomic, weak) QuestionsTableViewController *qtvc;
+@property (nonatomic, weak) AnswersTableViewController *atvc;
+@property (nonatomic, weak) ComposeAnswerViewController *cavc;
+
+//Why Are these not accessable from ComposeAnswerViewController?
+@property (nonatomic, strong) Question *question;
+@property (nonatomic, assign) NSInteger questionNumber;
 
 -(NSString *)retrieveQuestions;
 -(NSString *)retrieveAnswers;
