@@ -130,8 +130,8 @@
     NSDictionary *childUpdates = @{
                                    [@"/posts/" stringByAppendingString:key]: post,
 //                                   [NSString stringWithFormat:@"/answersList/%@", self.answerNumberString]: post
-                                   [NSString stringWithFormat:@"/questions/%@/answers/%@", 5 /*(question number here)*/, self.answerNumberString]: post
-                                   };
+                                   //[NSString stringWithFormat:@"/questions/%@/answers/%@", 5 /*(question number here)*/, self.answerNumberString]: post
+                                   //};
     [_ref updateChildValues:childUpdates];
 
 }
