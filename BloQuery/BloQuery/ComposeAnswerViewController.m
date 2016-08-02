@@ -72,13 +72,9 @@
     //3. convert index to integer
     //4. assign the integer to questionNumber variable
     //5. put questionNumber variable in the url
-    
-    //NSArray *questions = [NSMutableArray array];
-    //[Question addObject:[NSNumber numberWithInteger:1234]];
-    //int theNumber = [[Question objectAtIndex:0] integerValue]
-    //NSLog (@"questionNumber %lu", self.questionNumber);
-    
-    
+
+    NSArray *questionsArray = [BLCDataSource sharedInstance].questions;
+    self.questionNumber = [questionsArray indexOfObject:_question];
     
 }
 
@@ -88,30 +84,25 @@
     self.textView.backgroundColor = [UIColor blackColor];
     [self.textView resignFirstResponder];
     
-    
     //send answer to firebase
     
     
     self.ref = [[FIRDatabase database] reference];
-    FIRDatabaseQuery *answersQuery = [[self.ref child:@"answersList"] queryLimitedToFirst:1000];
+    FIRDatabaseQuery *answersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
     
     
     [answersQuery observeSingleEventOfType:FIRDataEventTypeValue
                          withBlock:^(FIRDataSnapshot *snapshot) {
-                             NSLog(@"%@ -> %@", snapshot.key, snapshot.value);
-                             
                              self.answers = @[];
                              for (NSString *a in (NSArray*)snapshot.value) {
                                  Answer *answer = [[Answer alloc] init];
                                  answer.answerText = a;
                                  self.answers = [self.answers arrayByAddingObject:answer];
-                                 
                              }
                              
                              self.answersCount = self.answers.count;
-                             self.answerNumberString = [NSString stringWithFormat:@"%lu", (unsigned long)self.answersCountIncrement];
-                             NSLog(@"answer number %@", self.answerNumberString);
-                             
+                             self.answerNumberString = [NSString stringWithFormat:@"%lu", (unsigned long)self.answersCount];
+                            
                              [self sendToFireBase];
                          }];
     
@@ -119,19 +110,16 @@
 }
 
 -(void)sendToFireBase {
-    NSLog(@"send to firebase");
-    NSLog(@"answers %@", self.answerNumberString);
-    //this number should be a variable that counts how many answers there are and adds 1
+   
+   
     NSString *key = [[_ref child:@"answerList"] childByAutoId].key;
     
-    
-    //NSLog(@"answers %@", answersQuery);
-    NSDictionary *post = @{@"nestedAnswerNumberString": self.textView.text};
+    NSDictionary *post = @{@"answer": self.textView.text};
     NSDictionary *childUpdates = @{
                                    [@"/posts/" stringByAppendingString:key]: post,
-//                                   [NSString stringWithFormat:@"/answersList/%@", self.answerNumberString]: post
-                                   //[NSString stringWithFormat:@"/questions/%@/answers/%@", 5 /*(question number here)*/, self.answerNumberString]: post
-                                   //};
+                                   //TODO set this url up with DB
+                                   [NSString stringWithFormat:@"/questions/%ld/answers/%@", (long)self.questionNumber, self.answerNumberString]: post
+                                   };
     [_ref updateChildValues:childUpdates];
 
 }

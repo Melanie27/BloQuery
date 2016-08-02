@@ -107,7 +107,7 @@
     q = [BLCDataSource sharedInstance].questions[indexPath.row];
     QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:q];
    [self.navigationController pushViewController:fullScreenVC animated:YES];
-   
+    
     
 }
 
@@ -138,7 +138,6 @@
         ComposeAnswerViewController *composeAnswerVC = (ComposeAnswerViewController*)segue.destinationViewController;
         composeAnswerVC.question = self.questionAddingTo;
         
-        NSLog(@"question adding to: %@", self.questionAddingTo);
     }
     
 }
