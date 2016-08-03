@@ -12,7 +12,7 @@
 
 
 @interface QuestionsTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
-    
++(UIColor *) bloqueryBlue;
 
 - (IBAction)didTapQuestionView:(id)sender;
 

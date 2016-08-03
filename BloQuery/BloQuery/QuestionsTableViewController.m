@@ -13,6 +13,7 @@
 #import "QuestionsTableViewCell.h"
 #import "QuestionFullScreenViewController.h"
 #import "ComposeAnswerViewController.h"
+#import "SCLAlertView.h"
 @import Firebase;
 @import FirebaseDatabase;
 
@@ -23,9 +24,12 @@
  @property (strong, nonatomic) FIRDatabaseReference *ref;
 
 @property (nonatomic, strong)Question *questionAddingTo;
+@property (nonatomic, strong)UITextField *postQuestionTextField;
+
 @end
 
 @implementation QuestionsTableViewController
+
 
 //Override the table view controller's initializer to create an empty array
 - (id)initWithStyle:(UITableViewStyle)style
@@ -49,7 +53,7 @@
     UIBarButtonItem *imageButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.navigationItem.leftBarButtonItem = imageButton;
     
-    UIImage *iconAsk = [UIImage imageNamed:@"iconAsk"];
+    UIImage *iconAsk = [UIImage imageNamed:@"iconAsk.png"];
     UIImageView *askImageView = [[UIImageView alloc] initWithImage:iconAsk];
     UIBarButtonItem *askImageButton = [[UIBarButtonItem alloc] initWithCustomView:askImageView];
     self.navigationItem.rightBarButtonItem = askImageButton;
@@ -60,13 +64,52 @@
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addQuestionFired:)];
     [askImageView addGestureRecognizer:tapGes];
     
+   
+    
 }
 
 -(void)addQuestionFired:(UITapGestureRecognizer*)sender {
-   
-    //[self.delegate didTapQuestionButton:askImageButton];
-    [[self.ref child:@"questionsList/11"] setValue:@"Who will be at the q11 position"];
-    NSLog(@"Add question");
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    alert.backgroundViewColor = [UIColor colorWithRed:252.0/255.0 green:181.0/255.0 blue:23.0/255.0 alpha:1.0];
+    
+    //SCLButton *button = [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
+    
+    [alert addButton:@"Second Button" actionBlock:^(void) {
+       
+        [self postQuestion];
+    
+    }];
+    
+    //TODO size of text field
+    
+    UITextField *postQuestionTextField = [alert addTextField:@"Enter Your Question"];
+    CGRect frameRect = postQuestionTextField.frame;
+    frameRect.size.height = 40; // <-- Specify the height you want here.
+    postQuestionTextField.frame = frameRect;
+    [alert addCustomView:postQuestionTextField];
+    
+    [alert showCustom:self image:[UIImage imageNamed:@"popIcon.png"] color:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0] title:@"Ask a Question" subTitle:@"Ex: Is calling my cat a 'monster' bad for its self esteem? Or is it good?" closeButtonTitle:@"Post" duration:0.0f]; // Custom
+    
+    alert.shouldDismissOnTapOutside = YES;
+    
+    //TODO send the textfield contents to firebase
+
+    
+}
+
+-(void)postQuestion {
+     NSLog(@"post question to firebase");
+    self.ref = [[FIRDatabase database] reference];
+    NSString *key = [[_ref child:@"questionList"] childByAutoId].key;
+    NSLog(@"key %@", key);
+    
+    /*NSDictionary *post = @{@"question": self.postQuestionTextField.text};
+    NSDictionary *childUpdates = @{
+                                   [@"/posts/" stringByAppendingString:key]: post,
+                                   //TODO set this url up with DB
+                                   [NSString stringWithFormat:@"/questionsList/"]: post
+                                   };
+    [_ref updateChildValues:childUpdates];*/
 }
 
 
@@ -94,7 +137,6 @@
    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [button addTarget:self action:@selector(didTapQuestionView:) forControlEvents:UIControlEventTouchDown];
-    
     button.tag = indexPath.row;
     cell.accessoryView = button;
 
@@ -110,7 +152,6 @@
     
     
 }
-
 
 
 #pragma mark - QuestionsTableViewCellDelegate
@@ -131,8 +172,6 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 
-  
-   
     if([segue.identifier isEqualToString:@"composeAnswer"])
     {
         ComposeAnswerViewController *composeAnswerVC = (ComposeAnswerViewController*)segue.destinationViewController;
