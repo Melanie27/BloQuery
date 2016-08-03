@@ -47,15 +47,20 @@
 
 -(NSString *)retrieveQuestions {
     self.ref = [[FIRDatabase database] reference];
+   
     //TODO change this query to the "questions" table, crashing every time I try
-    FIRDatabaseQuery *recentPostsQuery = [[self.ref child:@"questionList"] queryLimitedToFirst:1000];
+    FIRDatabaseQuery *getQuestionQuery = [[self.ref queryOrderedByChild:@"questions"]queryLimitedToFirst:1000];
+    
+    
+    
+    
     NSMutableString *retrieveQuestions = [[NSMutableString alloc] init];
     
     
-    [recentPostsQuery
+    [getQuestionQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
-        
+         //NSLog(@"key: %@, value: %@", snapshot.key, snapshot.value);
          //init the array
          self.questions = @[];
          for (NSString *q in (NSArray*)snapshot.value) {
@@ -103,7 +108,7 @@
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
          //this logs all answers to question 1
-         NSLog(@"snapshot %@", snapshot.value);
+         //NSLog(@"snapshot %@", snapshot.value);
          
          self.answers = @[];
          
