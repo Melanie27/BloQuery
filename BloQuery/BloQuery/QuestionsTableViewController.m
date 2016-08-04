@@ -12,19 +12,22 @@
 #import "Question.h"
 #import "QuestionsTableViewCell.h"
 #import "QuestionFullScreenViewController.h"
+#import "AnswersTableViewController.h"
 #import "ComposeAnswerViewController.h"
 #import "SCLAlertView.h"
 @import Firebase;
 @import FirebaseDatabase;
 
 
-@interface QuestionsTableViewController ()  <UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, QuestionsTableViewCellDelegate>
+@interface QuestionsTableViewController ()  <UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
  @property (strong, nonatomic) FIRDatabaseReference *ref;
 
 @property (nonatomic, strong)Question *questionAddingTo;
+
 @property (nonatomic, strong)UITextField *postQuestionTextField;
+
 
 @end
 
@@ -139,6 +142,9 @@
     [button addTarget:self action:@selector(didTapQuestionView:) forControlEvents:UIControlEventTouchDown];
     button.tag = indexPath.row;
     cell.accessoryView = button;
+    
+    
+
 
     return cell;
     
@@ -146,19 +152,25 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Question *q;
-    q = [BLCDataSource sharedInstance].questions[indexPath.row];
-    QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:q];
-   [self.navigationController pushViewController:fullScreenVC animated:YES];
-    
+    NSInteger row = indexPath.row;
+    BLCDataSource *ds = [BLCDataSource sharedInstance];
+    q = [BLCDataSource sharedInstance].questions[row];
+    self.questionAddingTo = [BLCDataSource sharedInstance].questions[row];
+    ds.questionNumber = row;
+    ds.question = self.questionAddingTo;
     
 }
 
 
 #pragma mark - QuestionsTableViewCellDelegate
 - (IBAction)didTapQuestionView:(id)sender {
-   
+    BLCDataSource *ds = [BLCDataSource sharedInstance];
+
     UIButton *theButton = (UIButton *)sender;
     self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
+    ds.questionNumber = theButton.tag;
+    ds.question = self.questionAddingTo;
+
     [self performSegueWithIdentifier:@"composeAnswer" sender:self];
     
 }
@@ -177,6 +189,13 @@
         ComposeAnswerViewController *composeAnswerVC = (ComposeAnswerViewController*)segue.destinationViewController;
         composeAnswerVC.question = self.questionAddingTo;
         
+    } else if([segue.identifier isEqualToString:@"showAnswers"])
+    {
+        
+      //  NSLog(@"questionAddingto %@", self.questionAddingTo);
+       // [BLCDataSource sharedInstance].questionNumber = [BLCDataSource sharedInstance].questionNumber;
+        //[[[BLCDataSource sharedInstance] questions] indexOfObject:self.questionAddingTo];
+        //
     }
     
 }
