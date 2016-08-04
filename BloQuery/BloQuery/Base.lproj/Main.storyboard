@@ -126,7 +126,7 @@
                                                 <fragment content="This is where all the questions are going to go. Is this the first Question?">
                                                     <attributes>
                                                         <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <font key="NSFont" size="18" name="Didot"/>
+                                                        <font key="NSFont" size="14" name="Didot"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
@@ -138,8 +138,8 @@
                                                 <constraint firstAttribute="width" id="xZd-b4-FtN"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="faceIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Sm9-2j-nfz">
-                                            <rect key="frame" x="20" y="10" width="50" height="50"/>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="faceIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Sm9-2j-nfz">
+                                            <rect key="frame" x="23" y="8" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="HbY-uJ-IAj"/>
                                             </constraints>
@@ -148,7 +148,6 @@
                                     <constraints>
                                         <constraint firstItem="7CR-Ft-gSZ" firstAttribute="top" secondItem="szK-ud-CTx" secondAttribute="top" id="5El-xT-kvh"/>
                                         <constraint firstItem="Sm9-2j-nfz" firstAttribute="top" secondItem="MdR-ZN-QYi" secondAttribute="top" constant="10" id="E9r-z1-r16"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Sm9-2j-nfz" secondAttribute="bottom" constant="31.5" id="EdT-kh-cBD"/>
                                         <constraint firstItem="szK-ud-CTx" firstAttribute="leading" secondItem="Sm9-2j-nfz" secondAttribute="trailing" constant="36" id="HWR-TK-HVA"/>
                                         <constraint firstItem="szK-ud-CTx" firstAttribute="leading" secondItem="Sm9-2j-nfz" secondAttribute="trailing" constant="36" id="VLo-H6-QvL"/>
                                         <constraint firstItem="Sm9-2j-nfz" firstAttribute="leading" secondItem="7CR-Ft-gSZ" secondAttribute="trailing" constant="18" id="ZIb-yN-M66"/>

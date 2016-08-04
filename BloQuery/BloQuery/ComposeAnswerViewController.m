@@ -44,8 +44,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-   
     [BLCDataSource sharedInstance].cavc = self;
     [[BLCDataSource sharedInstance] retrieveQuestions];
     
@@ -65,13 +63,6 @@
 
 -(void) updateQuestionLabel {
     self.singleQuestionView.text = self.question.questionText;
-   //TODO set the question number here
-    //1. get the array of questions
-    //2. get the index
-    //3. convert index to integer
-    //4. assign the integer to questionNumber variable
-    //5. put questionNumber variable in the url
-
     NSArray *questionsArray = [BLCDataSource sharedInstance].questions;
     self.questionNumber = [questionsArray indexOfObject:_question];
     
@@ -110,13 +101,7 @@
 
 -(void)sendToFireBase {
    
-   
-    NSString *key = [[_ref child:@"answerList"] childByAutoId].key;
-    
-    //NSDictionary *post = @{@"answer": self.textView.text};
     NSDictionary *childUpdates = @{
-                                   //[@"/posts/" stringByAppendingString:key]: post,
-                                   //TODO set this url up with DB
                                    [NSString stringWithFormat:@"/questions/%ld/answers/%@", (long)self.questionNumber, self.answerNumberString]: self.textView.text
                                    };
     [_ref updateChildValues:childUpdates];

@@ -95,24 +95,25 @@
     
     alert.shouldDismissOnTapOutside = YES;
     
-    //TODO send the textfield contents to firebase
-
+    //TODO
+    //GRAB contents of the test field
+ NSLog(@"question text 1 %@", postQuestionTextField.text);
     
 }
 
 -(void)postQuestion {
      NSLog(@"post question to firebase");
     self.ref = [[FIRDatabase database] reference];
-    NSString *key = [[_ref child:@"questionList"] childByAutoId].key;
-    NSLog(@"key %@", key);
-    
-    /*NSDictionary *post = @{@"question": self.postQuestionTextField.text};
+   
+    NSLog(@"question text 2 %@", _postQuestionTextField.text);
+      //NSLog(@"question number %ld", self.questionNumber );
+   
     NSDictionary *childUpdates = @{
-                                   [@"/posts/" stringByAppendingString:key]: post,
+                                  
                                    //TODO set this url up with DB
-                                   [NSString stringWithFormat:@"/questionsList/"]: post
+                                   [NSString stringWithFormat:@"/questions/7/question/"]: self.postQuestionTextField.text
                                    };
-    [_ref updateChildValues:childUpdates];*/
+    [_ref updateChildValues:childUpdates];
 }
 
 
@@ -143,9 +144,6 @@
     button.tag = indexPath.row;
     cell.accessoryView = button;
     
-    
-
-
     return cell;
     
 }
@@ -189,13 +187,8 @@
         ComposeAnswerViewController *composeAnswerVC = (ComposeAnswerViewController*)segue.destinationViewController;
         composeAnswerVC.question = self.questionAddingTo;
         
-    } else if([segue.identifier isEqualToString:@"showAnswers"])
-    {
+    } else if([segue.identifier isEqualToString:@"showAnswers"]){
         
-      //  NSLog(@"questionAddingto %@", self.questionAddingTo);
-       // [BLCDataSource sharedInstance].questionNumber = [BLCDataSource sharedInstance].questionNumber;
-        //[[[BLCDataSource sharedInstance] questions] indexOfObject:self.questionAddingTo];
-        //
     }
     
 }
