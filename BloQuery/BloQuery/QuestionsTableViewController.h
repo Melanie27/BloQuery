@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Question;
 @import Firebase;
 @import FirebaseDatabase;
 
 
 @interface QuestionsTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
-+(UIColor *) bloqueryBlue;
+@property (nonatomic, strong) Question *question;
+@property (nonatomic, assign) NSInteger questionNumber;
 
 - (IBAction)didTapQuestionView:(id)sender;
 

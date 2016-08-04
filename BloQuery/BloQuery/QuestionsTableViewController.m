@@ -75,45 +75,33 @@
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     alert.backgroundViewColor = [UIColor colorWithRed:252.0/255.0 green:181.0/255.0 blue:23.0/255.0 alpha:1.0];
     
-    //SCLButton *button = [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
-    
-    [alert addButton:@"Second Button" actionBlock:^(void) {
-       
-        [self postQuestion];
-    
-    }];
-    
-    //TODO size of text field
-    
     UITextField *postQuestionTextField = [alert addTextField:@"Enter Your Question"];
-    CGRect frameRect = postQuestionTextField.frame;
-    frameRect.size.height = 40; // <-- Specify the height you want here.
-    postQuestionTextField.frame = frameRect;
     [alert addCustomView:postQuestionTextField];
     
     [alert showCustom:self image:[UIImage imageNamed:@"popIcon.png"] color:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0] title:@"Ask a Question" subTitle:@"Ex: Is calling my cat a 'monster' bad for its self esteem? Or is it good?" closeButtonTitle:@"Post" duration:0.0f]; // Custom
     
     alert.shouldDismissOnTapOutside = YES;
     
-    //TODO
-    //GRAB contents of the test field
- NSLog(@"question text 1 %@", postQuestionTextField.text);
+    //TODO question number pulling pointer not number
+    NSArray *questionsArray = [BLCDataSource sharedInstance].questions;
+    [BLCDataSource sharedInstance].questionNumber = [questionsArray indexOfObject:_question];
+    NSLog(@"questionNumber %ld", (long)[BLCDataSource sharedInstance].questionNumber);
+    [alert alertIsDismissed:^{
+        
+        NSString *code = [postQuestionTextField.text copy];
+        NSLog(@"capture new question %@", code);
+        self.ref = [[FIRDatabase database] reference];
+        NSDictionary *childUpdates = @{
+                                       
+                                       //TODO set this url up with DB
+                                       //[NSString stringWithFormat:@"/questions/%lu/question/", (long)self.questionNumber]:code
+                                       };
+        [_ref updateChildValues:childUpdates];
+    }];
     
-}
-
--(void)postQuestion {
-     NSLog(@"post question to firebase");
-    self.ref = [[FIRDatabase database] reference];
-   
-    NSLog(@"question text 2 %@", _postQuestionTextField.text);
-      //NSLog(@"question number %ld", self.questionNumber );
-   
-    NSDictionary *childUpdates = @{
-                                  
-                                   //TODO set this url up with DB
-                                   [NSString stringWithFormat:@"/questions/7/question/"]: self.postQuestionTextField.text
-                                   };
-    [_ref updateChildValues:childUpdates];
+    
+    
+    
 }
 
 
