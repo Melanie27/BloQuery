@@ -53,7 +53,6 @@
     [getQuestionQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
-         NSLog(@"key: %@, value: %@", snapshot.key, snapshot.value);
          //init the array
          self.questions = @[];
          NSInteger numQuestions = [snapshot.value[@"questions"] count];

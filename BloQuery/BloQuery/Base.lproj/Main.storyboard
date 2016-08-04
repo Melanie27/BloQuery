@@ -102,6 +102,24 @@
             </objects>
             <point key="canvasLocation" x="1591" y="396"/>
         </scene>
+        <!--User Profile View Controller-->
+        <scene sceneID="b10-dj-vRc">
+            <objects>
+                <viewController id="8cT-jZ-RCh" customClass="UserProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4rj-bm-wd6"/>
+                        <viewControllerLayoutGuide type="bottom" id="z97-lg-XPQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kA9-Fg-Vna">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XLq-6e-HmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2363" y="-333"/>
+        </scene>
         <!--Questions Table View Controller-->
         <scene sceneID="jm9-GD-6eL">
             <objects>

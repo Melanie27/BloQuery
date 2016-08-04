@@ -14,6 +14,7 @@
 #import "QuestionFullScreenViewController.h"
 #import "AnswersTableViewController.h"
 #import "ComposeAnswerViewController.h"
+#import "UserProfileViewController.h"
 #import "SCLAlertView.h"
 @import Firebase;
 @import FirebaseDatabase;
@@ -51,8 +52,8 @@
     [[BLCDataSource sharedInstance] retrieveQuestions];
 
     // Custom initialization, custom nav bar
-    UIImage *logo = [UIImage imageNamed:@"logo.png"];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:logo];
+    UIImage *profileImage = [UIImage imageNamed:@"profileEdit.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:profileImage];
     UIBarButtonItem *imageButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.navigationItem.leftBarButtonItem = imageButton;
     
@@ -67,8 +68,19 @@
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addQuestionFired:)];
     [askImageView addGestureRecognizer:tapGes];
     
+    
+    //add tap gesture to profile nav button
+    UITapGestureRecognizer *tappedProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(customizeProfile:)];
+    [imageView addGestureRecognizer:tappedProfile];
    
     
+}
+
+-(void)customizeProfile:(UITapGestureRecognizer*)sender {
+    NSLog(@"go to the profile page now!");
+    UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] init];
+   [self.navigationController pushViewController:userProfileVC animated:YES];
+    //TODO - this may need to be a segue so that we can pass data through
 }
 
 -(void)addQuestionFired:(UITapGestureRecognizer*)sender {

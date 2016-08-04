@@ -34,6 +34,8 @@
 		9B8A0DF71D511703006E0279 /* AnswersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A0DF61D511703006E0279 /* AnswersTableViewCell.m */; };
 		9B8DE47C1D4817640020DE5B /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DE47B1D4817640020DE5B /* Answer.m */; };
 		9B8DE4821D496AE60020DE5B /* ComposeAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DE4811D496AE60020DE5B /* ComposeAnswerViewController.m */; };
+		9BC8D2671D53F800006E1E15 /* profileEdit.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BC8D2661D53F800006E1E15 /* profileEdit.png */; };
+		9BC8D26A1D53FC69006E1E15 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8D2691D53FC69006E1E15 /* UserProfileViewController.m */; };
 		9BE013821D341DA000ED53B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */; };
 		DA516C8642AF885156B4A757 /* libPods-BloQuery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD339CA12DFBC6F654172917 /* libPods-BloQuery.a */; };
 /* End PBXBuildFile section */
@@ -106,6 +108,9 @@
 		9B8DE47B1D4817640020DE5B /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Answer.m; path = ../../BloQuery/BloQuery/Answer.m; sourceTree = "<group>"; };
 		9B8DE4801D496AE60020DE5B /* ComposeAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeAnswerViewController.h; sourceTree = "<group>"; };
 		9B8DE4811D496AE60020DE5B /* ComposeAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeAnswerViewController.m; sourceTree = "<group>"; };
+		9BC8D2661D53F800006E1E15 /* profileEdit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileEdit.png; sourceTree = "<group>"; };
+		9BC8D2681D53FC69006E1E15 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = ../../BloQuery/BloQuery/UserProfileViewController.h; sourceTree = "<group>"; };
+		9BC8D2691D53FC69006E1E15 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = ../../BloQuery/BloQuery/UserProfileViewController.m; sourceTree = "<group>"; };
 		9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BD339CA12DFBC6F654172917 /* libPods-BloQuery.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BloQuery.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -182,6 +187,7 @@
 				9B328AA91D3DBFC70036C7F6 /* iconAsk.png */,
 				9B461E1B1D41431A008EC073 /* commentBubble.jpg */,
 				9B461E171D406C69008EC073 /* commentBubble.png */,
+				9BC8D2661D53F800006E1E15 /* profileEdit.png */,
 				9B3790321D394DC000B5303C /* 3.png */,
 				9B328AA21D3DA43B0036C7F6 /* QuestionFullScreenViewController.h */,
 				9B328AA31D3DA43B0036C7F6 /* QuestionFullScreenViewController.m */,
@@ -202,6 +208,8 @@
 				9B8A0DF31D511262006E0279 /* AnswersTableViewController.m */,
 				9B8A0DF51D511703006E0279 /* AnswersTableViewCell.h */,
 				9B8A0DF61D511703006E0279 /* AnswersTableViewCell.m */,
+				9BC8D2681D53FC69006E1E15 /* UserProfileViewController.h */,
+				9BC8D2691D53FC69006E1E15 /* UserProfileViewController.m */,
 				9B3015161D3418D800304F6A /* AppDelegate.h */,
 				9B3015171D3418D800304F6A /* AppDelegate.m */,
 				9B35209F1D34767A0074EAFE /* CustomTokenViewController.h */,
@@ -359,6 +367,7 @@
 				9B3790331D394DC000B5303C /* 3.png in Resources */,
 				9B328AAA1D3DBFC70036C7F6 /* iconAsk.png in Resources */,
 				9B3015231D3418D800304F6A /* LaunchScreen.storyboard in Resources */,
+				9BC8D2671D53F800006E1E15 /* profileEdit.png in Resources */,
 				9B461E181D406C69008EC073 /* commentBubble.png in Resources */,
 				9B461E1C1D41431A008EC073 /* commentBubble.jpg in Resources */,
 				9B328AA81D3DBEF80036C7F6 /* logo.png in Resources */,
@@ -438,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B6623701D53C04D00AACB5F /* UIColor+BloQueryColors.m in Sources */,
+				9BC8D26A1D53FC69006E1E15 /* UserProfileViewController.m in Sources */,
 				9B3520A41D3476D50074EAFE /* EmailViewController.m in Sources */,
 				9B37903F1D395C9000B5303C /* BLCDataSource.m in Sources */,
 				9B3520AA1D34782C0074EAFE /* UIViewController+Alerts.m in Sources */,
