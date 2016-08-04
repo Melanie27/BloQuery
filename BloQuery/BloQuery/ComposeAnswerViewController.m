@@ -113,11 +113,11 @@
    
     NSString *key = [[_ref child:@"answerList"] childByAutoId].key;
     
-    NSDictionary *post = @{@"answer": self.textView.text};
+    //NSDictionary *post = @{@"answer": self.textView.text};
     NSDictionary *childUpdates = @{
-                                   [@"/posts/" stringByAppendingString:key]: post,
+                                   //[@"/posts/" stringByAppendingString:key]: post,
                                    //TODO set this url up with DB
-                                   [NSString stringWithFormat:@"/questions/%ld/answers/%@", (long)self.questionNumber, self.answerNumberString]: post
+                                   [NSString stringWithFormat:@"/questions/%ld/answers/%@", (long)self.questionNumber, self.answerNumberString]: self.textView.text
                                    };
     [_ref updateChildValues:childUpdates];
 

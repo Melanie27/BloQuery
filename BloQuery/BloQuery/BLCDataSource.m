@@ -49,23 +49,24 @@
     self.ref = [[FIRDatabase database] reference];
    
     //TODO change this query to the "questions" table, crashing every time I try
-    FIRDatabaseQuery *getQuestionQuery = [[self.ref queryOrderedByChild:@"questions"]queryLimitedToFirst:1000];
+    FIRDatabaseQuery *getQuestionQuery = [[self.ref queryOrderedByChild:@"/questions/"]queryLimitedToFirst:1000];
     
     
     
     
-    NSMutableString *retrieveQuestions = [[NSMutableString alloc] init];
-    
+    NSMutableString *retrievedQuestions = [[NSMutableString alloc] init];
     
     [getQuestionQuery
+//     observeSingleEventOfType:FIRDataEventTypeValue
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
-         //NSLog(@"key: %@, value: %@", snapshot.key, snapshot.value);
+         NSLog(@"key: %@, value: %@", snapshot.key, snapshot.value);
          //init the array
          self.questions = @[];
-         for (NSString *q in (NSArray*)snapshot.value) {
+         NSInteger numQuestions = [snapshot.value[@"questions"] count];
+         for (NSInteger i = 0; i < numQuestions; i++) {
              Question *question = [[Question alloc] init];
-             question.questionText = q;
+             question.questionText = snapshot.value[@"questions"][i][@"question"];
              self.questions = [self.questions arrayByAddingObject:question];
          }
          [self.qtvc.tableView reloadData];
@@ -73,7 +74,7 @@
 
      }];
     
-    return retrieveQuestions;
+     return retrievedQuestions;
     
     
 }

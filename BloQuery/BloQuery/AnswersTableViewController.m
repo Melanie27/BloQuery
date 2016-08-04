@@ -9,8 +9,10 @@
 #import "AnswersTableViewController.h"
 #import "BLCDataSource.h"
 #import "Answer.h"
+#import "Question.h"
 #import "AnswersTableViewCell.h"
 #import "ComposeAnswerViewController.h"
+#import "UIColor+BloQueryColors.h"
 
 @interface AnswersTableViewController ()  <UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, AnswersTableViewCellDelegate>
 
@@ -35,6 +37,18 @@
     [BLCDataSource sharedInstance].atvc = self;
     [[BLCDataSource sharedInstance] retrieveAnswers];
 
+    //TODO make the header view work and add the _questionAddingTo on top of each answer table
+    UIView *questionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    
+    UILabel *questionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 305, 75)];
+    [questionHeaderView addSubview:questionHeaderLabel];
+    self.tableView.tableHeaderView = questionHeaderView;
+    questionHeaderView.backgroundColor = [UIColor myNewColor];
+    questionHeaderLabel.backgroundColor = [UIColor yellowColor];
+    //NSLog(@"question text %@", self.questionAddingTo);
+    questionHeaderLabel.text = [BLCDataSource sharedInstance].question.questionText;
+   
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

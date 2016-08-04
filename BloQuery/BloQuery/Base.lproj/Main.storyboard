@@ -165,7 +165,7 @@
                                 <connections>
                                     <outlet property="questionTextView" destination="szK-ud-CTx" id="sR4-zH-ADi"/>
                                     <segue destination="VfX-TX-JCP" kind="show" identifier="composeAnswer" trigger="accessoryAction" id="gdp-9f-r7n"/>
-                                    <segue destination="szr-wM-iIo" kind="show" id="VUc-dl-FQG"/>
+                                    <segue destination="szr-wM-iIo" kind="show" identifier="showAnswers" id="VUc-dl-FQG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

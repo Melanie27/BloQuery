@@ -24,6 +24,7 @@
  @property (strong, nonatomic) FIRDatabaseReference *ref;
 
 @property (nonatomic, strong)Question *questionAddingTo;
+
 @end
 
 @implementation QuestionsTableViewController
@@ -98,6 +99,9 @@
     
     button.tag = indexPath.row;
     cell.accessoryView = button;
+    
+    
+
 
     return cell;
     
@@ -105,12 +109,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Question *q;
-    q = [BLCDataSource sharedInstance].questions[indexPath.row];
-    //AnswersTableViewController *answersListVC = [[AnswersTableViewController alloc] init];
-    //[self.navigationController pushViewController:answersListVC animated:YES];
-    //QuestionFullScreenViewController *fullScreenVC = [[QuestionFullScreenViewController alloc] initWithQuestion:q];
-   //[self.navigationController pushViewController:fullScreenVC animated:YES];
-    
+    NSInteger row = indexPath.row;
+    BLCDataSource *ds = [BLCDataSource sharedInstance];
+    q = [BLCDataSource sharedInstance].questions[row];
+    self.questionAddingTo = [BLCDataSource sharedInstance].questions[row];
+    ds.questionNumber = row;
+    ds.question = self.questionAddingTo;
     
 }
 
@@ -118,9 +122,13 @@
 
 #pragma mark - QuestionsTableViewCellDelegate
 - (IBAction)didTapQuestionView:(id)sender {
-   
+    BLCDataSource *ds = [BLCDataSource sharedInstance];
+
     UIButton *theButton = (UIButton *)sender;
     self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
+    ds.questionNumber = theButton.tag;
+    ds.question = self.questionAddingTo;
+
     [self performSegueWithIdentifier:@"composeAnswer" sender:self];
     
 }
@@ -141,6 +149,13 @@
         ComposeAnswerViewController *composeAnswerVC = (ComposeAnswerViewController*)segue.destinationViewController;
         composeAnswerVC.question = self.questionAddingTo;
         
+    } else if([segue.identifier isEqualToString:@"showAnswers"])
+    {
+        
+      //  NSLog(@"questionAddingto %@", self.questionAddingTo);
+       // [BLCDataSource sharedInstance].questionNumber = [BLCDataSource sharedInstance].questionNumber;
+        //[[[BLCDataSource sharedInstance] questions] indexOfObject:self.questionAddingTo];
+        //
     }
     
 }
