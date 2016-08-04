@@ -18,7 +18,32 @@
 
 @end
 
+
+static UIFont *lightFont;
+static UIFont *boldFont;
+static UIColor *usernameLabelGray;
+static UIColor *commentLabelGray;
+static UIColor *linkColor;
+static NSParagraphStyle *paragraphStyle;
+
+
+
 @implementation AnswersTableViewController
+
++ (void)load {
+    lightFont = [UIFont fontWithName:@"HelveticaNeue-Thin" size:11];
+    boldFont = [UIFont fontWithName:@"Didot-Bold" size:20];
+    
+    
+    NSMutableParagraphStyle *mutableParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+    mutableParagraphStyle.headIndent = -20.0;
+   
+    mutableParagraphStyle.firstLineHeadIndent = 20.0;
+    mutableParagraphStyle.tailIndent = -20.0;
+    mutableParagraphStyle.paragraphSpacingBefore = 5;
+    
+    paragraphStyle = mutableParagraphStyle;
+}
 
 -(id)initWithStyle:(UITableViewStyle)style {
     
@@ -34,19 +59,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [BLCDataSource sharedInstance].atvc = self;
-    [[BLCDataSource sharedInstance] retrieveAnswers];
+    BLCDataSource *ds = [BLCDataSource sharedInstance];
+    ds.atvc = self;
+    [ds retrieveAnswers];
 
     //TODO make the header view work and add the _questionAddingTo on top of each answer table
-    UIView *questionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    UIView *questionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 80)];
     
-    UILabel *questionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 305, 75)];
+    UILabel *questionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 80)];
     [questionHeaderView addSubview:questionHeaderLabel];
     self.tableView.tableHeaderView = questionHeaderView;
-    questionHeaderView.backgroundColor = [UIColor myNewColor];
-    questionHeaderLabel.backgroundColor = [UIColor yellowColor];
-    //NSLog(@"question text %@", self.questionAddingTo);
-    questionHeaderLabel.text = [BLCDataSource sharedInstance].question.questionText;
+    
+    questionHeaderLabel.backgroundColor = [UIColor myGrey];
+   
+    questionHeaderLabel.text = ds.question.questionText;
+    questionHeaderLabel.textAlignment = NSTextAlignmentCenter;
+    questionHeaderLabel.numberOfLines = 0;
    
     
     
@@ -71,6 +99,20 @@
     
     
 }
+
+-(NSAttributedString*) questionHeaderTextString {
+     CGFloat questionHeaderFontSize = 25;
+    
+     NSString *baseString = [NSString stringWithFormat:@"%@", _questionHeaderLabel.text ];
+    
+     NSMutableAttributedString *mutableQuestionHeaderTextString =
+    [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName :
+        [boldFont fontWithSize:questionHeaderFontSize], NSParagraphStyleAttributeName : paragraphStyle}];
+    
+    return mutableQuestionHeaderTextString;
+
+}
+
 
 
 - (void)didReceiveMemoryWarning {

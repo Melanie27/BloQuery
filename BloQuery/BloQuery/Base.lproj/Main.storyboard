@@ -197,12 +197,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAi-od-fdT">
-                                            <rect key="frame" x="28" y="28" width="544" height="44"/>
+                                            <rect key="frame" x="18" y="28" width="554" height="44"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="This is where answers to an individual question will go">
                                                     <attributes>
                                                         <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <font key="NSFont" size="17" name="Didot"/>
+                                                        <font key="NSFont" size="14" name="Didot"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
@@ -210,14 +210,10 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="EAi-od-fdT" firstAttribute="leading" secondItem="iTc-vT-XlP" secondAttribute="leadingMargin" constant="20" id="ArI-dj-pF1"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="EAi-od-fdT" secondAttribute="trailing" constant="20" id="LYB-Bm-uUl"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="EAi-od-fdT" secondAttribute="trailing" constant="20" id="MmU-fG-6hr"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="EAi-od-fdT" secondAttribute="bottom" constant="20" id="NdL-DE-4j7"/>
                                         <constraint firstItem="EAi-od-fdT" firstAttribute="top" secondItem="iTc-vT-XlP" secondAttribute="topMargin" constant="20" id="P9p-hq-SP4"/>
-                                        <constraint firstItem="EAi-od-fdT" firstAttribute="leading" secondItem="iTc-vT-XlP" secondAttribute="leadingMargin" constant="20" id="SpA-dB-Dvh"/>
-                                        <constraint firstItem="EAi-od-fdT" firstAttribute="top" secondItem="iTc-vT-XlP" secondAttribute="topMargin" constant="20" id="VOE-2n-vq6"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="EAi-od-fdT" secondAttribute="bottom" constant="20" id="wdo-uv-zLC"/>
+                                        <constraint firstItem="EAi-od-fdT" firstAttribute="leading" secondItem="iTc-vT-XlP" secondAttribute="leadingMargin" constant="10" id="SpA-dB-Dvh"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

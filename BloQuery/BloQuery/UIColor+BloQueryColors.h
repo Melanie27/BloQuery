@@ -10,6 +10,8 @@
 
 @interface UIColor (BloQueryColors)
 
-+(UIColor*)myNewColor;
++(UIColor*)myYellow;
++(UIColor*)myBlue;
++(UIColor*)myGrey;
 
 @end

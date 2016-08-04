@@ -86,6 +86,8 @@ static NSString *const kChangePasswordText = @"Change Password";
 
 }
 
+
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
