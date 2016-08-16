@@ -1,6 +1,7 @@
 platform :ios, '8.0'
 
 pod 'AFNetworking'
+pod 'Cloudinary'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'

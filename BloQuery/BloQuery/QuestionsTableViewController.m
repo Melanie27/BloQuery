@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "QuestionsTableViewController.h"
 #import "BLCDataSource.h"
 #import "Question.h"
@@ -74,6 +75,11 @@
     [imageView addGestureRecognizer:tappedProfile];
    
     
+    //messing with Cloudinary
+        CLCloudinary *cloudinary = [[CLCloudinary alloc] initWithUrl: @"cloudinary://529452493569691:bF9rOpKrNtwqKgq7EZXfTAtI3mY@mellyeg96"];
+   
+    NSString *cloudUrl = [cloudinary url:@"sample.jpg"];
+    NSLog(@"sample url %@", cloudUrl);
 }
 
 -(void)customizeProfile:(UITapGestureRecognizer*)sender {
