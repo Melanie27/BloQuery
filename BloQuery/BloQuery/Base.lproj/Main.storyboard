@@ -144,7 +144,7 @@
                                                 <fragment content="This is where all the questions are going to go. Is this the first Question?">
                                                     <attributes>
                                                         <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <font key="NSFont" size="14" name="Didot"/>
+                                                        <font key="NSFont" size="18" name="Geneva"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
@@ -219,8 +219,8 @@
                                             <attributedString key="attributedText">
                                                 <fragment content="This is where answers to an individual question will go">
                                                     <attributes>
-                                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <font key="NSFont" size="14" name="Didot"/>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="18" name="Geneva"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
@@ -276,7 +276,7 @@
                                     <fragment content="This is where a single question will go so the user can see what they are answering">
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="14" name="Didot"/>
+                                            <font key="NSFont" size="18" name="Geneva"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
