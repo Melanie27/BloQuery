@@ -84,12 +84,13 @@
      withBlock:^(FIRDataSnapshot *snapshot) {
          
          self.answers = @[];
-         
-         for (NSString *a in (NSArray*)snapshot.value) {
-             Answer *answer = [[Answer alloc] init];
-             answer.answerText = a;
-             self.answers = [self.answers arrayByAddingObject:answer];
-             
+         if (snapshot.value && [snapshot.value isKindOfClass:[NSArray class]]) {
+             for (NSString *a in (NSArray*)snapshot.value) {
+                 Answer *answer = [[Answer alloc] init];
+                 answer.answerText = a;
+                 self.answers = [self.answers arrayByAddingObject:answer];
+                 
+             }
          }
          [self.atvc.tableView reloadData];
          

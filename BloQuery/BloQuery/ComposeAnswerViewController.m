@@ -84,7 +84,12 @@
     [answersQuery observeSingleEventOfType:FIRDataEventTypeValue
                          withBlock:^(FIRDataSnapshot *snapshot) {
                              self.answers = @[];
-                             for (NSString *a in (NSArray*)snapshot.value) {
+                             
+                             NSArray *answerList = (NSArray*)snapshot.value;
+                             if (!(answerList && [answerList isKindOfClass:[NSArray class]])) {
+                                 answerList = @[];
+                             }
+                             for (NSString *a in answerList) {
                                  Answer *answer = [[Answer alloc] init];
                                  answer.answerText = a;
                                  self.answers = [self.answers arrayByAddingObject:answer];

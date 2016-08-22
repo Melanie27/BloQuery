@@ -25,6 +25,7 @@
 		9B37903F1D395C9000B5303C /* BLCDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B37903E1D395C9000B5303C /* BLCDataSource.m */; };
 		9B3790421D39689800B5303C /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3790411D39689800B5303C /* Question.m */; };
 		9B3790451D3970D600B5303C /* QuestionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3790441D3970D600B5303C /* QuestionsTableViewCell.m */; };
+		9B4264EB1D6B79BA00BD3604 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4264EA1D6B79BA00BD3604 /* User.m */; };
 		9B461E181D406C69008EC073 /* commentBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B461E171D406C69008EC073 /* commentBubble.png */; };
 		9B461E1C1D41431A008EC073 /* commentBubble.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9B461E1B1D41431A008EC073 /* commentBubble.jpg */; };
 		9B461E1E1D41449F008EC073 /* QuestionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B461E1D1D41449F008EC073 /* QuestionTests.m */; };
@@ -93,6 +94,8 @@
 		9B3790411D39689800B5303C /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Question.m; path = ../../BloQuery/BloQuery/Question.m; sourceTree = "<group>"; };
 		9B3790431D3970D600B5303C /* QuestionsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionsTableViewCell.h; path = ../../BloQuery/BloQuery/QuestionsTableViewCell.h; sourceTree = "<group>"; };
 		9B3790441D3970D600B5303C /* QuestionsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionsTableViewCell.m; path = ../../BloQuery/BloQuery/QuestionsTableViewCell.m; sourceTree = "<group>"; };
+		9B4264E91D6B79BA00BD3604 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../../BloQuery/BloQuery/User.h; sourceTree = "<group>"; };
+		9B4264EA1D6B79BA00BD3604 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = ../../BloQuery/BloQuery/User.m; sourceTree = "<group>"; };
 		9B461E171D406C69008EC073 /* commentBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commentBubble.png; sourceTree = "<group>"; };
 		9B461E1B1D41431A008EC073 /* commentBubble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = commentBubble.jpg; sourceTree = "<group>"; };
 		9B461E1D1D41449F008EC073 /* QuestionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionTests.m; path = ../../BloQuery/BloQueryTests/QuestionTests.m; sourceTree = "<group>"; };
@@ -220,6 +223,8 @@
 				9B30151C1D3418D800304F6A /* Main.storyboard */,
 				9BAE4C961D63519D00EBB6CF /* UserProfileViewController.h */,
 				9BAE4C971D63519D00EBB6CF /* UserProfileViewController.m */,
+				9B4264E91D6B79BA00BD3604 /* User.h */,
+				9B4264EA1D6B79BA00BD3604 /* User.m */,
 				9B3015211D3418D800304F6A /* LaunchScreen.storyboard */,
 				9B6F8E3D1D4C202F002B5C74 /* Assets.xcassets */,
 				9B3015241D3418D800304F6A /* Info.plist */,
@@ -444,6 +449,7 @@
 			files = (
 				9B6623701D53C04D00AACB5F /* UIColor+BloQueryColors.m in Sources */,
 				9BAE4C981D63519D00EBB6CF /* UserProfileViewController.m in Sources */,
+				9B4264EB1D6B79BA00BD3604 /* User.m in Sources */,
 				9B3520A41D3476D50074EAFE /* EmailViewController.m in Sources */,
 				9B37903F1D395C9000B5303C /* BLCDataSource.m in Sources */,
 				9B3520AA1D34782C0074EAFE /* UIViewController+Alerts.m in Sources */,
