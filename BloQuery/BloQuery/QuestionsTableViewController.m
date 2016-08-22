@@ -53,10 +53,10 @@
     [[BLCDataSource sharedInstance] retrieveQuestions];
 
     // Custom initialization, custom nav bar
-    UIImage *profileImage = [UIImage imageNamed:@"profileEdit.png"];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:profileImage];
-    UIBarButtonItem *imageButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    self.navigationItem.leftBarButtonItem = imageButton;
+    UIImage *profileImage = [UIImage imageNamed:@"logo.png"];
+    UIImageView *profileImageView = [[UIImageView alloc] initWithImage:profileImage];
+    UIBarButtonItem *profileImageButton = [[UIBarButtonItem alloc] initWithCustomView:profileImageView];
+    self.navigationItem.leftBarButtonItem = profileImageButton;
     
     UIImage *iconAsk = [UIImage imageNamed:@"iconAsk.png"];
     UIImageView *askImageView = [[UIImageView alloc] initWithImage:iconAsk];
@@ -71,8 +71,8 @@
     
     
     //add tap gesture to profile nav button
-    UITapGestureRecognizer *tappedProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(customizeProfile:)];
-    [imageView addGestureRecognizer:tappedProfile];
+    UITapGestureRecognizer *tappedProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(customizeProfileFired:)];
+    [profileImageView addGestureRecognizer:tappedProfile];
    
     
     //messing with Cloudinary
@@ -82,12 +82,16 @@
     NSLog(@"sample url %@", cloudUrl);
 }
 
--(void)customizeProfile:(UITapGestureRecognizer*)sender {
+-(void)customizeProfileFired:(UITapGestureRecognizer*)sender {
     NSLog(@"go to the profile page now!");
-    UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] init];
-   [self.navigationController pushViewController:userProfileVC animated:YES];
-    //TODO - this may need to be a segue so that we can pass data through
-}
+    
+        //where is the storyboard id?
+        UserProfileViewController *userProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"profileView"];
+        
+        [self.navigationController pushViewController:userProfileVC animated:YES];
+    }
+    
+    
 
 -(void)addQuestionFired:(UITapGestureRecognizer*)sender {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
@@ -195,6 +199,9 @@
         
     } else if([segue.identifier isEqualToString:@"showAnswers"]){
         
+    } else if ([segue.identifier isEqualToString:@"updatePofile"]) {
+        UserProfileViewController *userProfileVC = (UserProfileViewController*)segue.destinationViewController;
+
     }
     
 }

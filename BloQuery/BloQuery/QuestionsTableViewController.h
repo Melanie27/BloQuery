@@ -19,6 +19,11 @@
 
 - (IBAction)didTapQuestionView:(id)sender;
 
+// Custom initialization, custom nav bar
+//profile button
+@property (nonatomic, weak ) IBOutlet UIBarButtonItem  *profileImageButton;
+
+
 //unwind segue implementation
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue; 
 @end
