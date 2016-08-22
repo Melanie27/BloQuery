@@ -100,19 +100,19 @@
     
     alert.shouldDismissOnTapOutside = YES;
     
-    //TODO question number pulling pointer not number
+    //TODO question number is always zero
     NSArray *questionsArray = [BLCDataSource sharedInstance].questions;
     [BLCDataSource sharedInstance].questionNumber = [questionsArray indexOfObject:_question];
-    NSLog(@"questionNumber %ld", (long)[BLCDataSource sharedInstance].questionNumber);
+    NSLog (@"questionCount %ld", (unsigned long)[BLCDataSource sharedInstance].questions.count);
+    NSLog(@"questionNumber %ld", (long)self.questionNumber);
     [alert alertIsDismissed:^{
         
         NSString *code = [postQuestionTextField.text copy];
         NSLog(@"capture new question %@", code);
         self.ref = [[FIRDatabase database] reference];
         NSDictionary *childUpdates = @{
-                                       
                                        //TODO set this url up with DB
-                                       //[NSString stringWithFormat:@"/questions/%lu/question/", (long)self.questionNumber]:code
+                                       [NSString stringWithFormat:@"/questions/%ld/question/", (unsigned long)[BLCDataSource sharedInstance].questions.count]:code
                                        };
         [_ref updateChildValues:childUpdates];
     }];
