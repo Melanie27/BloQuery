@@ -41,7 +41,9 @@
 //override setter method to update the question text whenever a new question is set
 -(void)setQuestion:(Question*)question {
     _question = question;
+    [self.questionTextView sizeToFit];
     self.questionTextView.text = self.question.questionText;
+    
 }
 
 
