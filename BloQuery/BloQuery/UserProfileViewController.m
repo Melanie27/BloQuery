@@ -7,8 +7,9 @@
 //
 
 #import "UserProfileViewController.h"
+#import "ImageLibraryViewController.h"
 
-@interface UserProfileViewController ()
+@interface UserProfileViewController () <ImageLibraryViewControllerDelegate>
 
 @end
 
@@ -24,6 +25,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//open view to allow user to select photo from image library
+- (IBAction)didTapPhotoUpload:(id)sender {
+    
+    ImageLibraryViewController *imageLibraryVC = [[ImageLibraryViewController alloc] init];
+    imageLibraryVC.delegate = self;
+    [self.navigationController pushViewController:imageLibraryVC animated:YES];
+    NSLog(@"Photo library button pressed.");
+}
+
 
 /*
 #pragma mark - Navigation
