@@ -32,9 +32,21 @@
     ImageLibraryViewController *imageLibraryVC = [[ImageLibraryViewController alloc] init];
     imageLibraryVC.delegate = self;
     [self.navigationController pushViewController:imageLibraryVC animated:YES];
-    NSLog(@"Photo library button pressed.");
+    
 }
 
+
+
+
+- (void) imageLibraryViewController:(ImageLibraryViewController *)imageLibraryViewController didCompleteWithImage:(UIImage *)image {
+    [imageLibraryViewController dismissViewControllerAnimated:YES completion:^{
+        if (image) {
+            NSLog(@"Got an image!");
+        } else {
+            NSLog(@"Closed without an image.");
+        }
+    }];
+}
 
 /*
 #pragma mark - Navigation

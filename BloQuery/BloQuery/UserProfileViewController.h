@@ -10,12 +10,11 @@
 
 
 
+
 @interface UserProfileViewController : UIViewController
 
 - (IBAction)didTapPhotoUpload:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIButton *photoUpload;
-
-
 
 @end
