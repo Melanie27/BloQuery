@@ -150,6 +150,14 @@
 
 #pragma mark <UICollectionViewDelegate>
 
+
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"touched a single image");
+    //push a fullscreen crop image view controller here
+    //get the url of this image and store it in firebase
+}
+
 /*
 // Uncomment this method to specify if the specified item should be highlighted during tracking
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
