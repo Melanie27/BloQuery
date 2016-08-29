@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Cloudinary/Cloudinary.h"
 @class ImageLibraryViewController;
 
 @protocol ImageLibraryViewControllerDelegate <NSObject>

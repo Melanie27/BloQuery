@@ -21,6 +21,7 @@
 
 - (IBAction)didTapSignOut:(id)sender;
 
+-(IBAction)setDisplayName:(id)sender;
 
  
 

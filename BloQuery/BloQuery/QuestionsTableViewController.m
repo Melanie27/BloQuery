@@ -112,7 +112,6 @@
     [alert alertIsDismissed:^{
         
         NSString *code = [postQuestionTextField.text copy];
-        NSLog(@"capture new question %@", code);
         self.ref = [[FIRDatabase database] reference];
         NSDictionary *childUpdates = @{
                                        //TODO set this url up with DB

@@ -6,12 +6,16 @@
 //  Copyright © 2016 Bloc. All rights reserved.
 //
 
+
 #import "ImageLibraryViewController.h"
 #import <Photos/Photos.h>
+@import Firebase;
+@import FirebaseDatabase;
 
-@interface ImageLibraryViewController ()
+@interface ImageLibraryViewController () <CLUploaderDelegate>
 
 @property (nonatomic, strong) PHFetchResult *result;
+@property (strong, nonatomic) FIRDatabaseReference *ref;
 
 @end
 
@@ -68,10 +72,13 @@
 //load the assets
 -(void) loadAssets {
     
-    PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+    PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
+    fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
     
-    self.result = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:options];
+    self.result = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:fetchOptions];
+    NSLog(@"result %@", self.result);
+    
+    
 }
 
 //ask if user has granted access to photo library, if not, request auth
@@ -104,11 +111,8 @@
 
 #pragma mark <UICollectionViewDataSource>
 
-
-
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//number of images found
+
     return self.result.count;
 }
 
@@ -154,8 +158,73 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"touched a single image");
-    //push a fullscreen crop image view controller here
-    //get the url of this image and store it in firebase
+    
+    PHAsset *asset = nil;
+    
+    if (self.result[indexPath.row] != nil && self.result.count > 0) {
+        asset = self.result[indexPath.row];
+        NSLog(@"asset %@", asset);
+        
+    }
+    
+    //NSURL *path = nil;
+    PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
+    imageRequestOptions.synchronous = YES;
+    [[PHImageManager defaultManager]
+     requestImageDataForAsset:asset
+     options:imageRequestOptions
+     resultHandler:^(NSData *imageData, NSString *dataUTI,
+                     UIImageOrientation orientation,
+                     NSDictionary *info)
+     {
+         
+         if ([info objectForKey:@"PHImageFileURLKey"]) {
+             
+             NSURL *path = [info objectForKey:@"PHImageFileURLKey"];
+             //NSString *pathString = path.absoluteString;
+             NSString *pathString = [path path];
+             NSLog(@"pathstring %@", pathString);
+            CLCloudinary *cloudinary = [[CLCloudinary alloc] initWithUrl: @"cloudinary://529452493569691:bF9rOpKrNtwqKgq7EZXfTAtI3mY@mellyeg96"];
+             CLUploader *uploader = [[CLUploader alloc] init:cloudinary delegate:self];
+             NSString *imageFilePath = [[NSBundle mainBundle] pathForResource:pathString ofType:@"jpg"];
+             NSLog(@"imageFilePath %@", imageFilePath );
+             [uploader upload:imageFilePath options:@{}];
+         }
+     }];
+    CLCloudinary *cloudinary = [[CLCloudinary alloc] initWithUrl: @"cloudinary://529452493569691:bF9rOpKrNtwqKgq7EZXfTAtI3mY@mellyeg96"];
+    CLUploader *uploader = [[CLUploader alloc] init:cloudinary delegate:self];
+     NSString *imageFilePath = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"png"];
+    [uploader upload:imageFilePath options:@{}];
+    
+    NSString *profileImageIdentifier = @"image/upload/v1234567/dfhjghjkdisudgfds7iyf.jpg";
+   
+    //NSString *profileImageUrl = [cloudinary url:profileImageIdentifier];
+    //NSLog(@"pathstring for firebase %@", pathString);
+
+    
+    //get the url of this image from Cloudinary and store it in firebase
+    //use this variable to populate smilely faces
+    
+    //TODO figure out how to push a new UID - not incrementing obviously
+    
+    FIRUser *userAuth = [FIRAuth auth].currentUser;
+    NSLog(@"user %@", userAuth.uid );
+    NSString *key = userAuth.uid;
+    //second variable will be the url from cloudinary
+    if (userAuth != nil) {
+        // User is signed in.
+       self.ref = [[FIRDatabase database] reference];
+        NSDictionary *childUpdates = @{[NSString stringWithFormat:@"/userData/%@/profile_picture/hello", userAuth.uid]:key};
+                                        
+         [_ref updateChildValues:childUpdates];
+    } else {
+        // No user is signed in.
+    }
+
+    
+   
+        
+   
 }
 
 /*
