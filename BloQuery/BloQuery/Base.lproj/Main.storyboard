@@ -238,8 +238,20 @@
                                     <rect key="frame" x="0.0" y="0.0" width="533" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7CR-Ft-gSZ">
+                                            <rect key="frame" x="2" y="5" width="0.0" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" id="xZd-b4-FtN"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bloProfile" translatesAutoresizingMaskIntoConstraints="NO" id="Sm9-2j-nfz">
+                                            <rect key="frame" x="23" y="8" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="HbY-uJ-IAj"/>
+                                            </constraints>
+                                        </imageView>
                                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="szK-ud-CTx">
-                                            <rect key="frame" x="0.0" y="5" width="400" height="94"/>
+                                            <rect key="frame" x="66" y="3" width="400" height="94"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="This is where all the questions are going to go. Is this the first Question?">
                                                     <attributes>
@@ -250,18 +262,6 @@
                                             </attributedString>
                                             <color key="highlightedColor" red="0.9888055788590604" green="0.0" blue="0.9329383389261745" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7CR-Ft-gSZ">
-                                            <rect key="frame" x="2" y="5" width="0.0" height="80"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" id="xZd-b4-FtN"/>
-                                            </constraints>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="faceIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Sm9-2j-nfz">
-                                            <rect key="frame" x="23" y="8" width="30" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="30" id="HbY-uJ-IAj"/>
-                                            </constraints>
-                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="7CR-Ft-gSZ" firstAttribute="top" secondItem="szK-ud-CTx" secondAttribute="top" id="5El-xT-kvh"/>
@@ -445,6 +445,5 @@
     </scenes>
     <resources>
         <image name="bloProfile" width="794" height="932"/>
-        <image name="faceIcon" width="50" height="50"/>
     </resources>
 </document>

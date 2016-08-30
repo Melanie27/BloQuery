@@ -11,6 +11,7 @@
 #import "UserProfileViewController.h"
 #import <Photos/Photos.h>
 #import "BLCDataSource.h"
+#import "Cloudinary/Cloudinary.h"
 
 @import Firebase;
 @import FirebaseDatabase;
@@ -23,6 +24,19 @@
 @end
 
 @implementation ImageLibraryViewController
+
+- (void) uploaderSuccess:(NSDictionary*)result context:(id)context {
+    NSString* publicId = [result valueForKey:@"public_id"];
+    NSLog(@"Upload success. Public ID=%@, Full result=%@", publicId, result);
+}
+
+- (void) uploaderError:(NSString*)result code:(int) code context:(id)context {
+    NSLog(@"Upload error: %@, %d", result, code);
+}
+
+- (void) uploaderProgress:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite context:(id)context {
+    NSLog(@"Upload progress: %d/%d (+%d)", totalBytesWritten, totalBytesExpectedToWrite, bytesWritten);
+}
 
 -(instancetype) init {
     UICollectionViewFlowLayout *layout= [[UICollectionViewFlowLayout alloc] init];
@@ -161,22 +175,27 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    //NSLog(@"touched a single image");
+    
+    //set correct image on profile view
     static NSInteger imageViewTag = 54321;
-
+    UIImageView *imgView = (UIImageView*)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:imageViewTag];
+    UIImage *img = imgView.image;
+    [[BLCDataSource sharedInstance] setUserImage:img];
+   
+    
+    //push that image to cloudinary
     PHAsset *asset = nil;
     
     if (self.result[indexPath.row] != nil && self.result.count > 0) {
         asset = self.result[indexPath.row];
         NSLog(@"asset %@", asset);
+        //get image file path here?
         
     }
     
-    UIImageView *imgView = (UIImageView*)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:imageViewTag];
-    UIImage *img = imgView.image;
-    [[BLCDataSource sharedInstance] setUserImage:img];
     
-    //NSURL *path = nil;
+    
+   
     PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
     imageRequestOptions.synchronous = YES;
     [[PHImageManager defaultManager]
@@ -195,15 +214,12 @@
              NSLog(@"pathstring %@", pathString);
             CLCloudinary *cloudinary = [[CLCloudinary alloc] initWithUrl: @"cloudinary://529452493569691:bF9rOpKrNtwqKgq7EZXfTAtI3mY@mellyeg96"];
              CLUploader *uploader = [[CLUploader alloc] init:cloudinary delegate:self];
-             NSString *imageFilePath = [[NSBundle mainBundle] pathForResource:pathString ofType:@"jpg"];
+             NSString *imageFilePath = pathString;
              NSLog(@"imageFilePath %@", imageFilePath );
-          //   [uploader upload:imageFilePath options:@{}];
+             [uploader upload:imageFilePath options:@{}];
          }
      }];
-    //CLCloudinary *cloudinary = [[CLCloudinary alloc] initWithUrl: @"cloudinary://529452493569691:bF9rOpKrNtwqKgq7EZXfTAtI3mY@mellyeg96"];
-    //CLUploader *uploader = [[CLUploader alloc] init:cloudinary delegate:self];
-     //NSString *imageFilePath = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"png"];
-    //[uploader upload:imageFilePath options:@{}];
+   
     
    
    
@@ -214,7 +230,7 @@
     //use this variable to populate smilely faces
     
     FIRUser *userAuth = [FIRAuth auth].currentUser;
-    NSLog(@"user %@", userAuth.uid );
+    //NSLog(@"user %@", userAuth.uid );
     NSString *key = @"http://res.cloudinary.com/mellyeg96/image/upload/v1471355788/sample.jpg";
     //second variable will be the url from cloudinary
     if (userAuth != nil) {

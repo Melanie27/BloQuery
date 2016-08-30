@@ -11,7 +11,7 @@
 #import "CLTransformation.h"
 #import "NSDictionary+CLUtilities.h"
 
-@interface CLUploader ()<NSURLConnectionDataDelegate>
+@interface CLUploader () <NSURLConnectionDataDelegate>
 
 @property (readwrite, strong, nonatomic) CLCloudinary *cloudinary;
 

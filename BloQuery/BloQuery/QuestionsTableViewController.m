@@ -153,6 +153,12 @@
     button.tag = indexPath.row;
     cell.accessoryView = button;
     
+    //set correct image on profile view
+    static NSInteger imageViewTag = 54321;
+    UIImageView *imgView = (UIImageView*)[[tableView cellForRowAtIndexPath:indexPath] viewWithTag:imageViewTag];
+    UIImage *img = imgView.image;
+    [[BLCDataSource sharedInstance] setUserImage:img];
+    
     return cell;
     
 }
@@ -165,6 +171,10 @@
     self.questionAddingTo = [BLCDataSource sharedInstance].questions[row];
     ds.questionNumber = row;
     ds.question = self.questionAddingTo;
+    
+   
+        
+    
     
 }
 

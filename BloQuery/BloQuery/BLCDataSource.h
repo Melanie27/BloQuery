@@ -30,7 +30,7 @@
 @property (nonatomic, weak) AnswersTableViewController *atvc;
 @property (nonatomic, weak) ComposeAnswerViewController *cavc;
 
-//Why Are these not accessable from ComposeAnswerViewController?
+
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, assign) NSInteger questionNumber;
 @property (strong) UIImage *userImage;
