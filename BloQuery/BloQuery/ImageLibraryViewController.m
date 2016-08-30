@@ -11,15 +11,17 @@
 #import "UserProfileViewController.h"
 #import <Photos/Photos.h>
 #import "BLCDataSource.h"
-#import "Cloudinary/Cloudinary.h"
+
 
 @import Firebase;
 @import FirebaseDatabase;
+
 
 @interface ImageLibraryViewController () <CLUploaderDelegate>
 
 @property (nonatomic, strong) PHFetchResult *result;
 @property (strong, nonatomic) FIRDatabaseReference *ref;
+
 
 @end
 
@@ -183,18 +185,15 @@
     [[BLCDataSource sharedInstance] setUserImage:img];
    
     
-    //push that image to cloudinary
+    
     PHAsset *asset = nil;
     
     if (self.result[indexPath.row] != nil && self.result.count > 0) {
         asset = self.result[indexPath.row];
-        NSLog(@"asset %@", asset);
-        //get image file path here?
+        
         
     }
-    
-    
-    
+
    
     PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
     imageRequestOptions.synchronous = YES;
@@ -208,41 +207,26 @@
          
          if ([info objectForKey:@"PHImageFileURLKey"]) {
              
+            
+             
+             
+             
              NSURL *path = [info objectForKey:@"PHImageFileURLKey"];
-             //NSString *pathString = path.absoluteString;
-             NSString *pathString = [path path];
-             NSLog(@"pathstring %@", pathString);
-            CLCloudinary *cloudinary = [[CLCloudinary alloc] initWithUrl: @"cloudinary://529452493569691:bF9rOpKrNtwqKgq7EZXfTAtI3mY@mellyeg96"];
-             CLUploader *uploader = [[CLUploader alloc] init:cloudinary delegate:self];
-             NSString *imageFilePath = pathString;
-             NSLog(@"imageFilePath %@", imageFilePath );
-             [uploader upload:imageFilePath options:@{}];
+            NSString *pathString = [path path];
+             FIRUser *userAuth = [FIRAuth auth].currentUser;
+             NSString *key = pathString;
+             if (userAuth != nil) {
+                 // User is signed in.
+                 self.ref = [[FIRDatabase database] reference];
+                 NSDictionary *childUpdates = @{[NSString stringWithFormat:@"/userData/%@/profile_picture/", userAuth.uid]:key};
+                 
+                 [_ref updateChildValues:childUpdates];
+                 
+             }
+                
          }
      }];
    
-    
-   
-   
-   
-
-    
-    //get the url of this image from Cloudinary and store it in firebase
-    //use this variable to populate smilely faces
-    
-    FIRUser *userAuth = [FIRAuth auth].currentUser;
-    //NSLog(@"user %@", userAuth.uid );
-    NSString *key = @"http://res.cloudinary.com/mellyeg96/image/upload/v1471355788/sample.jpg";
-    //second variable will be the url from cloudinary
-    if (userAuth != nil) {
-        // User is signed in.
-       self.ref = [[FIRDatabase database] reference];
-        NSDictionary *childUpdates = @{[NSString stringWithFormat:@"/userData/%@/profile_picture/", userAuth.uid]:key};
-                                        
-         [_ref updateChildValues:childUpdates];
-        
-    } else {
-        // No user is signed in.
-    }
 
     [self cancelPressed:self.navigationItem.leftBarButtonItem];
     

@@ -5,6 +5,7 @@ pod 'Cloudinary'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
+pod 'Firebase/Storage'
 pod 'FirebaseUI', '~> 0.4'
 target 'BloQuery' do
 pod 'SCLAlertView-Objective-C', '~> 1.0'

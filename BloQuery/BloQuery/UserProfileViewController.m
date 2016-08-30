@@ -9,6 +9,10 @@
 #import "UserProfileViewController.h"
 #import "ImageLibraryViewController.h"
 #import "BLCDataSource.h"
+
+@import Firebase;
+@import FirebaseDatabase;
+
 @interface UserProfileViewController () <ImageLibraryViewControllerDelegate, UITextViewDelegate>
 
 @end
@@ -18,9 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
     self.navigationItem.title = @"Your Profile";
     self.userDescription.returnKeyType = UIReturnKeyDone;
     self.userDescription.delegate = self;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,7 +49,7 @@
 
 //open view to allow user to select photo from image library
 - (IBAction)didTapPhotoUpload:(id)sender {
-    NSLog(@"profile Photo %@", self.profilePhoto);
+    //NSLog(@"profile Photo %@", self.profilePhoto);
     ImageLibraryViewController *imageLibraryVC = [[ImageLibraryViewController alloc] init];
     imageLibraryVC.delegate = self;
     [self.navigationController pushViewController:imageLibraryVC animated:YES];
@@ -51,7 +59,7 @@
 
 
 
-- (void) imageLibraryViewController:(ImageLibraryViewController *)imageLibraryViewController didCompleteWithImage:(UIImage *)image {
+/*- (void) imageLibraryViewController:(ImageLibraryViewController *)imageLibraryViewController didCompleteWithImage:(UIImage *)image {
     [imageLibraryViewController dismissViewControllerAnimated:YES completion:^{
         if (image) {
             NSLog(@"Got an image!");
@@ -59,7 +67,7 @@
             NSLog(@"Closed without an image.");
         }
     }];
-}
+}*
 
 /*
 #pragma mark - Navigation
@@ -72,9 +80,10 @@
 */
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"Appearing");
+   
     if ([[BLCDataSource sharedInstance] userImage]) {
         self.profilePhoto.image = [[BLCDataSource sharedInstance] userImage];
+        
     }
 }
 
