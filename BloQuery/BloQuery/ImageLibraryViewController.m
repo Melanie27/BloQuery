@@ -177,6 +177,8 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+     FIRUser *userAuth = [FIRAuth auth].currentUser;
+     self.ref = [[FIRDatabase database] reference];
     
     //set correct image on profile view
     static NSInteger imageViewTag = 54321;
@@ -190,8 +192,6 @@
     
     if (self.result[indexPath.row] != nil && self.result.count > 0) {
         asset = self.result[indexPath.row];
-        
-        
     }
 
    
@@ -206,21 +206,35 @@
      {
          
          if ([info objectForKey:@"PHImageFileURLKey"]) {
-             
+          
+           
             
-             
-             
              
              NSURL *path = [info objectForKey:@"PHImageFileURLKey"];
             NSString *pathString = [path path];
-             FIRUser *userAuth = [FIRAuth auth].currentUser;
+            
              NSString *key = pathString;
+            
+            FIRDatabaseQuery *pathStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", userAuth.uid]] queryLimitedToFirst:1000];
+             NSLog(@"pathStringQuery %@", pathStringQuery);
+             [pathStringQuery
+              observeEventType:FIRDataEventTypeValue
+              withBlock:^(FIRDataSnapshot *snapshot) {
+                  NSLog(@"snapshot %@", snapshot);
+              }];
+             
              if (userAuth != nil) {
                  // User is signed in.
-                 self.ref = [[FIRDatabase database] reference];
+                
                  NSDictionary *childUpdates = @{[NSString stringWithFormat:@"/userData/%@/profile_picture/", userAuth.uid]:key};
                  
                  [_ref updateChildValues:childUpdates];
+                 
+                 //set correct image on profile view
+                 static NSInteger imageViewTag = 54321;
+                 UIImageView *imgView = (UIImageView*)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:imageViewTag];
+                 UIImage *img = imgView.image;
+                 [[BLCDataSource sharedInstance] setUserImage:img];
                  
              }
                 
