@@ -8,7 +8,10 @@
 
 
 #import "ImageLibraryViewController.h"
+#import "UserProfileViewController.h"
 #import <Photos/Photos.h>
+#import "BLCDataSource.h"
+
 @import Firebase;
 @import FirebaseDatabase;
 
@@ -52,7 +55,8 @@
 }
 
 - (void) cancelPressed:(UIBarButtonItem *)sender {
-    [self.delegate imageLibraryViewController:self didCompleteWithImage:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 - (void) viewWillLayoutSubviews {
@@ -157,8 +161,9 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"touched a single image");
-    
+    //NSLog(@"touched a single image");
+    static NSInteger imageViewTag = 54321;
+
     PHAsset *asset = nil;
     
     if (self.result[indexPath.row] != nil && self.result.count > 0) {
@@ -166,6 +171,10 @@
         NSLog(@"asset %@", asset);
         
     }
+    
+    UIImageView *imgView = (UIImageView*)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:imageViewTag];
+    UIImage *img = imgView.image;
+    [[BLCDataSource sharedInstance] setUserImage:img];
     
     //NSURL *path = nil;
     PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
@@ -188,41 +197,42 @@
              CLUploader *uploader = [[CLUploader alloc] init:cloudinary delegate:self];
              NSString *imageFilePath = [[NSBundle mainBundle] pathForResource:pathString ofType:@"jpg"];
              NSLog(@"imageFilePath %@", imageFilePath );
-             [uploader upload:imageFilePath options:@{}];
+          //   [uploader upload:imageFilePath options:@{}];
          }
      }];
-    CLCloudinary *cloudinary = [[CLCloudinary alloc] initWithUrl: @"cloudinary://529452493569691:bF9rOpKrNtwqKgq7EZXfTAtI3mY@mellyeg96"];
-    CLUploader *uploader = [[CLUploader alloc] init:cloudinary delegate:self];
-     NSString *imageFilePath = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"png"];
-    [uploader upload:imageFilePath options:@{}];
+    //CLCloudinary *cloudinary = [[CLCloudinary alloc] initWithUrl: @"cloudinary://529452493569691:bF9rOpKrNtwqKgq7EZXfTAtI3mY@mellyeg96"];
+    //CLUploader *uploader = [[CLUploader alloc] init:cloudinary delegate:self];
+     //NSString *imageFilePath = [[NSBundle mainBundle] pathForResource:@"logo" ofType:@"png"];
+    //[uploader upload:imageFilePath options:@{}];
     
-    NSString *profileImageIdentifier = @"image/upload/v1234567/dfhjghjkdisudgfds7iyf.jpg";
    
-    //NSString *profileImageUrl = [cloudinary url:profileImageIdentifier];
-    //NSLog(@"pathstring for firebase %@", pathString);
+   
+   
 
     
     //get the url of this image from Cloudinary and store it in firebase
     //use this variable to populate smilely faces
     
-    //TODO figure out how to push a new UID - not incrementing obviously
-    
     FIRUser *userAuth = [FIRAuth auth].currentUser;
     NSLog(@"user %@", userAuth.uid );
-    NSString *key = userAuth.uid;
+    NSString *key = @"http://res.cloudinary.com/mellyeg96/image/upload/v1471355788/sample.jpg";
     //second variable will be the url from cloudinary
     if (userAuth != nil) {
         // User is signed in.
        self.ref = [[FIRDatabase database] reference];
-        NSDictionary *childUpdates = @{[NSString stringWithFormat:@"/userData/%@/profile_picture/hello", userAuth.uid]:key};
+        NSDictionary *childUpdates = @{[NSString stringWithFormat:@"/userData/%@/profile_picture/", userAuth.uid]:key};
                                         
          [_ref updateChildValues:childUpdates];
+        
     } else {
         // No user is signed in.
     }
 
+    [self cancelPressed:self.navigationItem.leftBarButtonItem];
     
-   
+    
+    //TODO update profilePhoto and pass it back to the USER PROFILE VIEW CONTROLLER
+   //PASS TO QUESTION TABLE VIEW CONTROLLER ALSO
         
    
 }

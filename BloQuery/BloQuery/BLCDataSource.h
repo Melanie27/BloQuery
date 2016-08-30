@@ -6,7 +6,7 @@
 //  Copyright © 2016 Bloc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 @import FirebaseDatabase;
 
 @class QuestionsTableViewController;
@@ -33,7 +33,7 @@
 //Why Are these not accessable from ComposeAnswerViewController?
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, assign) NSInteger questionNumber;
-
+@property (strong) UIImage *userImage;
 -(NSString *)retrieveQuestions;
 -(NSString *)retrieveAnswers;
 

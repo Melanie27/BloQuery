@@ -17,4 +17,9 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *photoUpload;
 
+@property (strong, nonatomic) IBOutlet UIImageView *profilePhoto;
+@property (strong, nonatomic) IBOutlet UITextView *userDescription;
+
+
+
 @end
