@@ -36,7 +36,7 @@
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, assign) NSInteger questionNumber;
 @property (strong) UIImage *userImage;
-@property (nonatomic, weak) NSString *userDesc;
+@property (nonatomic, strong) NSString *userDesc;
 @property (nonatomic, weak) NSString *userScreenName;
 -(NSString *)retrieveQuestions;
 -(NSString *)retrieveAnswers;
