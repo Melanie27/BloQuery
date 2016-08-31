@@ -11,6 +11,7 @@
 #import "QuestionsTableViewController.h"
 #import "ComposeAnswerViewController.h"
 #import "AnswersTableViewController.h"
+#import "UserProfileViewController.h"
 #import "Answer.h"
 
 
@@ -103,22 +104,41 @@
 -(NSString *)retrieveDescription {
      FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
-    FIRDatabaseQuery *getDescQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", userAuth.uid]] queryLimitedToFirst:1];
+    
+    
+    FIRDatabaseQuery *getDescQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", userAuth.uid]] queryLimitedToFirst:1];
      NSMutableString *retrieveDescription = [[NSMutableString alloc] init];
     
     [getDescQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
      
-         self.userDesc = snapshot.value;
+         self.userDesc = snapshot.description;
          NSLog(@"userDesc %@", self.userDesc);
          
-         //[self.upvc viewDidLoad];
+         [self.upvc viewDidLoad];
+         [self.upvc viewWillAppear:YES];
     
     }];
     
     
     return retrieveDescription;
+}
+
+-(NSString *)retrieveScreenName {
+    FIRUser *userAuth = [FIRAuth auth].currentUser;
+    self.ref = [[FIRDatabase database] reference];
+    FIRDatabaseQuery *getScreenNameQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", userAuth.uid]] queryLimitedToFirst:1];
+    NSMutableString *retrieveScreenName = [[NSMutableString alloc] init];
+    
+    [getScreenNameQuery
+        observeEventType:FIRDataEventTypeValue
+        withBlock:^(FIRDataSnapshot *snapshot) {
+            self.userScreenName = snapshot.value;
+            NSLog(@"userScreenName %@", self.userScreenName);
+        }];
+    
+    return retrieveScreenName;
 }
 
 

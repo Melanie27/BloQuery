@@ -147,13 +147,12 @@
     button.tag = indexPath.row;
     cell.accessoryView = button;
     
-    //set correct image on profile view
-    static NSInteger imageViewTag = 200;
-    UIImageView *imgView = (UIImageView*)[[tableView cellForRowAtIndexPath:indexPath] viewWithTag:imageViewTag];
-    UIImage *img = imgView.image;
-    [[BLCDataSource sharedInstance] setUserImage:img];
-   
-    NSLog(@"img %@", cell.imageView.image);
+    //TODO set correct image on profile view
+    if ([[BLCDataSource sharedInstance] userImage]) {
+        self.profilePhoto.image = [[BLCDataSource sharedInstance] userImage];
+        
+    }
+    //NSLog(@"image %@", self.profilePhoto.image);
     return cell;
     
 }

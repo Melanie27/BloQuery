@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [[BLCDataSource sharedInstance] retrieveDescription];
+    
     
     self.navigationItem.title = @"Your Profile";
     self.userDescription.returnKeyType = UIReturnKeyDone;
@@ -62,10 +62,12 @@
     FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
     NSString *userDescription = self.userDescription.text;
-    self.userDescription.text = self.userDesc;
+    //self.userDescription.text = self.userDesc;
     NSDictionary *descriptionUpdates = @{[NSString stringWithFormat:@"/userData/%@/description/", userAuth.uid]:userDescription};
     
     [_ref updateChildValues:descriptionUpdates];
+    NSLog(@"userDescription %@", userDescription);
+    [[BLCDataSource sharedInstance] retrieveDescription];
     //update textview
    
     
