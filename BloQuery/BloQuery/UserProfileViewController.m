@@ -24,19 +24,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //TODO maybe auth stuff will make user-related data persist?
+    BLCDataSource *ds = [BLCDataSource sharedInstance];
     
-    
-    [[BLCDataSource sharedInstance] retrieveDescription];
-    [[BLCDataSource sharedInstance] retrieveScreenName];
-    [[BLCDataSource sharedInstance] retrievePhotoUrl];
+    [ds retrieveDescription];
+    [ds retrieveScreenName];
+    [ds retrievePhotoUrl];
     
     self.navigationItem.title = @"Your Profile";
     self.userDescription.returnKeyType = UIReturnKeyDone;
     self.userDescription.delegate = self;
     self.userName.delegate = self;
     self.userName.returnKeyType = UIReturnKeyDone;
-    
-    
+
     
 }
 
@@ -53,7 +52,7 @@
         //save text to Firebase
         
         [self sendDescToFireBase];
-        return NO;
+        return YES;
     }
     
     return YES;
@@ -75,7 +74,7 @@
     [_ref updateChildValues:descriptionUpdates];
     
     //set text
-    self.userDescription.text = [BLCDataSource sharedInstance].userDesc;
+ //   self.userDescription.text = [BLCDataSource sharedInstance].userDesc;
 }
 
 -(void)sendScreenNameToFirebase {
@@ -87,7 +86,7 @@
     [_ref updateChildValues:screenNameUpdates];
     
     //set the text field
-    self.userName.text = [BLCDataSource sharedInstance].userScreenName;
+    //    self.userName.text = [BLCDataSource sharedInstance].userScreenName;
 }
 
 
@@ -124,10 +123,16 @@
 */
 
 - (void)viewDidAppear:(BOOL)animated {
-   
-    if ([[BLCDataSource sharedInstance] userImage]) {
+    BLCDataSource *ds = [BLCDataSource sharedInstance];
+    if ([ds userImage]) {
         self.profilePhoto.image = [[BLCDataSource sharedInstance] userImage];
         
+    }
+    if ([ds userScreenName]) {
+    self.userName.text = [[BLCDataSource sharedInstance] userScreenName];
+    }
+    if ([ds userDesc]) {
+    self.userDescription.text = [BLCDataSource sharedInstance].userDesc;
     }
 }
 

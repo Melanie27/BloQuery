@@ -113,9 +113,10 @@
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
         
-         self.userDesc = snapshot.value[@"description"];
-         
-         [self.upvc viewDidLoad];
+         if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
+             self.userDesc = snapshot.value[@"description"];
+         }
+        
          [self.upvc viewWillAppear:YES];
     
     }];
@@ -133,11 +134,14 @@
     [getScreenNameQuery
         observeEventType:FIRDataEventTypeValue
         withBlock:^(FIRDataSnapshot *snapshot) {
-            self.userScreenName = snapshot.value[@"username"];
-            NSLog(@"user name %@", self.userScreenName);
+            if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
+
+                self.userScreenName = snapshot.value[@"username"];
+                NSLog(@"user name %@", self.userScreenName);
             
-            [self.upvc viewDidLoad];
-            [self.upvc viewWillAppear:YES];
+               
+                [self.upvc viewWillAppear:YES];
+            }
         }];
     
     return retrieveScreenName;
@@ -152,11 +156,14 @@
     [getPhotoStringQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
-         self.userImageString = snapshot.value[@"profile_picture"];
-         NSLog(@"picture url %@", self.userImageString);
-         
-         [self.upvc viewDidLoad];
-         [self.upvc viewWillAppear:YES];
+         if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
+
+             self.userImageString = snapshot.value[@"profile_picture"];
+             NSLog(@"picture url %@", self.userImageString);
+             
+             
+             [self.upvc viewWillAppear:YES];
+         }
      }];
     
     
