@@ -25,6 +25,7 @@
     // Do any additional setup after loading the view.
     [[BLCDataSource sharedInstance] retrieveDescription];
     [[BLCDataSource sharedInstance] retrieveScreenName];
+    [[BLCDataSource sharedInstance] retrievePhotoUrl];
     
     self.navigationItem.title = @"Your Profile";
     self.userDescription.returnKeyType = UIReturnKeyDone;

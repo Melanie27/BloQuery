@@ -38,6 +38,7 @@
 @property (strong) UIImage *userImage;
 @property (nonatomic, strong) NSString *userDesc;
 @property (nonatomic, weak) NSString *userScreenName;
+@property (nonatomic, weak) NSString *userImageString;
 -(NSString *)retrieveQuestions;
 -(NSString *)retrieveAnswers;
 -(NSString *)retrieveDescription;

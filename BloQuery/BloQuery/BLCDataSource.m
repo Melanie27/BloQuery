@@ -114,10 +114,9 @@
      withBlock:^(FIRDataSnapshot *snapshot) {
         
          self.userDesc = snapshot.value[@"description"];
-         NSLog(@"userDesc %@", snapshot.value);
          
          [self.upvc viewDidLoad];
-         //[self.upvc viewWillAppear:YES];
+         [self.upvc viewWillAppear:YES];
     
     }];
     
@@ -130,22 +129,35 @@
     self.ref = [[FIRDatabase database] reference];
     FIRDatabaseQuery *getScreenNameQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", userAuth.uid]] queryLimitedToFirst:10];
     NSMutableString *retrieveScreenName = [[NSMutableString alloc] init];
-    //log retrieveScreenName
+    
     [getScreenNameQuery
         observeEventType:FIRDataEventTypeValue
         withBlock:^(FIRDataSnapshot *snapshot) {
-            self.userScreenName = snapshot.value;
-            //NSLog(@"userScreenName %@", snapshot.valueInExportFormat);
+            self.userScreenName = snapshot.value[@"username"];
+            NSLog(@"user name %@", self.userScreenName);
+            
+            [self.upvc viewDidLoad];
+            [self.upvc viewWillAppear:YES];
         }];
     
     return retrieveScreenName;
 }
 
 -(NSString *)retrievePhotoUrl {
-    //FIRUser *userAuth = [FIRAuth auth].currentUser;
+    FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
     NSMutableString *retrievePhotoString = [[NSMutableString alloc] init];
-    //FIRDatabaseQuery *getPhotoStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", userAuth.uid]] queryLimitedToFirst:1];
+    FIRDatabaseQuery *getPhotoStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", userAuth.uid]] queryLimitedToFirst:10];
+    
+    [getPhotoStringQuery
+     observeEventType:FIRDataEventTypeValue
+     withBlock:^(FIRDataSnapshot *snapshot) {
+         self.userImageString = snapshot.value[@"profile_picture"];
+         NSLog(@"picture url %@", self.userImageString);
+         
+         [self.upvc viewDidLoad];
+         [self.upvc viewWillAppear:YES];
+     }];
     
     
     return retrievePhotoString;
