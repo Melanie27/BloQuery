@@ -15,6 +15,7 @@
 
 @interface UserProfileViewController () <ImageLibraryViewControllerDelegate, UITextViewDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) FIRDatabaseReference *ref;
+
 @end
 
 @implementation UserProfileViewController
@@ -66,15 +67,11 @@
     FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
     
+    NSDictionary *descriptionUpdates = @{[NSString stringWithFormat:@"/userData/%@/description/", userAuth.uid]:self.userDescription.text};
+    [_ref updateChildValues:descriptionUpdates];
+    
     //set text
     self.userDescription.text = [BLCDataSource sharedInstance].userDesc;
-    NSLog(@"userDesciption2 %@", self.userDescription);
-    
-    NSDictionary *descriptionUpdates = @{[NSString stringWithFormat:@"/userData/%@/description/", userAuth.uid]:self.userDescription.text};
-    
-    [_ref updateChildValues:descriptionUpdates];
-    NSLog(@"userDescription %@", self.userDescription.text);
-
 }
 
 -(void)sendScreenNameToFirebase {
@@ -110,9 +107,9 @@
             NSLog(@"Closed without an image.");
         }
     }];
-}*
+}
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

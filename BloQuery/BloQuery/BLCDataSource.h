@@ -42,6 +42,6 @@
 -(NSString *)retrieveAnswers;
 -(NSString *)retrieveDescription;
 -(NSString *)retrieveScreenName;
--(NSString *)retrieveProfileUrl;
+-(NSString *)retrievePhotoUrl;
 
 @end
