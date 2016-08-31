@@ -129,10 +129,6 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzH-PE-gWr">
-                                        <rect key="frame" x="234" y="178" width="56" height="30"/>
-                                        <state key="normal" title="Save"/>
-                                    </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" keyboardDismissMode="interactive" text="Tell us a bit about yourself and save at the bottom." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2PY-y7-hlP">
                                         <rect key="frame" x="0.0" y="37" width="290" height="128"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -155,18 +151,11 @@
                                             <action selector="didTapPhotoUpload:" destination="8cT-jZ-RCh" eventType="touchUpInside" id="wKX-NK-den"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CoX-jE-F5f">
-                                        <rect key="frame" x="75" y="0.0" width="202" height="24"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="UserMelanie UserMcGanney">
-                                                <attributes>
-                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="14" name="Futura-Medium"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Enter a Screen name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kF5-Km-Tjp">
+                                        <rect key="frame" x="75" y="8" width="200" height="30"/>
+                                        <attributedString key="attributedText"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -179,6 +168,7 @@
                     <connections>
                         <outlet property="profilePhoto" destination="fa1-LH-89o" id="2u3-Nf-26b"/>
                         <outlet property="userDescription" destination="2PY-y7-hlP" id="9kr-Ko-COV"/>
+                        <outlet property="userName" destination="kF5-Km-Tjp" id="Pkl-Rw-ftc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XLq-6e-HmA" userLabel="First Responder" sceneMemberID="firstResponder"/>

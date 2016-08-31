@@ -13,7 +13,7 @@
 @import Firebase;
 @import FirebaseDatabase;
 
-@interface UserProfileViewController () <ImageLibraryViewControllerDelegate, UITextViewDelegate>
+@interface UserProfileViewController () <ImageLibraryViewControllerDelegate, UITextViewDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @end
 
@@ -23,17 +23,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [[BLCDataSource sharedInstance] retrieveDescription];
+    [[BLCDataSource sharedInstance] retrieveScreenName];
     
     self.navigationItem.title = @"Your Profile";
     self.userDescription.returnKeyType = UIReturnKeyDone;
     self.userDescription.delegate = self;
-    
+    self.userName.delegate = self;
     self.userName.returnKeyType = UIReturnKeyDone;
-    
-    FIRUser *userAuth = [FIRAuth auth].currentUser;
-    if(userAuth) {
-        NSLog(@"current user %@", userAuth);
-    }
     
     
     
@@ -58,29 +54,45 @@
     return YES;
 }
 
+//Enters Optional Screen Name
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [theTextField resignFirstResponder];
+    
+    [self sendScreenNameToFirebase];
+    return YES;
+}
+
 -(void)sendDescToFireBase {
-    //FIRUser *userAuth = [FIRAuth auth].currentUser;
+    FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
-    //NSString *userDescription = self.userDescription.text;
+    
+    //set text
     self.userDescription.text = [BLCDataSource sharedInstance].userDesc;
     NSLog(@"userDesciption2 %@", self.userDescription);
     
-    //NSDictionary *descriptionUpdates = @{[NSString stringWithFormat:@"/userData/%@/description/", userAuth.uid]:userDescription};
+    NSDictionary *descriptionUpdates = @{[NSString stringWithFormat:@"/userData/%@/description/", userAuth.uid]:self.userDescription.text};
     
-    //[_ref updateChildValues:descriptionUpdates];
-    //NSLog(@"userDescription %@", userDescription);
-   
-    //update textview
-   
-    
+    [_ref updateChildValues:descriptionUpdates];
+    NSLog(@"userDescription %@", self.userDescription.text);
+
 }
 
+-(void)sendScreenNameToFirebase {
+    FIRUser *userAuth = [FIRAuth auth].currentUser;
+    self.ref = [[FIRDatabase database] reference];
+    
+    //push username to firebase
+    NSDictionary *screenNameUpdates = @{[NSString stringWithFormat:@"/userData/%@/username/", userAuth.uid]:self.userName.text};
+    [_ref updateChildValues:screenNameUpdates];
+    
+    //set the text field
+    self.userName.text = [BLCDataSource sharedInstance].userScreenName;
+}
 
 
 
 //open view to allow user to select photo from image library
 - (IBAction)didTapPhotoUpload:(id)sender {
-    //NSLog(@"profile Photo %@", self.profilePhoto);
     ImageLibraryViewController *imageLibraryVC = [[ImageLibraryViewController alloc] init];
     imageLibraryVC.delegate = self;
     [self.navigationController pushViewController:imageLibraryVC animated:YES];

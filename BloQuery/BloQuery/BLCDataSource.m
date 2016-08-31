@@ -112,7 +112,7 @@
     [getDescQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
-     
+        
          self.userDesc = snapshot.description;
          NSLog(@"userDesc %@", self.userDesc);
          
@@ -128,7 +128,7 @@
 -(NSString *)retrieveScreenName {
     FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
-    FIRDatabaseQuery *getScreenNameQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", userAuth.uid]] queryLimitedToFirst:1];
+    FIRDatabaseQuery *getScreenNameQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", userAuth.uid]] queryLimitedToFirst:10];
     NSMutableString *retrieveScreenName = [[NSMutableString alloc] init];
     
     [getScreenNameQuery

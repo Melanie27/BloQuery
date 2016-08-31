@@ -21,6 +21,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *profilePhoto;
 @property (strong, nonatomic) IBOutlet UITextView *userDescription;
+
 @property (strong, nonatomic) IBOutlet UITextField *userName;
 
 
