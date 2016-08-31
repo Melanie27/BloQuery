@@ -23,6 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //TODO maybe auth stuff will make user-related data persist?
+    
+    
     [[BLCDataSource sharedInstance] retrieveDescription];
     [[BLCDataSource sharedInstance] retrieveScreenName];
     [[BLCDataSource sharedInstance] retrievePhotoUrl];

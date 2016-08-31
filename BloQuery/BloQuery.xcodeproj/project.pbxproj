@@ -21,13 +21,10 @@
 		9B3520A71D3477190074EAFE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3520A61D3477190074EAFE /* MainViewController.m */; };
 		9B3520AA1D34782C0074EAFE /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3520A91D34782C0074EAFE /* UIViewController+Alerts.m */; };
 		9B37901D1D38167B00B5303C /* QuestionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B37901C1D38167B00B5303C /* QuestionsTableViewController.m */; };
-		9B3790331D394DC000B5303C /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B3790321D394DC000B5303C /* 3.png */; };
 		9B37903F1D395C9000B5303C /* BLCDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B37903E1D395C9000B5303C /* BLCDataSource.m */; };
 		9B3790421D39689800B5303C /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3790411D39689800B5303C /* Question.m */; };
 		9B3790451D3970D600B5303C /* QuestionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3790441D3970D600B5303C /* QuestionsTableViewCell.m */; };
 		9B4264EB1D6B79BA00BD3604 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4264EA1D6B79BA00BD3604 /* User.m */; };
-		9B461E181D406C69008EC073 /* commentBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B461E171D406C69008EC073 /* commentBubble.png */; };
-		9B461E1C1D41431A008EC073 /* commentBubble.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9B461E1B1D41431A008EC073 /* commentBubble.jpg */; };
 		9B461E1E1D41449F008EC073 /* QuestionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B461E1D1D41449F008EC073 /* QuestionTests.m */; };
 		9B46AAAB1D6F401B001E8754 /* ImageLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B46AAAA1D6F401B001E8754 /* ImageLibraryViewController.m */; };
 		9B46AAAE1D6F5996001E8754 /* CropBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B46AAAD1D6F5996001E8754 /* CropBox.m */; };
@@ -89,7 +86,6 @@
 		9B3520A91D34782C0074EAFE /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Alerts.m"; path = "../../BloQuery/BloQuery/UIViewController+Alerts.m"; sourceTree = "<group>"; };
 		9B37901B1D38167B00B5303C /* QuestionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionsTableViewController.h; sourceTree = "<group>"; };
 		9B37901C1D38167B00B5303C /* QuestionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionsTableViewController.m; sourceTree = "<group>"; };
-		9B3790321D394DC000B5303C /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		9B37903D1D395C9000B5303C /* BLCDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLCDataSource.h; path = ../../BloQuery/BloQuery/BLCDataSource.h; sourceTree = "<group>"; };
 		9B37903E1D395C9000B5303C /* BLCDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLCDataSource.m; path = ../../BloQuery/BloQuery/BLCDataSource.m; sourceTree = "<group>"; };
 		9B3790401D39689800B5303C /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Question.h; path = ../../BloQuery/BloQuery/Question.h; sourceTree = "<group>"; };
@@ -98,8 +94,6 @@
 		9B3790441D3970D600B5303C /* QuestionsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionsTableViewCell.m; path = ../../BloQuery/BloQuery/QuestionsTableViewCell.m; sourceTree = "<group>"; };
 		9B4264E91D6B79BA00BD3604 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../../BloQuery/BloQuery/User.h; sourceTree = "<group>"; };
 		9B4264EA1D6B79BA00BD3604 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = ../../BloQuery/BloQuery/User.m; sourceTree = "<group>"; };
-		9B461E171D406C69008EC073 /* commentBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commentBubble.png; sourceTree = "<group>"; };
-		9B461E1B1D41431A008EC073 /* commentBubble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = commentBubble.jpg; sourceTree = "<group>"; };
 		9B461E1D1D41449F008EC073 /* QuestionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionTests.m; path = ../../BloQuery/BloQueryTests/QuestionTests.m; sourceTree = "<group>"; };
 		9B46AAA91D6F401B001E8754 /* ImageLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageLibraryViewController.h; path = ../../BloQuery/BloQuery/ImageLibraryViewController.h; sourceTree = "<group>"; };
 		9B46AAAA1D6F401B001E8754 /* ImageLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageLibraryViewController.m; path = ../../BloQuery/BloQuery/ImageLibraryViewController.m; sourceTree = "<group>"; };
@@ -194,9 +188,6 @@
 				9B46AAAA1D6F401B001E8754 /* ImageLibraryViewController.m */,
 				9B328AA71D3DBEF80036C7F6 /* logo.png */,
 				9B328AA91D3DBFC70036C7F6 /* iconAsk.png */,
-				9B461E1B1D41431A008EC073 /* commentBubble.jpg */,
-				9B461E171D406C69008EC073 /* commentBubble.png */,
-				9B3790321D394DC000B5303C /* 3.png */,
 				9B328AA21D3DA43B0036C7F6 /* QuestionFullScreenViewController.h */,
 				9B328AA31D3DA43B0036C7F6 /* QuestionFullScreenViewController.m */,
 				9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */,
@@ -376,11 +367,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B3790331D394DC000B5303C /* 3.png in Resources */,
 				9B328AAA1D3DBFC70036C7F6 /* iconAsk.png in Resources */,
 				9B3015231D3418D800304F6A /* LaunchScreen.storyboard in Resources */,
-				9B461E181D406C69008EC073 /* commentBubble.png in Resources */,
-				9B461E1C1D41431A008EC073 /* commentBubble.jpg in Resources */,
 				9B328AA81D3DBEF80036C7F6 /* logo.png in Resources */,
 				9BE013821D341DA000ED53B6 /* GoogleService-Info.plist in Resources */,
 				9B6F8E3E1D4C202F002B5C74 /* Assets.xcassets in Resources */,
