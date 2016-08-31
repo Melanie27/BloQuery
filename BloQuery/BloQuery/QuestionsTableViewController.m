@@ -62,7 +62,7 @@
     UIImageView *askImageView = [[UIImageView alloc] initWithImage:iconAsk];
     UIBarButtonItem *askImageButton = [[UIBarButtonItem alloc] initWithCustomView:askImageView];
     self.navigationItem.rightBarButtonItem = askImageButton;
-    self.navigationItem.title = @"BloQuery";
+    self.navigationItem.title = @"BloQuery Questions";
     
     
     //add tap gesture to right nav button
@@ -79,7 +79,6 @@
 
 -(void)customizeProfileFired:(UITapGestureRecognizer*)sender {
     
-        //where is the storyboard id?
         UserProfileViewController *userProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"profileView"];
         
         [self.navigationController pushViewController:userProfileVC animated:YES];
@@ -101,22 +100,23 @@
     //TODO question number is always zero
     NSArray *questionsArray = [BLCDataSource sharedInstance].questions;
     [BLCDataSource sharedInstance].questionNumber = [questionsArray indexOfObject:_question];
-    NSLog (@"questionCount %ld", (unsigned long)[BLCDataSource sharedInstance].questions.count);
-    NSLog(@"questionNumber %ld", (long)self.questionNumber);
+   
+   
     [alert alertIsDismissed:^{
         
         NSString *code = [postQuestionTextField.text copy];
         self.ref = [[FIRDatabase database] reference];
+        FIRUser *userAuth = [FIRAuth auth].currentUser;
         NSDictionary *childUpdates = @{
-                                       //TODO set this url up with DB
-                                       [NSString stringWithFormat:@"/questions/%ld/question/", (unsigned long)[BLCDataSource sharedInstance].questions.count]:code
+                                       
+                                       [NSString stringWithFormat:@"/questions/%ld/question/", (unsigned long)[BLCDataSource sharedInstance].questions.count]:code,
+                                       [NSString stringWithFormat:@"/questions/%ld/UID/", (unsigned long)[BLCDataSource sharedInstance].questions.count]:userAuth.uid
                                        };
+       
         [_ref updateChildValues:childUpdates];
+        
+        
     }];
-    
-    
-    
-    
 }
 
 
@@ -148,11 +148,12 @@
     cell.accessoryView = button;
     
     //set correct image on profile view
-    static NSInteger imageViewTag = 54321;
+    static NSInteger imageViewTag = 200;
     UIImageView *imgView = (UIImageView*)[[tableView cellForRowAtIndexPath:indexPath] viewWithTag:imageViewTag];
     UIImage *img = imgView.image;
     [[BLCDataSource sharedInstance] setUserImage:img];
-    
+   
+    NSLog(@"img %@", cell.imageView.image);
     return cell;
     
 }

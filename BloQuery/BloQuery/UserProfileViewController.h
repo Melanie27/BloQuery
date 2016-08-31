@@ -13,12 +13,16 @@
 
 @interface UserProfileViewController : UIViewController
 
+@property (nonatomic, strong) NSString *userDesc;
+
 - (IBAction)didTapPhotoUpload:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIButton *photoUpload;
 
 @property (strong, nonatomic) IBOutlet UIImageView *profilePhoto;
 @property (strong, nonatomic) IBOutlet UITextView *userDescription;
+@property (strong, nonatomic) IBOutlet UITextField *userName;
+
 
 
 

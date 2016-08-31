@@ -99,5 +99,27 @@
     return retrieveAnswers;
 }
 
+//user stuff
+-(NSString *)retrieveDescription {
+     FIRUser *userAuth = [FIRAuth auth].currentUser;
+    self.ref = [[FIRDatabase database] reference];
+    FIRDatabaseQuery *getDescQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", userAuth.uid]] queryLimitedToFirst:1];
+     NSMutableString *retrieveDescription = [[NSMutableString alloc] init];
+    
+    [getDescQuery
+     observeEventType:FIRDataEventTypeValue
+     withBlock:^(FIRDataSnapshot *snapshot) {
+     
+         self.userDesc = snapshot.value;
+         NSLog(@"userDesc %@", self.userDesc);
+         
+         //[self.upvc viewDidLoad];
+    
+    }];
+    
+    
+    return retrieveDescription;
+}
+
 
 @end

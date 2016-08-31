@@ -105,11 +105,16 @@
 }
 
 -(void)sendToFireBase {
-   
+   FIRUser *userAuth = [FIRAuth auth].currentUser;
     NSDictionary *childUpdates = @{
-                                   [NSString stringWithFormat:@"/questions/%ld/answers/%@", (long)self.questionNumber, self.answerNumberString]: self.textView.text
+                                   [NSString stringWithFormat:@"/questions/%ld/answers/%@", (long)self.questionNumber, self.answerNumberString]: self.textView.text,
+                                   //TODO not sure about syntax here
+                                   //[NSString stringWithFormat:@"/questions/%ld/answers/%@/UID/", (long)self.questionNumber, self.answerNumberString]:userAuth.uid
                                    };
+    
+    
     [_ref updateChildValues:childUpdates];
+    NSLog(@"why wont uid update for answers?");
 
 }
 

@@ -207,20 +207,23 @@
          
          if ([info objectForKey:@"PHImageFileURLKey"]) {
           
-           
-            
-             
              NSURL *path = [info objectForKey:@"PHImageFileURLKey"];
             NSString *pathString = [path path];
-            
              NSString *key = pathString;
             
+             //TODO - should this be a method in BLCDataSource?
             FIRDatabaseQuery *pathStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", userAuth.uid]] queryLimitedToFirst:1000];
-             NSLog(@"pathStringQuery %@", pathStringQuery);
+             //NSLog(@"pathStringQuery %@", pathStringQuery);
              [pathStringQuery
               observeEventType:FIRDataEventTypeValue
               withBlock:^(FIRDataSnapshot *snapshot) {
-                  NSLog(@"snapshot %@", snapshot);
+                  //NSLog(@"snapshot %@", snapshot);
+                  static NSInteger imageViewTag = 54321;
+                  UIImageView *imgView = (UIImageView*)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:imageViewTag];
+                  UIImage *img = imgView.image;
+                  [[BLCDataSource sharedInstance] setUserImage:img];
+                  
+                  
               }];
              
              if (userAuth != nil) {
@@ -231,10 +234,7 @@
                  [_ref updateChildValues:childUpdates];
                  
                  //set correct image on profile view
-                 static NSInteger imageViewTag = 54321;
-                 UIImageView *imgView = (UIImageView*)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:imageViewTag];
-                 UIImage *img = imgView.image;
-                 [[BLCDataSource sharedInstance] setUserImage:img];
+                 
                  
              }
                 

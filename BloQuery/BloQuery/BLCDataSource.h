@@ -12,6 +12,7 @@
 @class QuestionsTableViewController;
 @class ComposeAnswerViewController;
 @class AnswersTableViewController;
+@class UserProfileViewController;
 @class Question;
 @class Answer;
 
@@ -29,12 +30,17 @@
 @property (nonatomic, weak) QuestionsTableViewController *qtvc;
 @property (nonatomic, weak) AnswersTableViewController *atvc;
 @property (nonatomic, weak) ComposeAnswerViewController *cavc;
+@property (nonatomic, weak) UserProfileViewController *upvc;
 
 
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, assign) NSInteger questionNumber;
 @property (strong) UIImage *userImage;
+@property (nonatomic, weak) NSString *userDesc;
 -(NSString *)retrieveQuestions;
 -(NSString *)retrieveAnswers;
+-(NSString *)retrieveDescription;
+-(NSString *)retrieveScreenName;
+-(NSString *)retrieveProfileUrl;
 
 @end

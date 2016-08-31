@@ -14,7 +14,7 @@
 @import FirebaseDatabase;
 
 @interface UserProfileViewController () <ImageLibraryViewControllerDelegate, UITextViewDelegate>
-
+@property (strong, nonatomic) FIRDatabaseReference *ref;
 @end
 
 @implementation UserProfileViewController
@@ -22,11 +22,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [[BLCDataSource sharedInstance] retrieveDescription];
     
     self.navigationItem.title = @"Your Profile";
     self.userDescription.returnKeyType = UIReturnKeyDone;
     self.userDescription.delegate = self;
+    
+    self.userName.returnKeyType = UIReturnKeyDone;
+    
+    FIRUser *userAuth = [FIRAuth auth].currentUser;
+    if(userAuth) {
+        NSLog(@"current user %@", userAuth);
+    }
+    
     
     
 }
@@ -41,11 +49,30 @@
     
     if([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
+        //save text to Firebase
+        
+        [self sendDescToFireBase];
         return NO;
     }
     
     return YES;
 }
+
+-(void)sendDescToFireBase {
+    FIRUser *userAuth = [FIRAuth auth].currentUser;
+    self.ref = [[FIRDatabase database] reference];
+    NSString *userDescription = self.userDescription.text;
+    self.userDescription.text = self.userDesc;
+    NSDictionary *descriptionUpdates = @{[NSString stringWithFormat:@"/userData/%@/description/", userAuth.uid]:userDescription};
+    
+    [_ref updateChildValues:descriptionUpdates];
+    //update textview
+   
+    
+}
+
+
+
 
 //open view to allow user to select photo from image library
 - (IBAction)didTapPhotoUpload:(id)sender {
@@ -86,5 +113,6 @@
         
     }
 }
+
 
 @end
