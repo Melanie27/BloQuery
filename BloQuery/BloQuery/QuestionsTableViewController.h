@@ -18,12 +18,12 @@
 @property (nonatomic, assign) NSInteger questionNumber;
 
 - (IBAction)didTapQuestionView:(id)sender;
+- (IBAction)didTapProfilePhoto:(id)sender;
 
 // Custom initialization, custom nav bar
 //profile button
 @property (nonatomic, weak ) IBOutlet UIBarButtonItem  *profileImageButton;
 
-@property (strong, nonatomic) IBOutlet UIImageView *profilePhoto;
 
 
 
