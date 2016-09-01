@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //TODO maybe auth stuff will make user-related data persist?
+    
     BLCDataSource *ds = [BLCDataSource sharedInstance];
     
     [ds retrieveDescription];
@@ -36,7 +36,6 @@
     self.userName.delegate = self;
     self.userName.returnKeyType = UIReturnKeyDone;
 
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,20 +72,16 @@
     NSDictionary *descriptionUpdates = @{[NSString stringWithFormat:@"/userData/%@/description/", userAuth.uid]:self.userDescription.text};
     [_ref updateChildValues:descriptionUpdates];
     
-    //set text
- //   self.userDescription.text = [BLCDataSource sharedInstance].userDesc;
+    
 }
 
 -(void)sendScreenNameToFirebase {
     FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
     
-    //push username to firebase
     NSDictionary *screenNameUpdates = @{[NSString stringWithFormat:@"/userData/%@/username/", userAuth.uid]:self.userName.text};
     [_ref updateChildValues:screenNameUpdates];
     
-    //set the text field
-    //    self.userName.text = [BLCDataSource sharedInstance].userScreenName;
 }
 
 
@@ -125,6 +120,11 @@
 - (void)viewDidAppear:(BOOL)animated {
     BLCDataSource *ds = [BLCDataSource sharedInstance];
     if ([ds userImage]) {
+        
+        //TODO  - keep testing photo
+        //self.profileURL = [[BLCDataSource sharedInstance] userImageString];
+        //self.profilePhoto.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.profileURL]]];
+        
         self.profilePhoto.image = [[BLCDataSource sharedInstance] userImage];
         
     }

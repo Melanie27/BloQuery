@@ -105,7 +105,6 @@
      FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
     
-    
     FIRDatabaseQuery *getDescQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", userAuth.uid]] queryLimitedToFirst:10];
      NSMutableString *retrieveDescription = [[NSMutableString alloc] init];
     
@@ -137,9 +136,7 @@
             if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
 
                 self.userScreenName = snapshot.value[@"username"];
-                NSLog(@"user name %@", self.userScreenName);
-            
-               
+
                 [self.upvc viewWillAppear:YES];
             }
         }];
@@ -161,6 +158,7 @@
              self.userImageString = snapshot.value[@"profile_picture"];
              NSLog(@"picture url %@", self.userImageString);
              
+            
              
              [self.upvc viewWillAppear:YES];
          }
