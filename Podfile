@@ -2,6 +2,7 @@ platform :ios, '8.0'
 
 pod 'AFNetworking'
 pod 'Cloudinary'
+pod 'SDWebImage', '~>3.8'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
