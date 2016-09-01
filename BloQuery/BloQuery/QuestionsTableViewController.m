@@ -168,7 +168,7 @@
 
 #pragma mark - Tap the Profile Image on a given Question
 -(IBAction)didTapProfilePhoto:(id)sender {
-    
+    NSLog(@"tapped profile photo");
         //BLCDataSource *ds = [BLCDataSource sharedInstance];
     
         //UIButton *theButton = (UIButton *)sender;

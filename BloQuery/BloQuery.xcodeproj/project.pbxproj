@@ -30,6 +30,7 @@
 		9B46AAAE1D6F5996001E8754 /* CropBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B46AAAD1D6F5996001E8754 /* CropBox.m */; };
 		9B6623701D53C04D00AACB5F /* UIColor+BloQueryColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B66236F1D53C04D00AACB5F /* UIColor+BloQueryColors.m */; };
 		9B6F8E3E1D4C202F002B5C74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B6F8E3D1D4C202F002B5C74 /* Assets.xcassets */; };
+		9B889EAD1D78F41700B65357 /* VIewProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B889EAC1D78F41700B65357 /* VIewProfileViewController.m */; };
 		9B8A0DF41D511262006E0279 /* AnswersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A0DF31D511262006E0279 /* AnswersTableViewController.m */; };
 		9B8A0DF71D511703006E0279 /* AnswersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A0DF61D511703006E0279 /* AnswersTableViewCell.m */; };
 		9B8DE47C1D4817640020DE5B /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DE47B1D4817640020DE5B /* Answer.m */; };
@@ -102,6 +103,8 @@
 		9B66236E1D53C04D00AACB5F /* UIColor+BloQueryColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+BloQueryColors.h"; path = "../../BloQuery/BloQuery/UIColor+BloQueryColors.h"; sourceTree = "<group>"; };
 		9B66236F1D53C04D00AACB5F /* UIColor+BloQueryColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+BloQueryColors.m"; path = "../../BloQuery/BloQuery/UIColor+BloQueryColors.m"; sourceTree = "<group>"; };
 		9B6F8E3D1D4C202F002B5C74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9B889EAB1D78F41700B65357 /* VIewProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIewProfileViewController.h; path = ../../BloQuery/BloQuery/VIewProfileViewController.h; sourceTree = "<group>"; };
+		9B889EAC1D78F41700B65357 /* VIewProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIewProfileViewController.m; path = ../../BloQuery/BloQuery/VIewProfileViewController.m; sourceTree = "<group>"; };
 		9B8A0DF21D511262006E0279 /* AnswersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswersTableViewController.h; path = ../../BloQuery/BloQuery/AnswersTableViewController.h; sourceTree = "<group>"; };
 		9B8A0DF31D511262006E0279 /* AnswersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswersTableViewController.m; path = ../../BloQuery/BloQuery/AnswersTableViewController.m; sourceTree = "<group>"; };
 		9B8A0DF51D511703006E0279 /* AnswersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswersTableViewCell.h; path = ../../BloQuery/BloQuery/AnswersTableViewCell.h; sourceTree = "<group>"; };
@@ -220,6 +223,8 @@
 				9B66236E1D53C04D00AACB5F /* UIColor+BloQueryColors.h */,
 				9B66236F1D53C04D00AACB5F /* UIColor+BloQueryColors.m */,
 				9B30151C1D3418D800304F6A /* Main.storyboard */,
+				9B889EAB1D78F41700B65357 /* VIewProfileViewController.h */,
+				9B889EAC1D78F41700B65357 /* VIewProfileViewController.m */,
 				9BAE4C961D63519D00EBB6CF /* UserProfileViewController.h */,
 				9BAE4C971D63519D00EBB6CF /* UserProfileViewController.m */,
 				9B4264E91D6B79BA00BD3604 /* User.h */,
@@ -460,6 +465,7 @@
 				9B3790451D3970D600B5303C /* QuestionsTableViewCell.m in Sources */,
 				9B8A0DF71D511703006E0279 /* AnswersTableViewCell.m in Sources */,
 				9B8DE47C1D4817640020DE5B /* Answer.m in Sources */,
+				9B889EAD1D78F41700B65357 /* VIewProfileViewController.m in Sources */,
 				9B3015181D3418D800304F6A /* AppDelegate.m in Sources */,
 				9B3790421D39689800B5303C /* Question.m in Sources */,
 				9B3015151D3418D800304F6A /* main.m in Sources */,
