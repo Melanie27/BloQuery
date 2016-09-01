@@ -13,7 +13,7 @@
 #import "AnswersTableViewController.h"
 #import "UserProfileViewController.h"
 #import "Answer.h"
-
+#import "User.h"
 
 @interface BLCDataSource ()
 
@@ -29,12 +29,12 @@
     static id sharedInstance;
     dispatch_once(&once, ^{
         sharedInstance = [[self alloc] init];
-            });
+    });
     return sharedInstance;
 }
 
 - (instancetype) init {
-   
+    
     self = [super init];
     
     if (self) {
@@ -47,7 +47,16 @@
 
 
 -(NSString *)retrieveQuestions {
+    
+    
+    
+    
+    
+    
     self.ref = [[FIRDatabase database] reference];
+    
+    
+    
     FIRDatabaseQuery *getQuestionQuery = [[self.ref queryOrderedByChild:@"/questions/"]queryLimitedToFirst:1000];
     NSMutableString *retrievedQuestions = [[NSMutableString alloc] init];
     
@@ -59,15 +68,21 @@
          NSInteger numQuestions = [snapshot.value[@"questions"] count];
          for (NSInteger i = 0; i < numQuestions; i++) {
              Question *question = [[Question alloc] init];
-             question.questionText = snapshot.value[@"questions"][i][@"question"];
+             question.questionText =    snapshot.value[@"questions"][i][@"question"];
+             question.askerUID =        snapshot.value[@"questions"][i][@"uid"];
              self.questions = [self.questions arrayByAddingObject:question];
          }
          [self.qtvc.tableView reloadData];
          [self.cavc.singleQuestionView reloadInputViews];
-
+         
      }];
     
-     return retrievedQuestions;
+    //FOR EACH QUESTION GET THE PROFILE PHOTO OF THE USER WHO ASKED IT
+    
+    return retrievedQuestions;
+    
+    
+    
     
     
 }
@@ -102,27 +117,70 @@
 
 //user stuff
 -(NSString *)retrieveDescription {
-     FIRUser *userAuth = [FIRAuth auth].currentUser;
+    FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
     
     FIRDatabaseQuery *getDescQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", userAuth.uid]] queryLimitedToFirst:10];
-     NSMutableString *retrieveDescription = [[NSMutableString alloc] init];
+    NSMutableString *retrieveDescription = [[NSMutableString alloc] init];
     
     [getDescQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
-        
+         
          if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
              self.userDesc = snapshot.value[@"description"];
          }
-        
+         
          [self.upvc viewWillAppear:YES];
-    
-    }];
+         
+     }];
     
     
     return retrieveDescription;
 }
+
+-(NSString *)retrieveDescriptionWithUID:(NSString *)uid andCompletion:(RetrievalCompletionBlock)completion {
+    FIRUser *userAuth = [FIRAuth auth].currentUser;
+    self.ref = [[FIRDatabase database] reference];
+    
+    FIRDatabaseQuery *getDescQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", uid]] queryLimitedToFirst:10];
+    NSMutableString *retrieveDescription = [[NSMutableString alloc] init];
+    
+    [getDescQuery
+     observeEventType:FIRDataEventTypeValue
+     withBlock:^(FIRDataSnapshot *snapshot) {
+         
+         if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
+             completion((NSDictionary*)snapshot.value);
+             
+             //             self.userDesc = snapshot.value[@"description"];
+         }
+         
+         //        [self.upvc viewWillAppear:YES];
+         
+     }];
+    
+    
+    return retrieveDescription;
+}
+
+
+-(NSString *)retrieveScreenNameWithUID:(NSString *)uid andCompletion:(RetrievalCompletionBlock)completion {
+    self.ref = [[FIRDatabase database] reference];
+    FIRDatabaseQuery *getScreenNameQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", uid]] queryLimitedToFirst:10];
+    NSMutableString *retrieveScreenName = [[NSMutableString alloc] init];
+    
+    [getScreenNameQuery
+     observeEventType:FIRDataEventTypeValue
+     withBlock:^(FIRDataSnapshot *snapshot) {
+         if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
+             completion((NSDictionary*)snapshot.value);
+         }
+     }];
+    
+    return retrieveScreenName;
+}
+
 
 -(NSString *)retrieveScreenName {
     FIRUser *userAuth = [FIRAuth auth].currentUser;
@@ -131,18 +189,46 @@
     NSMutableString *retrieveScreenName = [[NSMutableString alloc] init];
     
     [getScreenNameQuery
-        observeEventType:FIRDataEventTypeValue
-        withBlock:^(FIRDataSnapshot *snapshot) {
-            if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
-
-                self.userScreenName = snapshot.value[@"username"];
-
-                [self.upvc viewWillAppear:YES];
-            }
-        }];
+     observeEventType:FIRDataEventTypeValue
+     withBlock:^(FIRDataSnapshot *snapshot) {
+         if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
+             
+             self.userScreenName = snapshot.value[@"username"];
+             
+             [self.upvc viewWillAppear:YES];
+         }
+     }];
     
     return retrieveScreenName;
 }
+
+
+-(NSString *)retrievePhotoUrlWithUID:(NSString *)uid andCompletion:(RetrievalCompletionBlock)completion {
+    FIRUser *userAuth = [FIRAuth auth].currentUser;
+    self.ref = [[FIRDatabase database] reference];
+    NSMutableString *retrievePhotoString = [[NSMutableString alloc] init];
+    FIRDatabaseQuery *getPhotoStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", uid]] queryLimitedToFirst:10];
+    
+    [getPhotoStringQuery
+     observeEventType:FIRDataEventTypeValue
+     withBlock:^(FIRDataSnapshot *snapshot) {
+         if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
+             completion((NSDictionary*)snapshot.value);
+             /*
+              self.userImageString = snapshot.value[@"profile_picture"];
+              NSLog(@"picture url %@", self.userImageString);
+              
+              
+              
+              [self.upvc viewWillAppear:YES];
+              */
+         }
+     }];
+    
+    
+    return retrievePhotoString;
+}
+
 
 -(NSString *)retrievePhotoUrl {
     FIRUser *userAuth = [FIRAuth auth].currentUser;
@@ -154,11 +240,11 @@
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
          if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
-
+             
              self.userImageString = snapshot.value[@"profile_picture"];
              NSLog(@"picture url %@", self.userImageString);
              
-            
+             
              
              [self.upvc viewWillAppear:YES];
          }
@@ -168,5 +254,25 @@
     return retrievePhotoString;
 }
 
-
+-(void)retrieveUserWithUID:(NSString *)uid andCompletion:(UserRetrievalCompletionBlock)completion {
+    User *theUser = [[User alloc] init];
+    
+    self.ref = [[FIRDatabase database] reference];
+    FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", uid]] queryLimitedToFirst:10];
+    
+    [getUserInfoQuery
+     observeEventType:FIRDataEventTypeValue
+     withBlock:^(FIRDataSnapshot *snapshot) {
+         if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
+             
+             theUser.profilePictureURL = snapshot.value[@"profile_picture"];
+             theUser.username = snapshot.value[@"username"];
+             theUser.description = snapshot.value[@"description"];
+             theUser.email = snapshot.value[@"email"];
+             // here you'd start downloading the profile pic and save it as UIImage into profilePicture.
+             
+             completion(theUser);
+         }
+     }];
+}
 @end

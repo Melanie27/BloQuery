@@ -10,23 +10,5 @@
 
 @implementation User
 
-- (instancetype) initWithDictionary:(NSDictionary *)userDictionary {
-    self = [super init];
-    
-    if (self) {
-        //self.idNumber = userDictionary[@"uid"];
-        //self.userEmail = userDictionary[@"email"];
-        //self.userDescription = userDictionary[@"description"];
-        
-        NSString *profileURLString = userDictionary[@"profile_picture"];
-        NSURL *profileURL = [NSURL URLWithString:profileURLString];
-        
-        if (profileURL) {
-            //self.profilePictureURL = profileURL;
-        }
-    }
-    
-    return self;
-}
 
 @end

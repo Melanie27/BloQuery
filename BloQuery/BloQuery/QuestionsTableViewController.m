@@ -17,6 +17,8 @@
 #import "ComposeAnswerViewController.h"
 #import "UserProfileViewController.h"
 #import "SCLAlertView.h"
+#import "User.h"
+
 @import Firebase;
 @import FirebaseDatabase;
 
@@ -147,12 +149,8 @@
     button.tag = indexPath.row;
     cell.accessoryView = button;
     
-    //TODO set correct image on profile view
-    if ([[BLCDataSource sharedInstance] userImage]) {
-        self.profilePhoto.image = [[BLCDataSource sharedInstance] userImage];
-        
-    }
-    //NSLog(@"image %@", self.profilePhoto.image);
+    
+    
     return cell;
     
 }
@@ -165,11 +163,19 @@
     self.questionAddingTo = [BLCDataSource sharedInstance].questions[row];
     ds.questionNumber = row;
     ds.question = self.questionAddingTo;
+
+}
+
+#pragma mark - Tap the Profile Image on a given Question
+-(IBAction)didTapProfilePhoto:(id)sender {
     
-   
-        
+        //BLCDataSource *ds = [BLCDataSource sharedInstance];
     
-    
+        //UIButton *theButton = (UIButton *)sender;
+        //self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
+       //ds.questionNumber = theButton.tag;
+       //ds.question = self.questionAddingTo;
+        //[self performSegueWithIdentifier:@"viewProfile" sender:self];
 }
 
 
@@ -205,9 +211,13 @@
     } else if ([segue.identifier isEqualToString:@"updatePofile"]) {
         //UserProfileViewController *userProfileVC = (UserProfileViewController*)segue.destinationViewController;
 
+    } else if ([segue.identifier isEqualToString:@"viewProfile"]) {
+                NSLog(@"view a profile view controller");
+
     }
-    
 }
+    
+
 
 
 

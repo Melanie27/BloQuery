@@ -6,10 +6,15 @@
 //  Copyright © 2016 Bloc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface User : NSObject
 
- - (instancetype) initWithDictionary:(NSDictionary *)userDictionary;
+@property (nonatomic, strong) NSString *uid;
+@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *profilePictureURL;
+@property (nonatomic, strong) UIImage *profilePicture;
 
 @end

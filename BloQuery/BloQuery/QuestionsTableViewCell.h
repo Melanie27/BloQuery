@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class Question, QuestionsTableViewCell;
+@class Question, QuestionsTableViewCell, User;
 
 @protocol QuestionsTableViewCellDelegate <NSObject>
 
@@ -19,6 +19,9 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *questionTextView;
 @property (nonatomic, strong) Question *question;
+@property (nonatomic, strong) User *asker;
+@property (nonatomic, strong) UIButton *profilePhoto;
+
 @property (nonatomic, weak) id <QuestionsTableViewCellDelegate> delegate;
 
 @end

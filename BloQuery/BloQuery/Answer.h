@@ -12,4 +12,5 @@
 
 @property (nonatomic, strong) NSString *answerText;
 @property (nonatomic, strong) NSString *temporaryAnswer;
+//@property (nonatomic, strong) NSString *answererUID;
 @end

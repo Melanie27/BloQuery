@@ -15,6 +15,10 @@
 @class UserProfileViewController;
 @class Question;
 @class Answer;
+@class User;
+
+typedef void(^RetrievalCompletionBlock)(NSDictionary *snapshotValue);
+typedef void(^UserRetrievalCompletionBlock)(User *user);
 
 @interface BLCDataSource : NSObject
 
@@ -42,7 +46,11 @@
 -(NSString *)retrieveQuestions;
 -(NSString *)retrieveAnswers;
 -(NSString *)retrieveDescription;
+-(NSString *)retrieveDescriptionWithUID:(NSString*)uid andCompletion:(RetrievalCompletionBlock)completion;
 -(NSString *)retrieveScreenName;
+-(NSString *)retrieveScreenNameWithUID:(NSString*)uid andCompletion:(RetrievalCompletionBlock)completion;
 -(NSString *)retrievePhotoUrl;
+-(NSString *)retrievePhotoUrlWithUID:(NSString*)uid andCompletion:(RetrievalCompletionBlock)completion;
+-(void)retrieveUserWithUID:(NSString *)uid andCompletion:(UserRetrievalCompletionBlock)completion;
 
 @end

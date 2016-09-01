@@ -12,5 +12,7 @@
 
 
 @property (nonatomic, strong) NSString *questionText;
+@property (nonatomic, strong) NSString *askerUID;
+
 - (NSString *) newQuestion;
 @end
