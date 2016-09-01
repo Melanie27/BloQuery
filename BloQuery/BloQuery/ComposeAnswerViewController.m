@@ -84,7 +84,12 @@
     [answersQuery observeSingleEventOfType:FIRDataEventTypeValue
                          withBlock:^(FIRDataSnapshot *snapshot) {
                              self.answers = @[];
-                             for (NSString *a in (NSArray*)snapshot.value) {
+                             
+                             NSArray *answerList = (NSArray*)snapshot.value;
+                             if (!(answerList && [answerList isKindOfClass:[NSArray class]])) {
+                                 answerList = @[];
+                             }
+                             for (NSString *a in answerList) {
                                  Answer *answer = [[Answer alloc] init];
                                  answer.answerText = a;
                                  self.answers = [self.answers arrayByAddingObject:answer];
@@ -100,11 +105,16 @@
 }
 
 -(void)sendToFireBase {
-   
+   FIRUser *userAuth = [FIRAuth auth].currentUser;
     NSDictionary *childUpdates = @{
-                                   [NSString stringWithFormat:@"/questions/%ld/answers/%@", (long)self.questionNumber, self.answerNumberString]: self.textView.text
+                                   [NSString stringWithFormat:@"/questions/%ld/answers/%@", (long)self.questionNumber, self.answerNumberString]: self.textView.text,
+                                   //TODO not sure about syntax here
+                                   //[NSString stringWithFormat:@"/questions/%ld/answers/%@/UID/", (long)self.questionNumber, self.answerNumberString]:userAuth.uid
                                    };
+    
+    
     [_ref updateChildValues:childUpdates];
+    NSLog(@"why wont uid update for answers?");
 
 }
 

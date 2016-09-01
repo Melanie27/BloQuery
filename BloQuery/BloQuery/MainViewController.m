@@ -76,13 +76,11 @@ static NSString *const kChangePasswordText = @"Change Password";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.passwordField.secureTextEntry = YES;
-    //self.view.backgroundColor = [UIColor whiteColor];
 
 }
 
 - (void) viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-
 
 }
 
@@ -95,7 +93,7 @@ static NSString *const kChangePasswordText = @"Change Password";
 - (IBAction)didTapEmailLogin:(id)sender {
     //keep this here for now so don't have to login every time
     [self.questionsButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-   
+    
     //comment this in later
     /*[self showSpinner:^{
         // [START headless_email_auth]
@@ -104,13 +102,12 @@ static NSString *const kChangePasswordText = @"Change Password";
                              completion:^(FIRUser *user, NSError *error) {
                                  // [START_EXCLUDE]
                                  [self hideSpinner:^{
-                                     NSLog(@"success");
+                                     
                                      if (error) {
                                          [self showMessagePrompt:error.localizedDescription];
                                          return;
                                      }
-                                     //[self.navigationController popViewControllerAnimated:YES];
-                                     //[self.navigationController pushViewController:answersVC animated:YES];
+                                     NSLog(@"success2, %@", user);
                                      [self.questionsButton sendActionsForControlEvents:UIControlEventTouchUpInside];
                                  }];
                                  // [END_EXCLUDE]
@@ -444,7 +441,7 @@ didSignInForUser:(GIDGoogleUser *)user
 
 - (void)setTitleDisplay: (FIRUser *)user {
     if (user) {
-        self.navigationItem.title = [NSString stringWithFormat:@"Welcome %@", user.displayName];
+        self.navigationItem.title = [NSString stringWithFormat:@"Welcome %@", user.email];
     } else {
         self.navigationItem.title = @"BloQuery Authentication";
        

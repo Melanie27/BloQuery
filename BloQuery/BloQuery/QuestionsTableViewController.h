@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class Question;
 @import Firebase;
 @import FirebaseDatabase;
@@ -17,6 +18,14 @@
 @property (nonatomic, assign) NSInteger questionNumber;
 
 - (IBAction)didTapQuestionView:(id)sender;
+
+// Custom initialization, custom nav bar
+//profile button
+@property (nonatomic, weak ) IBOutlet UIBarButtonItem  *profileImageButton;
+
+@property (strong, nonatomic) IBOutlet UIImageView *profilePhoto;
+
+
 
 //unwind segue implementation
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue; 

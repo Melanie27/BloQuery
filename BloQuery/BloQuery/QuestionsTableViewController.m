@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "QuestionsTableViewController.h"
 #import "BLCDataSource.h"
 #import "Question.h"
@@ -14,6 +15,7 @@
 #import "QuestionFullScreenViewController.h"
 #import "AnswersTableViewController.h"
 #import "ComposeAnswerViewController.h"
+#import "UserProfileViewController.h"
 #import "SCLAlertView.h"
 @import Firebase;
 @import FirebaseDatabase;
@@ -51,25 +53,38 @@
     [[BLCDataSource sharedInstance] retrieveQuestions];
 
     // Custom initialization, custom nav bar
-    UIImage *logo = [UIImage imageNamed:@"logo.png"];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:logo];
-    UIBarButtonItem *imageButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    self.navigationItem.leftBarButtonItem = imageButton;
+    UIImage *profileImage = [UIImage imageNamed:@"logo.png"];
+    UIImageView *profileImageView = [[UIImageView alloc] initWithImage:profileImage];
+    UIBarButtonItem *profileImageButton = [[UIBarButtonItem alloc] initWithCustomView:profileImageView];
+    self.navigationItem.leftBarButtonItem = profileImageButton;
     
     UIImage *iconAsk = [UIImage imageNamed:@"iconAsk.png"];
     UIImageView *askImageView = [[UIImageView alloc] initWithImage:iconAsk];
     UIBarButtonItem *askImageButton = [[UIBarButtonItem alloc] initWithCustomView:askImageView];
     self.navigationItem.rightBarButtonItem = askImageButton;
-    self.navigationItem.title = @"BloQuery";
+    self.navigationItem.title = @"BloQuery Questions";
     
     
     //add tap gesture to right nav button
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addQuestionFired:)];
     [askImageView addGestureRecognizer:tapGes];
     
+    
+    //add tap gesture to profile nav button
+    UITapGestureRecognizer *tappedProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(customizeProfileFired:)];
+    [profileImageView addGestureRecognizer:tappedProfile];
    
     
 }
+
+-(void)customizeProfileFired:(UITapGestureRecognizer*)sender {
+    
+        UserProfileViewController *userProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"profileView"];
+        
+        [self.navigationController pushViewController:userProfileVC animated:YES];
+    }
+    
+    
 
 -(void)addQuestionFired:(UITapGestureRecognizer*)sender {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
@@ -85,23 +100,23 @@
     //TODO question number is always zero
     NSArray *questionsArray = [BLCDataSource sharedInstance].questions;
     [BLCDataSource sharedInstance].questionNumber = [questionsArray indexOfObject:_question];
-    NSLog (@"questionCount %ld", (unsigned long)[BLCDataSource sharedInstance].questions.count);
-    NSLog(@"questionNumber %ld", (long)self.questionNumber);
+   
+   
     [alert alertIsDismissed:^{
         
         NSString *code = [postQuestionTextField.text copy];
-        NSLog(@"capture new question %@", code);
         self.ref = [[FIRDatabase database] reference];
+        FIRUser *userAuth = [FIRAuth auth].currentUser;
         NSDictionary *childUpdates = @{
-                                       //TODO set this url up with DB
-                                       [NSString stringWithFormat:@"/questions/%ld/question/", (unsigned long)[BLCDataSource sharedInstance].questions.count]:code
+                                       
+                                       [NSString stringWithFormat:@"/questions/%ld/question/", (unsigned long)[BLCDataSource sharedInstance].questions.count]:code,
+                                       [NSString stringWithFormat:@"/questions/%ld/UID/", (unsigned long)[BLCDataSource sharedInstance].questions.count]:userAuth.uid
                                        };
+       
         [_ref updateChildValues:childUpdates];
+        
+        
     }];
-    
-    
-    
-    
 }
 
 
@@ -132,6 +147,12 @@
     button.tag = indexPath.row;
     cell.accessoryView = button;
     
+    //TODO set correct image on profile view
+    if ([[BLCDataSource sharedInstance] userImage]) {
+        self.profilePhoto.image = [[BLCDataSource sharedInstance] userImage];
+        
+    }
+    //NSLog(@"image %@", self.profilePhoto.image);
     return cell;
     
 }
@@ -144,6 +165,10 @@
     self.questionAddingTo = [BLCDataSource sharedInstance].questions[row];
     ds.questionNumber = row;
     ds.question = self.questionAddingTo;
+    
+   
+        
+    
     
 }
 
@@ -177,6 +202,9 @@
         
     } else if([segue.identifier isEqualToString:@"showAnswers"]){
         
+    } else if ([segue.identifier isEqualToString:@"updatePofile"]) {
+        //UserProfileViewController *userProfileVC = (UserProfileViewController*)segue.destinationViewController;
+
     }
     
 }

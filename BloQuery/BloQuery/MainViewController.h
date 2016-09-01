@@ -21,6 +21,8 @@
 
 - (IBAction)didTapSignOut:(id)sender;
 
+//-(IBAction)setDisplayName:(id)sender;
+
  
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;

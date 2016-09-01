@@ -6,12 +6,13 @@
 //  Copyright © 2016 Bloc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 @import FirebaseDatabase;
 
 @class QuestionsTableViewController;
 @class ComposeAnswerViewController;
 @class AnswersTableViewController;
+@class UserProfileViewController;
 @class Question;
 @class Answer;
 
@@ -29,12 +30,19 @@
 @property (nonatomic, weak) QuestionsTableViewController *qtvc;
 @property (nonatomic, weak) AnswersTableViewController *atvc;
 @property (nonatomic, weak) ComposeAnswerViewController *cavc;
+@property (nonatomic, weak) UserProfileViewController *upvc;
 
-//Why Are these not accessable from ComposeAnswerViewController?
+
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, assign) NSInteger questionNumber;
-
+@property (strong) UIImage *userImage;
+@property (nonatomic, strong) NSString *userDesc;
+@property (nonatomic, weak) NSString *userScreenName;
+@property (nonatomic, weak) NSString *userImageString;
 -(NSString *)retrieveQuestions;
 -(NSString *)retrieveAnswers;
+-(NSString *)retrieveDescription;
+-(NSString *)retrieveScreenName;
+-(NSString *)retrievePhotoUrl;
 
 @end
