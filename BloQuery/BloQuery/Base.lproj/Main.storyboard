@@ -129,7 +129,7 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" keyboardDismissMode="interactive" text="Tell us a bit about yourself and save at the bottom." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2PY-y7-hlP">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" keyboardDismissMode="interactive" text="Tell us a bit about yourself and press Enter" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2PY-y7-hlP">
                                         <rect key="frame" x="0.0" y="37" width="290" height="128"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
