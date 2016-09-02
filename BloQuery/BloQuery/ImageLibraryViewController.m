@@ -164,47 +164,6 @@
     return cell;
 }
 
-
-//downloading
-
- /*- (void) downloadImageForUser{
-     NSLog(@"download from Firebase");
-     self.storage = [FIRStorage storage];
-     NSURL *localURL = [NSURL URLWithString:@"/Users/melaniemcganney/Library/Developer/CoreSimulator/Devices/0C716D6F-1315-49F0-8AE3-17D8528B0A5D/data/Media/DCIM/100APPLE/"];
-     //create reference to file
-     //FIRStorage *storage = [self.storage reference];
-     FIRStorageReference *storageRef = [self.storage referenceForURL:@"gs://bloquery-e361d.appspot.com/profilePhotos/"];
-     
-     //create a reference with an initial file path and name
-     FIRStorageReference *pathReference = [self.storage referenceWithPath:@"profilePhotos/profile2.jpg"];
-     //NSLog(@"path ref %@", pathReference);
-     
-     //create a reference from a Google Cloud Storage URI
-     FIRStorageReference *gsReference = [self.storage referenceForURL:@"gs://bloquery-e361d.appspot.com/profilePhotos/profile2.jpg"];
-     //NSLog(@"cloud ref %@", gsReference);
-     
-     FIRStorage *profileRef = [storageRef child:@"profilePhotos/profile2.jpg"];
-     //NSLog(@"profile ref %@", profileRef);
-     // Fetch the download URL
-     
-     // Start downloading a file
-     FIRStorageDownloadTask *downloadTask = [[storageRef child:@"profilePhotos/profile2.jpg"] writeToFile:localURL];
-     NSLog(@"download %@", downloadTask);
-     
-     
-
-     
-     //FIRStorageReference *storageRef = [self.storage referenceForURL:@"gs://bloquery-e361d.appspot.com"];
-     //NSURL *localFile = [info objectForKey:@"PHImageFileURLKey"];
-     //NSLog(@"local file %@", localFile);
-     //https://firebasestorage.googleapis.com/v0/b/bloquery-e361d.appspot.com/o/profilePhotos%2FbloProfile.jpg?alt=media&token=fc17f51b-0e71-45c2-8e65-4f4024ea494e
- }*/
-
-/*-(void) uploadSelectedImageForUser {
-    NSLog(@"upload to Firebase");
-    NSURL *localURL = [NSURL URLWithString:@"/Users/melaniemcganney/Library/Developer/CoreSimulator/Devices/0C716D6F-1315-49F0-8AE3-17D8528B0A5D/data/Media/DCIM/100APPLE/"];
-}*/
-
 #pragma mark <UICollectionViewDelegate>
 
 
@@ -212,9 +171,6 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
      FIRUser *userAuth = [FIRAuth auth].currentUser;
      self.ref = [[FIRDatabase database] reference];
-    
-    
-    //[self downloadImageForUser];
     
     PHAsset *asset = nil;
     
@@ -240,30 +196,27 @@
             NSString *localURLString = [localURL path];
              NSLog(@"string %@", localURLString);
              NSString *key = localURLString;
+             //extract file name
+             NSString *theFileName = [[key lastPathComponent] stringByDeletingPathExtension];
             
              
-             //UPLOAD TO FBI
+             //UPLOAD TO FB
             FIRStorage *storage = [FIRStorage storage];
              // Create a storage reference from our storage service
-             FIRStorageReference *storageRef = [storage referenceForURL:@"gs://bloquery-e361d.appspot.com"];
+             FIRStorageReference *storageRef = [storage referenceForURL:@"gs://bloquery-e361d.appspot.com/profilePhotos"];
              
-             // Create a reference to "profile10.jpg" //this is where we will upload
-             FIRStorageReference *profileRef = [storageRef child:@"profilePhotos/profile11.jpg"];
-             
-             // Upload the file to the path "images/rivers.jpg"
+             FIRStorageReference *profileRef = [storageRef child:theFileName];
              FIRStorageUploadTask *uploadTask = [profileRef putFile:localURL metadata:nil completion:^(FIRStorageMetadata* metadata, NSError* error) {
                  if (error != nil) {
                      // Uh-oh, an error occurred!
-                     NSLog(@"error");
+                     NSLog(@"error %@", error);
                  } else {
                      // Metadata contains file metadata such as size, content-type, and download URL.
                      NSURL *downloadURL = metadata.downloadURL;
                      NSString *downloadURLString = [ downloadURL absoluteString];
-                     
+                     NSLog(@"downloadURLString %@",downloadURLString );
                     
-                     
-                     
-                      //push the downloadURL to database
+                      //push the selected photo downloadURL to database
                      FIRDatabaseQuery *pathStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", userAuth.uid]] queryLimitedToFirst:1000];
                      
                      [pathStringQuery
@@ -278,14 +231,14 @@
                           
                       }];
                      
-                     if (userAuth != nil) {
+                     //if (userAuth != nil) {
                          // User is signed in.
                          
                          NSDictionary *childUpdates = @{[NSString stringWithFormat:@"/userData/%@/profile_picture/", userAuth.uid]:downloadURLString};
                          
                          [_ref updateChildValues:childUpdates];
                          
-                     }
+                     //}
                  }
              }];
 
