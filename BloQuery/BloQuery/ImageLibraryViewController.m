@@ -192,53 +192,45 @@
          if ([info objectForKey:@"PHImageFileURLKey"]) {
           
              NSURL *localURL = [info objectForKey:@"PHImageFileURLKey"];
-             
-            NSString *localURLString = [localURL path];
-             NSLog(@"string %@", localURLString);
+             NSString *localURLString = [localURL path];
              NSString *key = localURLString;
-             //extract file name
              NSString *theFileName = [[key lastPathComponent] stringByDeletingPathExtension];
             
              
              //UPLOAD TO FB
-            FIRStorage *storage = [FIRStorage storage];
-             // Create a storage reference from our storage service
+             FIRStorage *storage = [FIRStorage storage];
              FIRStorageReference *storageRef = [storage referenceForURL:@"gs://bloquery-e361d.appspot.com/profilePhotos"];
-             
              FIRStorageReference *profileRef = [storageRef child:theFileName];
+             
              FIRStorageUploadTask *uploadTask = [profileRef putFile:localURL metadata:nil completion:^(FIRStorageMetadata* metadata, NSError* error) {
                  if (error != nil) {
                      // Uh-oh, an error occurred!
-                     NSLog(@"error %@", error);
+                     //NSLog(@"error %@", error);
                  } else {
                      // Metadata contains file metadata such as size, content-type, and download URL.
                      NSURL *downloadURL = metadata.downloadURL;
                      NSString *downloadURLString = [ downloadURL absoluteString];
-                     NSLog(@"downloadURLString %@",downloadURLString );
                     
-                      //push the selected photo downloadURL to database
+                      //push the selected photo to database
                      FIRDatabaseQuery *pathStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", userAuth.uid]] queryLimitedToFirst:1000];
                      
-                     [pathStringQuery
+                    [pathStringQuery
                       observeEventType:FIRDataEventTypeValue
                       withBlock:^(FIRDataSnapshot *snapshot) {
-                          
+                          //TODO - not seeing the correct image
                           static NSInteger imageViewTag = 54321;
                           UIImageView *imgView = (UIImageView*)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:imageViewTag];
                           UIImage *img = imgView.image;
                           [[BLCDataSource sharedInstance] setUserImage:img];
                           
                           
-                      }];
+                    }];
                      
-                     //if (userAuth != nil) {
-                         // User is signed in.
+                    NSDictionary *childUpdates = @{[NSString stringWithFormat:@"/userData/%@/profile_picture/", userAuth.uid]:downloadURLString};
                          
-                         NSDictionary *childUpdates = @{[NSString stringWithFormat:@"/userData/%@/profile_picture/", userAuth.uid]:downloadURLString};
+                    [_ref updateChildValues:childUpdates];
                          
-                         [_ref updateChildValues:childUpdates];
-                         
-                     //}
+
                  }
              }];
 

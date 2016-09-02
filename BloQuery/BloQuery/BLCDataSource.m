@@ -240,29 +240,29 @@
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
          if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
-             
+             //THIS IS THE STRING TO THE IMAGE WE WANT TO SEE
              self.userImageString = snapshot.value[@"profile_picture"];
-             NSLog(@"picture url %@", self.userImageString);
-             //NSURL *userImage = [NSURL URLWithString:self.userImageString];
-             
-             //create references
+             //NSLog(@"picture url %@", self.userImageString);
+             NSURL *userImage = [NSURL URLWithString:self.userImageString];
+             NSData *imageData = [NSData dataWithContentsOfURL:userImage];
+             self.userImage = [UIImage imageWithData:imageData];
+            
              FIRStorage *storage = [FIRStorage storage];
-             FIRStorageReference *storageRef = [storage referenceForURL:@"gs://bloquery-e361d.appspot.com"];
-             // TODO - this reference need to be dynamic
-             //profile ref should equal the string that has been uploaded into db: https://firebasestorage.googleapis.com/v0/b/bloquery-e361d.appspot.com/o/profilePhotos%2Fprofile11.jpg?alt=media&token=4ea4e8f2-360a-4eda-b94b-d226720292d7
-             FIRStorageReference *profileRef = [storageRef child:@"profilePhotos/profile10.jpg"];
-             
+             FIRStorageReference *storageRef = [storage referenceForURL:@"gs://bloquery-e361d.appspot.com/profilePhotos"];
+             FIRStorageReference *profileRef = [storageRef child:self.userImageString];
+            
              // Create local filesystem URL ... can this download to the same spot everytime? or does it need to by dynamic?
              NSURL *localURL = [NSURL URLWithString:@"file:///Users/melaniemcganney/Library/Developer/CoreSimulator/Devices/0C716D6F-1315-49F0-8AE3-17D8528B0A5D/data/Media/DCIM/100APPLE/IMG_0006.JPG"];
              // Download to the local filesystem
+             //use downloadURL
              FIRStorageDownloadTask *downloadTask = [profileRef writeToFile:localURL completion:^(NSURL* URL, NSError* error){
                  if (error != nil) {
                      // Uh-oh, an error occurred!
-                     NSLog(@"error");
+                     NSLog(@"error download %@", error);
                  } else {
                      
                     //save as UIImage
-                     NSData *imageData = [NSData dataWithContentsOfURL:localURL];
+                     NSData *imageData = [NSData dataWithContentsOfURL:userImage];
                      self.userImage = [UIImage imageWithData:imageData];
                  }
              }];
