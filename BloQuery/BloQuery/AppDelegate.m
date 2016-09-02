@@ -21,6 +21,7 @@
 // [START auth_import]
 @import Firebase;
 @import FirebaseDatabase;
+@import FirebaseStorage;
 // [END auth_import]
 
 //@import GoogleSignIn;
@@ -36,6 +37,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
    
     [FIRApp configure];
+    [FIRStorage storage];
+    
     
     /*self.ref = [[FIRDatabase database] reference];
     Firebase *myRootRef = [[Firebase alloc] initWithUrl:@"https://bloquery-e361d.firebaseio.com/"];

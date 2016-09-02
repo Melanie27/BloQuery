@@ -7,38 +7,30 @@
 //
 
 
+#import <Photos/Photos.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+
 #import "ImageLibraryViewController.h"
 #import "UserProfileViewController.h"
-#import <Photos/Photos.h>
 #import "BLCDataSource.h"
+#import "User.h"
 
 
 @import Firebase;
 @import FirebaseDatabase;
+@import FirebaseStorage;
 
 
 @interface ImageLibraryViewController () <CLUploaderDelegate>
 
 @property (nonatomic, strong) PHFetchResult *result;
 @property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (strong, nonatomic) FIRStorage *storage;
 
 
 @end
 
 @implementation ImageLibraryViewController
-
-- (void) uploaderSuccess:(NSDictionary*)result context:(id)context {
-    NSString* publicId = [result valueForKey:@"public_id"];
-    NSLog(@"Upload success. Public ID=%@, Full result=%@", publicId, result);
-}
-
-- (void) uploaderError:(NSString*)result code:(int) code context:(id)context {
-    NSLog(@"Upload error: %@, %d", result, code);
-}
-
-- (void) uploaderProgress:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite context:(id)context {
-    NSLog(@"Upload progress: %d/%d (+%d)", totalBytesWritten, totalBytesExpectedToWrite, bytesWritten);
-}
 
 -(instancetype) init {
     UICollectionViewFlowLayout *layout= [[UICollectionViewFlowLayout alloc] init];
@@ -172,6 +164,47 @@
     return cell;
 }
 
+
+//downloading
+
+ /*- (void) downloadImageForUser{
+     NSLog(@"download from Firebase");
+     self.storage = [FIRStorage storage];
+     NSURL *localURL = [NSURL URLWithString:@"/Users/melaniemcganney/Library/Developer/CoreSimulator/Devices/0C716D6F-1315-49F0-8AE3-17D8528B0A5D/data/Media/DCIM/100APPLE/"];
+     //create reference to file
+     //FIRStorage *storage = [self.storage reference];
+     FIRStorageReference *storageRef = [self.storage referenceForURL:@"gs://bloquery-e361d.appspot.com/profilePhotos/"];
+     
+     //create a reference with an initial file path and name
+     FIRStorageReference *pathReference = [self.storage referenceWithPath:@"profilePhotos/profile2.jpg"];
+     //NSLog(@"path ref %@", pathReference);
+     
+     //create a reference from a Google Cloud Storage URI
+     FIRStorageReference *gsReference = [self.storage referenceForURL:@"gs://bloquery-e361d.appspot.com/profilePhotos/profile2.jpg"];
+     //NSLog(@"cloud ref %@", gsReference);
+     
+     FIRStorage *profileRef = [storageRef child:@"profilePhotos/profile2.jpg"];
+     //NSLog(@"profile ref %@", profileRef);
+     // Fetch the download URL
+     
+     // Start downloading a file
+     FIRStorageDownloadTask *downloadTask = [[storageRef child:@"profilePhotos/profile2.jpg"] writeToFile:localURL];
+     NSLog(@"download %@", downloadTask);
+     
+     
+
+     
+     //FIRStorageReference *storageRef = [self.storage referenceForURL:@"gs://bloquery-e361d.appspot.com"];
+     //NSURL *localFile = [info objectForKey:@"PHImageFileURLKey"];
+     //NSLog(@"local file %@", localFile);
+     //https://firebasestorage.googleapis.com/v0/b/bloquery-e361d.appspot.com/o/profilePhotos%2FbloProfile.jpg?alt=media&token=fc17f51b-0e71-45c2-8e65-4f4024ea494e
+ }*/
+
+/*-(void) uploadSelectedImageForUser {
+    NSLog(@"upload to Firebase");
+    NSURL *localURL = [NSURL URLWithString:@"/Users/melaniemcganney/Library/Developer/CoreSimulator/Devices/0C716D6F-1315-49F0-8AE3-17D8528B0A5D/data/Media/DCIM/100APPLE/"];
+}*/
+
 #pragma mark <UICollectionViewDelegate>
 
 
@@ -180,13 +213,8 @@
      FIRUser *userAuth = [FIRAuth auth].currentUser;
      self.ref = [[FIRDatabase database] reference];
     
-    //set correct image on profile view
-    static NSInteger imageViewTag = 54321;
-    UIImageView *imgView = (UIImageView*)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:imageViewTag];
-    UIImage *img = imgView.image;
-    [[BLCDataSource sharedInstance] setUserImage:img];
-   
     
+    //[self downloadImageForUser];
     
     PHAsset *asset = nil;
     
@@ -207,36 +235,60 @@
          
          if ([info objectForKey:@"PHImageFileURLKey"]) {
           
-             NSURL *path = [info objectForKey:@"PHImageFileURLKey"];
-            NSString *pathString = [path path];
-             NSString *key = pathString;
+             NSURL *localURL = [info objectForKey:@"PHImageFileURLKey"];
+            NSString *localURLString = [localURL path];
+             NSString *key = localURLString;
             
-             //TODO - should this be a method in BLCDataSource?
-            FIRDatabaseQuery *pathStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", userAuth.uid]] queryLimitedToFirst:1000];
-             //NSLog(@"pathStringQuery %@", pathStringQuery);
-             [pathStringQuery
-              observeEventType:FIRDataEventTypeValue
-              withBlock:^(FIRDataSnapshot *snapshot) {
-                  //NSLog(@"snapshot %@", snapshot);
-                  static NSInteger imageViewTag = 54321;
-                  UIImageView *imgView = (UIImageView*)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:imageViewTag];
-                  UIImage *img = imgView.image;
-                  [[BLCDataSource sharedInstance] setUserImage:img];
-                  
-                  
-              }];
              
-             if (userAuth != nil) {
-                 // User is signed in.
-                
-                 NSDictionary *childUpdates = @{[NSString stringWithFormat:@"/userData/%@/profile_picture/", userAuth.uid]:key};
-                 
-                 [_ref updateChildValues:childUpdates];
-                 
-                 //set correct image on profile view
-                 
-                 
-             }
+             //UPLOAD TO FBI
+            FIRStorage *storage = [FIRStorage storage];
+             // Create a storage reference from our storage service
+             FIRStorageReference *storageRef = [storage referenceForURL:@"gs://bloquery-e361d.appspot.com"];
+             
+             // Create a reference to "profile10.jpg" //this is where we will upload
+             FIRStorageReference *profileRef = [storageRef child:@"profilePhotos/profile10.jpg"];
+             
+             // Upload the file to the path "images/rivers.jpg"
+             FIRStorageUploadTask *uploadTask = [profileRef putFile:localURL metadata:nil completion:^(FIRStorageMetadata* metadata, NSError* error) {
+                 if (error != nil) {
+                     // Uh-oh, an error occurred!
+                     NSLog(@"error");
+                 } else {
+                     // Metadata contains file metadata such as size, content-type, and download URL.
+                     NSURL *downloadURL = metadata.downloadURL;
+                     
+                     NSString *downloadURLString = [ downloadURL absoluteString];
+                     NSLog(@"download path %@", downloadURLString);
+                     
+                      //push the downloadURL into database
+                     FIRDatabaseQuery *pathStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", userAuth.uid]] queryLimitedToFirst:1000];
+                     
+                     [pathStringQuery
+                      observeEventType:FIRDataEventTypeValue
+                      withBlock:^(FIRDataSnapshot *snapshot) {
+                          
+                          static NSInteger imageViewTag = 54321;
+                          UIImageView *imgView = (UIImageView*)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:imageViewTag];
+                          UIImage *img = imgView.image;
+                          [[BLCDataSource sharedInstance] setUserImage:img];
+                          
+                          
+                      }];
+                     
+                     if (userAuth != nil) {
+                         // User is signed in.
+                         
+                         NSDictionary *childUpdates = @{[NSString stringWithFormat:@"/userData/%@/profile_picture/", userAuth.uid]:downloadURLString};
+                         
+                         [_ref updateChildValues:childUpdates];
+                         
+                     }
+                 }
+             }];
+
+            
+             
+            
                 
          }
      }];

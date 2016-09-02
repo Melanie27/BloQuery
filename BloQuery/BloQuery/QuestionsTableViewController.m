@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #import "QuestionsTableViewController.h"
 #import "BLCDataSource.h"
@@ -21,12 +22,14 @@
 
 @import Firebase;
 @import FirebaseDatabase;
+@import FirebaseStorage;
 
 
 @interface QuestionsTableViewController ()  <UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
  @property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (strong, nonatomic) FIRStorage *storageRef;
 
 @property (nonatomic, strong)Question *questionAddingTo;
 
@@ -75,14 +78,12 @@
     //add tap gesture to profile nav button
     UITapGestureRecognizer *tappedProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(customizeProfileFired:)];
     [profileImageView addGestureRecognizer:tappedProfile];
-   
     
 }
 
 -(void)customizeProfileFired:(UITapGestureRecognizer*)sender {
     
         UserProfileViewController *userProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"profileView"];
-        
         [self.navigationController pushViewController:userProfileVC animated:YES];
     }
     
@@ -149,8 +150,11 @@
     button.tag = indexPath.row;
     cell.accessoryView = button;
     
-    
-    
+    //SDImage stuff here
+    // Here we use the new provided sd_setImageWithURL: method to load the web image
+    //[cell.imageView sd_setImageWithURL:[NSURL URLWithString:@"http://www.domain.com/path/to/image.jpg"]
+                      //placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+
     return cell;
     
 }
