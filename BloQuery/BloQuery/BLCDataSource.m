@@ -244,7 +244,28 @@
              self.userImageString = snapshot.value[@"profile_picture"];
              NSLog(@"picture url %@", self.userImageString);
              
+             //create reference to file you want to download
+             FIRStorage *storage = [FIRStorage storage];
+             // Create a storage reference from our storage service
+             FIRStorageReference *storageRef = [storage referenceForURL:@"gs://bloquery-e361d.appspot.com"];
+             // Create a reference to "profile10.jpg" //this is where we will upload
+             FIRStorageReference *profileRef = [storageRef child:@"profilePhotos/profile10.jpg"];
              
+             // Create local filesystem URL
+             NSURL *localURL = [NSURL URLWithString:@"file:///Users/melaniemcganney/Library/Developer/CoreSimulator/Devices/0C716D6F-1315-49F0-8AE3-17D8528B0A5D/data/Media/DCIM/100APPLE/IMG_0006.JPG"];
+             // Download to the local filesystem
+             FIRStorageDownloadTask *downloadTask = [profileRef writeToFile:localURL completion:^(NSURL* URL, NSError* error){
+                 if (error != nil) {
+                     // Uh-oh, an error occurred!
+                     NSLog(@"error");
+                 } else {
+                     
+                    //save as UIImage
+                     NSData *imageData = [NSData dataWithContentsOfURL:localURL];
+                     self.userImage = [UIImage imageWithData:imageData];
+                 }
+             }];
+
              
              [self.upvc viewWillAppear:YES];
          }

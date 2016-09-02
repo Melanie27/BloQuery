@@ -236,7 +236,9 @@
          if ([info objectForKey:@"PHImageFileURLKey"]) {
           
              NSURL *localURL = [info objectForKey:@"PHImageFileURLKey"];
+             
             NSString *localURLString = [localURL path];
+             NSLog(@"string %@", localURLString);
              NSString *key = localURLString;
             
              
@@ -246,7 +248,7 @@
              FIRStorageReference *storageRef = [storage referenceForURL:@"gs://bloquery-e361d.appspot.com"];
              
              // Create a reference to "profile10.jpg" //this is where we will upload
-             FIRStorageReference *profileRef = [storageRef child:@"profilePhotos/profile10.jpg"];
+             FIRStorageReference *profileRef = [storageRef child:@"profilePhotos/profile11.jpg"];
              
              // Upload the file to the path "images/rivers.jpg"
              FIRStorageUploadTask *uploadTask = [profileRef putFile:localURL metadata:nil completion:^(FIRStorageMetadata* metadata, NSError* error) {
@@ -256,11 +258,12 @@
                  } else {
                      // Metadata contains file metadata such as size, content-type, and download URL.
                      NSURL *downloadURL = metadata.downloadURL;
-                     
                      NSString *downloadURLString = [ downloadURL absoluteString];
-                     NSLog(@"download path %@", downloadURLString);
                      
-                      //push the downloadURL into database
+                    
+                     
+                     
+                      //push the downloadURL to database
                      FIRDatabaseQuery *pathStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", userAuth.uid]] queryLimitedToFirst:1000];
                      
                      [pathStringQuery
