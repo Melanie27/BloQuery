@@ -56,6 +56,8 @@
     
     [BLCDataSource sharedInstance].qtvc = self;
     [[BLCDataSource sharedInstance] retrieveQuestions];
+    //[[BLCDataSource sharedInstance] retrieveUserWithUID:uid];
+    
 
     // Custom initialization, custom nav bar
     UIImage *profileImage = [UIImage imageNamed:@"logo.png"];

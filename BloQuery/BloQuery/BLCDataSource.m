@@ -258,7 +258,7 @@
              FIRStorageDownloadTask *downloadTask = [profileRef writeToFile:localURL completion:^(NSURL* URL, NSError* error){
                  if (error != nil) {
                      // Uh-oh, an error occurred!
-                     NSLog(@"error download %@", error);
+                     //NSLog(@"error download %@", error);
                  } else {
                      
                     //save as UIImage
@@ -292,6 +292,12 @@
              theUser.description = snapshot.value[@"description"];
              theUser.email = snapshot.value[@"email"];
              // here you'd start downloading the profile pic and save it as UIImage into profilePicture.
+             self.userImageString = snapshot.value[@"profile_picture"];
+             //NSLog(@"picture url %@", self.userImageString);
+             NSURL *userImage = [NSURL URLWithString:self.userImageString];
+             NSData *imageData = [NSData dataWithContentsOfURL:userImage];
+             theUser.profilePicture = [UIImage imageWithData:imageData];
+             NSLog(@"profile user %@", theUser.profilePicture );
              
              completion(theUser);
          }
