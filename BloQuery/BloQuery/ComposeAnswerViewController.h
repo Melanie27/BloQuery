@@ -24,6 +24,7 @@
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, assign) NSInteger questionNumber;
+@property (nonatomic, assign) NSInteger answerNumber;
 
 @property (nonatomic, weak) NSObject <ComposeAnswerViewControllerDelegate> *delegate;
 

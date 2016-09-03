@@ -101,12 +101,13 @@
          
          self.answers = @[];
          if (snapshot.value && [snapshot.value isKindOfClass:[NSArray class]]) {
-             for (NSString *a in (NSArray*)snapshot.value) {
+             NSLog(@"snapshot %@", snapshot.value);
+             /*for (NSString *a in (NSArray*)snapshot.value) {
                  Answer *answer = [[Answer alloc] init];
                  answer.answerText = a;
                  self.answers = [self.answers arrayByAddingObject:answer];
                  
-             }
+             }*/
          }
          [self.atvc.tableView reloadData];
          
@@ -242,33 +243,24 @@
          if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
              //THIS IS THE STRING TO THE IMAGE WE WANT TO SEE
              self.userImageString = snapshot.value[@"profile_picture"];
-             //NSLog(@"picture url %@", self.userImageString);
-             NSURL *userImage = [NSURL URLWithString:self.userImageString];
-             NSData *imageData = [NSData dataWithContentsOfURL:userImage];
-             self.userImage = [UIImage imageWithData:imageData];
-            
+             
              FIRStorage *storage = [FIRStorage storage];
-             FIRStorageReference *storageRef = [storage referenceForURL:@"gs://bloquery-e361d.appspot.com/profilePhotos"];
-             FIRStorageReference *profileRef = [storageRef child:self.userImageString];
+             FIRStorageReference *httpsReference = [storage referenceForURL:self.userImageString];
             
-             // Create local filesystem URL ... can this download to the same spot everytime? or does it need to by dynamic?
-             NSURL *localURL = [NSURL URLWithString:@"file:///Users/melaniemcganney/Library/Developer/CoreSimulator/Devices/0C716D6F-1315-49F0-8AE3-17D8528B0A5D/data/Media/DCIM/100APPLE/IMG_0006.JPG"];
-             // Download to the local filesystem
-             //use downloadURL
-             FIRStorageDownloadTask *downloadTask = [profileRef writeToFile:localURL completion:^(NSURL* URL, NSError* error){
+             [httpsReference downloadURLWithCompletion:^(NSURL* URL, NSError* error){
                  if (error != nil) {
-                     // Uh-oh, an error occurred!
-                     //NSLog(@"error download %@", error);
+                     NSLog(@"download url error");
                  } else {
-                     
-                    //save as UIImage
-                     NSData *imageData = [NSData dataWithContentsOfURL:userImage];
+                     NSLog(@"no download url error %@", URL);
+                     NSData *imageData = [NSData dataWithContentsOfURL:URL];
                      self.userImage = [UIImage imageWithData:imageData];
                  }
+                 
              }];
-
              
-             [self.upvc viewWillAppear:YES];
+            
+             
+             [self.upvc viewDidAppear:YES];
          }
      }];
     

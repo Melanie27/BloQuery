@@ -120,19 +120,14 @@
 - (void)viewDidAppear:(BOOL)animated {
     BLCDataSource *ds = [BLCDataSource sharedInstance];
     if ([ds userImage]) {
-        
-        //TODO  - keep testing photo
-        //self.profileURL = [[BLCDataSource sharedInstance] userImageString];
-        //self.profilePhoto.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.profileURL]]];
-        
         self.profilePhoto.image = [[BLCDataSource sharedInstance] userImage];
         
     }
     if ([ds userScreenName]) {
-    self.userName.text = [[BLCDataSource sharedInstance] userScreenName];
+        self.userName.text = [[BLCDataSource sharedInstance] userScreenName];
     }
     if ([ds userDesc]) {
-    self.userDescription.text = [BLCDataSource sharedInstance].userDesc;
+        self.userDescription.text = [BLCDataSource sharedInstance].userDesc;
     }
 }
 

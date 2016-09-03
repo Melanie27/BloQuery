@@ -56,9 +56,17 @@
     
     [BLCDataSource sharedInstance].qtvc = self;
     [[BLCDataSource sharedInstance] retrieveQuestions];
-    //[[BLCDataSource sharedInstance] retrieveUserWithUID:uid];
     
+    
+    //[someObject someMethodThatTakesABlock:^returnType (parameters) {...}];
+    //[[BLCDataSource sharedInstance] retrieveUserWithUID:uid
+                                          //withBlock:^(User *user)completion{
+                                              
+       // }];
+        
+   
 
+    
     // Custom initialization, custom nav bar
     UIImage *profileImage = [UIImage imageNamed:@"logo.png"];
     UIImageView *profileImageView = [[UIImageView alloc] initWithImage:profileImage];

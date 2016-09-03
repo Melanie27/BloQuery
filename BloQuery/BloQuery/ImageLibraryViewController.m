@@ -210,6 +210,7 @@
                      // Metadata contains file metadata such as size, content-type, and download URL.
                      NSURL *downloadURL = metadata.downloadURL;
                      NSString *downloadURLString = [ downloadURL absoluteString];
+                     
                     
                       //push the selected photo to database
                      FIRDatabaseQuery *pathStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", userAuth.uid]] queryLimitedToFirst:1000];
@@ -217,7 +218,7 @@
                     [pathStringQuery
                       observeEventType:FIRDataEventTypeValue
                       withBlock:^(FIRDataSnapshot *snapshot) {
-                          //TODO - not seeing the correct image
+                          //TODO - not seeing the correct image --WHAT IS THIS CODE DOING?? DO I NEED IT?
                           static NSInteger imageViewTag = 54321;
                           UIImageView *imgView = (UIImageView*)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:imageViewTag];
                           UIImage *img = imgView.image;
