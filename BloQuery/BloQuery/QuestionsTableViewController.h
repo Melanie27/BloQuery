@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class Question;
+@class User;
 @import Firebase;
 @import FirebaseDatabase;
 

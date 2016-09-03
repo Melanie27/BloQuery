@@ -48,14 +48,7 @@
 
 -(NSString *)retrieveQuestions {
     
-    
-    
-    
-    
-    
     self.ref = [[FIRDatabase database] reference];
-    
-    
     
     FIRDatabaseQuery *getQuestionQuery = [[self.ref queryOrderedByChild:@"/questions/"]queryLimitedToFirst:1000];
     NSMutableString *retrievedQuestions = [[NSMutableString alloc] init];
@@ -247,6 +240,7 @@
              FIRStorage *storage = [FIRStorage storage];
              FIRStorageReference *httpsReference = [storage referenceForURL:self.userImageString];
             
+             
              [httpsReference downloadURLWithCompletion:^(NSURL* URL, NSError* error){
                  if (error != nil) {
                      NSLog(@"download url error");
@@ -281,15 +275,30 @@
              
              theUser.profilePictureURL = snapshot.value[@"profile_picture"];
              theUser.username = snapshot.value[@"username"];
-             theUser.description = snapshot.value[@"description"];
+             //theUser.description = snapshot.value[@"description"];
              theUser.email = snapshot.value[@"email"];
-             // here you'd start downloading the profile pic and save it as UIImage into profilePicture.
+             
+             
+             
+             //TODO 9/4 here you'd start downloading the profile pic and save it as UIImage into profilePicture.
              self.userImageString = snapshot.value[@"profile_picture"];
-             //NSLog(@"picture url %@", self.userImageString);
-             NSURL *userImage = [NSURL URLWithString:self.userImageString];
-             NSData *imageData = [NSData dataWithContentsOfURL:userImage];
-             theUser.profilePicture = [UIImage imageWithData:imageData];
-             NSLog(@"profile user %@", theUser.profilePicture );
+            FIRStorage *storage = [FIRStorage storage];
+            FIRStorageReference *httpsReference = [storage referenceForURL:self.userImageString];
+                      
+                      
+            [httpsReference downloadURLWithCompletion:^(NSURL* URL, NSError* error){
+                if (error != nil) {
+                    NSLog(@"download url error");
+                } else {
+                    NSLog(@"no download url error %@", URL);
+                    NSData *imageData = [NSData dataWithContentsOfURL:URL];
+                    theUser.profilePicture = [UIImage imageWithData:imageData];
+                    NSLog(@"profile user %@", theUser.profilePicture );
+                }
+                          
+            }];
+                      
+ 
              
              completion(theUser);
          }

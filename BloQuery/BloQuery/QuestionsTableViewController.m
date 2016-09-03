@@ -53,16 +53,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    User *theUser = [[User alloc] init];
     [BLCDataSource sharedInstance].qtvc = self;
     [[BLCDataSource sharedInstance] retrieveQuestions];
     
     
-    //[someObject someMethodThatTakesABlock:^returnType (parameters) {...}];
-    //[[BLCDataSource sharedInstance] retrieveUserWithUID:uid
-                                          //withBlock:^(User *user)completion{
-                                              
-       // }];
+    [[BLCDataSource sharedInstance]retrieveUserWithUID:(NSString*)theUser.uid andCompletion:^(User *user) {
+        
+    }];
+    
+   
+     
         
    
 
