@@ -95,12 +95,12 @@
          self.answers = @[];
          if (snapshot.value && [snapshot.value isKindOfClass:[NSArray class]]) {
              NSLog(@"snapshot %@", snapshot.value);
-             /*for (NSString *a in (NSArray*)snapshot.value) {
+             for (NSString *a in (NSArray*)snapshot.value) {
                  Answer *answer = [[Answer alloc] init];
                  answer.answerText = a;
                  self.answers = [self.answers arrayByAddingObject:answer];
                  
-             }*/
+             }
          }
          [self.atvc.tableView reloadData];
          
@@ -134,7 +134,7 @@
 }
 
 -(NSString *)retrieveDescriptionWithUID:(NSString *)uid andCompletion:(RetrievalCompletionBlock)completion {
-    FIRUser *userAuth = [FIRAuth auth].currentUser;
+   
     self.ref = [[FIRDatabase database] reference];
     
     FIRDatabaseQuery *getDescQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", uid]] queryLimitedToFirst:10];
@@ -147,7 +147,7 @@
          if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
              completion((NSDictionary*)snapshot.value);
              
-             //             self.userDesc = snapshot.value[@"description"];
+                  NSLog (@"desc boo%@", self.userDesc = snapshot.value[@"description"]);
          }
          
          //        [self.upvc viewWillAppear:YES];
@@ -198,7 +198,7 @@
 
 
 -(NSString *)retrievePhotoUrlWithUID:(NSString *)uid andCompletion:(RetrievalCompletionBlock)completion {
-    FIRUser *userAuth = [FIRAuth auth].currentUser;
+    
     self.ref = [[FIRDatabase database] reference];
     NSMutableString *retrievePhotoString = [[NSMutableString alloc] init];
     FIRDatabaseQuery *getPhotoStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", uid]] queryLimitedToFirst:10];
@@ -264,38 +264,47 @@
 
 -(void)retrieveUserWithUID:(NSString *)uid andCompletion:(UserRetrievalCompletionBlock)completion {
     User *theUser = [[User alloc] init];
+    theUser.profilePicture;
+    //NSLog(@"userboo %@", theUser);
+   //NSLog(@"user uid %@", theUser.uid);
     
+    //QUERY DB FOR UID
+   
     self.ref = [[FIRDatabase database] reference];
-    FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", uid]] queryLimitedToFirst:10];
+    FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/YWrq5DwsJse46yZ3xNuefUUtYBL2"]] queryLimitedToFirst:10];
     
+   
+   
     [getUserInfoQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
          if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
-             
+             NSLog(@"snapshot %@", snapshot);
              theUser.profilePictureURL = snapshot.value[@"profile_picture"];
              theUser.username = snapshot.value[@"username"];
              //theUser.description = snapshot.value[@"description"];
              theUser.email = snapshot.value[@"email"];
+            
+            
              
              
+            
              
-             //TODO 9/4 here you'd start downloading the profile pic and save it as UIImage into profilePicture.
-             self.userImageString = snapshot.value[@"profile_picture"];
+             //TODO here you'd start downloading the profile pic and save it as UIImage into profilePicture.
+             
             FIRStorage *storage = [FIRStorage storage];
-            FIRStorageReference *httpsReference = [storage referenceForURL:self.userImageString];
-                      
-                      
+            FIRStorageReference *httpsReference = [storage referenceForURL:theUser.profilePictureURL];
+           
             [httpsReference downloadURLWithCompletion:^(NSURL* URL, NSError* error){
                 if (error != nil) {
-                    NSLog(@"download url error");
+                    //NSLog(@"download url error");
                 } else {
-                    NSLog(@"no download url error %@", URL);
+                    //NSLog(@"no download url error %@", URL);
                     NSData *imageData = [NSData dataWithContentsOfURL:URL];
                     theUser.profilePicture = [UIImage imageWithData:imageData];
-                    NSLog(@"profile user %@", theUser.profilePicture );
+                  
+                    
                 }
-                          
             }];
                       
  

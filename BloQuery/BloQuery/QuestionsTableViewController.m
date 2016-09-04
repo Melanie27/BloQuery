@@ -53,19 +53,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    User *theUser = [[User alloc] init];
+   
     [BLCDataSource sharedInstance].qtvc = self;
     [[BLCDataSource sharedInstance] retrieveQuestions];
     
-    
-    [[BLCDataSource sharedInstance]retrieveUserWithUID:(NSString*)theUser.uid andCompletion:^(User *user) {
-        
-    }];
-    
-   
-     
-        
-   
+     User *theUser = [[User alloc] init];
+    [self.profilePhoto setImage:theUser.profilePicture forState:UIControlStateNormal];
 
     
     // Custom initialization, custom nav bar
@@ -161,11 +154,15 @@
     button.tag = indexPath.row;
     cell.accessoryView = button;
     
-    //SDImage stuff here
-    // Here we use the new provided sd_setImageWithURL: method to load the web image
-    //[cell.imageView sd_setImageWithURL:[NSURL URLWithString:@"http://www.domain.com/path/to/image.jpg"]
-                      //placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-
+    //return the image for each user
+   
+    User *theUser = [[User alloc] init];
+    [[BLCDataSource sharedInstance]retrieveUserWithUID:(NSString*)theUser.uid andCompletion:^(User *user) {
+        NSLog(@"the user %@", theUser);
+        NSLog(@"profile photo url at each cell %@", theUser.profilePicture);
+    }];
+    //[cell.profilePhoto setImage:theUser.profilePicture forState:UIControlStateNormal];
+    
     return cell;
     
 }

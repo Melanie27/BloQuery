@@ -8,6 +8,8 @@
 
 #import "QuestionsTableViewCell.h"
 #import "Question.h"
+#import "User.h"
+#import "BLCDataSource.h"
 
 @interface QuestionsTableViewCell () <UIGestureRecognizerDelegate>
 
@@ -24,6 +26,11 @@
     }
     
     return self;
+}
+
+-(void)viewDidLoad {
+    
+    
 }
 
 
@@ -44,6 +51,15 @@
     [self.questionTextView sizeToFit];
     self.questionTextView.text = self.question.questionText;
     
+    [self getUserByQuestion];
+    
+}
+
+-(void)getUserByQuestion {
+    User *theUser = [[User alloc] init];
+    [[BLCDataSource sharedInstance]retrieveUserWithUID:(NSString*)theUser.uid andCompletion:^(User *user) {
+        
+    }];
 }
 
 
