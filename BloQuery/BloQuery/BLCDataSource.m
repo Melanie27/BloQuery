@@ -84,27 +84,38 @@
     self.ref = [[FIRDatabase database] reference];
     //Database work here
     
-    FIRDatabaseQuery *getAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
+    FIRDatabaseQuery *getAnswersQuery2 = [[self.ref queryOrderedByChild:[NSString stringWithFormat:@"/questions/%ld/answers/0/answer", (long)self.questionNumber]] queryLimitedToFirst:1000];
+    NSLog(@"answer %@", getAnswersQuery2);
     
+
     NSMutableString *retrieveAnswers = [[NSMutableString alloc] init];
     
-    [getAnswersQuery
+    [getAnswersQuery2
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
          
          self.answers = @[];
-         if (snapshot.value && [snapshot.value isKindOfClass:[NSArray class]]) {
-             NSLog(@"snapshot %@", snapshot.value);
-             /*for (NSString *a in (NSArray*)snapshot.value) {
-                 Answer *answer = [[Answer alloc] init];
-                 answer.answerText = a;
-                 self.answers = [self.answers arrayByAddingObject:answer];
-                 
-             }*/
+        
+         NSLog(@"snapshot count %u", [snapshot.value[@"answers"] count]);
+         NSLog(@"snapshot %@", snapshot.value[@"answers"]);
+         NSLog(@"snapshot string %@", snapshot.value[@"questions/0/answers/0/answer"]);
+         
+         //TODO Get the number of answers for each "answers" section
+         NSInteger numAnswers = [snapshot.value[@"answers"] count];
+         //LOOP through that number and create an array of them
+         
+         for (NSInteger i = 0; i < numAnswers; i++) {
+             Answer *answer = [[Answer alloc] init];
+             answer.answerText =    snapshot.value[@"answers"][i][@"answer"];
+            
+            self.answers = [self.answers arrayByAddingObject:answer];
          }
-         [self.atvc.tableView reloadData];
+
+         
+         
          
      }];
+    
     
     return retrieveAnswers;
 }
@@ -160,8 +171,10 @@
 
 
 -(NSString *)retrieveScreenNameWithUID:(NSString *)uid andCompletion:(RetrievalCompletionBlock)completion {
+    User *theUser = [[User alloc] init];
+     NSLog(@"theUser %@", theUser.uid);
     self.ref = [[FIRDatabase database] reference];
-    FIRDatabaseQuery *getScreenNameQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", uid]] queryLimitedToFirst:10];
+    FIRDatabaseQuery *getScreenNameQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", theUser.uid]] queryLimitedToFirst:10];
     NSMutableString *retrieveScreenName = [[NSMutableString alloc] init];
     
     [getScreenNameQuery
@@ -169,6 +182,7 @@
      withBlock:^(FIRDataSnapshot *snapshot) {
          if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
              completion((NSDictionary*)snapshot.value);
+             NSLog(@"screen name snapshot %@", snapshot);
          }
      }];
     
@@ -198,24 +212,23 @@
 
 
 -(NSString *)retrievePhotoUrlWithUID:(NSString *)uid andCompletion:(RetrievalCompletionBlock)completion {
-    FIRUser *userAuth = [FIRAuth auth].currentUser;
+    User *theUser = [[User alloc] init];
+    NSLog(@"view all uid %@", theUser);
     self.ref = [[FIRDatabase database] reference];
     NSMutableString *retrievePhotoString = [[NSMutableString alloc] init];
-    FIRDatabaseQuery *getPhotoStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", uid]] queryLimitedToFirst:10];
-    
+    FIRDatabaseQuery *getPhotoStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/YWrq5DwsJse46yZ3xNuefUUtYBL2"]] queryLimitedToFirst:10];
+    NSLog(@"theUser %@", theUser.uid);
     [getPhotoStringQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
          if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
              completion((NSDictionary*)snapshot.value);
-             /*
-              self.userImageString = snapshot.value[@"profile_picture"];
-              NSLog(@"picture url %@", self.userImageString);
-              
-              
-              
+             theUser.uid = snapshot.value[@"uid"];
+            theUser.profilePictureURL = snapshot.value[@"profile_picture"];
+              NSLog(@"uid %@", theUser.uid);
+             
               [self.upvc viewWillAppear:YES];
-              */
+             
          }
      }];
     
@@ -236,7 +249,7 @@
          if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
              //THIS IS THE STRING TO THE IMAGE WE WANT TO SEE
              self.userImageString = snapshot.value[@"profile_picture"];
-             NSLog(@"userimg %@", self.userImageString);
+            // NSLog(@"userimg %@", self.userImageString);
              FIRStorage *storage = [FIRStorage storage];
              
             
@@ -247,7 +260,7 @@
                  if (error != nil) {
                      NSLog(@"download url error");
                  } else {
-                     NSLog(@"no download url error %@", URL);
+                     //NSLog(@"no download url error %@", URL);
                      NSData *imageData = [NSData dataWithContentsOfURL:URL];
                      self.userImage = [UIImage imageWithData:imageData];
                  }
@@ -268,42 +281,41 @@
     User *theUser = [[User alloc] init];
     
     self.ref = [[FIRDatabase database] reference];
-    FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", uid]] queryLimitedToFirst:10];
     
+    //HARDCODE THE UID FOR NOW
+    FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/YWrq5DwsJse46yZ3xNuefUUtYBL2"]] queryLimitedToFirst:10];
+    //FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", uid]] queryLimitedToFirst:10];
+    //NSLog(@"the user %@", theUser);
     [getUserInfoQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
-         if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
-             
+         //NSLog(@"snapshot %@", snapshot);
+            //TODO 9/4 here you'd start downloading the profile pic and save it as UIImage into profilePicture.
              theUser.profilePictureURL = snapshot.value[@"profile_picture"];
              theUser.username = snapshot.value[@"username"];
              //theUser.description = snapshot.value[@"description"];
              theUser.email = snapshot.value[@"email"];
-             
-             
-             
-             //TODO 9/4 here you'd start downloading the profile pic and save it as UIImage into profilePicture.
-             self.userImageString = snapshot.value[@"profile_picture"];
+         
             FIRStorage *storage = [FIRStorage storage];
-            //FIRStorageReference *httpsReference = [storage referenceForURL:self.userImageString];
+            FIRStorageReference *httpsReference = [storage referenceForURL:theUser.profilePictureURL];
                       
                       
-            /*[httpsReference downloadURLWithCompletion:^(NSURL* URL, NSError* error){
+            [httpsReference downloadURLWithCompletion:^(NSURL* URL, NSError* error){
                 if (error != nil) {
                     NSLog(@"download url error");
                 } else {
-                    NSLog(@"no download url error %@", URL);
+                    //NSLog(@"no download url error %@", URL);
                     NSData *imageData = [NSData dataWithContentsOfURL:URL];
                     theUser.profilePicture = [UIImage imageWithData:imageData];
-                    NSLog(@"profile user %@", theUser.profilePicture );
+                    //NSLog(@"profile user %@", theUser.profilePicture );
                 }
                           
-            }];*/
+            }];
                       
  
              
              completion(theUser);
-         }
+         
      }];
 }
 @end
