@@ -236,10 +236,12 @@
          if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
              //THIS IS THE STRING TO THE IMAGE WE WANT TO SEE
              self.userImageString = snapshot.value[@"profile_picture"];
-             
+             NSLog(@"userimg %@", self.userImageString);
              FIRStorage *storage = [FIRStorage storage];
-             FIRStorageReference *httpsReference = [storage referenceForURL:self.userImageString];
+             
             
+             FIRStorageReference *httpsReference = [storage referenceForURL:self.userImageString];
+             NSLog(@"http %@", httpsReference);
              
              [httpsReference downloadURLWithCompletion:^(NSURL* URL, NSError* error){
                  if (error != nil) {
@@ -283,10 +285,10 @@
              //TODO 9/4 here you'd start downloading the profile pic and save it as UIImage into profilePicture.
              self.userImageString = snapshot.value[@"profile_picture"];
             FIRStorage *storage = [FIRStorage storage];
-            FIRStorageReference *httpsReference = [storage referenceForURL:self.userImageString];
+            //FIRStorageReference *httpsReference = [storage referenceForURL:self.userImageString];
                       
                       
-            [httpsReference downloadURLWithCompletion:^(NSURL* URL, NSError* error){
+            /*[httpsReference downloadURLWithCompletion:^(NSURL* URL, NSError* error){
                 if (error != nil) {
                     NSLog(@"download url error");
                 } else {
@@ -296,7 +298,7 @@
                     NSLog(@"profile user %@", theUser.profilePicture );
                 }
                           
-            }];
+            }];*/
                       
  
              
