@@ -94,20 +94,6 @@
     
 }
 
-- (IBAction)LogoutUser:(id)sender {
-    // [START signout]
-    //TODO - TEST IF USER IS SIGNED IN
-    NSError *signOutError;
-    BOOL status = [[FIRAuth auth] signOut:&signOutError];
-    if (!status) {
-        NSLog(@"Error signing out: %@", signOutError);
-        return;
-    } else {
-        NSLog(@"signed out");
-    }
-    // [END signout]
-}
-
 
 
 
@@ -144,7 +130,6 @@
         self.userDescription.text = [BLCDataSource sharedInstance].userDesc;
     }
 }
-
 
 
 @end

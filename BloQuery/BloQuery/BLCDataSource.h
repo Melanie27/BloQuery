@@ -31,8 +31,6 @@ typedef void(^UserRetrievalCompletionBlock)(User *user);
 +(instancetype) sharedInstance;
 @property (nonatomic, strong, readonly) NSArray<Question *> *questions;
 @property (nonatomic, strong, readonly) NSArray<Answer*> *answers;
-@property (nonatomic, strong, readonly) NSArray<User*> *uids;
-
 
 @property (nonatomic, weak) QuestionsTableViewController *qtvc;
 @property (nonatomic, weak) AnswersTableViewController *atvc;

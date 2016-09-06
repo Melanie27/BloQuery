@@ -25,7 +25,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *userName;
 
-- (IBAction)LogoutUser:(id)sender;
+
 
 
 @end
