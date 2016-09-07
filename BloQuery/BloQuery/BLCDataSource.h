@@ -40,6 +40,8 @@ typedef void(^UserRetrievalCompletionBlock)(User *user);
 
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, assign) NSInteger questionNumber;
+@property (nonatomic, strong) Answer *answer;
+@property (nonatomic, assign) NSInteger answerNumber;
 @property (strong) UIImage *userImage;
 @property (nonatomic, strong) NSString *userDesc;
 @property (nonatomic, weak) NSString *userScreenName;

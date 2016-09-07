@@ -81,34 +81,6 @@
 }
 
 
-/*-(NSString *)retrieveAnswers {
-    self.ref = [[FIRDatabase database] reference];
-    //Database work here
-    
-    FIRDatabaseQuery *getAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
-    
-    NSMutableString *retrieveAnswers = [[NSMutableString alloc] init];
-    
-    [getAnswersQuery
-     observeEventType:FIRDataEventTypeValue
-     withBlock:^(FIRDataSnapshot *snapshot) {
-         
-         self.answers = @[];
-         if (snapshot.value && [snapshot.value isKindOfClass:[NSArray class]]) {
-             NSLog(@"snapshot %@", snapshot.value);
-             for (NSString *a in (NSArray*)snapshot.value) {
-                 Answer *answer = [[Answer alloc] init];
-                 answer.answerText = a;
-                 self.answers = [self.answers arrayByAddingObject:answer];
-                 
-             }
-         }
-         [self.atvc.tableView reloadData];
-         
-     }];
-    
-    return retrieveAnswers;
-}*/
 
 
 -(NSString *)retrieveAnswers {
@@ -116,37 +88,37 @@
 
     self.ref = [[FIRDatabase database] reference];
     //Database work here
-     FIRDatabaseQuery *getAnswersQuery2 = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/0", (long)self.questionNumber]] queryLimitedToFirst:1000];
+     FIRDatabaseQuery *getAnswersQuery2 = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.answerNumber, (long)self.questionNumber]] queryLimitedToFirst:1000];
+   
+    
+    NSLog(@"num of answers %ld", (long)self.answerNumber);
     
     [getAnswersQuery2
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
          
-           if (snapshot.value != [NSNull null]) {
+         
          
                self.answers = @[];
-               NSLog(@"snapshot retrieve answers %@", snapshot);
-         
-              
-               NSLog(@"snapshot next%@", snapshot.value);
-               //here is the first one
-               NSLog(@"snapshot answer %@", snapshot.value[@"answer"]);
-               NSLog(@"%@ ", snapshot.key);
+               
+               NSLog(@"snapshot retrieve answers %@", snapshot.value);
+               
+               /*NSArray *answerList = (NSArray*)snapshot.value;
+               if (!(answerList && [answerList isKindOfClass:[NSArray class]])) {
+                   answerList = @[];
+               }
+               for (NSString *a in answerList) {
+                   Answer *answer = [[Answer alloc] init];
+                   answer.answerText = a;
+                   self.answers = [self.answers arrayByAddingObject:answer];
+                    NSLog(@"answer list%@", self.answers);
+               }*/
+               
                Answer *answer = [[Answer alloc] init];
                answer.answerText =    snapshot.value[@"answer"];
-         
-               //TODO Get the number of answers for each "answers" section
-                //NSLog(@"snapshot count %u", [snapshot.value[@"answers"] count]);
-               //NSInteger numAnswers = [snapshot.value[@"answers"] count];
-               //LOOP through that number and create an array of them
-         
-               /*for (NSInteger i = 0; i < numAnswers; i++) {
-                Answer *answer = [[Answer alloc] init];
-                answer.answerText =    snapshot.value[@"answers"][i][@"answer"];*/
-            
                 self.answers = [self.answers arrayByAddingObject:answer];
                
-           }
+         
 
          
           [self.atvc.tableView reloadData];
