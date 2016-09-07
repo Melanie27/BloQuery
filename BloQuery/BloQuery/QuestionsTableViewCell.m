@@ -32,16 +32,9 @@
     [super layoutSubviews];
     
     if (!self.question) {
-        self.contentView.userInteractionEnabled = NO;
-        
-        
-        [self.contentView addSubview:self.profilePhoto];
         return;
         
     }
-    
-    
-    
 }
 
 
