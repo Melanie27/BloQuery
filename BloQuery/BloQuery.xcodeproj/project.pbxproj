@@ -36,6 +36,9 @@
 		9B8DE47C1D4817640020DE5B /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DE47B1D4817640020DE5B /* Answer.m */; };
 		9B8DE4821D496AE60020DE5B /* ComposeAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DE4811D496AE60020DE5B /* ComposeAnswerViewController.m */; };
 		9BAE4C981D63519D00EBB6CF /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE4C971D63519D00EBB6CF /* UserProfileViewController.m */; };
+		9BBD0DF51D80AEA6006E560E /* UpvoteButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD0DF41D80AEA6006E560E /* UpvoteButtonViewController.m */; };
+		9BBD0DF81D80AF1C006E560E /* UpvoteAnswerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD0DF71D80AF1C006E560E /* UpvoteAnswerButton.m */; };
+		9BBD0DFB1D80B319006E560E /* CircleSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD0DFA1D80B319006E560E /* CircleSpinnerView.m */; };
 		9BE013821D341DA000ED53B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */; };
 		DA516C8642AF885156B4A757 /* libPods-BloQuery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD339CA12DFBC6F654172917 /* libPods-BloQuery.a */; };
 /* End PBXBuildFile section */
@@ -115,6 +118,12 @@
 		9B8DE4811D496AE60020DE5B /* ComposeAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeAnswerViewController.m; sourceTree = "<group>"; };
 		9BAE4C961D63519D00EBB6CF /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = ../../BloQuery/BloQuery/UserProfileViewController.h; sourceTree = "<group>"; };
 		9BAE4C971D63519D00EBB6CF /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = ../../BloQuery/BloQuery/UserProfileViewController.m; sourceTree = "<group>"; };
+		9BBD0DF31D80AEA6006E560E /* UpvoteButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpvoteButtonViewController.h; path = ../../BloQuery/BloQuery/UpvoteButtonViewController.h; sourceTree = "<group>"; };
+		9BBD0DF41D80AEA6006E560E /* UpvoteButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpvoteButtonViewController.m; path = ../../BloQuery/BloQuery/UpvoteButtonViewController.m; sourceTree = "<group>"; };
+		9BBD0DF61D80AF1C006E560E /* UpvoteAnswerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpvoteAnswerButton.h; sourceTree = "<group>"; };
+		9BBD0DF71D80AF1C006E560E /* UpvoteAnswerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpvoteAnswerButton.m; sourceTree = "<group>"; };
+		9BBD0DF91D80B319006E560E /* CircleSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CircleSpinnerView.h; path = ../../BloQuery/BloQuery/CircleSpinnerView.h; sourceTree = "<group>"; };
+		9BBD0DFA1D80B319006E560E /* CircleSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CircleSpinnerView.m; path = ../../BloQuery/BloQuery/CircleSpinnerView.m; sourceTree = "<group>"; };
 		9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BD339CA12DFBC6F654172917 /* libPods-BloQuery.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BloQuery.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -210,6 +219,12 @@
 				9B8A0DF31D511262006E0279 /* AnswersTableViewController.m */,
 				9B8A0DF51D511703006E0279 /* AnswersTableViewCell.h */,
 				9B8A0DF61D511703006E0279 /* AnswersTableViewCell.m */,
+				9BBD0DF91D80B319006E560E /* CircleSpinnerView.h */,
+				9BBD0DFA1D80B319006E560E /* CircleSpinnerView.m */,
+				9BBD0DF61D80AF1C006E560E /* UpvoteAnswerButton.h */,
+				9BBD0DF71D80AF1C006E560E /* UpvoteAnswerButton.m */,
+				9BBD0DF31D80AEA6006E560E /* UpvoteButtonViewController.h */,
+				9BBD0DF41D80AEA6006E560E /* UpvoteButtonViewController.m */,
 				9B3015161D3418D800304F6A /* AppDelegate.h */,
 				9B3015171D3418D800304F6A /* AppDelegate.m */,
 				9B35209F1D34767A0074EAFE /* CustomTokenViewController.h */,
@@ -458,7 +473,9 @@
 				9B46AAAE1D6F5996001E8754 /* CropBox.m in Sources */,
 				9B37903F1D395C9000B5303C /* BLCDataSource.m in Sources */,
 				9B3520AA1D34782C0074EAFE /* UIViewController+Alerts.m in Sources */,
+				9BBD0DF51D80AEA6006E560E /* UpvoteButtonViewController.m in Sources */,
 				9B328AA41D3DA43B0036C7F6 /* QuestionFullScreenViewController.m in Sources */,
+				9BBD0DFB1D80B319006E560E /* CircleSpinnerView.m in Sources */,
 				9B8DE4821D496AE60020DE5B /* ComposeAnswerViewController.m in Sources */,
 				9B3520A71D3477190074EAFE /* MainViewController.m in Sources */,
 				9B3520A11D34767A0074EAFE /* CustomTokenViewController.m in Sources */,
@@ -467,6 +484,7 @@
 				9B8DE47C1D4817640020DE5B /* Answer.m in Sources */,
 				9B889EAD1D78F41700B65357 /* VIewProfileViewController.m in Sources */,
 				9B3015181D3418D800304F6A /* AppDelegate.m in Sources */,
+				9BBD0DF81D80AF1C006E560E /* UpvoteAnswerButton.m in Sources */,
 				9B3790421D39689800B5303C /* Question.m in Sources */,
 				9B3015151D3418D800304F6A /* main.m in Sources */,
 				9B37901D1D38167B00B5303C /* QuestionsTableViewController.m in Sources */,

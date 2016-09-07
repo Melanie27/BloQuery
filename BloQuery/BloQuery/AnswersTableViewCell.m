@@ -8,6 +8,13 @@
 
 #import "AnswersTableViewCell.h"
 #import "Answer.h"
+#import "UpvoteAnswerButton.h"
+
+@interface AnswersTableViewCell()
+
+@property(nonatomic, strong) UpvoteAnswerButton *likeButton;
+
+@end
 
 @implementation AnswersTableViewCell
 
@@ -15,11 +22,22 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self) {
         //init code
+        self.likeButton = [[UpvoteAnswerButton alloc] init];
+        //[self.likeButton addTarget:self action:@selector(likePressed:) forControlEvents:UIControlEventTouchUpInside];
+        self.likeButton.backgroundColor = [UIColor blueColor];
         
+        for (UIView *view in @[self.likeButton]) {
+         [self.contentView addSubview:view];
+         view.translatesAutoresizingMaskIntoConstraints = NO;
+         }
+
+        //adding constraints - why on init?
+        NSDictionary *viewDictionary = NSDictionaryOfVariableBindings( _likeButton);
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_likeButton(==38)]|" options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom metrics:nil views:viewDictionary]];
     }
-    
     return self;
 }
+
 
 
 //override setter method to update the answer text whenever a new answer is set
