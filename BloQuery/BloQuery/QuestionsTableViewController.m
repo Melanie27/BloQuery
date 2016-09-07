@@ -159,11 +159,16 @@
     [[BLCDataSource sharedInstance]retrievePhotoUrlWithUID:theUser.uid andCompletion:^(NSDictionary *snapshotValue) {
         
     }];
-    [[BLCDataSource sharedInstance]retrieveUserWithUID:(NSString*)theUser.uid andCompletion:^(User *user) {
-        //NSLog(@"the user %@", theUser);
-        //NSLog(@"profile photo url at each cell %@", theUser.profilePicture);
-    }];
+    [[BLCDataSource sharedInstance]retrieveUserWithUID:(NSString*)cell.question.askerUID andCompletion:^(User *user) {
+        
+        NSLog(@"profile photo url at each cell %@ %@", user.profilePictureURL, user.profilePicture);
+        [cell.profilePhoto setImage:user.profilePicture forState:UIControlStateNormal];
+       
 
+    }];
+    BLCDataSource *ds = [BLCDataSource sharedInstance];
+
+    [cell.profilePhoto setImage:[ds userImage] forState:UIControlStateNormal];
     return cell;
     
 }

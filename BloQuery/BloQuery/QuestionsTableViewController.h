@@ -22,10 +22,6 @@
 - (IBAction)didTapProfilePhoto:(id)sender;
 
 
-@property (nonatomic, weak ) IBOutlet UIBarButtonItem  *profileImageButton;
-@property (strong, nonatomic) IBOutlet UIButton *profilePhoto;
-
-
 //unwind segue implementation
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue; 
 @end

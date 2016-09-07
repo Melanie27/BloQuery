@@ -48,4 +48,8 @@
 
 
 
+- (IBAction)didTapProfilePhoto:(id)sender {
+    
+    NSLog(@"lets see the profile view from here");
+}
 @end

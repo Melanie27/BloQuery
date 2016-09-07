@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -228,15 +229,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="533" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASE-EU-gBg">
-                                            <rect key="frame" x="25" y="37" width="27" height="26"/>
+                                        <button opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASE-EU-gBg">
+                                            <rect key="frame" x="24" y="37" width="27" height="26"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="ASE-EU-gBg" secondAttribute="height" multiplier="27:26" id="Hpa-iL-X6e"/>
+                                            </constraints>
                                             <state key="normal" title="Button" image="profile"/>
                                             <connections>
+                                                <action selector="didTapProfilePhoto:" destination="94N-Z8-exM" eventType="touchUpInside" id="VQc-Jk-JIh"/>
                                                 <segue destination="LTf-Ll-HfO" kind="show" identifier="voewProfile" id="887-ea-GKw"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="szK-ud-CTx">
-                                            <rect key="frame" x="70" y="3" width="444" height="94"/>
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="szK-ud-CTx">
+                                            <rect key="frame" x="97" y="3" width="413" height="89"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="This is where all the questions are going to go. Is this the first Question?">
                                                     <attributes>
@@ -249,17 +254,16 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="szK-ud-CTx" firstAttribute="centerX" secondItem="MdR-ZN-QYi" secondAttribute="centerX" constant="25.5" id="2Ax-Mo-dJT"/>
-                                        <constraint firstItem="szK-ud-CTx" firstAttribute="leading" secondItem="ASE-EU-gBg" secondAttribute="trailing" constant="18" id="Id2-Jf-s3E"/>
-                                        <constraint firstItem="szK-ud-CTx" firstAttribute="centerY" secondItem="ASE-EU-gBg" secondAttribute="centerY" id="UIc-vY-gPR"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="szK-ud-CTx" secondAttribute="trailing" constant="11" id="df1-Nv-FVn"/>
-                                        <constraint firstItem="ASE-EU-gBg" firstAttribute="leading" secondItem="MdR-ZN-QYi" secondAttribute="leadingMargin" constant="17" id="dzQ-um-f06"/>
-                                        <constraint firstItem="szK-ud-CTx" firstAttribute="top" secondItem="MdR-ZN-QYi" secondAttribute="topMargin" constant="-5" id="txK-17-vNW"/>
-                                        <constraint firstItem="szK-ud-CTx" firstAttribute="centerY" secondItem="MdR-ZN-QYi" secondAttribute="centerY" id="xHU-Q9-edv"/>
+                                        <constraint firstItem="ASE-EU-gBg" firstAttribute="leading" secondItem="MdR-ZN-QYi" secondAttribute="leadingMargin" constant="16" id="5Kh-1q-PLB"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ASE-EU-gBg" secondAttribute="bottom" constant="29" id="GCg-we-mQw"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="szK-ud-CTx" secondAttribute="trailing" constant="15" id="gG4-DW-mkN"/>
+                                        <constraint firstItem="szK-ud-CTx" firstAttribute="leading" secondItem="ASE-EU-gBg" secondAttribute="trailing" constant="20" id="vjP-NZ-Y6f"/>
+                                        <constraint firstItem="ASE-EU-gBg" firstAttribute="top" secondItem="MdR-ZN-QYi" secondAttribute="topMargin" constant="29" id="ya3-29-5Xk"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
+                                    <outlet property="profilePhoto" destination="ASE-EU-gBg" id="2eO-dE-LJb"/>
                                     <outlet property="questionTextView" destination="szK-ud-CTx" id="sR4-zH-ADi"/>
                                     <segue destination="VfX-TX-JCP" kind="show" identifier="composeAnswer" trigger="accessoryAction" id="gdp-9f-r7n"/>
                                     <segue destination="szr-wM-iIo" kind="show" identifier="showAnswers" id="VUc-dl-FQG"/>

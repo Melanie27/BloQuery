@@ -62,7 +62,7 @@
          for (NSInteger i = 0; i < numQuestions; i++) {
              Question *question = [[Question alloc] init];
              question.questionText =    snapshot.value[@"questions"][i][@"question"];
-             question.askerUID =        snapshot.value[@"questions"][i][@"uid"];
+             question.askerUID =        snapshot.value[@"questions"][i][@"UID"];
              self.questions = [self.questions arrayByAddingObject:question];
          }
          [self.qtvc.tableView reloadData];
@@ -80,15 +80,45 @@
     
 }
 
--(NSString *)retrieveAnswers {
+
+/*-(NSString *)retrieveAnswers {
     self.ref = [[FIRDatabase database] reference];
     //Database work here
     
-    FIRDatabaseQuery *getAnswersQuery2 = [[self.ref queryOrderedByChild:[NSString stringWithFormat:@"/questions/%ld/answers/0/answer", (long)self.questionNumber]] queryLimitedToFirst:1000];
-    NSLog(@"answer %@", getAnswersQuery2);
+    FIRDatabaseQuery *getAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
     
-
     NSMutableString *retrieveAnswers = [[NSMutableString alloc] init];
+    
+    [getAnswersQuery
+     observeEventType:FIRDataEventTypeValue
+     withBlock:^(FIRDataSnapshot *snapshot) {
+         
+         self.answers = @[];
+         if (snapshot.value && [snapshot.value isKindOfClass:[NSArray class]]) {
+             NSLog(@"snapshot %@", snapshot.value);
+             for (NSString *a in (NSArray*)snapshot.value) {
+                 Answer *answer = [[Answer alloc] init];
+                 answer.answerText = a;
+                 self.answers = [self.answers arrayByAddingObject:answer];
+                 
+             }
+         }
+         [self.atvc.tableView reloadData];
+         
+     }];
+    
+    return retrieveAnswers;
+}*/
+
+
+-(NSString *)retrieveAnswers {
+    NSMutableString *retrieveAnswers = [[NSMutableString alloc] init];
+
+    self.ref = [[FIRDatabase database] reference];
+    //Database work here
+    
+    FIRDatabaseQuery *getAnswersQuery2 = [[self.ref queryOrderedByChild:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
+    NSLog(@"answer0Query %@", getAnswersQuery2);
     
     [getAnswersQuery2
      observeEventType:FIRDataEventTypeValue
@@ -117,8 +147,11 @@
      }];
     
     
+    
+    
     return retrieveAnswers;
 }
+
 
 //user stuff
 -(NSString *)retrieveDescription {
@@ -172,7 +205,7 @@
 
 -(NSString *)retrieveScreenNameWithUID:(NSString *)uid andCompletion:(RetrievalCompletionBlock)completion {
     User *theUser = [[User alloc] init];
-     NSLog(@"theUser %@", theUser.uid);
+     NSLog(@"screen name uid %@", uid);
     self.ref = [[FIRDatabase database] reference];
     FIRDatabaseQuery *getScreenNameQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", theUser.uid]] queryLimitedToFirst:10];
     NSMutableString *retrieveScreenName = [[NSMutableString alloc] init];
@@ -281,15 +314,17 @@
     User *theUser = [[User alloc] init];
     
     self.ref = [[FIRDatabase database] reference];
-    
+   
     //HARDCODE THE UID FOR NOW
-    FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/YWrq5DwsJse46yZ3xNuefUUtYBL2"]] queryLimitedToFirst:10];
-    //FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", uid]] queryLimitedToFirst:10];
-    //NSLog(@"the user %@", theUser);
+    FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/37EX2qfWMtbpEPWK2VU6xkmgu2C2"]] queryLimitedToFirst:10];
+     NSLog(@"the user test before %@", uid);
+ //FIRDatabaseQuery *getUserInfoQuery = [[self.ref queryOrderedByChild:[NSString stringWithFormat:@"/userData/%@", uid]] queryLimitedToFirst:100];
+    NSAssert(uid,@"user id missing");
+    NSLog(@"the user %@", uid);
     [getUserInfoQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
-         //NSLog(@"snapshot %@", snapshot);
+         NSLog(@"snapshot %@", snapshot);
             //TODO 9/4 here you'd start downloading the profile pic and save it as UIImage into profilePicture.
              theUser.profilePictureURL = snapshot.value[@"profile_picture"];
              theUser.username = snapshot.value[@"username"];
@@ -308,13 +343,13 @@
                     NSData *imageData = [NSData dataWithContentsOfURL:URL];
                     theUser.profilePicture = [UIImage imageWithData:imageData];
                     //NSLog(@"profile user %@", theUser.profilePicture );
+                    completion(theUser);
                 }
                           
             }];
                       
  
              
-             completion(theUser);
          
      }];
 }
