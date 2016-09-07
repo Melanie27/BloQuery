@@ -312,10 +312,19 @@
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5K-HI-1Kd">
-                                            <rect key="frame" x="36" y="68" width="30" height="30"/>
-                                            <state key="normal" title="Like"/>
-                                        </button>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IKf-YN-owz">
+                                            <rect key="frame" x="28" y="62" width="110" height="30"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVE-g7-FWt">
+                                                    <rect key="frame" x="32" y="-5" width="46" height="30"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="cellDidPressUpvoteButton:" destination="paj-ta-3IH" eventType="touchUpInside" id="Tkx-Q0-8jt"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="EAi-od-fdT" secondAttribute="trailing" constant="20" id="LYB-Bm-uUl"/>

@@ -21,6 +21,7 @@
 @property (nonatomic, strong) Answer *answer;
 @property (nonatomic, weak) id <AnswersTableViewCellDelegate> delegate;
 
--(void)cellDidPressUpvoteButton:(AnswersTableViewCell *)cell;
+
+- (IBAction)cellDidPressUpvoteButton:(AnswersTableViewCell *)cell;
 
 @end

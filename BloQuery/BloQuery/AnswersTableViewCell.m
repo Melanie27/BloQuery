@@ -57,4 +57,8 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)cellDidPressUpvoteButton:(id)sender {
+    NSLog(@"upvote!");
+    //increment 1 in FIREBASE
+}
 @end
