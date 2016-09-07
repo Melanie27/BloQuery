@@ -116,33 +116,40 @@
 
     self.ref = [[FIRDatabase database] reference];
     //Database work here
-    
-    FIRDatabaseQuery *getAnswersQuery2 = [[self.ref queryOrderedByChild:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
-    NSLog(@"answer0Query %@", getAnswersQuery2);
+     FIRDatabaseQuery *getAnswersQuery2 = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/0", (long)self.questionNumber]] queryLimitedToFirst:1000];
     
     [getAnswersQuery2
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
          
-         self.answers = @[];
-        
-         NSLog(@"snapshot count %u", [snapshot.value[@"answers"] count]);
-         NSLog(@"snapshot %@", snapshot.value[@"answers"]);
-         NSLog(@"snapshot string %@", snapshot.value[@"questions/0/answers/0/answer"]);
+           if (snapshot.value != [NSNull null]) {
          
-         //TODO Get the number of answers for each "answers" section
-         NSInteger numAnswers = [snapshot.value[@"answers"] count];
-         //LOOP through that number and create an array of them
+               self.answers = @[];
+               NSLog(@"snapshot retrieve answers %@", snapshot);
          
-         for (NSInteger i = 0; i < numAnswers; i++) {
-             Answer *answer = [[Answer alloc] init];
-             answer.answerText =    snapshot.value[@"answers"][i][@"answer"];
+              
+               NSLog(@"snapshot next%@", snapshot.value);
+               //here is the first one
+               NSLog(@"snapshot answer %@", snapshot.value[@"answer"]);
+               NSLog(@"%@ ", snapshot.key);
+               Answer *answer = [[Answer alloc] init];
+               answer.answerText =    snapshot.value[@"answer"];
+         
+               //TODO Get the number of answers for each "answers" section
+                //NSLog(@"snapshot count %u", [snapshot.value[@"answers"] count]);
+               //NSInteger numAnswers = [snapshot.value[@"answers"] count];
+               //LOOP through that number and create an array of them
+         
+               /*for (NSInteger i = 0; i < numAnswers; i++) {
+                Answer *answer = [[Answer alloc] init];
+                answer.answerText =    snapshot.value[@"answers"][i][@"answer"];*/
             
-            self.answers = [self.answers arrayByAddingObject:answer];
-         }
+                self.answers = [self.answers arrayByAddingObject:answer];
+               
+           }
 
          
-         
+          [self.atvc.tableView reloadData];
          
      }];
     
@@ -178,7 +185,7 @@
 }
 
 -(NSString *)retrieveDescriptionWithUID:(NSString *)uid andCompletion:(RetrievalCompletionBlock)completion {
-    FIRUser *userAuth = [FIRAuth auth].currentUser;
+    //FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
     
     FIRDatabaseQuery *getDescQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", uid]] queryLimitedToFirst:10];
@@ -320,18 +327,14 @@
     
     self.ref = [[FIRDatabase database] reference];
    
-    //HARDCODE THE UID FOR NOW
-    //FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/37EX2qfWMtbpEPWK2VU6xkmgu2C2"]] queryLimitedToFirst:10];
-     NSLog(@"the user test before %@", uid);
+    
+    
   FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", uid]] queryLimitedToFirst:10];
-    //FIRDatabaseQuery *getUserInfoQuery = [[self.ref queryOrderedByChild:[NSString stringWithFormat:@"/userData/%@/", uid]] queryLimitedToFirst:100];
-    NSAssert(uid,@"user id missing");
-    NSLog(@"the user query %@", getUserInfoQuery);
     [getUserInfoQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
-         NSLog(@"snapshot %@", snapshot);
-            //TODO 9/4 here you'd start downloading the profile pic and save it as UIImage into profilePicture.
+         //NSLog(@"snapshot %@", snapshot);
+         
              theUser.profilePictureURL = snapshot.value[@"profile_picture"];
              theUser.username = snapshot.value[@"username"];
          theUser.email = snapshot.value[@"UID"];
@@ -349,7 +352,7 @@
                     //NSLog(@"no download url error %@", URL);
                     NSData *imageData = [NSData dataWithContentsOfURL:URL];
                     theUser.profilePicture = [UIImage imageWithData:imageData];
-                    //NSLog(@"profile user %@", theUser.profilePicture );
+                   
                     completion(theUser);
                 }
                           
