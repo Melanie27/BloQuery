@@ -150,18 +150,23 @@
     cell.delegate = self;
     
 
+    [cell.contentView layoutSubviews];
     cell.question = [BLCDataSource sharedInstance].questions[indexPath.row];
   
     UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [button addTarget:self action:@selector(didTapQuestionView:) forControlEvents:UIControlEventTouchDown];
     button.tag = indexPath.row;
     cell.accessoryView = button;
-   
+    [cell.contentView addSubview:cell.profilePhoto];
+    cell.profilePhoto.tag = indexPath.row;
+    //NSLog(@"cell %ld", (long)cell.profilePhoto.tag);
+     //NSLog(@"cell %ld", (long)cell.profilePhoto);
+    [cell.profilePhoto addTarget:self action:@selector(didTapProfilePhoto:)
+             forControlEvents:UIControlEventTouchUpInside];
     
     // Configure the cell.
-    
+  
    
-    
     
     
     
@@ -174,7 +179,7 @@
     }];
     [[BLCDataSource sharedInstance]retrieveUserWithUID:(NSString*)cell.question.askerUID andCompletion:^(User *user) {
         
-        NSLog(@"profile photo url at each cell %@ %@", user.profilePictureURL, user.profilePicture);
+        //NSLog(@"profile photo url at each cell %@ %@", user.profilePictureURL, user.profilePicture);
         [cell.profilePhoto setImage:user.profilePicture forState:UIControlStateNormal];
        
 
@@ -192,9 +197,7 @@
     
 }
 
-/*-(IBAction)customActionPressed:(id)sender {
-    NSLog(@"hi");
-}*/
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Question *q;
@@ -274,6 +277,10 @@
    
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
 
 /*
  // Override to support editing the table view.

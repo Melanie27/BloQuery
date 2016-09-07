@@ -21,8 +21,9 @@
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, strong) User *asker;
 @property (nonatomic, strong) IBOutlet UIButton *profilePhoto;
-- (IBAction)didTapProfilePhoto:(id)sender;
+
 @property (nonatomic, weak) id <QuestionsTableViewCellDelegate> delegate;
+
 
 
 @end

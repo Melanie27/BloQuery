@@ -32,8 +32,12 @@
     [super layoutSubviews];
     
     if (!self.question) {
- 
+        self.contentView.userInteractionEnabled = NO;
+        
+        
+        [self.contentView addSubview:self.profilePhoto];
         return;
+        
     }
     
     
@@ -52,8 +56,5 @@
 
 
 
-- (IBAction)didTapProfilePhoto:(id)sender {
-    
-    NSLog(@"lets see the profile view from here");
-}
+
 @end

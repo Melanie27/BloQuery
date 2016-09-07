@@ -70,17 +70,10 @@
          
      }];
     
-    //FOR EACH QUESTION GET THE PROFILE PHOTO OF THE USER WHO ASKED IT
-    
+   
     return retrievedQuestions;
-    
-    
-    
-    
-    
+
 }
-
-
 
 
 -(NSString *)retrieveAnswers {
@@ -97,11 +90,9 @@
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
          
-         
-         
                self.answers = @[];
                
-               NSLog(@"snapshot retrieve answers %@", snapshot.value);
+               //NSLog(@"snapshot retrieve answers %@", snapshot.value);
                
                /*NSArray *answerList = (NSArray*)snapshot.value;
                if (!(answerList && [answerList isKindOfClass:[NSArray class]])) {
@@ -184,7 +175,7 @@
 
 -(NSString *)retrieveScreenNameWithUID:(NSString *)uid andCompletion:(RetrievalCompletionBlock)completion {
     User *theUser = [[User alloc] init];
-     NSLog(@"screen name uid %@", uid);
+     //NSLog(@"screen name uid %@", uid);
     self.ref = [[FIRDatabase database] reference];
     FIRDatabaseQuery *getScreenNameQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", theUser.uid]] queryLimitedToFirst:10];
     NSMutableString *retrieveScreenName = [[NSMutableString alloc] init];
@@ -194,7 +185,7 @@
      withBlock:^(FIRDataSnapshot *snapshot) {
          if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
              completion((NSDictionary*)snapshot.value);
-             NSLog(@"screen name snapshot %@", snapshot);
+             //NSLog(@"screen name snapshot %@", snapshot);
          }
      }];
     
@@ -229,7 +220,7 @@
     self.ref = [[FIRDatabase database] reference];
     NSMutableString *retrievePhotoString = [[NSMutableString alloc] init];
     FIRDatabaseQuery *getPhotoStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/YWrq5DwsJse46yZ3xNuefUUtYBL2"]] queryLimitedToFirst:10];
-    NSLog(@"theUser %@", theUser.uid);
+   // NSLog(@"theUser %@", theUser.uid);
     [getPhotoStringQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
@@ -237,7 +228,7 @@
              completion((NSDictionary*)snapshot.value);
              theUser.uid = snapshot.value[@"uid"];
             theUser.profilePictureURL = snapshot.value[@"profile_picture"];
-              NSLog(@"uid %@", theUser.uid);
+              //NSLog(@"uid %@", theUser.uid);
              
               [self.upvc viewWillAppear:YES];
              
@@ -261,12 +252,10 @@
          if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
              //THIS IS THE STRING TO THE IMAGE WE WANT TO SEE
              self.userImageString = snapshot.value[@"profile_picture"];
-            // NSLog(@"userimg %@", self.userImageString);
+           
              FIRStorage *storage = [FIRStorage storage];
-             
-            
              FIRStorageReference *httpsReference = [storage referenceForURL:self.userImageString];
-             NSLog(@"http %@", httpsReference);
+            
              
              [httpsReference downloadURLWithCompletion:^(NSURL* URL, NSError* error){
                  if (error != nil) {
@@ -305,7 +294,7 @@
     [getUserInfoQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
-         //NSLog(@"snapshot %@", snapshot);
+        
          
              theUser.profilePictureURL = snapshot.value[@"profile_picture"];
              theUser.username = snapshot.value[@"username"];

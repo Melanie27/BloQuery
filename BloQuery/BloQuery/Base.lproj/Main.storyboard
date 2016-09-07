@@ -229,14 +229,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="533" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASE-EU-gBg">
+                                        <button opaque="NO" multipleTouchEnabled="YES" tag="987" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASE-EU-gBg">
                                             <rect key="frame" x="24" y="37" width="27" height="26"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="photoButton">
+                                                <accessibilityTraits key="traits" button="YES" link="YES" image="YES" allowsDirectInteraction="YES"/>
+                                            </accessibility>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="ASE-EU-gBg" secondAttribute="height" multiplier="27:26" id="Hpa-iL-X6e"/>
                                             </constraints>
                                             <state key="normal" title="Button" image="profile"/>
                                             <connections>
-                                                <action selector="didTapProfilePhoto:" destination="94N-Z8-exM" eventType="touchUpInside" id="VQc-Jk-JIh"/>
+                                                <action selector="didTapProfilePhoto:" destination="sru-MH-sNP" eventType="touchUpInside" id="6db-Xr-6AR"/>
                                                 <segue destination="LTf-Ll-HfO" kind="show" identifier="voewProfile" id="887-ea-GKw"/>
                                             </connections>
                                         </button>
