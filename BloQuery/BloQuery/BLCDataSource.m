@@ -312,15 +312,21 @@
 
 -(void)retrieveUserWithUID:(NSString *)uid andCompletion:(UserRetrievalCompletionBlock)completion {
     User *theUser = [[User alloc] init];
+    theUser.profilePictureURL = @"";
+    theUser.username = @"";
+    //theUser.description = @"";
+    theUser.email = @"";
+    theUser.uid = @"";
     
     self.ref = [[FIRDatabase database] reference];
    
     //HARDCODE THE UID FOR NOW
-    FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/37EX2qfWMtbpEPWK2VU6xkmgu2C2"]] queryLimitedToFirst:10];
+    //FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/37EX2qfWMtbpEPWK2VU6xkmgu2C2"]] queryLimitedToFirst:10];
      NSLog(@"the user test before %@", uid);
- //FIRDatabaseQuery *getUserInfoQuery = [[self.ref queryOrderedByChild:[NSString stringWithFormat:@"/userData/%@", uid]] queryLimitedToFirst:100];
+  FIRDatabaseQuery *getUserInfoQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@/", uid]] queryLimitedToFirst:10];
+    //FIRDatabaseQuery *getUserInfoQuery = [[self.ref queryOrderedByChild:[NSString stringWithFormat:@"/userData/%@/", uid]] queryLimitedToFirst:100];
     NSAssert(uid,@"user id missing");
-    NSLog(@"the user %@", uid);
+    NSLog(@"the user query %@", getUserInfoQuery);
     [getUserInfoQuery
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
@@ -328,8 +334,9 @@
             //TODO 9/4 here you'd start downloading the profile pic and save it as UIImage into profilePicture.
              theUser.profilePictureURL = snapshot.value[@"profile_picture"];
              theUser.username = snapshot.value[@"username"];
+         theUser.email = snapshot.value[@"UID"];
              //theUser.description = snapshot.value[@"description"];
-             theUser.email = snapshot.value[@"email"];
+             //theUser.email = snapshot.value[@"email"];
          
             FIRStorage *storage = [FIRStorage storage];
             FIRStorageReference *httpsReference = [storage referenceForURL:theUser.profilePictureURL];

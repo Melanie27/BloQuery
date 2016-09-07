@@ -32,10 +32,14 @@
     [super layoutSubviews];
     
     if (!self.question) {
+ 
         return;
     }
     
+    
+    
 }
+
 
 
 //override setter method to update the question text whenever a new question is set

@@ -81,6 +81,8 @@
     UITapGestureRecognizer *tappedProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(customizeProfileFired:)];
     [profileImageView addGestureRecognizer:tappedProfile];
     
+    
+    
 }
 
 -(void)customizeProfileFired:(UITapGestureRecognizer*)sender {
@@ -142,16 +144,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+   
+    
    QuestionsTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.delegate = self;
-   
+    
+
     cell.question = [BLCDataSource sharedInstance].questions[indexPath.row];
-   
+  
     UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [button addTarget:self action:@selector(didTapQuestionView:) forControlEvents:UIControlEventTouchDown];
     button.tag = indexPath.row;
     cell.accessoryView = button;
    
+    
+    // Configure the cell.
+    
+   
+    
+    
+    
+    
     User *theUser = [[User alloc] init];
     [[BLCDataSource sharedInstance]retrieveScreenNameWithUID:theUser.uid andCompletion:^(NSDictionary *snapshotValue) {
         
@@ -169,9 +182,19 @@
     BLCDataSource *ds = [BLCDataSource sharedInstance];
 
     [cell.profilePhoto setImage:[ds userImage] forState:UIControlStateNormal];
+    
+    
+    
+    
+    
+    
     return cell;
     
 }
+
+/*-(IBAction)customActionPressed:(id)sender {
+    NSLog(@"hi");
+}*/
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Question *q;
