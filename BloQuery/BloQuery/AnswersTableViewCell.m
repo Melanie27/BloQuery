@@ -39,4 +39,8 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)upvoteAnswer:(id)sender {
+    
+    NSLog(@"upvote answer");
+}
 @end

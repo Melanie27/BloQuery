@@ -312,6 +312,13 @@
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWZ-zh-Ofa">
+                                            <rect key="frame" x="18" y="61" width="46" height="30"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="upvoteAnswer:" destination="paj-ta-3IH" eventType="touchUpInside" id="6Xd-qX-61S"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="EAi-od-fdT" secondAttribute="trailing" constant="20" id="LYB-Bm-uUl"/>

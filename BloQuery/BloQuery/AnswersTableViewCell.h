@@ -19,6 +19,10 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *answerTextView;
 @property (nonatomic, strong) Answer *answer;
+
+- (IBAction)upvoteAnswer:(id)sender;
+
+
 @property (nonatomic, weak) id <AnswersTableViewCellDelegate> delegate;
 
 @end
