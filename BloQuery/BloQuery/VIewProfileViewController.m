@@ -69,7 +69,9 @@
 
 -(void) updateUsernameText {
     self.userScreenName.text = self.profileUser.username;
+    self.userScreennameLabel.text = self.profileUser.username;
     self.userDescText.text = self.profileUser.userDescription;
+    self.userDescLabel.text = self.profileUser.userDescription;
     self.userPhoto.image = self.profileUser.profilePicture;
    
     
