@@ -13,11 +13,13 @@
 //@property (strong, nonatomic) IBOutlet UITextView *userDesc;
 @property (strong, nonatomic) IBOutlet UITextField *userScreenName;
 @property (strong, nonatomic) IBOutlet UIImageView *userPhoto;
+@property (strong, nonatomic) IBOutlet UITextView *userDescText;
+
 
 
 @property (nonatomic, strong) User *profileUser;
 //@property (nonatomic, strong) User *user;
 
-- (instancetype) initWithQuestion:(User *)profileUser;
+- (instancetype) initWithUser:(User *)profileUser;
 
 @end

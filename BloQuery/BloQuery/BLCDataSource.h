@@ -14,6 +14,7 @@
 @class ComposeAnswerViewController;
 @class AnswersTableViewController;
 @class UserProfileViewController;
+@class VIewProfileViewController;
 @class Question;
 @class Answer;
 @class User;
@@ -36,6 +37,7 @@ typedef void(^UserRetrievalCompletionBlock)(User *user);
 @property (nonatomic, weak) AnswersTableViewController *atvc;
 @property (nonatomic, weak) ComposeAnswerViewController *cavc;
 @property (nonatomic, weak) UserProfileViewController *upvc;
+@property (nonatomic, weak) VIewProfileViewController *vpvc;
 
 
 @property (nonatomic, strong) Question *question;

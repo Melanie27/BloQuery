@@ -26,7 +26,7 @@
 @import FirebaseStorage;
 
 
-@interface QuestionsTableViewController ()  <UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface QuestionsTableViewController ()  <UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, QuestionsTableViewCellDelegate>
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
  @property (strong, nonatomic) FIRDatabaseReference *ref;
@@ -160,38 +160,20 @@
     cell.accessoryView = button;
     [cell.contentView addSubview:cell.profilePhoto];
     cell.profilePhoto.tag = indexPath.row;
-    //NSLog(@"cell %ld", (long)cell.profilePhoto.tag);
-     //NSLog(@"cell %ld", (long)cell.profilePhoto);
+    
     [cell.profilePhoto addTarget:self action:@selector(didTapProfilePhoto:)
              forControlEvents:UIControlEventTouchUpInside];
     
-    // Configure the cell.
-  
    
-    
-    
-    
-    User *theUser = [[User alloc] init];
-    [[BLCDataSource sharedInstance]retrieveScreenNameWithUID:theUser.uid andCompletion:^(NSDictionary *snapshotValue) {
-        
-    }];
-    [[BLCDataSource sharedInstance]retrievePhotoUrlWithUID:theUser.uid andCompletion:^(NSDictionary *snapshotValue) {
-        
-    }];
     [[BLCDataSource sharedInstance]retrieveUserWithUID:(NSString*)cell.question.askerUID andCompletion:^(User *user) {
         
-        //NSLog(@"profile photo url at each cell %@ %@", user.profilePictureURL, user.profilePicture);
+       
         [cell.profilePhoto setImage:user.profilePicture forState:UIControlStateNormal];
        
 
     }];
-    BLCDataSource *ds = [BLCDataSource sharedInstance];
-
-    [cell.profilePhoto setImage:[ds userImage] forState:UIControlStateNormal];
-    
-    
-    
-    
+    //BLCDataSource *ds = [BLCDataSource sharedInstance];
+    //[cell.profilePhoto setImage:[ds userImage] forState:UIControlStateNormal];
     
     
     return cell;
@@ -250,25 +232,28 @@
     {
         ComposeAnswerViewController *composeAnswerVC = (ComposeAnswerViewController*)segue.destinationViewController;
         composeAnswerVC.question = self.questionAddingTo;
-        NSLog(@"question adding to %@", composeAnswerVC.question);
+       
     } else if([segue.identifier isEqualToString:@"showAnswers"]){
         
     } else if ([segue.identifier isEqualToString:@"updatePofile"]) {
-        //UserProfileViewController *userProfileVC = (UserProfileViewController*)segue.destinationViewController;
 
     } else if ([segue.identifier isEqualToString:@"viewProfile"]) {
                 NSLog(@"view a profile view controller");
         UIButton *theButton = (UIButton *)sender;
         self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
+        VIewProfileViewController *viewProfileVC = (VIewProfileViewController*)segue.destinationViewController;
+        
 
         [[BLCDataSource sharedInstance]retrieveUserWithUID:(NSString*)self.questionAddingTo.askerUID andCompletion:^(User *user) {
 
            
-            
-            VIewProfileViewController *viewProfileVC = (VIewProfileViewController*)segue.destinationViewController;
             viewProfileVC.profileUser = user;
+            
              NSLog(@"got username %@", user.username);
-            //user.username = self.userAddScreenname;
+            NSLog(@"got user desc %@", user.userDescription);
+            NSLog(@"got user image url %@", user.profilePictureURL);
+             NSLog(@"got user uiimage %@", user.profilePicture);
+            
             //SETTER METHOD TO PASS THE INFO into the View profile VC
             
         }];

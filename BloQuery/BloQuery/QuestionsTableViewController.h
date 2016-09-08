@@ -18,10 +18,10 @@
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, assign) NSInteger questionNumber;
 
-- (IBAction)didTapQuestionView:(id)sender;
+
 - (IBAction)didTapProfilePhoto:(id)sender;
 
 
 //unwind segue implementation
--(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue; 
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue;
 @end

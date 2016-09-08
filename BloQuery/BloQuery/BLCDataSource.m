@@ -12,6 +12,7 @@
 #import "ComposeAnswerViewController.h"
 #import "AnswersTableViewController.h"
 #import "UserProfileViewController.h"
+#import "VIewProfileViewController.h"
 #import "Answer.h"
 #import "User.h"
 
@@ -97,27 +98,18 @@
                NSDictionary *answerObject = (NSDictionary*)snapshot.value;
                if (!(answerObject && [answerObject isKindOfClass:[NSDictionary class]])) {
                    answerObject = @{snapshot.key:snapshot.value};
-                   //Answer *answer = [[Answer alloc] init];
+                   
                    NSArray *answerListing = [answerObject objectForKey:snapshot.key];
-                   NSString *answerListingString = [answerObject objectForKey:snapshot.key];
-                   NSLog(@"answerlisting %@", answerListing);
                    for (NSDictionary *answerDict in answerListing) {
                        Answer *answer = [[Answer alloc] init];
                        answer.answerText = answerDict[@"answer"];
-                       NSLog(@"answers test %@", answer.answerText);
+                       
                        self.answers = [self.answers arrayByAddingObject:answer];
                        
                    }
    
                }
-         
-         NSLog(@"answers [%@]",self.answers);
-               //Answer *answer = [[Answer alloc] init];
-               //answer.answerText =    snapshot.value[@"answer"];
-                //self.answers = [self.answers arrayByAddingObject:answer];
-               
-         
-
+        
          
          if (self.atvc && self.atvc.tableView) {
              dispatch_async(dispatch_get_main_queue(), ^{
@@ -281,6 +273,7 @@
             
              
              [self.upvc viewDidAppear:YES];
+            [self.vpvc viewDidAppear:YES];
          }
      }];
     

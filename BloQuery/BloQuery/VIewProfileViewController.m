@@ -9,6 +9,7 @@
 #import "VIewProfileViewController.h"
 #import "QuestionsTableViewController.h"
 #import "User.h"
+#import "BLCDataSource.h"
 
 @interface VIewProfileViewController ()
 
@@ -16,12 +17,22 @@
 
 @implementation VIewProfileViewController
 
+-(instancetype) init {
+    self = [super init];
+    
+    if(self) {
+        
+    }
+    
+    return self;
+}
 
 -(id) initWithUser:(User *)profileUser  {
     self = [super init];
     
     if(self) {
         self.profileUser = profileUser;
+        NSLog(@"profile user %@", profileUser);
     }
     
     return self;
@@ -29,8 +40,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [BLCDataSource sharedInstance].vpvc = self;
     NSLog(@"test load");
-     [self updateUsernameText];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -49,13 +61,20 @@
 }
 */
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self setUser:_profileUser];
+    [self updateUsernameText];
+    
+}
+
 -(void) updateUsernameText {
     self.userScreenName.text = self.profileUser.username;
     NSLog(@"profile %@", self.profileUser.username);
     NSLog(@"userscreen %@", self.userScreenName.text);
-    //self.singleQuestionView.text = self.question.questionText;
-    //NSArray *questionsArray = [BLCDataSource sharedInstance].questions;
-    //self.questionNumber = [questionsArray indexOfObject:_question];
+    self.userDescText.text = self.profileUser.userDescription;
+    NSLog(@"desc %@", self.profileUser.userDescription);
+    self.userPhoto.image = self.profileUser.profilePicture;
+   
     
 }
 

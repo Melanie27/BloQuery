@@ -404,6 +404,7 @@
                     </view>
                     <connections>
                         <outlet property="userDesc" destination="5RO-Wt-MJ0" id="WR7-fZ-xX9"/>
+                        <outlet property="userDescText" destination="5RO-Wt-MJ0" id="x7g-Tr-2Xa"/>
                         <outlet property="userPhoto" destination="fB3-Wo-pGV" id="U7e-VX-OSt"/>
                         <outlet property="userScreenName" destination="oHe-Fm-Uc7" id="Ol0-Ig-cQY"/>
                     </connections>
