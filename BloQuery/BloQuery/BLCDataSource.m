@@ -309,7 +309,7 @@
              theUser.profilePictureURL = snapshot.value[@"profile_picture"];
              theUser.username = snapshot.value[@"username"];
          theUser.email = snapshot.value[@"email"];
-         NSLog(@"got description [%@]",snapshot.value[@"description"]);
+         //NSLog(@"got description [%@]",snapshot.value[@"description"]);
          theUser.userDescription = snapshot.value[@"description"];
              theUser.uid = snapshot.value[@"uid"];
          

@@ -10,6 +10,14 @@
 #import "User.h"
 
 @interface VIewProfileViewController : UserProfileViewController
+//@property (strong, nonatomic) IBOutlet UITextView *userDesc;
+@property (strong, nonatomic) IBOutlet UITextField *userScreenName;
+@property (strong, nonatomic) IBOutlet UIImageView *userPhoto;
+
 
 @property (nonatomic, strong) User *profileUser;
+//@property (nonatomic, strong) User *user;
+
+- (instancetype) initWithQuestion:(User *)profileUser;
+
 @end

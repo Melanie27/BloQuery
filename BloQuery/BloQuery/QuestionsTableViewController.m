@@ -216,8 +216,8 @@
     NSLog(@"tapped profile photo");
         //BLCDataSource *ds = [BLCDataSource sharedInstance];
     
-        UIButton *theButton = (UIButton *)sender;
-        self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
+        //UIButton *theButton = (UIButton *)sender;
+        //self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
        //ds.questionNumber = theButton.tag;
        //ds.question = self.questionAddingTo;
         [self performSegueWithIdentifier:@"viewProfile" sender:sender];
@@ -250,7 +250,7 @@
     {
         ComposeAnswerViewController *composeAnswerVC = (ComposeAnswerViewController*)segue.destinationViewController;
         composeAnswerVC.question = self.questionAddingTo;
-        
+        NSLog(@"question adding to %@", composeAnswerVC.question);
     } else if([segue.identifier isEqualToString:@"showAnswers"]){
         
     } else if ([segue.identifier isEqualToString:@"updatePofile"]) {
@@ -263,10 +263,12 @@
 
         [[BLCDataSource sharedInstance]retrieveUserWithUID:(NSString*)self.questionAddingTo.askerUID andCompletion:^(User *user) {
 
-            NSLog(@"got user %@", user);
+           
             
             VIewProfileViewController *viewProfileVC = (VIewProfileViewController*)segue.destinationViewController;
             viewProfileVC.profileUser = user;
+             NSLog(@"got username %@", user.username);
+            //user.username = self.userAddScreenname;
             //SETTER METHOD TO PASS THE INFO into the View profile VC
             
         }];

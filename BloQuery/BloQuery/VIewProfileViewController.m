@@ -7,6 +7,8 @@
 //
 
 #import "VIewProfileViewController.h"
+#import "QuestionsTableViewController.h"
+#import "User.h"
 
 @interface VIewProfileViewController ()
 
@@ -14,8 +16,21 @@
 
 @implementation VIewProfileViewController
 
+
+-(id) initWithUser:(User *)profileUser  {
+    self = [super init];
+    
+    if(self) {
+        self.profileUser = profileUser;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"test load");
+     [self updateUsernameText];
     // Do any additional setup after loading the view.
 }
 
@@ -33,5 +48,26 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void) updateUsernameText {
+    self.userScreenName.text = self.profileUser.username;
+    NSLog(@"profile %@", self.profileUser.username);
+    NSLog(@"userscreen %@", self.userScreenName.text);
+    //self.singleQuestionView.text = self.question.questionText;
+    //NSArray *questionsArray = [BLCDataSource sharedInstance].questions;
+    //self.questionNumber = [questionsArray indexOfObject:_question];
+    
+}
+
+//override setter method to update the user information whenever a new user is set
+-(void)setUser:(User*)profileUser {
+    _profileUser = profileUser;
+    NSLog(@"profileuser %@", profileUser);
+    //[self.questionTextView sizeToFit];
+    //self.questionTextView.text = self.question.questionText;
+    
+    self.userScreenName.text = self.profileUser.username;
+    NSLog(@"username %@", self.profileUser.username);
+}
 
 @end

@@ -402,6 +402,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="userDesc" destination="5RO-Wt-MJ0" id="WR7-fZ-xX9"/>
+                        <outlet property="userPhoto" destination="fB3-Wo-pGV" id="U7e-VX-OSt"/>
+                        <outlet property="userScreenName" destination="oHe-Fm-Uc7" id="Ol0-Ig-cQY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BJi-12-GX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
