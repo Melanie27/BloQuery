@@ -196,12 +196,7 @@
 #pragma mark - Tap the Profile Image on a given Question
 -(IBAction)didTapProfilePhoto:(id)sender {
     NSLog(@"tapped profile photo");
-        //BLCDataSource *ds = [BLCDataSource sharedInstance];
     
-        //UIButton *theButton = (UIButton *)sender;
-        //self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
-       //ds.questionNumber = theButton.tag;
-       //ds.question = self.questionAddingTo;
         [self performSegueWithIdentifier:@"viewProfile" sender:sender];
 }
 
@@ -238,7 +233,8 @@
     } else if ([segue.identifier isEqualToString:@"updatePofile"]) {
 
     } else if ([segue.identifier isEqualToString:@"viewProfile"]) {
-                NSLog(@"view a profile view controller");
+        //why is this log being called 2x??
+        NSLog(@"view a profile view controller");
         UIButton *theButton = (UIButton *)sender;
         self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
         VIewProfileViewController *viewProfileVC = (VIewProfileViewController*)segue.destinationViewController;
@@ -248,13 +244,6 @@
 
            
             viewProfileVC.profileUser = user;
-            
-             NSLog(@"got username %@", user.username);
-            NSLog(@"got user desc %@", user.userDescription);
-            NSLog(@"got user image url %@", user.profilePictureURL);
-             NSLog(@"got user uiimage %@", user.profilePicture);
-            
-            //SETTER METHOD TO PASS THE INFO into the View profile VC
             
         }];
 

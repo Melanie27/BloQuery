@@ -360,13 +360,6 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="fB3-Wo-pGV">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D68-5s-hCu">
-                                        <rect key="frame" x="0.0" y="68" width="94" height="30"/>
-                                        <state key="normal" title="Upload Photo"/>
-                                        <connections>
-                                            <action selector="didTapPhotoUpload:" destination="8cT-jZ-RCh" eventType="touchUpInside" id="Di3-7S-ElJ"/>
-                                        </connections>
-                                    </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Enter a Screen name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oHe-Fm-Uc7">
                                         <rect key="frame" x="75" y="8" width="200" height="30"/>
                                         <attributedString key="attributedText"/>

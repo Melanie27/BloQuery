@@ -9,7 +9,7 @@
 #import "VIewProfileViewController.h"
 #import "QuestionsTableViewController.h"
 #import "User.h"
-#import "BLCDataSource.h"
+
 
 @interface VIewProfileViewController ()
 
@@ -40,8 +40,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [BLCDataSource sharedInstance].vpvc = self;
-    NSLog(@"test load");
+    self.navigationItem.title = @"Profile";
+   
     
     // Do any additional setup after loading the view.
 }
@@ -69,10 +69,7 @@
 
 -(void) updateUsernameText {
     self.userScreenName.text = self.profileUser.username;
-    NSLog(@"profile %@", self.profileUser.username);
-    NSLog(@"userscreen %@", self.userScreenName.text);
     self.userDescText.text = self.profileUser.userDescription;
-    NSLog(@"desc %@", self.profileUser.userDescription);
     self.userPhoto.image = self.profileUser.profilePicture;
    
     
@@ -82,11 +79,7 @@
 -(void)setUser:(User*)profileUser {
     _profileUser = profileUser;
     NSLog(@"profileuser %@", profileUser);
-    //[self.questionTextView sizeToFit];
-    //self.questionTextView.text = self.question.questionText;
-    
-    self.userScreenName.text = self.profileUser.username;
-    NSLog(@"username %@", self.profileUser.username);
+
 }
 
 @end

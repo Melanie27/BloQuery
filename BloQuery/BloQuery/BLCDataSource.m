@@ -273,7 +273,7 @@
             
              
              [self.upvc viewDidAppear:YES];
-            [self.vpvc viewDidAppear:YES];
+            
          }
      }];
     
@@ -283,11 +283,11 @@
 
 -(void)retrieveUserWithUID:(NSString *)uid andCompletion:(UserRetrievalCompletionBlock)completion {
     User *theUser = [[User alloc] init];
-    theUser.profilePictureURL = @"";
-    theUser.username = @"";
-    //theUser.description = @"";
-    theUser.email = @"";
-    theUser.uid = @"";
+    //theUser.profilePictureURL = @"";
+    //theUser.username = @"";
+    //theUser.userDescription = @"";
+    //theUser.email = @"";
+    //theUser.uid = @"";
     
     self.ref = [[FIRDatabase database] reference];
    
@@ -299,12 +299,11 @@
      withBlock:^(FIRDataSnapshot *snapshot) {
         
          
-             theUser.profilePictureURL = snapshot.value[@"profile_picture"];
-             theUser.username = snapshot.value[@"username"];
-         theUser.email = snapshot.value[@"email"];
-         //NSLog(@"got description [%@]",snapshot.value[@"description"]);
-         theUser.userDescription = snapshot.value[@"description"];
-             theUser.uid = snapshot.value[@"uid"];
+        theUser.profilePictureURL = snapshot.value[@"profile_picture"];
+        theUser.username = snapshot.value[@"username"];
+        theUser.email = snapshot.value[@"email"];
+        theUser.userDescription = snapshot.value[@"description"];
+        theUser.uid = snapshot.value[@"uid"];
          
             FIRStorage *storage = [FIRStorage storage];
             FIRStorageReference *httpsReference = [storage referenceForURL:theUser.profilePictureURL];
