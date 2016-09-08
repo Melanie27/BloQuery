@@ -17,6 +17,7 @@
 #import "AnswersTableViewController.h"
 #import "ComposeAnswerViewController.h"
 #import "UserProfileViewController.h"
+#import "VIewProfileViewController.h"
 #import "SCLAlertView.h"
 #import "User.h"
 
@@ -215,11 +216,11 @@
     NSLog(@"tapped profile photo");
         //BLCDataSource *ds = [BLCDataSource sharedInstance];
     
-        //UIButton *theButton = (UIButton *)sender;
-        //self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
+        UIButton *theButton = (UIButton *)sender;
+        self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
        //ds.questionNumber = theButton.tag;
        //ds.question = self.questionAddingTo;
-        //[self performSegueWithIdentifier:@"viewProfile" sender:self];
+        [self performSegueWithIdentifier:@"viewProfile" sender:sender];
 }
 
 
@@ -257,7 +258,20 @@
 
     } else if ([segue.identifier isEqualToString:@"viewProfile"]) {
                 NSLog(@"view a profile view controller");
+        UIButton *theButton = (UIButton *)sender;
+        self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
 
+        [[BLCDataSource sharedInstance]retrieveUserWithUID:(NSString*)self.questionAddingTo.askerUID andCompletion:^(User *user) {
+
+            NSLog(@"got user %@", user);
+            
+            VIewProfileViewController *viewProfileVC = (VIewProfileViewController*)segue.destinationViewController;
+            viewProfileVC.profileUser = user;
+            //SETTER METHOD TO PASS THE INFO into the View profile VC
+            
+        }];
+
+        
     }
 }
     

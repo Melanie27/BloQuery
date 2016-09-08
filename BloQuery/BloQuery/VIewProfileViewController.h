@@ -7,7 +7,9 @@
 //
 
 #import "UserProfileViewController.h"
+#import "User.h"
 
 @interface VIewProfileViewController : UserProfileViewController
 
+@property (nonatomic, strong) User *profileUser;
 @end

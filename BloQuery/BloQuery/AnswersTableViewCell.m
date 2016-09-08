@@ -25,7 +25,8 @@
 //override setter method to update the answer text whenever a new answer is set
 -(void)setAnswer:(Answer*)answer {
     _answer = answer;
-    self.answerTextView.text = self.answer.answerText;
+    NSLog(@"setting answer to %@",_answer.answerText);
+    self.answerTextView.text = _answer.answerText;
 }
 
 - (void)awakeFromNib {

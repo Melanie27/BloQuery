@@ -81,7 +81,7 @@
 
     self.ref = [[FIRDatabase database] reference];
     //Database work here
-     FIRDatabaseQuery *getAnswersQuery2 = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.answerNumber, (long)self.questionNumber]] queryLimitedToFirst:1000];
+     FIRDatabaseQuery *getAnswersQuery2 = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
    
     
     NSLog(@"num of answers %ld", (long)self.answerNumber);
@@ -94,33 +94,36 @@
                
                NSLog(@"snapshot retrieve answers %@", snapshot.value);
                
-               /*NSDictionary *answerObject = (NSDictionary*)snapshot.value;
+               NSDictionary *answerObject = (NSDictionary*)snapshot.value;
                if (!(answerObject && [answerObject isKindOfClass:[NSDictionary class]])) {
                    answerObject = @{snapshot.key:snapshot.value};
                    //Answer *answer = [[Answer alloc] init];
                    NSArray *answerListing = [answerObject objectForKey:snapshot.key];
                    NSString *answerListingString = [answerObject objectForKey:snapshot.key];
                    NSLog(@"answerlisting %@", answerListing);
-                   for (NSString *answerList in answerListing) {
+                   for (NSDictionary *answerDict in answerListing) {
                        Answer *answer = [[Answer alloc] init];
-                       answer.answerText = answerList;
+                       answer.answerText = answerDict[@"answer"];
                        NSLog(@"answers test %@", answer.answerText);
                        self.answers = [self.answers arrayByAddingObject:answer];
                        
                    }
    
-               }*/
+               }
          
-         
-               Answer *answer = [[Answer alloc] init];
-               answer.answerText =    snapshot.value[@"answer"];
-                self.answers = [self.answers arrayByAddingObject:answer];
+         NSLog(@"answers [%@]",self.answers);
+               //Answer *answer = [[Answer alloc] init];
+               //answer.answerText =    snapshot.value[@"answer"];
+                //self.answers = [self.answers arrayByAddingObject:answer];
                
          
 
          
-          [self.atvc.tableView reloadData];
-         
+         if (self.atvc && self.atvc.tableView) {
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self.atvc.tableView reloadData];
+             });
+         }
      }];
     
     
@@ -306,7 +309,8 @@
              theUser.profilePictureURL = snapshot.value[@"profile_picture"];
              theUser.username = snapshot.value[@"username"];
          theUser.email = snapshot.value[@"email"];
-             //theUser.description = snapshot.value[@"description"];
+         NSLog(@"got description [%@]",snapshot.value[@"description"]);
+         theUser.userDescription = snapshot.value[@"description"];
              theUser.uid = snapshot.value[@"uid"];
          
             FIRStorage *storage = [FIRStorage storage];
