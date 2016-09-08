@@ -84,18 +84,9 @@ static NSParagraphStyle *paragraphStyle;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
      self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    // Custom initialization, custom nav bar
-    //UIImage *logo = [UIImage imageNamed:@"logo.png"];
-    //UIImageView *imageView = [[UIImageView alloc] initWithImage:logo];
-    //UIBarButtonItem *imageButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    //self.navigationItem.leftBarButtonItem = imageButton;
+   
     
-    /*UIImage *iconAsk = [UIImage imageNamed:@"iconAsk"];
-    UIImageView *askImageView = [[UIImageView alloc] initWithImage:iconAsk];
-    UIBarButtonItem *askImageButton = [[UIBarButtonItem alloc] initWithCustomView:askImageView];
-    self.navigationItem.rightBarButtonItem = askImageButton;*/
-    
-    self.navigationItem.title = @"BloQuery Answers";
+    self.navigationItem.title = @"Answers";
     
     
 }

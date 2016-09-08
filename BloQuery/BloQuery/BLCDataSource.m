@@ -92,19 +92,26 @@
          
                self.answers = @[];
                
-               //NSLog(@"snapshot retrieve answers %@", snapshot.value);
+               NSLog(@"snapshot retrieve answers %@", snapshot.value);
                
-               /*NSArray *answerList = (NSArray*)snapshot.value;
-               if (!(answerList && [answerList isKindOfClass:[NSArray class]])) {
-                   answerList = @[];
-               }
-               for (NSString *a in answerList) {
-                   Answer *answer = [[Answer alloc] init];
-                   answer.answerText = a;
-                   self.answers = [self.answers arrayByAddingObject:answer];
-                    NSLog(@"answer list%@", self.answers);
+               /*NSDictionary *answerObject = (NSDictionary*)snapshot.value;
+               if (!(answerObject && [answerObject isKindOfClass:[NSDictionary class]])) {
+                   answerObject = @{snapshot.key:snapshot.value};
+                   //Answer *answer = [[Answer alloc] init];
+                   NSArray *answerListing = [answerObject objectForKey:snapshot.key];
+                   NSString *answerListingString = [answerObject objectForKey:snapshot.key];
+                   NSLog(@"answerlisting %@", answerListing);
+                   for (NSString *answerList in answerListing) {
+                       Answer *answer = [[Answer alloc] init];
+                       answer.answerText = answerList;
+                       NSLog(@"answers test %@", answer.answerText);
+                       self.answers = [self.answers arrayByAddingObject:answer];
+                       
+                   }
+   
                }*/
-               
+         
+         
                Answer *answer = [[Answer alloc] init];
                answer.answerText =    snapshot.value[@"answer"];
                 self.answers = [self.answers arrayByAddingObject:answer];
@@ -298,9 +305,9 @@
          
              theUser.profilePictureURL = snapshot.value[@"profile_picture"];
              theUser.username = snapshot.value[@"username"];
-         theUser.email = snapshot.value[@"UID"];
+         theUser.email = snapshot.value[@"email"];
              //theUser.description = snapshot.value[@"description"];
-             //theUser.email = snapshot.value[@"email"];
+             theUser.uid = snapshot.value[@"uid"];
          
             FIRStorage *storage = [FIRStorage storage];
             FIRStorageReference *httpsReference = [storage referenceForURL:theUser.profilePictureURL];
