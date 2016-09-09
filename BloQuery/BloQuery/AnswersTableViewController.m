@@ -128,7 +128,7 @@ static NSParagraphStyle *paragraphStyle;
     AnswersTableViewCell *answerCell = [tableView dequeueReusableCellWithIdentifier:@"answerCell" forIndexPath:indexPath];
     answerCell.delegate = self;
     answerCell.answer = [BLCDataSource sharedInstance].answers[indexPath.row];
-    
+   
     return answerCell;
 }
 

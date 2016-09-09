@@ -8,6 +8,7 @@
 
 #import "AnswersTableViewCell.h"
 #import "Answer.h"
+#import "Question.h"
 #import "Upvotes.h"
 #import "BLCDataSource.h"
 #import "ComposeAnswerViewController.h"
@@ -50,25 +51,30 @@
 - (IBAction)upvoteAnswer:(id)sender {
     
     NSLog(@"send upvotes to firebase");
-    self.ref = [[FIRDatabase database] reference];
+    BLCDataSource *ds = [BLCDataSource sharedInstance];
+    
+    [ds retrieveUpvotes];
+    
+    
     //Database work here
-    FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.answerNumber, (long)self.questionNumber]] queryLimitedToFirst:1000];
+    //MOVE TO DATASOURCE???
+    /*FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
     
     [whichAnswersQuery observeSingleEventOfType:FIRDataEventTypeValue
                               withBlock:^(FIRDataSnapshot *snapshot) {
                                   
                                   //query how many upvotes there are
                                   
-                                  //self.upvotesIncrement = @(1);
+                                  NSLog(@"which answer %@", whichAnswersQuery);
+                                 
                                   
-                                  //NSLog(@"snapshot retrieve answers %@", snapshot.value);
+                                  NSLog(@"snapshot retrieve answers %@", snapshot.value);
                                   Upvotes *upvote = [[Upvotes alloc] init];
                                   upvote.upvotesNumber = snapshot.value[@"upvotes"];
                                   NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
                                   NSInteger incrementUpvote = retrievingUpvotesInt + 1;
-                                  
                                   NSNumber *theUpvotesNumber = @(incrementUpvote);
-                                  NSLog(@"new num %@", theUpvotesNumber);
+                                  
                                   /*NSDictionary *answerObject = (NSDictionary*)snapshot.value;
                                   if (!(answerObject && [answerObject isKindOfClass:[NSDictionary class]])) {
                                       answerObject = @{snapshot.key:snapshot.value};
@@ -92,7 +98,7 @@
                                       
                                   
                                       
-                                  }*/
+                                  }
                                   NSDictionary *upvoteUpdates = @{
                                                                   
                                                                   [NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvotes", (long)self.questionNumber,(long) self.answerNumber]:theUpvotesNumber,
@@ -102,7 +108,7 @@
                                   NSLog(@"updates %@", upvoteUpdates);
                                   [_ref updateChildValues:upvoteUpdates ];
                                   
-                              }];
+                              }];*/
     
     
     

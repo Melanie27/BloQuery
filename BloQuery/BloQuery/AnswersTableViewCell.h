@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class Answer, AnswersTableViewCell;
+@class Answer, AnswersTableViewCell, Question;
 @import FirebaseDatabase;
 @import FirebaseStorage;
 
@@ -24,7 +24,7 @@
 @property (nonatomic, assign) NSInteger questionNumber;
 @property (nonatomic, strong) NSArray *answers;
 @property (nonatomic, assign) NSUInteger answersCount;
-//@property (nonatomic, strong) NSNumber *theUpvotesNumber;
+
 
 @property (nonatomic, strong) NSString *answerNumberString;
 @property (nonatomic, assign) NSInteger answerNumber;
