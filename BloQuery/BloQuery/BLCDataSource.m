@@ -85,7 +85,7 @@
      FIRDatabaseQuery *getAnswersQuery2 = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
    
     
-    NSLog(@"num of answers %ld", (long)self.answerNumber);
+    //NSLog(@"num of answers %ld", (long)self.answerNumber);
     
     [getAnswersQuery2
      observeEventType:FIRDataEventTypeValue
@@ -93,7 +93,7 @@
          
                self.answers = @[];
                
-               NSLog(@"snapshot retrieve answers %@", snapshot.value);
+               //NSLog(@"snapshot retrieve answers %@", snapshot.value);
                
                NSDictionary *answerObject = (NSDictionary*)snapshot.value;
                if (!(answerObject && [answerObject isKindOfClass:[NSDictionary class]])) {

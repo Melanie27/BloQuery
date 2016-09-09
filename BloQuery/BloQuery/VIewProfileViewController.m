@@ -58,6 +58,7 @@
     
     [self updateUsernameText];
     
+    
 }
 
 -(void) updateUsernameText {
@@ -66,6 +67,7 @@
     self.userDescText.text = self.profileUser.userDescription;
     //self.userDescLabel.text = self.profileUser.userDescription;
     self.userPhoto.image = self.profileUser.profilePicture;
+    
    
     
 }
