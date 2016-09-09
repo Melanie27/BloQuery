@@ -10,11 +10,16 @@
 #import "Answer.h"
 #import "Question.h"
 #import "Upvotes.h"
+#import "upvoteButton.h"
 #import "BLCDataSource.h"
 #import "ComposeAnswerViewController.h"
 
 
+//@interface AnswersTableViewCell : UITableViewCell
 
+//@property (nonatomic, strong) UpvoteButton *upvoteButton;
+
+//@end
 
 
 @implementation AnswersTableViewCell
@@ -81,6 +86,7 @@
                                           
                                           Upvotes *upvote = [[Upvotes alloc] init];
                                           upvote.upvotesNumber = snapshot.value[@"upvotes"];
+                                        
                                           NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
                                           NSInteger incrementUpvote = retrievingUpvotesInt + 1;
                                           NSNumber *theUpvotesNumber = @(incrementUpvote);

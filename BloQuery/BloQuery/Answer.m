@@ -13,4 +13,11 @@
     
     return @"";
 }
+
+
+//Keep track of whether or not user has liked an answer
+
+//BOOL userHasLiked = [mediaDictionary[@"user_has_liked"] boolValue];
+
+//self.upvoteState = userHasLiked ? UpvoteStateLiked : UpvoteStateNotLiked;
 @end

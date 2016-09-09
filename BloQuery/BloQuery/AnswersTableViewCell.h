@@ -25,12 +25,13 @@
 @property (nonatomic, assign) NSInteger answerNumber;
 @property (nonatomic, strong) NSArray *answers;
 @property (nonatomic, assign) NSUInteger answersCount;
+@property (strong, nonatomic) IBOutlet UILabel *voteCount;
 
 
 @property (nonatomic, strong) NSString *answerNumberString;
-
+//- (void) cellDidPressLikeButton:(AnswersTableViewCell *)cell;
 - (IBAction)upvoteAnswer:(id)sender;
-
+- (void) cellDidPressUpvoteButton:(AnswersTableViewCell *)answerCell;
 
 @property (nonatomic, weak) id <AnswersTableViewCellDelegate> delegate;
 

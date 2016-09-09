@@ -27,6 +27,7 @@
 		9B4264EB1D6B79BA00BD3604 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4264EA1D6B79BA00BD3604 /* User.m */; };
 		9B461E1E1D41449F008EC073 /* QuestionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B461E1D1D41449F008EC073 /* QuestionTests.m */; };
 		9B4628AE1D83296500B72B8A /* Upvotes.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4628AD1D83296500B72B8A /* Upvotes.m */; };
+		9B4628B11D836D9300B72B8A /* upvoteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4628B01D836D9300B72B8A /* upvoteButton.m */; };
 		9B46AAAB1D6F401B001E8754 /* ImageLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B46AAAA1D6F401B001E8754 /* ImageLibraryViewController.m */; };
 		9B46AAAE1D6F5996001E8754 /* CropBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B46AAAD1D6F5996001E8754 /* CropBox.m */; };
 		9B6623701D53C04D00AACB5F /* UIColor+BloQueryColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B66236F1D53C04D00AACB5F /* UIColor+BloQueryColors.m */; };
@@ -100,6 +101,8 @@
 		9B461E1D1D41449F008EC073 /* QuestionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionTests.m; path = ../../BloQuery/BloQueryTests/QuestionTests.m; sourceTree = "<group>"; };
 		9B4628AC1D83296500B72B8A /* Upvotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Upvotes.h; path = ../../BloQuery/BloQuery/Upvotes.h; sourceTree = "<group>"; };
 		9B4628AD1D83296500B72B8A /* Upvotes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Upvotes.m; path = ../../BloQuery/BloQuery/Upvotes.m; sourceTree = "<group>"; };
+		9B4628AF1D836D9300B72B8A /* upvoteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = upvoteButton.h; path = ../../BloQuery/BloQuery/upvoteButton.h; sourceTree = "<group>"; };
+		9B4628B01D836D9300B72B8A /* upvoteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = upvoteButton.m; path = ../../BloQuery/BloQuery/upvoteButton.m; sourceTree = "<group>"; };
 		9B46AAA91D6F401B001E8754 /* ImageLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageLibraryViewController.h; path = ../../BloQuery/BloQuery/ImageLibraryViewController.h; sourceTree = "<group>"; };
 		9B46AAAA1D6F401B001E8754 /* ImageLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageLibraryViewController.m; path = ../../BloQuery/BloQuery/ImageLibraryViewController.m; sourceTree = "<group>"; };
 		9B46AAAC1D6F5996001E8754 /* CropBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CropBox.h; path = ../../BloQuery/BloQuery/CropBox.h; sourceTree = "<group>"; };
@@ -217,6 +220,8 @@
 				9B8A0DF31D511262006E0279 /* AnswersTableViewController.m */,
 				9B8A0DF51D511703006E0279 /* AnswersTableViewCell.h */,
 				9B8A0DF61D511703006E0279 /* AnswersTableViewCell.m */,
+				9B4628AF1D836D9300B72B8A /* upvoteButton.h */,
+				9B4628B01D836D9300B72B8A /* upvoteButton.m */,
 				9B3015161D3418D800304F6A /* AppDelegate.h */,
 				9B3015171D3418D800304F6A /* AppDelegate.m */,
 				9B35209F1D34767A0074EAFE /* CustomTokenViewController.h */,
@@ -464,6 +469,7 @@
 				9B3520A41D3476D50074EAFE /* EmailViewController.m in Sources */,
 				9B46AAAB1D6F401B001E8754 /* ImageLibraryViewController.m in Sources */,
 				9B46AAAE1D6F5996001E8754 /* CropBox.m in Sources */,
+				9B4628B11D836D9300B72B8A /* upvoteButton.m in Sources */,
 				9B4628AE1D83296500B72B8A /* Upvotes.m in Sources */,
 				9B37903F1D395C9000B5303C /* BLCDataSource.m in Sources */,
 				9B3520AA1D34782C0074EAFE /* UIViewController+Alerts.m in Sources */,
