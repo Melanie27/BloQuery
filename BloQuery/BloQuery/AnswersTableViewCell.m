@@ -35,6 +35,11 @@
     _answer = answer;
     //NSLog(@"setting answer to %@",_answer.answerText);
     self.answerTextView.text = _answer.answerText;
+    
+    NSArray *answersArray = [BLCDataSource sharedInstance].answers;
+    [BLCDataSource sharedInstance].answerNumber = [answersArray indexOfObject:_answer];
+    NSLog(@"answer number %ld", (long)_answerNumber);
+    //self.answerNumber = [[BLCDataSource sharedInstance].answer];
 }
 
 - (void)awakeFromNib {
@@ -51,6 +56,7 @@
 - (IBAction)upvoteAnswer:(id)sender {
     
     NSLog(@"send upvotes to firebase");
+     NSLog(@"answer number2 %ld", (long)_answerNumber);
     BLCDataSource *ds = [BLCDataSource sharedInstance];
     
     [ds retrieveUpvotes];

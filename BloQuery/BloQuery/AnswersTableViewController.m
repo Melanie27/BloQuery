@@ -129,6 +129,10 @@ static NSParagraphStyle *paragraphStyle;
     answerCell.delegate = self;
     answerCell.answer = [BLCDataSource sharedInstance].answers[indexPath.row];
    
+    
+    answerCell.tag = indexPath.row;
+    NSLog(@"rowof the cell %d", answerCell.tag);
+    
     return answerCell;
 }
 

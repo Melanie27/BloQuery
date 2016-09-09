@@ -21,8 +21,6 @@
 
 @property (nonatomic, strong) NSArray *questions;
 @property (nonatomic, strong) NSArray *answers;
-@property (nonatomic, assign) NSUInteger answersCount;
-@property (nonatomic, strong) NSString *answerNumberString;
 @property (nonatomic, strong) NSNumber *theUpvotesNumber;
 @end
 
@@ -92,7 +90,7 @@
                                           
                                           //query how many upvotes there are
                                           
-                                          NSLog(@"which answer %@", whichAnswersQuery);
+                                          //NSLog(@"which answer %@", self.answerNumber);
                                           
                                           //THIS IS ALWAYS RETURNING THE FIRST ANSWER
                                           NSLog(@"snapshot retrieve answers %@", snapshot.value);
