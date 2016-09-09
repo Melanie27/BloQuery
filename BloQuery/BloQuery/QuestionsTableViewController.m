@@ -195,9 +195,7 @@
 
 #pragma mark - Tap the Profile Image on a given Question
 -(IBAction)didTapProfilePhoto:(id)sender {
-    NSLog(@"tapped profile photo");
     
-        [self performSegueWithIdentifier:@"viewProfile" sender:sender];
 }
 
 
@@ -239,7 +237,6 @@
         self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
         VIewProfileViewController *viewProfileVC = (VIewProfileViewController*)segue.destinationViewController;
         
-
         [[BLCDataSource sharedInstance]retrieveUserWithUID:(NSString*)self.questionAddingTo.askerUID andCompletion:^(User *user) {
 
            

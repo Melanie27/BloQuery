@@ -11,16 +11,16 @@
 
 @interface VIewProfileViewController : UserProfileViewController
 //@property (strong, nonatomic) IBOutlet UITextView *userDesc;
-@property (strong, nonatomic) IBOutlet UITextField *userScreenName;
+
 @property (strong, nonatomic) IBOutlet UIImageView *userPhoto;
 @property (strong, nonatomic) IBOutlet UITextView *userDescText;
 
 @property (strong, nonatomic) IBOutlet UILabel *userScreennameLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *userDescLabel;
+//@property (strong, nonatomic) IBOutlet UILabel *userDescLabel;
 
 @property (nonatomic, strong) User *profileUser;
-//@property (nonatomic, strong) User *user;
+
 
 - (instancetype) initWithUser:(User *)profileUser;
 

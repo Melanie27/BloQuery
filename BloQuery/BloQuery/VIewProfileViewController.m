@@ -17,22 +17,13 @@
 
 @implementation VIewProfileViewController
 
--(instancetype) init {
-    self = [super init];
-    
-    if(self) {
-        
-    }
-    
-    return self;
-}
 
 -(id) initWithUser:(User *)profileUser  {
     self = [super init];
     
     if(self) {
         self.profileUser = profileUser;
-        NSLog(@"profile user %@", profileUser);
+       
     }
     
     return self;
@@ -41,7 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Profile";
-   
+   self.profileUser = _profileUser;
+    //TODO why doesn't profile user exist here?
+    NSLog(@"profile user1 %@", self.profileUser);
     
     // Do any additional setup after loading the view.
 }
@@ -62,26 +55,26 @@
 */
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self setUser:_profileUser];
+    
     [self updateUsernameText];
     
 }
 
 -(void) updateUsernameText {
-    self.userScreenName.text = self.profileUser.username;
+   
     self.userScreennameLabel.text = self.profileUser.username;
     self.userDescText.text = self.profileUser.userDescription;
-    self.userDescLabel.text = self.profileUser.userDescription;
+    //self.userDescLabel.text = self.profileUser.userDescription;
     self.userPhoto.image = self.profileUser.profilePicture;
    
     
 }
 
 //override setter method to update the user information whenever a new user is set
--(void)setUser:(User*)profileUser {
+/*-(void)setUser:(User*)profileUser {
     _profileUser = profileUser;
-    NSLog(@"profileuser %@", profileUser);
+    NSLog(@"profileuser2 %@", profileUser);
 
-}
+}*/
 
 @end
