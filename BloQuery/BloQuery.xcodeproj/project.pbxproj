@@ -36,6 +36,7 @@
 		9B8DE47C1D4817640020DE5B /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DE47B1D4817640020DE5B /* Answer.m */; };
 		9B8DE4821D496AE60020DE5B /* ComposeAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DE4811D496AE60020DE5B /* ComposeAnswerViewController.m */; };
 		9BAE4C981D63519D00EBB6CF /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE4C971D63519D00EBB6CF /* UserProfileViewController.m */; };
+		9BBD0DFD1D8233AF006E560E /* ViewProfileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD0DFC1D8233AF006E560E /* ViewProfileTests.m */; };
 		9BE013821D341DA000ED53B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */; };
 		DA516C8642AF885156B4A757 /* libPods-BloQuery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD339CA12DFBC6F654172917 /* libPods-BloQuery.a */; };
 /* End PBXBuildFile section */
@@ -115,6 +116,7 @@
 		9B8DE4811D496AE60020DE5B /* ComposeAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeAnswerViewController.m; sourceTree = "<group>"; };
 		9BAE4C961D63519D00EBB6CF /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = ../../BloQuery/BloQuery/UserProfileViewController.h; sourceTree = "<group>"; };
 		9BAE4C971D63519D00EBB6CF /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = ../../BloQuery/BloQuery/UserProfileViewController.m; sourceTree = "<group>"; };
+		9BBD0DFC1D8233AF006E560E /* ViewProfileTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewProfileTests.m; path = ../../BloQuery/BloQueryTests/ViewProfileTests.m; sourceTree = "<group>"; };
 		9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BD339CA12DFBC6F654172917 /* libPods-BloQuery.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BloQuery.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -253,6 +255,7 @@
 				9B30152D1D3418D800304F6A /* BloQueryTests.m */,
 				9B30152F1D3418D800304F6A /* Info.plist */,
 				9B461E1D1D41449F008EC073 /* QuestionTests.m */,
+				9BBD0DFC1D8233AF006E560E /* ViewProfileTests.m */,
 			);
 			path = BloQueryTests;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 			files = (
 				9B30152E1D3418D800304F6A /* BloQueryTests.m in Sources */,
 				9B461E1E1D41449F008EC073 /* QuestionTests.m in Sources */,
+				9BBD0DFD1D8233AF006E560E /* ViewProfileTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
