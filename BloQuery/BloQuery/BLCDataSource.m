@@ -90,7 +90,7 @@
                                           
                                           //query how many upvotes there are
                                           
-                                          //NSLog(@"which answer %@", self.answerNumber);
+                                          NSLog(@"which answer %ld", (long)self.answerNumber);
                                           
                                           //THIS IS ALWAYS RETURNING THE FIRST ANSWER
                                           NSLog(@"snapshot retrieve answers %@", snapshot.value);

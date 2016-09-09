@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Answer : NSObject
-
+@property (nonatomic, assign) NSInteger *answerNumber;
 @property (nonatomic, strong) NSString *answerText;
 @property (nonatomic, strong) NSString *temporaryAnswer;
 //@property (nonatomic, strong) NSString *answererUID;

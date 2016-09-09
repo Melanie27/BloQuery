@@ -129,11 +129,19 @@ static NSParagraphStyle *paragraphStyle;
     answerCell.delegate = self;
     answerCell.answer = [BLCDataSource sharedInstance].answers[indexPath.row];
    
+    answerCell.answerNumber = indexPath.row;
     
     answerCell.tag = indexPath.row;
-    NSLog(@"rowof the cell %d", answerCell.tag);
+    
+    self.answerNumber = answerCell.tag;
+    NSLog(@"rowof the cell %d", self.answerNumber);
+    
+    
     
     return answerCell;
+    
+    
+    
 }
 
 //Override the default height
@@ -141,7 +149,6 @@ static NSParagraphStyle *paragraphStyle;
     return 100;
     
 }
-
 
 /*
 // Override to support conditional editing of the table view.

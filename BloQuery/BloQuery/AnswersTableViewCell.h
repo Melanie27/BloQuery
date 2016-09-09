@@ -22,12 +22,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *answerTextView;
 @property (nonatomic, strong) Answer *answer;
 @property (nonatomic, assign) NSInteger questionNumber;
+@property (nonatomic, assign) NSInteger answerNumber;
 @property (nonatomic, strong) NSArray *answers;
 @property (nonatomic, assign) NSUInteger answersCount;
 
 
 @property (nonatomic, strong) NSString *answerNumberString;
-@property (nonatomic, assign) NSInteger answerNumber;
+
 - (IBAction)upvoteAnswer:(id)sender;
 
 
