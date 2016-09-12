@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B15F0351D877193000EB5E4 /* BloQueryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3015381D3418D800304F6A /* BloQueryUITests.m */; };
+		9B15F0361D877275000EB5E4 /* BloQueryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3015381D3418D800304F6A /* BloQueryUITests.m */; };
 		9B3015151D3418D800304F6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3015141D3418D800304F6A /* main.m */; };
 		9B3015181D3418D800304F6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3015171D3418D800304F6A /* AppDelegate.m */; };
 		9B30151E1D3418D800304F6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B30151C1D3418D800304F6A /* Main.storyboard */; };
@@ -475,7 +475,6 @@
 				9B46AAAE1D6F5996001E8754 /* CropBox.m in Sources */,
 				9B4628B11D836D9300B72B8A /* upvoteButton.m in Sources */,
 				9B4628AE1D83296500B72B8A /* Upvotes.m in Sources */,
-				9B15F0351D877193000EB5E4 /* BloQueryUITests.m in Sources */,
 				9B37903F1D395C9000B5303C /* BLCDataSource.m in Sources */,
 				9B3520AA1D34782C0074EAFE /* UIViewController+Alerts.m in Sources */,
 				9B328AA41D3DA43B0036C7F6 /* QuestionFullScreenViewController.m in Sources */,
@@ -500,6 +499,7 @@
 			files = (
 				9B4628B31D876B6500B72B8A /* User.m in Sources */,
 				9B30152E1D3418D800304F6A /* BloQueryTests.m in Sources */,
+				9B15F0361D877275000EB5E4 /* BloQueryUITests.m in Sources */,
 				9B461E1E1D41449F008EC073 /* QuestionTests.m in Sources */,
 				9B4628B51D876B6F00B72B8A /* VIewProfileViewController.m in Sources */,
 			);

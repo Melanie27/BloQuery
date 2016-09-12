@@ -10,8 +10,8 @@
 
 @class Question;
 @class User;
-@import Firebase;
-@import FirebaseDatabase;
+//@import Firebase;
+//@import FirebaseDatabase;
 
 
 @interface QuestionsTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
