@@ -134,7 +134,7 @@ static NSParagraphStyle *paragraphStyle;
     answerCell.tag = indexPath.row;
     
     self.answerNumber = answerCell.tag;
-    NSLog(@"rowof the cell %d", self.answerNumber);
+    NSLog(@"row of the cell %d", self.answerNumber);
     
     
     

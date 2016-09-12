@@ -240,6 +240,7 @@
         [[BLCDataSource sharedInstance]retrieveUserWithUID:(NSString*)self.questionAddingTo.askerUID andCompletion:^(User *user) {
 
            
+            NSLog(@"user %@", user);
             viewProfileVC.profileUser = user;
             
         }];

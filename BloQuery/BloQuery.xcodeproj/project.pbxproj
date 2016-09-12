@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B15F0351D877193000EB5E4 /* BloQueryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3015381D3418D800304F6A /* BloQueryUITests.m */; };
 		9B3015151D3418D800304F6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3015141D3418D800304F6A /* main.m */; };
 		9B3015181D3418D800304F6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3015171D3418D800304F6A /* AppDelegate.m */; };
 		9B30151E1D3418D800304F6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B30151C1D3418D800304F6A /* Main.storyboard */; };
@@ -28,6 +29,11 @@
 		9B461E1E1D41449F008EC073 /* QuestionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B461E1D1D41449F008EC073 /* QuestionTests.m */; };
 		9B4628AE1D83296500B72B8A /* Upvotes.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4628AD1D83296500B72B8A /* Upvotes.m */; };
 		9B4628B11D836D9300B72B8A /* upvoteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4628B01D836D9300B72B8A /* upvoteButton.m */; };
+		9B4628B21D876B6500B72B8A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4264EA1D6B79BA00BD3604 /* User.m */; };
+		9B4628B31D876B6500B72B8A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4264EA1D6B79BA00BD3604 /* User.m */; };
+		9B4628B41D876B6D00B72B8A /* VIewProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B889EAC1D78F41700B65357 /* VIewProfileViewController.m */; };
+		9B4628B51D876B6F00B72B8A /* VIewProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B889EAC1D78F41700B65357 /* VIewProfileViewController.m */; };
+		9B4628B61D876BD200B72B8A /* libPods-BloQuery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD339CA12DFBC6F654172917 /* libPods-BloQuery.a */; };
 		9B46AAAB1D6F401B001E8754 /* ImageLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B46AAAA1D6F401B001E8754 /* ImageLibraryViewController.m */; };
 		9B46AAAE1D6F5996001E8754 /* CropBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B46AAAD1D6F5996001E8754 /* CropBox.m */; };
 		9B6623701D53C04D00AACB5F /* UIColor+BloQueryColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B66236F1D53C04D00AACB5F /* UIColor+BloQueryColors.m */; };
@@ -38,7 +44,6 @@
 		9B8DE47C1D4817640020DE5B /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DE47B1D4817640020DE5B /* Answer.m */; };
 		9B8DE4821D496AE60020DE5B /* ComposeAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DE4811D496AE60020DE5B /* ComposeAnswerViewController.m */; };
 		9BAE4C981D63519D00EBB6CF /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE4C971D63519D00EBB6CF /* UserProfileViewController.m */; };
-		9BBD0DFD1D8233AF006E560E /* ViewProfileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD0DFC1D8233AF006E560E /* ViewProfileTests.m */; };
 		9BE013821D341DA000ED53B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */; };
 		DA516C8642AF885156B4A757 /* libPods-BloQuery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD339CA12DFBC6F654172917 /* libPods-BloQuery.a */; };
 /* End PBXBuildFile section */
@@ -122,7 +127,6 @@
 		9B8DE4811D496AE60020DE5B /* ComposeAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeAnswerViewController.m; sourceTree = "<group>"; };
 		9BAE4C961D63519D00EBB6CF /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = ../../BloQuery/BloQuery/UserProfileViewController.h; sourceTree = "<group>"; };
 		9BAE4C971D63519D00EBB6CF /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = ../../BloQuery/BloQuery/UserProfileViewController.m; sourceTree = "<group>"; };
-		9BBD0DFC1D8233AF006E560E /* ViewProfileTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewProfileTests.m; path = ../../BloQuery/BloQueryTests/ViewProfileTests.m; sourceTree = "<group>"; };
 		9BE013811D341DA000ED53B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BD339CA12DFBC6F654172917 /* libPods-BloQuery.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BloQuery.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -147,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4628B61D876BD200B72B8A /* libPods-BloQuery.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +270,6 @@
 				9B30152D1D3418D800304F6A /* BloQueryTests.m */,
 				9B30152F1D3418D800304F6A /* Info.plist */,
 				9B461E1D1D41449F008EC073 /* QuestionTests.m */,
-				9BBD0DFC1D8233AF006E560E /* ViewProfileTests.m */,
 			);
 			path = BloQueryTests;
 			sourceTree = "<group>";
@@ -471,6 +475,7 @@
 				9B46AAAE1D6F5996001E8754 /* CropBox.m in Sources */,
 				9B4628B11D836D9300B72B8A /* upvoteButton.m in Sources */,
 				9B4628AE1D83296500B72B8A /* Upvotes.m in Sources */,
+				9B15F0351D877193000EB5E4 /* BloQueryUITests.m in Sources */,
 				9B37903F1D395C9000B5303C /* BLCDataSource.m in Sources */,
 				9B3520AA1D34782C0074EAFE /* UIViewController+Alerts.m in Sources */,
 				9B328AA41D3DA43B0036C7F6 /* QuestionFullScreenViewController.m in Sources */,
@@ -493,9 +498,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4628B31D876B6500B72B8A /* User.m in Sources */,
 				9B30152E1D3418D800304F6A /* BloQueryTests.m in Sources */,
 				9B461E1E1D41449F008EC073 /* QuestionTests.m in Sources */,
-				9BBD0DFD1D8233AF006E560E /* ViewProfileTests.m in Sources */,
+				9B4628B51D876B6F00B72B8A /* VIewProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +509,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4628B41D876B6D00B72B8A /* VIewProfileViewController.m in Sources */,
+				9B4628B21D876B6500B72B8A /* User.m in Sources */,
 				9B3015391D3418D800304F6A /* BloQueryUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

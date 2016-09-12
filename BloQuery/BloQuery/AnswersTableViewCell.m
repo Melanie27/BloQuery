@@ -13,6 +13,7 @@
 #import "upvoteButton.h"
 #import "BLCDataSource.h"
 #import "ComposeAnswerViewController.h"
+#import "QuestionsTableViewController.h"
 
 
 //@interface AnswersTableViewCell : UITableViewCell
@@ -67,11 +68,13 @@
     //BLCDataSource *ds = [BLCDataSource sharedInstance];
     //[ds retrieveUpvotes];
     
+    //must retrieve question number - mayber from datasource or from questions table view controller
+    NSLog(@"question number %@", self.questionNumber);
     
     self.ref = [[FIRDatabase database] reference];
     //Database work here
    
-    FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.answerNumber, (long)self.questionNumber]] queryLimitedToFirst:1000];
+    FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.questionNumber, (long)self.answerNumber]] queryLimitedToFirst:1000];
     
     [whichAnswersQuery observeSingleEventOfType:FIRDataEventTypeValue
                                       withBlock:^(FIRDataSnapshot *snapshot) {

@@ -32,9 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Profile";
-   self.profileUser = _profileUser;
-    //TODO why doesn't profile user exist here?
-    NSLog(@"profile user1 %@", self.profileUser);
     
     // Do any additional setup after loading the view.
 }
@@ -73,10 +70,10 @@
 }
 
 //override setter method to update the user information whenever a new user is set
-/*-(void)setUser:(User*)profileUser {
+-(void)setProfileUser:(User*)profileUser {
     _profileUser = profileUser;
     NSLog(@"profileuser2 %@", profileUser);
-
-}*/
+    [self updateUsernameText];
+}
 
 @end
