@@ -17,4 +17,5 @@
 @property (nonatomic, strong) NSString *profilePictureURL;
 @property (nonatomic, strong) UIImage *profilePicture;
 
+- (NSString *)userWithName;
 @end

@@ -10,5 +10,18 @@
 
 @implementation User
 
+- (NSString *) userWithName {
+    
+    return @"";
+}
+
+- (NSString *)userWithName:(NSString *)userDescription {
+    
+    NSMutableString *shortDescription = [[NSMutableString alloc] init];
+
+    return shortDescription;
+}
+
+
 
 @end
