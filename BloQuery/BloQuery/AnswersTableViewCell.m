@@ -10,7 +10,7 @@
 #import "Answer.h"
 #import "Question.h"
 #import "Upvotes.h"
-#import "upvoteButton.h"
+//#import "upvoteButton.h"
 #import "BLCDataSource.h"
 #import "ComposeAnswerViewController.h"
 #import "QuestionsTableViewController.h"
@@ -18,25 +18,27 @@
 @import Firebase;
 @import FirebaseDatabase;
 @import FirebaseStorage;
-//@interface AnswersTableViewCell : UITableViewCell
+@interface AnswersTableViewCell ()
 
-//@property (nonatomic, strong) UpvoteButton *upvoteButton;
+//@property (strong, nonatomic) FIRDatabaseReference *ref;
 
-//@end
+@end
 
 
 @implementation AnswersTableViewCell
 
--(id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if(self) {
-        //init code
-        
-    }
-    
-    return self;
+
+
+- (void)viewDidLoad {
+    //[super viewDidLoad];
+    NSLog(@"view did load");
+    self.voteButton.titleLabel.text = @"upvote";
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+     self.voteButton.titleLabel.text = @"downvote";
+}
 
 
 
@@ -46,6 +48,10 @@
     self.answerTextView.text = _answer.answerText;
     
 }
+-(void)setVoteCount:(UILabel *)voteCount {
+    
+    self.voteCount.text = @"20 votes";
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -54,12 +60,12 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+_voteCount.text=@"Recording Sound ...";
     // Configure the view for the selected state
 }
 
 - (IBAction)upvoteAnswer:(id)sender {
-    
+    self.voteCount.text = @"20 votes";
     FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
     
@@ -78,12 +84,9 @@
                                           if (exists == 0) {
                                               //YOU CAN UPVOTE
                                               //MOVE TO DATASOURCE once working
-                                              //BLCDataSource *ds = [BLCDataSource sharedInstance];
-                                              //[ds retrieveAnswers];
+                                            
                                               
                                               self.ref = [[FIRDatabase database] reference];
-                                              
-                                              
                                               FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.questionNumber, (long)self.answerNumber]] queryLimitedToFirst:1000];
                                               
                                               [whichAnswersQuery observeSingleEventOfType:FIRDataEventTypeValue
@@ -95,8 +98,10 @@
                                                                                     NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
                                                                                     NSInteger incrementUpvote = retrievingUpvotesInt + 1;
                                                                                     NSNumber *theUpvotesNumber = @(incrementUpvote);
-                                                                                    //NSLog(@"new num %@", theUpvotesNumber);
-                                                                                    
+                                                                                    NSLog(@"new num %@", theUpvotesNumber);
+                                                                                    NSString *voteString = [theUpvotesNumber stringValue];
+                                                                                    self.voteCount.text = voteString;
+                                                                                    NSLog(@"vote string %@", voteString);
                                                                                     NSDictionary *upvoteUpdates = @{
                                                                                                                     
                                                                                                                     [NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvotes", (long)self.questionNumber, (long)self.answerNumber]:theUpvotesNumber,
@@ -107,12 +112,49 @@
                                                                                     //NSLog(@"new num to push %@", theUpvotesNumber);
                                                                                     //NSLog(@"updates %@", upvoteUpdates);
                                                                                     [_ref updateChildValues:upvoteUpdates ];
+                                                                                    //CHANGE APPEARANCE OF BUTTON
                                                                                     
                                                                                     
                                                                                 }];
                                           } else {
-                                              
+                                              self.voteButton.titleLabel.text = @"downvote";
                                               NSLog(@"you have already upvoted you can down vote");
+                                              self.ref = [[FIRDatabase database] reference];
+                                              FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.questionNumber, (long)self.answerNumber]] queryLimitedToFirst:1000];
+                                              
+                                              [whichAnswersQuery observeSingleEventOfType:FIRDataEventTypeValue
+                                                                                withBlock:^(FIRDataSnapshot *snapshot) {
+                                                                                    
+                                                                                    Upvotes *upvote = [[Upvotes alloc] init];
+                                                                                    upvote.upvotesNumber = snapshot.value[@"upvotes"];
+                                                                                    
+                                                                                    NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
+                                                                                    NSInteger decrementUpvote = retrievingUpvotesInt - 1;
+                                                                                    NSNumber *theUpvotesNumber = @(decrementUpvote);
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    NSDictionary *upvoteUpdates = @{
+                                                                                                                    
+                                                                                                                    [NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvotes", (long)self.questionNumber, (long)self.answerNumber]:theUpvotesNumber,
+                                                                                                                    //[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]:@"0"
+                                                                                                                    
+                                                                                                                    };
+                                                                                    
+                                                                                    
+                                                                                    [_ref updateChildValues:upvoteUpdates ];
+                                                                                 //get a reference to the UID and remove that child node
+                                                                 FIRDatabaseQuery *userQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]] queryLimitedToFirst:1];
+                                                                                    NSLog(@"user quer %@", userQuery);
+                                                                                     [self.ref child:@"upvoter"];
+                                                                                     [self.ref child:userAuth.uid];
+                                                                                    NSLog(@" remove %@ ", [self.ref child:userAuth.uid] );
+                                                                                     NSLog(@" remove %@ ", [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]] queryLimitedToFirst:1] );
+                                                                                    
+                                                                                    [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]] removeValue];
+                                                                                    
+                                                                                }];
                                           }
                                          
                                           

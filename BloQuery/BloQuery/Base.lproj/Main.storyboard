@@ -313,22 +313,18 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWZ-zh-Ofa">
-                                            <rect key="frame" x="16" y="61" width="60" height="30"/>
-                                            <state key="normal" title="Upvote"/>
+                                            <rect key="frame" x="16" y="61" width="106" height="30"/>
+                                            <state key="normal" title="vote"/>
                                             <connections>
                                                 <action selector="upvoteAnswer:" destination="paj-ta-3IH" eventType="touchUpInside" id="6Xd-qX-61S"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Count:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSN-jf-e68">
-                                            <rect key="frame" x="84" y="65" width="51" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y23-Ni-UgJ">
+                                            <rect key="frame" x="130" y="65" width="44" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P04-WR-j8r">
-                                            <rect key="frame" x="443" y="60" width="85" height="30"/>
-                                            <state key="normal" title="Cell Number"/>
-                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="EAi-od-fdT" secondAttribute="trailing" constant="20" id="LYB-Bm-uUl"/>
@@ -339,7 +335,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="answerTextView" destination="EAi-od-fdT" id="ZO7-sI-pd4"/>
-                                    <outlet property="voteCount" destination="pSN-jf-e68" id="Ns8-Td-s1Q"/>
+                                    <outlet property="voteButton" destination="LWZ-zh-Ofa" id="hLW-Pa-wiI"/>
+                                    <outlet property="voteCount" destination="y23-Ni-UgJ" id="8iL-E8-ywP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

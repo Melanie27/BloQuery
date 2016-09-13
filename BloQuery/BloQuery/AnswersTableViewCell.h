@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @class Answer, AnswersTableViewCell, Question;
 @import FirebaseDatabase;
 @import FirebaseStorage;
@@ -18,6 +20,7 @@
 @end
 
 @interface AnswersTableViewCell : UITableViewCell
+
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) IBOutlet UILabel *answerTextView;
 @property (nonatomic, strong) Answer *answer;
@@ -25,10 +28,12 @@
 @property (nonatomic, assign) NSInteger answerNumber;
 @property (nonatomic, strong) NSArray *answers;
 @property (nonatomic, assign) NSUInteger answersCount;
+
 @property (strong, nonatomic) IBOutlet UILabel *voteCount;
 
 
 @property (nonatomic, strong) NSString *answerNumberString;
+@property (strong, nonatomic) IBOutlet UIButton *voteButton;
 
 - (IBAction)upvoteAnswer:(id)sender;
 
