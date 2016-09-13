@@ -105,7 +105,10 @@
                                               NSArray *answerListing = [answerObject objectForKey:snapshot.key];
                                               for (NSDictionary *answerDict in answerListing) {
                                                   Upvotes *upvote = [[Upvotes alloc] init];
-                                                  upvote.upvotesNumberString = answerDict[@"upvotes"];
+                                                  upvote.upvotesNumber = answerDict[@"upvotes"];
+                                                  NSLog(@"un %@", upvote.upvotesNumber);
+                                                  upvote.upvotesNumberString = [upvote.upvotesNumber stringValue];
+                                                  //upvote.upvotesNumberString = answerDict[@"answer"];
                                                   NSLog(@"upvotesnumberSTring %@", upvote.upvotesNumberString);
                                                   self.upvotes = [self.upvotes arrayByAddingObject:upvote];
                                                   

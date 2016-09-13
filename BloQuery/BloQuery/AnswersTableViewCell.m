@@ -48,8 +48,8 @@
 }
 -(void)setUpvotes:(Upvotes*)upvotes {
     _upvotes = upvotes;
-    self.voteCountLabel.text = @"20 votes";
-    //self.voteCountLabel.text = _upvotes.upvotesNumberString;
+    //self.voteCountLabel.text = @"20 votes";
+    self.voteCountLabel.text = _upvotes.upvotesNumberString;
     NSLog(@"votes %@", upvotes.upvotesNumberString);
 }
 
