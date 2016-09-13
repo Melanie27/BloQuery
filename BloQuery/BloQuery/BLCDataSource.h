@@ -63,5 +63,5 @@ typedef void(^UserRetrievalCompletionBlock)(User *user);
 -(NSString *)retrievePhotoUrl;
 -(NSString *)retrievePhotoUrlWithUID:(NSString*)uid andCompletion:(RetrievalCompletionBlock)completion;
 -(void)retrieveUserWithUID:(NSString *)uid andCompletion:(UserRetrievalCompletionBlock)completion;
-
+-(void)upvoteCounting;
 @end
