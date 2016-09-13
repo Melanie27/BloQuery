@@ -137,13 +137,8 @@ static NSParagraphStyle *paragraphStyle;
     
     self.answerNumber = answerCell.tag;
     BLCDataSource *ds = [BLCDataSource sharedInstance];
-   
-  
-    //NSLog(@"row of the cell %d", self.answerNumber);
-    
 
-     NSLog(@"ds num from row %lu", (long)ds.questionNumber);
-    
+    //TODO make compatible but seems to be working as is
     answerCell.questionNumber = (long)ds.questionNumber;
     
     return answerCell;

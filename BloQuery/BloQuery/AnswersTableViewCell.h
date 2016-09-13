@@ -29,9 +29,9 @@
 
 
 @property (nonatomic, strong) NSString *answerNumberString;
-//- (void) cellDidPressLikeButton:(AnswersTableViewCell *)cell;
+
 - (IBAction)upvoteAnswer:(id)sender;
-- (void) cellDidPressUpvoteButton:(AnswersTableViewCell *)answerCell;
+
 
 @property (nonatomic, weak) id <AnswersTableViewCellDelegate> delegate;
 

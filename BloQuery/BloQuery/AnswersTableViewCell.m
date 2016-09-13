@@ -43,10 +43,6 @@
     _answer = answer;
     self.answerTextView.text = _answer.answerText;
     
-    
-   
-    
-    
 }
 
 - (void)awakeFromNib {
@@ -67,10 +63,6 @@
      //MOVE TO DATASOURCE once working
     BLCDataSource *ds = [BLCDataSource sharedInstance];
     [ds retrieveAnswers];
-    
-    NSLog(@"qn %ld", (long)self.questionNumber);
-    //must retrieve question number - mayber from datasource or from questions table view controller
-    NSLog(@"question number %ld", (long)self.questionNumber);
     
     self.ref = [[FIRDatabase database] reference];
     //Database work here
@@ -94,37 +86,7 @@
                                           NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
                                           NSInteger incrementUpvote = retrievingUpvotesInt + 1;
                                           NSNumber *theUpvotesNumber = @(incrementUpvote);
-                                          NSLog(@"new num %@", theUpvotesNumber);
-                                          
-                                          
-                                          
-                                          NSDictionary *answerObject = (NSDictionary*)snapshot.value;
-                                          if (!(answerObject && [answerObject isKindOfClass:[NSDictionary class]])) {
-                                              answerObject = @{snapshot.key:snapshot.value};
-                                              
-                                              
-                                              
-                                              NSArray *answerListing = [answerObject objectForKey:snapshot.key];
-                                              for (NSDictionary *answerDict in answerListing) {
-                                                  
-                                                  
-                                                  
-                                                  //Upvotes *upvote = [[Upvotes alloc] init];
-                                                  //upvote.upvotesNumber = answerDict[@"upvotes"];
-                                                  //NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
-                                                  //NSInteger incrementUpvote = retrievingUpvotesInt + 1;
-                                                  //NSNumber *theUpvotesNumber = @(incrementUpvote);
-                                                  //NSLog(@"new num %@", theUpvotesNumber);
-                                                  
-                                              }
-                                              
-                                              
-                                              
-                                              //TODO Answer Number variable must find which answer has been clicked
-                                              //CURRENTLY only able to upvote the first answer
-                                              
-                                              
-                                          }
+                                          //NSLog(@"new num %@", theUpvotesNumber);
                                           
                                           NSDictionary *upvoteUpdates = @{
                                                                           
@@ -139,6 +101,7 @@
                                           
                                       }];
     
+    //TODO - HIDE UPVOTE BUTTON
     
     
 }
