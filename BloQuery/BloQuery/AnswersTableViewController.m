@@ -73,9 +73,11 @@ static NSParagraphStyle *paragraphStyle;
     questionHeaderLabel.backgroundColor = [UIColor myGrey];
    
     questionHeaderLabel.text = ds.question.questionText;
+   //THERE IT IS
+    //NSLog(@"ds num %lu", (long)ds.questionNumber);
     questionHeaderLabel.textAlignment = NSTextAlignmentCenter;
     questionHeaderLabel.numberOfLines = 0;
-   
+    
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -134,9 +136,15 @@ static NSParagraphStyle *paragraphStyle;
     answerCell.tag = indexPath.row;
     
     self.answerNumber = answerCell.tag;
-    NSLog(@"row of the cell %d", self.answerNumber);
+    BLCDataSource *ds = [BLCDataSource sharedInstance];
+   
+  
+    //NSLog(@"row of the cell %d", self.answerNumber);
     
+
+     NSLog(@"ds num from row %lu", (long)ds.questionNumber);
     
+    answerCell.questionNumber = (long)ds.questionNumber;
     
     return answerCell;
     

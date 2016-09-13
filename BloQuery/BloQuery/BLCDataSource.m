@@ -90,7 +90,7 @@
                                           
                                           //query how many upvotes there are
                                           
-                                          NSLog(@"which answer %ld", (long)self.answerNumber);
+                                          NSLog(@"which question %ld", (long)self.questionNumber);
                                           
                                           //THIS IS ALWAYS RETURNING THE FIRST ANSWER
                                           NSLog(@"snapshot retrieve answers %@", snapshot.value);
@@ -166,7 +166,8 @@
     [getAnswersQuery2
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
-          NSLog(@"getans %@", getAnswersQuery2);
+          NSLog(@"getans %ld", (long)self.questionNumber);
+         //self.questionNumber
                self.answers = @[];
                
                //NSLog(@"snapshot retrieve answers %@", snapshot.value);

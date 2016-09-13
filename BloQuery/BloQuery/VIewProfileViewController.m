@@ -72,7 +72,7 @@
 //override setter method to update the user information whenever a new user is set
 -(void)setProfileUser:(User*)profileUser {
     _profileUser = profileUser;
-    NSLog(@"profileuser2 %@", profileUser);
+    //NSLog(@"profileuser2 %@", profileUser);
     [self updateUsernameText];
 }
 

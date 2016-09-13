@@ -62,14 +62,15 @@
 
 - (IBAction)upvoteAnswer:(id)sender {
     
-    NSLog(@"send upvotes to firebase");
-     NSLog(@"answer number2 %ld", (long)self.answerNumber);
-     //MOVE TO DATASOURCE once working
-    //BLCDataSource *ds = [BLCDataSource sharedInstance];
-    //[ds retrieveUpvotes];
     
+    
+     //MOVE TO DATASOURCE once working
+    BLCDataSource *ds = [BLCDataSource sharedInstance];
+    [ds retrieveAnswers];
+    
+    NSLog(@"qn %ld", (long)self.questionNumber);
     //must retrieve question number - mayber from datasource or from questions table view controller
-    NSLog(@"question number %@", self.questionNumber);
+    NSLog(@"question number %ld", (long)self.questionNumber);
     
     self.ref = [[FIRDatabase database] reference];
     //Database work here
@@ -81,7 +82,7 @@
                                           
                                           //query how many upvotes there are
                                           
-                                          NSLog(@"which answer %ld", (long)self.answerNumber);
+                                          NSLog(@"which question %ld", (long)self.questionNumber);
                                           
                                           //THIS IS ALWAYS RETURNING THE FIRST ANSWER
                                           NSLog(@"snapshot retrieve answers %@", snapshot.value);
