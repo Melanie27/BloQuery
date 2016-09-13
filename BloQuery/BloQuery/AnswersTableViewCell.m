@@ -15,7 +15,9 @@
 #import "ComposeAnswerViewController.h"
 #import "QuestionsTableViewController.h"
 
-
+@import Firebase;
+@import FirebaseDatabase;
+@import FirebaseStorage;
 //@interface AnswersTableViewCell : UITableViewCell
 
 //@property (nonatomic, strong) UpvoteButton *upvoteButton;
@@ -58,48 +60,65 @@
 
 - (IBAction)upvoteAnswer:(id)sender {
     
-    
-    
-     //MOVE TO DATASOURCE once working
-    BLCDataSource *ds = [BLCDataSource sharedInstance];
-    [ds retrieveAnswers];
-    
+    FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
-    //Database work here
-   
-    FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.questionNumber, (long)self.answerNumber]] queryLimitedToFirst:1000];
     
-    [whichAnswersQuery observeSingleEventOfType:FIRDataEventTypeValue
+     FIRDatabaseQuery *userLikeStateQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/", (long)self.questionNumber, (long)self.answerNumber]] queryLimitedToFirst:1000];
+   
+    [userLikeStateQuery observeSingleEventOfType:FIRDataEventTypeValue
                                       withBlock:^(FIRDataSnapshot *snapshot) {
+                                          NSLog(@"user who've liked %@", snapshot.value);
                                           
-                                          //query how many upvotes there are
-                                          
-                                          NSLog(@"which question %ld", (long)self.questionNumber);
-                                          
-                                          //THIS IS ALWAYS RETURNING THE FIRST ANSWER
-                                          NSLog(@"snapshot retrieve answers %@", snapshot.value);
+                                          NSString *regEx = [NSString stringWithFormat:@"%@", userAuth.uid];
+                                          //NSLog(@"reg %@", regEx);
                                           
                                           
-                                          Upvotes *upvote = [[Upvotes alloc] init];
-                                          upvote.upvotesNumber = snapshot.value[@"upvotes"];
-                                        
-                                          NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
-                                          NSInteger incrementUpvote = retrievingUpvotesInt + 1;
-                                          NSNumber *theUpvotesNumber = @(incrementUpvote);
-                                          //NSLog(@"new num %@", theUpvotesNumber);
+                                          BOOL exists = [snapshot.value objectForKey:regEx] != nil;
+                                          NSLog(@"exist %hhd", exists);
+                                          if (exists == 0) {
+                                              //YOU CAN UPVOTE
+                                              //MOVE TO DATASOURCE once working
+                                              //BLCDataSource *ds = [BLCDataSource sharedInstance];
+                                              //[ds retrieveAnswers];
+                                              
+                                              self.ref = [[FIRDatabase database] reference];
+                                              
+                                              
+                                              FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.questionNumber, (long)self.answerNumber]] queryLimitedToFirst:1000];
+                                              
+                                              [whichAnswersQuery observeSingleEventOfType:FIRDataEventTypeValue
+                                                                                withBlock:^(FIRDataSnapshot *snapshot) {
+                                                                                    
+                                                                                    Upvotes *upvote = [[Upvotes alloc] init];
+                                                                                    upvote.upvotesNumber = snapshot.value[@"upvotes"];
+                                                                                    
+                                                                                    NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
+                                                                                    NSInteger incrementUpvote = retrievingUpvotesInt + 1;
+                                                                                    NSNumber *theUpvotesNumber = @(incrementUpvote);
+                                                                                    //NSLog(@"new num %@", theUpvotesNumber);
+                                                                                    
+                                                                                    NSDictionary *upvoteUpdates = @{
+                                                                                                                    
+                                                                                                                    [NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvotes", (long)self.questionNumber, (long)self.answerNumber]:theUpvotesNumber,
+                                                                                                                    [NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]:@"yes"
+                                                                                                                    
+                                                                                                                    };
+                                                                                    
+                                                                                    //NSLog(@"new num to push %@", theUpvotesNumber);
+                                                                                    //NSLog(@"updates %@", upvoteUpdates);
+                                                                                    [_ref updateChildValues:upvoteUpdates ];
+                                                                                    
+                                                                                    
+                                                                                }];
+                                          } else {
+                                              
+                                              NSLog(@"you have already upvoted you can down vote");
+                                          }
+                                         
                                           
-                                          NSDictionary *upvoteUpdates = @{
-                                                                          
-                                                                          [NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvotes", (long)self.questionNumber, (long)self.answerNumber]:theUpvotesNumber,
-                                                                          
-                                                                          };
-                                          
-                                          NSLog(@"new num to push %@", theUpvotesNumber);
-                                          NSLog(@"updates %@", upvoteUpdates);
-                                          [_ref updateChildValues:upvoteUpdates ];
-                                          
-                                          
-                                      }];
+                                           }];
+    
+    
     
     //TODO - HIDE UPVOTE BUTTON
     

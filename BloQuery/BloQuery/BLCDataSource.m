@@ -90,10 +90,10 @@
                                           
                                           //query how many upvotes there are
                                           
-                                          NSLog(@"which question %ld", (long)self.questionNumber);
+                                          //NSLog(@"which question %ld", (long)self.questionNumber);
                                           
                                           //THIS IS ALWAYS RETURNING THE FIRST ANSWER
-                                          NSLog(@"snapshot retrieve answers %@", snapshot.value);
+                                          NSLog(@"snapshot retrieve answers %@", snapshot.value[@"upvotes"]);
                                           
                                           
                                           Upvotes *upvote = [[Upvotes alloc] init];
@@ -101,7 +101,7 @@
                                           NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
                                           NSInteger incrementUpvote = retrievingUpvotesInt + 1;
                                           NSNumber *theUpvotesNumber = @(incrementUpvote);
-                                          NSLog(@"new num %@", theUpvotesNumber);
+                                          //NSLog(@"new num %@", theUpvotesNumber);
                                           
                                           
                                           
