@@ -232,7 +232,7 @@
 
     } else if ([segue.identifier isEqualToString:@"viewProfile"]) {
         //why is this log being called 2x??
-        NSLog(@"view a profile view controller");
+        //NSLog(@"view a profile view controller");
         UIButton *theButton = (UIButton *)sender;
         self.questionAddingTo = [BLCDataSource sharedInstance].questions[theButton.tag];
         VIewProfileViewController *viewProfileVC = (VIewProfileViewController*)segue.destinationViewController;

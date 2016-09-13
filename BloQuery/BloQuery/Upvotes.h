@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface Upvotes : NSObject
-
-//@property (nonatomic, strong) NSString *upvotesNumber;
+//@property (nonatomic, assign) NSInteger *upvotesNumber;
 @property (nonatomic, strong) NSNumber *upvotesNumber;
+@property (nonatomic, strong) NSString *upvotesNumberString;
 
 @end

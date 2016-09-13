@@ -31,14 +31,9 @@
 
 - (void)viewDidLoad {
     //[super viewDidLoad];
-    NSLog(@"view did load");
-    self.voteButton.titleLabel.text = @"upvote";
-}
+   
+    }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-     self.voteButton.titleLabel.text = @"downvote";
-}
 
 
 
@@ -46,12 +41,19 @@
 -(void)setAnswer:(Answer*)answer {
     _answer = answer;
     self.answerTextView.text = _answer.answerText;
+   
+    
+    
     
 }
--(void)setVoteCount:(UILabel *)voteCount {
-    
-    self.voteCount.text = @"20 votes";
+-(void)setUpvotes:(Upvotes*)upvotes {
+    _upvotes = upvotes;
+    self.voteCountLabel.text = @"20 votes";
+    //self.voteCountLabel.text = _upvotes.upvotesNumberString;
+    NSLog(@"votes %@", upvotes.upvotesNumberString);
 }
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -60,12 +62,12 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-_voteCount.text=@"Recording Sound ...";
+
     // Configure the view for the selected state
 }
 
 - (IBAction)upvoteAnswer:(id)sender {
-    self.voteCount.text = @"20 votes";
+   
     FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
     
@@ -73,12 +75,10 @@ _voteCount.text=@"Recording Sound ...";
    
     [userLikeStateQuery observeSingleEventOfType:FIRDataEventTypeValue
                                       withBlock:^(FIRDataSnapshot *snapshot) {
-                                          NSLog(@"user who've liked %@", snapshot.value);
+                                          
                                           
                                           NSString *regEx = [NSString stringWithFormat:@"%@", userAuth.uid];
-                                          //NSLog(@"reg %@", regEx);
-                                          
-                                          
+                                         
                                           BOOL exists = [snapshot.value objectForKey:regEx] != nil;
                                           NSLog(@"exist %hhd", exists);
                                           if (exists == 0) {
@@ -109,16 +109,15 @@ _voteCount.text=@"Recording Sound ...";
                                                                                                                     
                                                                                                                     };
                                                                                     
-                                                                                    //NSLog(@"new num to push %@", theUpvotesNumber);
-                                                                                    //NSLog(@"updates %@", upvoteUpdates);
+                                                                                    
                                                                                     [_ref updateChildValues:upvoteUpdates ];
                                                                                     //CHANGE APPEARANCE OF BUTTON
-                                                                                    
+                                                        self.voteCount.text = [NSString stringWithFormat:@"%ld",(long)self.answerNumber];
                                                                                     
                                                                                 }];
                                           } else {
-                                              self.voteButton.titleLabel.text = @"downvote";
-                                              NSLog(@"you have already upvoted you can down vote");
+                                              
+                                             
                                               self.ref = [[FIRDatabase database] reference];
                                               FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.questionNumber, (long)self.answerNumber]] queryLimitedToFirst:1000];
                                               
@@ -138,21 +137,15 @@ _voteCount.text=@"Recording Sound ...";
                                                                                     NSDictionary *upvoteUpdates = @{
                                                                                                                     
                                                                                                                     [NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvotes", (long)self.questionNumber, (long)self.answerNumber]:theUpvotesNumber,
-                                                                                                                    //[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]:@"0"
+                                                                                                                   
                                                                                                                     
                                                                                                                     };
                                                                                     
                                                                                     
                                                                                     [_ref updateChildValues:upvoteUpdates ];
                                                                                  //get a reference to the UID and remove that child node
-                                                                 FIRDatabaseQuery *userQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]] queryLimitedToFirst:1];
-                                                                                    NSLog(@"user quer %@", userQuery);
-                                                                                     [self.ref child:@"upvoter"];
-                                                                                     [self.ref child:userAuth.uid];
-                                                                                    NSLog(@" remove %@ ", [self.ref child:userAuth.uid] );
-                                                                                     NSLog(@" remove %@ ", [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]] queryLimitedToFirst:1] );
                                                                                     
-                                                                                    [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]] removeValue];
+                                                                            [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]] removeValue];
                                                                                     
                                                                                 }];
                                           }

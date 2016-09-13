@@ -77,73 +77,48 @@
 
 }
 
--(NSNumber *) retrieveUpvotes {
-    NSNumber *retrieveUpvotes  = [[NSNumber alloc] init];
+-(NSString *) retrieveVotes {
+    NSMutableString *retrieveUpvotes  = [[NSMutableString alloc] init];
     
     self.ref = [[FIRDatabase database] reference];
-    //Database work here
-    //MOVE TO DATASOURCE???
-    FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.answerNumber, (long)self.questionNumber]] queryLimitedToFirst:1000];
+   
+    FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
     
     [whichAnswersQuery observeSingleEventOfType:FIRDataEventTypeValue
                                       withBlock:^(FIRDataSnapshot *snapshot) {
                                           
-                                          //query how many upvotes there are
-                                          
-                                          //NSLog(@"which question %ld", (long)self.questionNumber);
+                
+                                          //NSLog(@"which question blc %ld", (long)self.questionNumber);
                                           
                                           //THIS IS ALWAYS RETURNING THE FIRST ANSWER
-                                          NSLog(@"snapshot retrieve answers %@", snapshot.value[@"upvotes"]);
+                                          //NSLog(@"snapshot retrieve votes from BLC %@", snapshot.value[@"upvotes"]);
                                           
                                           
-                                          Upvotes *upvote = [[Upvotes alloc] init];
-                                          upvote.upvotesNumber = snapshot.value[@"upvotes"];
-                                          NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
-                                          NSInteger incrementUpvote = retrievingUpvotesInt + 1;
-                                          NSNumber *theUpvotesNumber = @(incrementUpvote);
-                                          //NSLog(@"new num %@", theUpvotesNumber);
+                                          ///turn it into a string
+                                          self.upvotes = @[];
                                           
-                                          
-                                          
+                                         
                                           NSDictionary *answerObject = (NSDictionary*)snapshot.value;
-                                            if (!(answerObject && [answerObject isKindOfClass:[NSDictionary class]])) {
-                                                answerObject = @{snapshot.key:snapshot.value};
-                                           
-                                               
-                                                
-                                                NSArray *answerListing = [answerObject objectForKey:snapshot.key];
-                                                for (NSDictionary *answerDict in answerListing) {
-                                           
-                                           
-                                                                                                       
-                                                    //Upvotes *upvote = [[Upvotes alloc] init];
-                                                    //upvote.upvotesNumber = answerDict[@"upvotes"];
-                                                    //NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
-                                                    //NSInteger incrementUpvote = retrievingUpvotesInt + 1;
-                                                    //NSNumber *theUpvotesNumber = @(incrementUpvote);
-                                                    //NSLog(@"new num %@", theUpvotesNumber);
-                                           
-                                            }
-                                                
-                                               
-                                                
-                                            //TODO Answer Number variable must find which answer has been clicked
-                                                //CURRENTLY only able to upvote the first answer
-                                           
-                                           
-                                    }
+                                          if (!(answerObject && [answerObject isKindOfClass:[NSDictionary class]])) {
+                                              answerObject = @{snapshot.key:snapshot.value};
+                                              
+                                              NSArray *answerListing = [answerObject objectForKey:snapshot.key];
+                                              for (NSDictionary *answerDict in answerListing) {
+                                                  Upvotes *upvote = [[Upvotes alloc] init];
+                                                  upvote.upvotesNumberString = answerDict[@"upvotes"];
+                                                  NSLog(@"upvotesnumberSTring %@", upvote.upvotesNumberString);
+                                                  self.upvotes = [self.upvotes arrayByAddingObject:upvote];
+                                                  
+                                              }
+                                              
+                                          }
                                           
-                                          NSDictionary *upvoteUpdates = @{
-                                                                          
-                                                                          [NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvotes", (long)self.questionNumber, (long)self.answerNumber]:theUpvotesNumber,
-                                                                          
-                                                                          };
-                                          
-                                          NSLog(@"new num to push %@", theUpvotesNumber);
-                                          NSLog(@"updates %@", upvoteUpdates);
-                                          [_ref updateChildValues:upvoteUpdates ];
-                                          
-                                          
+                                          if (self.atvc && self.atvc.tableView) {
+                                              dispatch_async(dispatch_get_main_queue(), ^{
+                                                  [self.atvc.tableView reloadData];
+                                              });
+                                          }
+  
                             }];
     
     
@@ -167,10 +142,10 @@
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
           NSLog(@"getans %ld", (long)self.questionNumber);
-         //self.questionNumber
+         
                self.answers = @[];
                
-               //NSLog(@"snapshot retrieve answers %@", snapshot.value);
+               NSLog(@"snapshot retrieve answers %@", snapshot.value);
                
                NSDictionary *answerObject = (NSDictionary*)snapshot.value;
                if (!(answerObject && [answerObject isKindOfClass:[NSDictionary class]])) {

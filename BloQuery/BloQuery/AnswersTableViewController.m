@@ -62,6 +62,7 @@ static NSParagraphStyle *paragraphStyle;
     BLCDataSource *ds = [BLCDataSource sharedInstance];
     ds.atvc = self;
     [ds retrieveAnswers];
+    [ds retrieveVotes];
 
     //TODO make the header view work and add the _questionAddingTo on top of each answer table
     UIView *questionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 80)];
@@ -130,16 +131,22 @@ static NSParagraphStyle *paragraphStyle;
     AnswersTableViewCell *answerCell = [tableView dequeueReusableCellWithIdentifier:@"answerCell" forIndexPath:indexPath];
     answerCell.delegate = self;
     answerCell.answer = [BLCDataSource sharedInstance].answers[indexPath.row];
-   
+  answerCell.upvotes = [BLCDataSource sharedInstance].upvotes[indexPath.row];
+     NSLog(@"answers %@", answerCell.answers);
+    NSLog(@"up %@", answerCell.upvotes);
     answerCell.answerNumber = indexPath.row;
-    
+    answerCell.voteNumber = indexPath.row;
     answerCell.tag = indexPath.row;
     
     self.answerNumber = answerCell.tag;
+    
     BLCDataSource *ds = [BLCDataSource sharedInstance];
 
     //TODO make compatible but seems to be working as is
     answerCell.questionNumber = (long)ds.questionNumber;
+   
+    
+    
     
     return answerCell;
     

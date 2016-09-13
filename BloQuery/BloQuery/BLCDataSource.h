@@ -18,6 +18,7 @@
 @class Question;
 @class Answer;
 @class User;
+@class Upvotes;
 
 typedef void(^RetrievalCompletionBlock)(NSDictionary *snapshotValue);
 typedef void(^UserRetrievalCompletionBlock)(User *user);
@@ -32,6 +33,7 @@ typedef void(^UserRetrievalCompletionBlock)(User *user);
 +(instancetype) sharedInstance;
 @property (nonatomic, strong, readonly) NSArray<Question *> *questions;
 @property (nonatomic, strong, readonly) NSArray<Answer*> *answers;
+@property (nonatomic, strong) NSArray<Upvotes*> *upvotes;
 
 @property (nonatomic, weak) QuestionsTableViewController *qtvc;
 @property (nonatomic, weak) AnswersTableViewController *atvc;
@@ -39,11 +41,13 @@ typedef void(^UserRetrievalCompletionBlock)(User *user);
 @property (nonatomic, weak) UserProfileViewController *upvc;
 
 
-
+@property (nonatomic, strong) NSString *voteCount;
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, assign) NSInteger questionNumber;
 @property (nonatomic, strong) Answer *answer;
 @property (nonatomic, assign) NSInteger answerNumber;
+@property (nonatomic, strong) Upvotes *upvote;
+@property (nonatomic, assign) NSInteger voteNumber;
 @property (strong) UIImage *userImage;
 @property (nonatomic, strong) NSString *userDesc;
 @property (nonatomic, weak) NSString *userScreenName;
@@ -51,7 +55,7 @@ typedef void(^UserRetrievalCompletionBlock)(User *user);
 //@property (nonatomic, strong) NSNumber *theUpvotesNumber;
 -(NSString *)retrieveQuestions;
 -(NSString *)retrieveAnswers;
--(NSNumber *)retrieveUpvotes;
+-(NSNumber *)retrieveVotes;
 -(NSString *)retrieveDescription;
 -(NSString *)retrieveDescriptionWithUID:(NSString*)uid andCompletion:(RetrievalCompletionBlock)completion;
 -(NSString *)retrieveScreenName;

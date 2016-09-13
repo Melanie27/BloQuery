@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "upvoteButton.h"
+
 
 @interface Answer : NSObject
 @property (nonatomic, assign) NSInteger *answerNumber;
 @property (nonatomic, strong) NSString *answerText;
 @property (nonatomic, strong) NSString *temporaryAnswer;
-//@property (nonatomic, strong) NSString *answererUID;
-@property (nonatomic, assign) UpvoteState upvoteState;
+
 @end
