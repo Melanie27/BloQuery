@@ -10,7 +10,8 @@
 
 
 
-@class Answer, AnswersTableViewCell, Question, Upvotes;
+
+@class Answer, AnswersTableViewCell, Question, Upvotes, AnswersTableViewController;
 @import FirebaseDatabase;
 @import FirebaseStorage;
 
@@ -30,15 +31,9 @@
 @property (nonatomic, assign) NSInteger answerNumber;
 @property (nonatomic, assign) NSInteger voteNumber;
 @property (nonatomic, strong) NSArray *answers;
-@property (nonatomic, assign) NSUInteger answersCount;
+@property (nonatomic, weak) AnswersTableViewController *atvc;
 
 @property (strong, nonatomic) IBOutlet UILabel *voteCount;
-
-//@property (nonatomic, assign) NSInteger *upvotesNumber;
-//@property (nonatomic, strong) NSString *upvotesNumberString;
-
-
-
 @property (nonatomic, strong) NSString *answerNumberString;
 @property (strong, nonatomic) IBOutlet UIButton *voteButton;
 

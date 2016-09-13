@@ -17,7 +17,6 @@
 
 @property (nonatomic, strong) IBOutlet UIView *questionHeaderView;
 @property (nonatomic, assign) NSInteger answerNumber;
-//@property (nonatomic, assign) NSInteger voteNumber;
 @property (nonatomic, assign) NSInteger questionNumber;
 @property(nonatomic, strong) IBOutlet UILabel *questionHeaderLabel;
 

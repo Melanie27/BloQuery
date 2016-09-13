@@ -10,7 +10,6 @@
 #import "Answer.h"
 #import "Question.h"
 #import "Upvotes.h"
-//#import "upvoteButton.h"
 #import "BLCDataSource.h"
 #import "ComposeAnswerViewController.h"
 #import "QuestionsTableViewController.h"
@@ -18,11 +17,7 @@
 @import Firebase;
 @import FirebaseDatabase;
 @import FirebaseStorage;
-@interface AnswersTableViewCell ()
 
-//@property (strong, nonatomic) FIRDatabaseReference *ref;
-
-@end
 
 
 @implementation AnswersTableViewCell
@@ -48,9 +43,8 @@
 }
 -(void)setUpvotes:(Upvotes*)upvotes {
     _upvotes = upvotes;
-    //self.voteCountLabel.text = @"20 votes";
     self.voteCountLabel.text = _upvotes.upvotesNumberString;
-    NSLog(@"votes %@", upvotes.upvotesNumberString);
+    
 }
 
 
@@ -68,6 +62,7 @@
 
 - (IBAction)upvoteAnswer:(id)sender {
    
+    //TODO move to datasource
     FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
     
@@ -78,14 +73,10 @@
                                           
                                           
                                           NSString *regEx = [NSString stringWithFormat:@"%@", userAuth.uid];
-                                         
                                           BOOL exists = [snapshot.value objectForKey:regEx] != nil;
-                                          NSLog(@"exist %hhd", exists);
+                                         
                                           if (exists == 0) {
-                                              //YOU CAN UPVOTE
-                                              //MOVE TO DATASOURCE once working
-                                            
-                                              
+
                                               self.ref = [[FIRDatabase database] reference];
                                               FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.questionNumber, (long)self.answerNumber]] queryLimitedToFirst:1000];
                                               
@@ -98,10 +89,8 @@
                                                                                     NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
                                                                                     NSInteger incrementUpvote = retrievingUpvotesInt + 1;
                                                                                     NSNumber *theUpvotesNumber = @(incrementUpvote);
-                                                                                    NSLog(@"new num %@", theUpvotesNumber);
                                                                                     NSString *voteString = [theUpvotesNumber stringValue];
                                                                                     self.voteCount.text = voteString;
-                                                                                    NSLog(@"vote string %@", voteString);
                                                                                     NSDictionary *upvoteUpdates = @{
                                                                                                                     
                                                                                                                     [NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvotes", (long)self.questionNumber, (long)self.answerNumber]:theUpvotesNumber,
@@ -111,10 +100,10 @@
                                                                                     
                                                                                     
                                                                                     [_ref updateChildValues:upvoteUpdates ];
-                                                                                    //CHANGE APPEARANCE OF BUTTON
-                                                        self.voteCount.text = [NSString stringWithFormat:@"%ld",(long)self.answerNumber];
                                                                                     
-                                                                                }];
+                                                                                    
+                                                                                    
+                                                    }];
                                           } else {
                                               
                                              
@@ -130,10 +119,6 @@
                                                                                     NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
                                                                                     NSInteger decrementUpvote = retrievingUpvotesInt - 1;
                                                                                     NSNumber *theUpvotesNumber = @(decrementUpvote);
-                                                                                    
-                                                                                    
-                                                                                    
-                                                                                    
                                                                                     NSDictionary *upvoteUpdates = @{
                                                                                                                     
                                                                                                                     [NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvotes", (long)self.questionNumber, (long)self.answerNumber]:theUpvotesNumber,
@@ -147,7 +132,7 @@
                                                                                     
                                                                             [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]] removeValue];
                                                                                     
-                                                                                }];
+                                                }];
                                           }
                                          
                                           
