@@ -210,9 +210,9 @@
 
     self.ref = [[FIRDatabase database] reference];
     //Database work here
-     FIRDatabaseQuery *getAnswersQuery2 = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
+    FIRDatabaseQuery *getAnswersQuery2 = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToLast:1000 ];
    
-    [[getAnswersQuery2 queryOrderedByChild:@"upvotes"]
+    [[getAnswersQuery2 queryOrderedByChild:@"upvotes" ]
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
          
@@ -344,7 +344,7 @@
 
 -(NSString *)retrievePhotoUrlWithUID:(NSString *)uid andCompletion:(RetrievalCompletionBlock)completion {
     User *theUser = [[User alloc] init];
-    NSLog(@"view all uid %@", theUser);
+    //NSLog(@"view all uid %@", theUser);
     self.ref = [[FIRDatabase database] reference];
     NSMutableString *retrievePhotoString = [[NSMutableString alloc] init];
     FIRDatabaseQuery *getPhotoStringQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/YWrq5DwsJse46yZ3xNuefUUtYBL2"]] queryLimitedToFirst:10];

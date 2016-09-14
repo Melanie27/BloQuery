@@ -132,8 +132,8 @@ static NSParagraphStyle *paragraphStyle;
     answerCell.delegate = self;
     answerCell.answer = [BLCDataSource sharedInstance].answers[indexPath.row];
   answerCell.upvotes = [BLCDataSource sharedInstance].upvotes[indexPath.row];
-     NSLog(@"answers %@", answerCell.answers);
-    NSLog(@"up %@", answerCell.upvotes);
+     //NSLog(@"answers %@", answerCell.answers);
+    //NSLog(@"up %@", answerCell.upvotes);
     answerCell.answerNumber = indexPath.row;
     answerCell.voteNumber = indexPath.row;
     answerCell.tag = indexPath.row;
@@ -153,6 +153,14 @@ static NSParagraphStyle *paragraphStyle;
     
     
 }
+
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    //Animate rows when the order of upvotes changes
+}
+
+
+
 
 //Override the default height
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -182,9 +190,7 @@ static NSParagraphStyle *paragraphStyle;
 
 /*
 // Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+
 
 /*
 // Override to support conditional rearranging of the table view.
