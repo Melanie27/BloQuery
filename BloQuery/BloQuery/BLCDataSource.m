@@ -87,13 +87,7 @@
     [whichAnswersQuery observeSingleEventOfType:FIRDataEventTypeValue
                                       withBlock:^(FIRDataSnapshot *snapshot) {
                                           
-                
-                                          //NSLog(@"which question blc %ld", (long)self.questionNumber);
-                                          
-                                          //THIS IS ALWAYS RETURNING THE FIRST ANSWER
-                                          //NSLog(@"snapshot retrieve votes from BLC %@", snapshot.value[@"upvotes"]);
-                                          
-                                          
+
                                           ///turn it into a string
                                           self.upvotes = @[];
                                           
@@ -106,10 +100,10 @@
                                               for (NSDictionary *answerDict in answerListing) {
                                                   Upvotes *upvote = [[Upvotes alloc] init];
                                                   upvote.upvotesNumber = answerDict[@"upvotes"];
-                                                  NSLog(@"un %@", upvote.upvotesNumber);
+                                                  //NSLog(@"un %@", upvote.upvotesNumber);
                                                   upvote.upvotesNumberString = [upvote.upvotesNumber stringValue];
                                                   //upvote.upvotesNumberString = answerDict[@"answer"];
-                                                  NSLog(@"upvotesnumberSTring %@", upvote.upvotesNumberString);
+                                                  //NSLog(@"upvotesnumberSTring %@", upvote.upvotesNumberString);
                                                   self.upvotes = [self.upvotes arrayByAddingObject:upvote];
                                                   
                                               }
@@ -130,7 +124,7 @@
     return retrieveUpvotes;
 }
 
-
+//TODO make this work from the datasource - right now it only gets the correct index when in the view
 -(void)upvoteCounting {
     FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
@@ -218,17 +212,14 @@
     //Database work here
      FIRDatabaseQuery *getAnswersQuery2 = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
    
-    
-    //NSLog(@"num of answers %ld", (long)self.answerNumber);
-    
-    [getAnswersQuery2
+    [[getAnswersQuery2 queryOrderedByChild:@"upvotes"]
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
-          NSLog(@"getans %ld", (long)self.questionNumber);
          
+         NSLog (@"get ansers %@", getAnswersQuery2 );
                self.answers = @[];
                
-               NSLog(@"snapshot retrieve answers %@", snapshot.value);
+               //NSLog(@"snapshot retrieve answers %@", snapshot.value);
                
                NSDictionary *answerObject = (NSDictionary*)snapshot.value;
                if (!(answerObject && [answerObject isKindOfClass:[NSDictionary class]])) {

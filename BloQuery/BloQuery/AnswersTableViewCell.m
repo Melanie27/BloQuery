@@ -47,7 +47,11 @@
     
 }
 
-
+- (void) viewWillAppear:(BOOL)animated {
+    UITableView *tableView = (UITableView *)self.superview.superview;
+    [tableView reloadData];
+    [self superview];
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -61,17 +65,82 @@
 }
 
 - (IBAction)upvoteAnswer:(id)sender {
-   
+    UITableView *tableView = (UITableView *)self.superview.superview;
+    [tableView reloadData];
     //TODO move to datasource
-    BLCDataSource *ds = [BLCDataSource sharedInstance];
-    [ds upvoteCounting];
+    //BLCDataSource *ds = [BLCDataSource sharedInstance];
+    //[ds upvoteCounting];
     
+    FIRUser *userAuth = [FIRAuth auth].currentUser;
+    self.ref = [[FIRDatabase database] reference];
     
+    FIRDatabaseQuery *userLikeStateQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/", (long)self.questionNumber, (long)self.answerNumber]] queryLimitedToFirst:1000];
     
-    
-    
-    //TODO - HIDE UPVOTE BUTTON
-    
+    [userLikeStateQuery observeSingleEventOfType:FIRDataEventTypeValue
+                                       withBlock:^(FIRDataSnapshot *snapshot) {
+                                           
+                                           
+        NSString *regEx = [NSString stringWithFormat:@"%@", userAuth.uid];
+        BOOL exists = [snapshot.value objectForKey:regEx] != nil;
+                                           
+        if (exists == 0) {
+                                               
+            self.ref = [[FIRDatabase database] reference];
+            FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.questionNumber, (long)self.answerNumber]] queryLimitedToFirst:1000];
+                                               
+            [whichAnswersQuery observeSingleEventOfType:FIRDataEventTypeValue
+            withBlock:^(FIRDataSnapshot *snapshot) {
+                                                                                     
+                Upvotes *upvote = [[Upvotes alloc] init];
+                upvote.upvotesNumber = snapshot.value[@"upvotes"];
+                                                                                     
+                NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
+                NSInteger incrementUpvote = retrievingUpvotesInt + 1;
+                NSNumber *theUpvotesNumber = @(incrementUpvote);
+                                                                                     
+                NSDictionary *upvoteUpdates = @{
+                                                                                                                     
+                    [NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvotes", (long)self.questionNumber, (long)self.answerNumber]:theUpvotesNumber,
+                    [NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]:@"yes"
+                                                                                                                     
+                                            };
+                                                                                     
+                                                                                    
+                [_ref updateChildValues:upvoteUpdates ];
+                                                                                     
+            }];
+        } else {
+                                               
+                                               
+        self.ref = [[FIRDatabase database] reference];
+        FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.questionNumber, (long)self.answerNumber]] queryLimitedToFirst:1000];
+                                               
+            [whichAnswersQuery observeSingleEventOfType:FIRDataEventTypeValue
+            withBlock:^(FIRDataSnapshot *snapshot) {
+                                                                                     
+                Upvotes *upvote = [[Upvotes alloc] init];
+                upvote.upvotesNumber = snapshot.value[@"upvotes"];
+                                                                                     
+                NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
+                NSInteger decrementUpvote = retrievingUpvotesInt - 1;
+                NSNumber *theUpvotesNumber = @(decrementUpvote);
+                NSDictionary *upvoteUpdates = @{
+                                                                                                                     
+                    [NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvotes", (long)self.questionNumber, (long)self.answerNumber]:theUpvotesNumber,
+                                                                                                                     
+                    
+                };
+                
+                [_ref updateChildValues:upvoteUpdates ];
+                //get a reference to the UID and remove that child node
+                                                                                     
+                [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]] removeValue];
+                                                                                     
+            }];
+        }
+                                           
+                                           
+    }];
     
 }
 @end
