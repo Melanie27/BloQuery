@@ -100,9 +100,9 @@
                                                   Upvotes *upvote = [[Upvotes alloc] init];
                                                   upvote.upvotesNumber = answerDict[@"upvotes"];
                                                   //NSLog(@"un %@", upvote.upvotesNumber);
-                                                  upvote.upvotesNumberString = [upvote.upvotesNumber stringValue];
+                                                  //upvote.upvotesNumberString = [upvote.upvotesNumber stringValue];
                                                   //upvote.upvotesNumberString = answerDict[@"answer"];
-                                                  NSLog(@"upvotesnumberSTring %@", upvote.upvotesNumberString);
+                                                  //NSLog(@"upvotesnumberSTring %@", upvote.upvotesNumberString);
                                                   
                                               }
                                               

@@ -10,7 +10,8 @@
 #import "BLCDataSource.h"
 #import "Question.h"
 #import "Answer.h"
-
+@import Firebase;
+@import FirebaseDatabase;
 @interface ComposeAnswerViewController () <UITextViewDelegate>
 @property (nonatomic, strong) NSArray *answers;
 @property (nonatomic, assign) NSUInteger answersCount;
@@ -106,10 +107,15 @@
 
 -(void)sendToFireBase {
    //TODO ADD UID AND UPVOTES PLACEHOLDER EVERY TIME SOMEONE ANSWERS A QUESTION
+    FIRUser *userAuth = [FIRAuth auth].currentUser;
     NSDictionary *childUpdates = @{
                                    [NSString stringWithFormat:@"/questions/%ld/answers/%@/answer", (long)self.questionNumber, self.answerNumberString]: self.textView.text,
-                                   //TODO not sure about syntax here
-                                   //[NSString stringWithFormat:@"/questions/%ld/answers/%@/UID/", (long)self.questionNumber, self.answerNumberString]:userAuth.uid
+                                   
+                                   [NSString stringWithFormat:@"/questions/%ld/answers/%@/UID/", (long)self.questionNumber, self.answerNumberString]:userAuth.uid,
+                                   
+                                    [NSString stringWithFormat:@"/questions/%ld/answers/%@/upvoter/%@/", (long)self.questionNumber, self.answerNumberString, userAuth.uid]:@"yes",
+                                   
+                                   [NSString stringWithFormat:@"/questions/%ld/answers/%@/upvotes/", (long)self.questionNumber, self.answerNumberString]:@"1",
                                    };
     
     

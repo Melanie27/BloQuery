@@ -73,6 +73,8 @@
         
         NSUInteger upvoteUIDCount = (unsigned long)snapshot.childrenCount;                                   
         NSString *regEx = [NSString stringWithFormat:@"%@", userAuth.uid];
+        
+        //TODO if there are 0 upvoters it is impossible to upvote
         BOOL exists = [snapshot.value objectForKey:regEx] != nil;
                                            
         if (exists == 0) {
@@ -98,9 +100,13 @@
                                                                                      
                                                                                     
                 [_ref updateChildValues:upvoteUpdates ];
-                self.voteButton.titleLabel.text = @"downvote";
+               
+                [self.voteButton setTitle:@"downvote" forState:UIControlStateNormal];
+                [self.voteButton setNeedsLayout];
                                                                                      
             }];
+            
+            
         } else {
 // Remove Vote
                                                
@@ -128,11 +134,14 @@
                                                                                      
                 [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]] removeValue];
                 
+                [self.voteButton setTitle:@"upvote" forState:UIControlStateNormal];
+                
+                [self.voteButton setNeedsLayout];
                 
             }];
         }
-                                           
-         self.voteButton.titleLabel.text = @"upvote";
+                                       
+         
     }];
     
 }

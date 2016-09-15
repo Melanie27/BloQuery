@@ -134,10 +134,9 @@ static NSParagraphStyle *paragraphStyle;
     AnswersTableViewCell *answerCell = [tableView dequeueReusableCellWithIdentifier:@"answerCell" forIndexPath:indexPath];
     answerCell.delegate = self;
     answerCell.answer = [BLCDataSource sharedInstance].answers[indexPath.row];
-     //NSLog(@"answers %@", answerCell.answers);
-    //NSLog(@"up %@", answerCell.upvotes);
+    
     answerCell.answerNumber = indexPath.row;
-    answerCell.voteNumber = indexPath.row;
+    //answerCell.voteNumber = indexPath.row;
     answerCell.tag = indexPath.row;
     
     self.answerNumber = answerCell.tag;
@@ -194,7 +193,7 @@ static NSParagraphStyle *paragraphStyle;
 // Override to support rearranging the table view.
 
 
-/*
+
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
