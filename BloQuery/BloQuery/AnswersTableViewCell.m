@@ -100,6 +100,7 @@
                                                                                      
                                                                                     
                 [_ref updateChildValues:upvoteUpdates ];
+                self.voteCountLabel.text = @"downvote";
                                                                                      
             }];
         } else {
