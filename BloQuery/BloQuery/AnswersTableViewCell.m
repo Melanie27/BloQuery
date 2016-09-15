@@ -60,12 +60,8 @@
 }
 
 - (IBAction)upvoteAnswer:(id)sender {
-    UITableView *tableView = (UITableView *)self.superview.superview;
-//    [tableView reloadData];
-    //TODO move to datasource
-    //BLCDataSource *ds = [BLCDataSource sharedInstance];
-    //[ds upvoteCounting];
     
+
     FIRUser *userAuth = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
     
@@ -73,7 +69,8 @@
     
     [userLikeStateQuery observeSingleEventOfType:FIRDataEventTypeValue
                                        withBlock:^(FIRDataSnapshot *snapshot) {
-                                           
+          
+                                           //COUNT THE NUMBER OF UPVOTERS add 1 and that will be the number
                                            
         NSString *regEx = [NSString stringWithFormat:@"%@", userAuth.uid];
         BOOL exists = [snapshot.value objectForKey:regEx] != nil;
