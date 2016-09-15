@@ -99,11 +99,7 @@
                                               for (NSDictionary *answerDict in answerListing) {
                                                   Upvotes *upvote = [[Upvotes alloc] init];
                                                   upvote.upvotesNumber = answerDict[@"upvotes"];
-                                                  //NSLog(@"un %@", upvote.upvotesNumber);
-                                                  //upvote.upvotesNumberString = [upvote.upvotesNumber stringValue];
-                                                  //upvote.upvotesNumberString = answerDict[@"answer"];
-                                                  //NSLog(@"upvotesnumberSTring %@", upvote.upvotesNumberString);
-                                                  
+  
                                               }
                                               
                                           }
@@ -204,8 +200,7 @@
 
 
 -(void)retrieveAnswers {
-    NSMutableString *retrieveAnswers = [[NSMutableString alloc] init];
-
+    
     self.ref = [[FIRDatabase database] reference];
     //Database work here
     FIRDatabaseQuery *getAnswersQuery2 = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToLast:1000 ];
@@ -214,17 +209,15 @@
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
          
-         //NSLog (@"get ansers %@", getAnswersQuery2 );
+         
                self.answers = @[];
-               
-               //NSLog(@"snapshot retrieve answers %@", snapshot.value);
                
                NSDictionary *answerObject = (NSDictionary*)snapshot.value;
                if (!(answerObject && [answerObject isKindOfClass:[NSDictionary class]])) {
                    answerObject = @{snapshot.key:snapshot.value};
                    
                    NSArray *answerListing = [answerObject objectForKey:snapshot.key];
-                   NSInteger answerNum = 0;
+                   //NSInteger answerNum = 0;
                    for (NSDictionary *answerDict in answerListing) {
                        Answer *answer = [[Answer alloc] init];
                        answer.answerText = answerDict[@"answer"];
@@ -243,36 +236,12 @@
          }
      }];
     
-    
-    
-    
 }
 
 -(void)sortAnswersByVoteNumber{
     
-//    NSLog(@"%@",self.answers);
-
     self.answers = [self.answers sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"upvotes" ascending:NO]]];
-    
-//    NSLog(@"%@",self.answers);
-    
-    
-    /*
-    self.ref = [[FIRDatabase database] reference];
-    //Database work here
-    FIRDatabaseReference *getVotesRef = [self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]];
-    FIRDatabaseQuery *getVotes = [getVotesRef queryOrderedByChild:@"upvotes"];
-    
-    [getVotes
-     observeEventType:FIRDataEventTypeValue
-     withBlock:^(FIRDataSnapshot *snapshot) {
-         NSLog(@"Ordered Votes");
-         NSLog(@"snap votes %@", snapshot.value[@"upvotes"]);
-         
-         
-         
-     }];
-    */
+
 }
 
 
@@ -314,10 +283,7 @@
          if ([snapshot.value isKindOfClass:[NSDictionary class]]) {
              completion((NSDictionary*)snapshot.value);
              
-             //             self.userDesc = snapshot.value[@"description"];
          }
-         
-         //        [self.upvc viewWillAppear:YES];
          
      }];
     
@@ -328,7 +294,6 @@
 
 -(NSString *)retrieveScreenNameWithUID:(NSString *)uid andCompletion:(RetrievalCompletionBlock)completion {
     User *theUser = [[User alloc] init];
-     //NSLog(@"screen name uid %@", uid);
     self.ref = [[FIRDatabase database] reference];
     FIRDatabaseQuery *getScreenNameQuery = [[self.ref child:[NSString stringWithFormat:@"/userData/%@", theUser.uid]] queryLimitedToFirst:10];
     NSMutableString *retrieveScreenName = [[NSMutableString alloc] init];
@@ -421,7 +386,6 @@
                  
              }];
              
-            
              
              [self.upvc viewDidAppear:YES];
             
@@ -434,11 +398,7 @@
 
 -(void)retrieveUserWithUID:(NSString *)uid andCompletion:(UserRetrievalCompletionBlock)completion {
     User *theUser = [[User alloc] init];
-    //theUser.profilePictureURL = @"";
-    //theUser.username = @"";
-    //theUser.userDescription = @"";
-    //theUser.email = @"";
-    //theUser.uid = @"";
+    
     
     self.ref = [[FIRDatabase database] reference];
    

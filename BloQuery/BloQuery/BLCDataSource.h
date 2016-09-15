@@ -50,11 +50,11 @@ typedef void(^UserRetrievalCompletionBlock)(User *user);
 @property (nonatomic, strong) NSString *userDesc;
 @property (nonatomic, weak) NSString *userScreenName;
 @property (nonatomic, weak) NSString *userImageString;
-//@property (nonatomic, strong) NSNumber *theUpvotesNumber;
+
 -(NSString *)retrieveQuestions;
 -(void)retrieveAnswers;
 -(NSNumber *)retrieveVotes;
--(void)sortAnswersByVoteNumber;
+
 -(NSString *)retrieveDescription;
 -(NSString *)retrieveDescriptionWithUID:(NSString*)uid andCompletion:(RetrievalCompletionBlock)completion;
 -(NSString *)retrieveScreenName;
