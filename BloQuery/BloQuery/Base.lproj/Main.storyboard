@@ -226,7 +226,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="94N-Z8-exM" id="MdR-ZN-QYi">
-                                    <rect key="frame" x="0.0" y="0.0" width="533" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="533" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" multipleTouchEnabled="YES" tag="987" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASE-EU-gBg">
@@ -297,7 +297,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="paj-ta-3IH" id="iTc-vT-XlP">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAi-od-fdT">
@@ -312,15 +312,24 @@
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWZ-zh-Ofa">
-                                            <rect key="frame" x="16" y="61" width="106" height="30"/>
-                                            <state key="normal" title="vote"/>
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWZ-zh-Ofa">
+                                            <rect key="frame" x="16" y="61" width="150" height="30"/>
+                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                            <state key="normal">
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="vote">
+                                                        <attributes>
+                                                            <font key="NSFont" size="15" name="Futura-Medium"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </state>
                                             <connections>
                                                 <action selector="upvoteAnswer:" destination="paj-ta-3IH" eventType="touchUpInside" id="6Xd-qX-61S"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y23-Ni-UgJ">
-                                            <rect key="frame" x="130" y="65" width="44" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y23-Ni-UgJ">
+                                            <rect key="frame" x="174" y="65" width="44" height="21"/>
                                             <accessibility key="accessibilityConfiguration" label="voteCount">
                                                 <accessibilityTraits key="traits" staticText="YES" updatesFrequently="YES"/>
                                             </accessibility>
@@ -336,10 +345,12 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="LWZ-zh-Ofa" firstAttribute="leading" secondItem="iTc-vT-XlP" secondAttribute="leadingMargin" constant="8" id="GXd-xP-E3M"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="EAi-od-fdT" secondAttribute="trailing" constant="20" id="LYB-Bm-uUl"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="EAi-od-fdT" secondAttribute="bottom" constant="20" id="NdL-DE-4j7"/>
                                         <constraint firstItem="EAi-od-fdT" firstAttribute="top" secondItem="iTc-vT-XlP" secondAttribute="topMargin" constant="20" id="P9p-hq-SP4"/>
                                         <constraint firstItem="EAi-od-fdT" firstAttribute="leading" secondItem="iTc-vT-XlP" secondAttribute="leadingMargin" constant="10" id="SpA-dB-Dvh"/>
+                                        <constraint firstItem="y23-Ni-UgJ" firstAttribute="leading" secondItem="LWZ-zh-Ofa" secondAttribute="trailing" constant="8" id="aZG-b1-amI"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

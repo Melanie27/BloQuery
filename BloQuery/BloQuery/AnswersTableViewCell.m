@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     //[super viewDidLoad];
-   
+    
     }
 
 
@@ -70,8 +70,8 @@
     [userLikeStateQuery observeSingleEventOfType:FIRDataEventTypeValue
                                        withBlock:^(FIRDataSnapshot *snapshot) {
           
-                                           //COUNT THE NUMBER OF UPVOTERS add 1 and that will be the number
-                                           
+        
+        NSUInteger upvoteUIDCount = (unsigned long)snapshot.childrenCount;                                   
         NSString *regEx = [NSString stringWithFormat:@"%@", userAuth.uid];
         BOOL exists = [snapshot.value objectForKey:regEx] != nil;
                                            
@@ -84,10 +84,8 @@
             [whichAnswersQuery observeSingleEventOfType:FIRDataEventTypeValue
             withBlock:^(FIRDataSnapshot *snapshot) {
                                                                                      
-                Upvotes *upvote = [[Upvotes alloc] init];
-                upvote.upvotesNumber = snapshot.value[@"upvotes"];
-                                                                                     
-                NSInteger retrievingUpvotesInt = [upvote.upvotesNumber integerValue];
+                
+                NSInteger retrievingUpvotesInt = upvoteUIDCount;
                 NSInteger incrementUpvote = retrievingUpvotesInt + 1;
                 NSNumber *theUpvotesNumber = @(incrementUpvote);
                                                                                      
@@ -100,7 +98,7 @@
                                                                                      
                                                                                     
                 [_ref updateChildValues:upvoteUpdates ];
-                self.voteCountLabel.text = @"downvote";
+                self.voteButton.titleLabel.text = @"downvote";
                                                                                      
             }];
         } else {
@@ -129,11 +127,12 @@
                 //get a reference to the UID and remove that child node
                                                                                      
                 [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/upvoter/%@/", (long)self.questionNumber, (long)self.answerNumber, userAuth.uid]] removeValue];
-                                                                                     
+                
+                
             }];
         }
                                            
-                                           
+         self.voteButton.titleLabel.text = @"upvote";
     }];
     
 }
