@@ -64,6 +64,7 @@ static NSParagraphStyle *paragraphStyle;
     [ds retrieveAnswers];
     [ds retrieveVotes];
 
+
     //TODO make the header view work and add the _questionAddingTo on top of each answer table
     UIView *questionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 80)];
     
@@ -74,7 +75,9 @@ static NSParagraphStyle *paragraphStyle;
     questionHeaderLabel.backgroundColor = [UIColor myGrey];
    
     questionHeaderLabel.text = ds.question.questionText;
-   //THERE IT IS
+    self.questionNumber = ds.question.questionNumber;
+
+    //THERE IT IS
     //NSLog(@"ds num %lu", (long)ds.questionNumber);
     questionHeaderLabel.textAlignment = NSTextAlignmentCenter;
     questionHeaderLabel.numberOfLines = 0;
@@ -131,7 +134,6 @@ static NSParagraphStyle *paragraphStyle;
     AnswersTableViewCell *answerCell = [tableView dequeueReusableCellWithIdentifier:@"answerCell" forIndexPath:indexPath];
     answerCell.delegate = self;
     answerCell.answer = [BLCDataSource sharedInstance].answers[indexPath.row];
-  answerCell.upvotes = [BLCDataSource sharedInstance].upvotes[indexPath.row];
      //NSLog(@"answers %@", answerCell.answers);
     //NSLog(@"up %@", answerCell.upvotes);
     answerCell.answerNumber = indexPath.row;

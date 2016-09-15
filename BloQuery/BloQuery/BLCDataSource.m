@@ -82,14 +82,13 @@
     
     self.ref = [[FIRDatabase database] reference];
    
-    FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]] queryLimitedToFirst:1000];
+    FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]]  queryOrderedByChild:@"upvotes"];
     
     [whichAnswersQuery observeSingleEventOfType:FIRDataEventTypeValue
                                       withBlock:^(FIRDataSnapshot *snapshot) {
                                           
 
                                           ///turn it into a string
-                                          self.upvotes = @[];
                                           
                                          
                                           NSDictionary *answerObject = (NSDictionary*)snapshot.value;
@@ -103,8 +102,7 @@
                                                   //NSLog(@"un %@", upvote.upvotesNumber);
                                                   upvote.upvotesNumberString = [upvote.upvotesNumber stringValue];
                                                   //upvote.upvotesNumberString = answerDict[@"answer"];
-                                                  //NSLog(@"upvotesnumberSTring %@", upvote.upvotesNumberString);
-                                                  self.upvotes = [self.upvotes arrayByAddingObject:upvote];
+                                                  NSLog(@"upvotesnumberSTring %@", upvote.upvotesNumberString);
                                                   
                                               }
                                               
@@ -205,7 +203,7 @@
 }
 
 
--(NSString *)retrieveAnswers {
+-(void)retrieveAnswers {
     NSMutableString *retrieveAnswers = [[NSMutableString alloc] init];
 
     self.ref = [[FIRDatabase database] reference];
@@ -216,7 +214,7 @@
      observeEventType:FIRDataEventTypeValue
      withBlock:^(FIRDataSnapshot *snapshot) {
          
-         NSLog (@"get ansers %@", getAnswersQuery2 );
+         //NSLog (@"get ansers %@", getAnswersQuery2 );
                self.answers = @[];
                
                //NSLog(@"snapshot retrieve answers %@", snapshot.value);
@@ -226,14 +224,15 @@
                    answerObject = @{snapshot.key:snapshot.value};
                    
                    NSArray *answerListing = [answerObject objectForKey:snapshot.key];
+                   NSInteger answerNum = 0;
                    for (NSDictionary *answerDict in answerListing) {
                        Answer *answer = [[Answer alloc] init];
                        answer.answerText = answerDict[@"answer"];
+                       answer.upvotes = [answerDict[@"upvotes"] integerValue];
                        
                        self.answers = [self.answers arrayByAddingObject:answer];
-                       
                    }
-   
+                   [self sortAnswersByVoteNumber];
                }
         
          
@@ -247,7 +246,33 @@
     
     
     
-    return retrieveAnswers;
+}
+
+-(void)sortAnswersByVoteNumber{
+    
+//    NSLog(@"%@",self.answers);
+
+    self.answers = [self.answers sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"upvotes" ascending:NO]]];
+    
+//    NSLog(@"%@",self.answers);
+    
+    
+    /*
+    self.ref = [[FIRDatabase database] reference];
+    //Database work here
+    FIRDatabaseReference *getVotesRef = [self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/", (long)self.questionNumber]];
+    FIRDatabaseQuery *getVotes = [getVotesRef queryOrderedByChild:@"upvotes"];
+    
+    [getVotes
+     observeEventType:FIRDataEventTypeValue
+     withBlock:^(FIRDataSnapshot *snapshot) {
+         NSLog(@"Ordered Votes");
+         NSLog(@"snap votes %@", snapshot.value[@"upvotes"]);
+         
+         
+         
+     }];
+    */
 }
 
 

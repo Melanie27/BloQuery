@@ -26,8 +26,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *answerTextView;
 @property (strong, nonatomic) IBOutlet UILabel *voteCountLabel;
 @property (nonatomic, strong) Answer *answer;
-@property (nonatomic, strong) Upvotes *upvotes;
-@property (nonatomic, assign) NSInteger *questionNumber;
+@property (nonatomic, assign) NSInteger questionNumber;
 @property (nonatomic, assign) NSInteger answerNumber;
 @property (nonatomic, assign) NSInteger voteNumber;
 @property (nonatomic, strong) NSArray *answers;

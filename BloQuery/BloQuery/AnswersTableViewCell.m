@@ -36,14 +36,9 @@
 -(void)setAnswer:(Answer*)answer {
     _answer = answer;
     self.answerTextView.text = _answer.answerText;
-   
+    self.voteCountLabel.text = [NSString stringWithFormat:@"%d",_answer.upvotes];
     
     
-    
-}
--(void)setUpvotes:(Upvotes*)upvotes {
-    _upvotes = upvotes;
-    self.voteCountLabel.text = _upvotes.upvotesNumberString;
     
 }
 
@@ -66,7 +61,7 @@
 
 - (IBAction)upvoteAnswer:(id)sender {
     UITableView *tableView = (UITableView *)self.superview.superview;
-    [tableView reloadData];
+//    [tableView reloadData];
     //TODO move to datasource
     //BLCDataSource *ds = [BLCDataSource sharedInstance];
     //[ds upvoteCounting];
@@ -84,7 +79,8 @@
         BOOL exists = [snapshot.value objectForKey:regEx] != nil;
                                            
         if (exists == 0) {
-                                               
+    // Add Vote
+            
             self.ref = [[FIRDatabase database] reference];
             FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.questionNumber, (long)self.answerNumber]] queryLimitedToFirst:1000];
                                                
@@ -110,7 +106,7 @@
                                                                                      
             }];
         } else {
-                                               
+// Remove Vote
                                                
         self.ref = [[FIRDatabase database] reference];
         FIRDatabaseQuery *whichAnswersQuery = [[self.ref child:[NSString stringWithFormat:@"/questions/%ld/answers/%ld/", (long)self.questionNumber, (long)self.answerNumber]] queryLimitedToFirst:1000];
