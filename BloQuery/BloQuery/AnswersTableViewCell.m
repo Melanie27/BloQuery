@@ -36,9 +36,7 @@
 -(void)setAnswer:(Answer*)answer {
     _answer = answer;
     self.answerTextView.text = _answer.answerText;
-    self.voteCountLabel.text = [NSString stringWithFormat:@"%d",_answer.upvotes];
-    
-    
+    self.voteCountLabel.text = [NSString stringWithFormat:@"%ld",(long)_answer.upvotes];
     
 }
 
